@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -37,6 +38,12 @@ namespace WebApp
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+            #if (KvpCustomRegistration) 
+                .ConfigureAppConfiguration((builderContext, config) =>
+                {
+                    config.AddJsonFile("app-userproperties.json", optional: true, reloadOnChange: true);
+                })
+            #endif
                 .UseStartup<Startup>()
                 .Build();
 
@@ -51,6 +58,12 @@ namespace WebApp
             #if (SimpleContent)
             #if (!NoDb)
             SimpleContentEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
+
+            #if (KvpCustomRegistration) 
+            #if (!NoDb)
+            KvpEFCoreStartup.InitializeDatabaseAsync(scopedServices).Wait();
             #endif
             #endif
 

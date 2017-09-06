@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
-using System.Globalization;
-using Microsoft.AspNetCore.Localization;
-using System.IO;
-using Microsoft.AspNetCore.DataProtection;
+#if (KvpCustomRegistration)
+using cloudscribe.UserProperties.Models;
+using cloudscribe.UserProperties.Services;
+#endif
 
 namespace WebApp
 {
@@ -38,10 +42,10 @@ namespace WebApp
         {
             // **** VERY IMPORTANT *****
             // data protection keys are used to encrypt the auth token in the cookie
-            // and also to encrypt social auth secrets and smtp password in the db
+            // and also to encrypt social auth secrets and smtp password in the data storage
             // therefore we need keys to be persistent in order to be able to decrypt
-            // if you move an app to different hosting and the keys change then you wopuld have
-            // to update those settings again in the UI
+            // if you move an app to different hosting and the keys change then you would have
+            // to update those settings again from the Administration UI
 
             // for IIS hosting you should use a powershell script to create a keyring in the registry
             // per application pool and use a different application pool per app
@@ -81,6 +85,12 @@ namespace WebApp
 
             services.AddOptions();
 
+            #if (KvpCustomRegistration)
+            services.Configure<ProfilePropertySetContainer>(Configuration.GetSection("ProfilePropertySetContainer"));
+            services.AddScoped<TenantProfileOptionsResolver>();
+            services.AddCloudscribeKvpUserProperties();
+            #endif
+
             #if (!NoDb)
             var connectionString = Configuration.GetConnectionString("EntityFrameworkConnection");
             #if (MSSQL)
@@ -94,6 +104,21 @@ namespace WebApp
             #endif
             #else
             services.AddCloudscribeCoreNoDbStorage();
+            #endif
+
+            #if (KvpCustomRegistration)  
+            #if (NoDb)
+            services.AddCloudscribeKvpNoDbStorage();
+            #endif
+            #if (MSSQL)
+            services.AddCloudscribeKvpEFStorageMSSQL(connectionString);
+            #endif
+            #if (MySql)
+            services.AddCloudscribeKvpEFStorageMySql(mysqlConnection);
+            #endif
+            #if (pgsql)
+            services.AddCloudscribeKvpEFStoragePostgreSql(pgConnection);
+            #endif
             #endif
 
             #if (Logging)
@@ -146,6 +171,10 @@ namespace WebApp
                 //.AddSigningCredential(cert) // create a certificate for use in production
                 .AddDeveloperSigningCredential() // don't use this for production
                 ;
+            #endif
+
+            #if (ContactForm)
+            services.AddCloudscribeSimpleContactForm(Configuration);
             #endif
 
             
@@ -249,6 +278,9 @@ namespace WebApp
                     #if (IdentityServer)
                     options.AddCloudscribeCoreIdentityServerIntegrationBootstrap3Views();
                     #endif
+                    #if (ContactForm)
+                    options.AddCloudscribeSimpleContactFormViews();
+                    #endif
 
                     options.ViewLocationExpanders.Add(new cloudscribe.Core.Web.Components.SiteViewLocationExpander());
                 });
@@ -321,7 +353,7 @@ namespace WebApp
                     routes.MapRoute(
                         name: "folderdefault",
                         template: "{sitefolder}/{controller}/{action}/{id?}",
-                        //defaults: new { controller = "Home", action = "Index" },
+                        defaults: null,
                         constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
                         );
                     

@@ -26,9 +26,15 @@
           ]
         },
         {
-          "condition": "(true)",
+          "condition": "(!KvpCustomRegistration)",
           "exclude": [
-            ".template.config\template.json"
+            "app-userproperties.json"
+          ]
+        },
+        {
+          "condition": "(!AuthoringMode)",
+          "exclude": [
+            ".template.config/**"
           ]
         }
       ]
@@ -42,11 +48,23 @@
       "replaces": "PROJECT-TITLE",
       "description": "The name of the project which determines the assembly product name."
     },
-	"SimpleContent": {
+	 "SimpleContent": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "true",
       "description": "Include cloudscribe SimpleContent blog and content engine."
+    },
+    "ContactForm": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include cloudscribe SimpleContactForm."
+    },
+    "KvpCustomRegistration": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include cloudscribe key/value pair custom registration."
     },
     "IdentityServer": {
       "type": "parameter",
@@ -54,7 +72,7 @@
       "defaultValue": "false",
       "description": "Include IdentityServer4 (fork) integration."
     },
-	"Logging": {
+	  "Logging": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "true",
@@ -100,7 +118,14 @@
     "NoDb": {
       "type": "computed",
       "value": "(DataStorage == \"NoDb\")"
+    },
+    "AuthoringMode": {
+      "type": "generated",
+      "generator": "constant",
+      "parameters": {
+        "value": false
+      }
     }
-	}
+  }
   
 }

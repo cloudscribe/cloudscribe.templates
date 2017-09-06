@@ -95,6 +95,27 @@
     <!--#endif-->
     <!--#endif-->
 
+    <!--#if (ContactForm)-->
+    <PackageReference Include="cloudscribe.SimpleContactForm" Version="2.0.*" />
+    <!--#endif-->
+
+    <!--#if (KvpCustomRegistration)-->
+    <!--#if (NoDb)-->
+    <PackageReference Include="cloudscribe.Kvp.Storage.NoDb" Version="2.0.*" />
+    <!--#endif-->
+    <!--#if (MSSQL)-->
+    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MSSQL" Version="2.0.*" />
+    <!--#endif-->
+    <!--#if (MySql)-->
+    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MySql" Version="2.0.*" />
+    <!--#endif-->
+    <!--#if (pgsql)-->
+    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.pgsql" Version="2.0.*" />
+    <!--#endif-->
+    <PackageReference Include="cloudscribe.UserProperties.Kvp" Version="2.0.*" />
+    <PackageReference Include="cloudscribe.UserProperties" Version="2.0.*" />
+    <!--#endif-->
+
     <PackageReference Include="cloudscribe.Web.Localization" Version="2.0.*" />
     
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.*" />
