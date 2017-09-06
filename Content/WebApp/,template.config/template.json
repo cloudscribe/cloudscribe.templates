@@ -24,6 +24,12 @@
           "exclude": [
             "wwwroot/wlwmanifest.xml"
           ]
+        },
+        {
+          "condition": "(true)",
+          "exclude": [
+            ".template.config\template.json"
+          ]
         }
       ]
     }
@@ -42,17 +48,22 @@
       "defaultValue": "true",
       "description": "Include cloudscribe SimpleContent blog and content engine."
     },
+    "IdentityServer": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include IdentityServer4 (fork) integration."
+    },
 	"Logging": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "true",
       "description": "Include cloudscribe logging and log viewer UI."
-    }
-	},
-  "DataStorage": {
+    },
+    "DataStorage": {
       "type": "parameter",
       "datatype": "choice",
-      "defaultValue": "NoDb",
+      "defaultValue": "MSSQL",
       "description": "The data storage platform you wish to use.",
       "choices": [
         {
@@ -90,4 +101,6 @@
       "type": "computed",
       "value": "(DataStorage == \"NoDb\")"
     }
+	}
+  
 }

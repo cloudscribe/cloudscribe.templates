@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using System.IO;
@@ -35,9 +36,37 @@ namespace WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string pathToCryptoKeys = Path.Combine(Environment.ContentRootPath, "dp_keys");
-            services.AddDataProtection()
-                .PersistKeysToFileSystem(new System.IO.DirectoryInfo(pathToCryptoKeys));
+            // **** VERY IMPORTANT *****
+            // data protection keys are used to encrypt the auth token in the cookie
+            // and also to encrypt social auth secrets and smtp password in the db
+            // therefore we need keys to be persistent in order to be able to decrypt
+            // if you move an app to different hosting and the keys change then you wopuld have
+            // to update those settings again in the UI
+
+            // for IIS hosting you should use a powershell script to create a keyring in the registry
+            // per application pool and use a different application pool per app
+            // https://docs.microsoft.com/en-us/aspnet/core/publishing/iis#data-protection
+            // https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?tabs=aspnetcore2x
+            if(Environment.IsProduction())
+            {
+                // If using Azure for production the uri with sas token could be stored in azure as environment variable or using key vault
+                // but the keys go in azure blob storage per docs https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers
+                //var dpKeysUrl = Configuration["AppSettings:DataProtectionKeysBlobStorageUrl"];
+                services.AddDataProtection()
+                    //.PersistKeysToAzureBlobStorage(new Uri(dpKeysUrl))
+                    ;
+                ;
+            }
+            else
+            {
+                // dp_Keys folder should be added to .gitignore so the keys don't go into source control
+                // ie add a line with: **/dp_keys/**
+                // to your .gitignore file
+                string pathToCryptoKeys = Path.Combine(Environment.ContentRootPath, "dp_keys");
+                services.AddDataProtection()
+                    .PersistKeysToFileSystem(new System.IO.DirectoryInfo(pathToCryptoKeys))
+                    ;
+            }
 
             services.Configure<ForwardedHeadersOptions>(options =>
             {
@@ -96,6 +125,27 @@ namespace WebApp
             #if (pgsql)
             services.AddCloudscribeSimpleContentEFStoragePostgreSql(connectionString);
             #endif
+            #endif
+
+            #if (IdentityServer)
+            services.AddIdentityServer()
+            #if (NoDb)
+                .AddCloudscribeCoreNoDbIdentityServerStorage()
+            #endif
+            #if (MSSQL)
+                .AddCloudscribeCoreEFIdentityServerStorageMSSQL(connectionString)
+            #endif
+            #if (MySql)
+                .AddCloudscribeCoreEFIdentityServerStorageMySql(connectionString)
+            #endif
+            #if (pgsql)
+                .AddCloudscribeCoreEFIdentityServerStoragePostgreSql(connectionString)
+            #endif
+                .AddCloudscribeIdentityServerIntegration()
+                // https://identityserver4.readthedocs.io/en/dev/topics/crypto.html
+                //.AddSigningCredential(cert) // create a certificate for use in production
+                .AddDeveloperSigningCredential() // don't use this for production
+                ;
             #endif
 
             
@@ -196,6 +246,9 @@ namespace WebApp
                     #if (Logging)
                     options.AddCloudscribeLoggingBootstrap3Views();
                     #endif
+                    #if (IdentityServer)
+                    options.AddCloudscribeCoreIdentityServerIntegrationBootstrap3Views();
+                    #endif
 
                     options.ViewLocationExpanders.Add(new cloudscribe.Core.Web.Components.SiteViewLocationExpander());
                 });
@@ -233,6 +286,10 @@ namespace WebApp
                     loggerFactory,
                     multiTenantOptions,
                     SslIsAvailable);
+
+            #if (IdentityServer)
+            app.UseIdentityServer();
+            #endif
 
             UseMvc(app, multiTenantOptions.Mode == cloudscribe.Core.Models.MultiTenantMode.FolderName);
             
@@ -347,6 +404,15 @@ namespace WebApp
                     {
                         authBuilder.RequireRole("Administrators", "Content Administrators");
                     });
+
+                #if (IdentityServer)
+                options.AddPolicy(
+                    "IdentityServerAdminPolicy",
+                    authBuilder =>
+                    {
+                        authBuilder.RequireRole("Administrators");
+                    });
+                #endif
 
                 // add other policies here 
 

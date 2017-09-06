@@ -14,8 +14,8 @@ namespace WebApp
             var host = BuildWebHost(args);
             var env = host.Services.GetRequiredService<IHostingEnvironment>();
             #if (Logging)
-                var loggerFactory = host.Services.GetRequiredService<ILoggerFactory>();
-                ConfigureLogging(env, loggerFactory, host.Services);
+            var loggerFactory = host.Services.GetRequiredService<ILoggerFactory>();
+            ConfigureLogging(env, loggerFactory, host.Services);
             #endif
             using (var scope = host.Services.CreateScope())
             {
@@ -49,13 +49,19 @@ namespace WebApp
             #endif
             
             #if (SimpleContent)
-            #if (NoDb)
-            CoreNoDbStartup.InitializeDataAsync(services).Wait();
-            #else
+            #if (!NoDb)
             SimpleContentEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
             #endif
-
             #endif
+
+            #if (IdentityServer)
+            #if (NoDb)
+            CloudscribeIdentityServerIntegrationNoDbStorage.InitializeDatabaseAsync(scopedServices).Wait();
+            #else
+            CloudscribeIdentityServerIntegrationEFCoreStorage.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
+
             #if (Logging)
             #if (!NoDb)
             LoggingEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
