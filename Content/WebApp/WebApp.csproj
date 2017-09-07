@@ -37,7 +37,7 @@
     <PackageReference Include="cloudscribe.Core.Storage.EFCore.MSSQL" Version="2.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.Core.Storage.EFCore.MySql" Version="2.0.*" />
+    <PackageReference Include="cloudscribe.Core.Storage.EFCore.MySql" Version="2.0.0-*" />
     <!--#endif-->
     <!--#if (pgsql)-->
     <PackageReference Include="cloudscribe.Core.Storage.EFCore.pgsql" Version="2.0.*" />
@@ -56,7 +56,7 @@
     <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MSSQL" Version="2.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MySQL" Version="2.0.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MySQL" Version="2.0.0-*" />
     <!--#endif-->
     <!--#if (pgsql)-->
     <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.pgsql" Version="2.0.*" />
@@ -72,7 +72,7 @@
     <PackageReference Include="cloudscribe.Logging.EFCore.MSSQL" Version="2.1.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.Logging.EFCore.MySql" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.Logging.EFCore.MySql" Version="2.1.0-*" />
     <!--#endif-->
     <!--#if (pgsql)-->
     <PackageReference Include="cloudscribe.Logging.EFCore.pgsql" Version="2.1.*" />
@@ -107,7 +107,7 @@
     <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MSSQL" Version="2.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MySql" Version="2.0.*" />
+    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MySql" Version="2.0.0-*" />
     <!--#endif-->
     <!--#if (pgsql)-->
     <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.pgsql" Version="2.0.*" />

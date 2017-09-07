@@ -114,10 +114,10 @@ namespace WebApp
             services.AddCloudscribeKvpEFStorageMSSQL(connectionString);
             #endif
             #if (MySql)
-            services.AddCloudscribeKvpEFStorageMySql(mysqlConnection);
+            services.AddCloudscribeKvpEFStorageMySql(connectionString);
             #endif
             #if (pgsql)
-            services.AddCloudscribeKvpEFStoragePostgreSql(pgConnection);
+            services.AddCloudscribeKvpEFStoragePostgreSql(connectionString);
             #endif
             #endif
 
@@ -241,7 +241,7 @@ namespace WebApp
                     options.Filters.Add(new RequireHttpsAttribute());
                 }
 
-
+                #if (SimpleContent)
                 options.CacheProfiles.Add("SiteMapCacheProfile",
                      new CacheProfile
                      {
@@ -253,6 +253,7 @@ namespace WebApp
                      {
                          Duration = 100
                      });
+                #endif
             });
 
             services.AddRouting(options =>
