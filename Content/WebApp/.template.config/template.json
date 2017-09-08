@@ -4,7 +4,7 @@
   "classifications": [ "Console" ], 
   "name": "cloudscribe project template",
   "identity": "cloudscribe.template",         
-  "groupIdentity":"cloudscribe.Sample",
+  "groupIdentity":"cloudscribe",
   "shortName": "cloudscribe",
   "tags": {
     "language": "C#",

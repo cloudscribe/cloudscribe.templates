@@ -13,7 +13,6 @@ namespace WebApp
         public static void Main(string[] args)
         {
             var host = BuildWebHost(args);
-            var env = host.Services.GetRequiredService<IHostingEnvironment>();
             
             using (var scope = host.Services.CreateScope())
             {
@@ -31,6 +30,7 @@ namespace WebApp
             }
 
             #if (Logging)
+            var env = host.Services.GetRequiredService<IHostingEnvironment>();
             var loggerFactory = host.Services.GetRequiredService<ILoggerFactory>();
             ConfigureLogging(env, loggerFactory, host.Services);
             #endif

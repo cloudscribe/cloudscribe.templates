@@ -59,7 +59,6 @@ namespace WebApp
                 services.AddDataProtection()
                     //.PersistKeysToAzureBlobStorage(new Uri(dpKeysUrl))
                     ;
-                ;
             }
             else
             {
@@ -93,13 +92,14 @@ namespace WebApp
 
             #if (!NoDb)
             var connectionString = Configuration.GetConnectionString("EntityFrameworkConnection");
+
             #if (MSSQL)
             services.AddCloudscribeCoreEFStorageMSSQL(connectionString);
             #endif
             #if (MySql)
             services.AddCloudscribeCoreEFStorageMySql(connectionString);
             #endif
-            #if (pggsql)
+            #if (pgsql)
             services.AddCloudscribeCoreEFStoragePostgreSql(connectionString);
             #endif
             #else
@@ -153,24 +153,48 @@ namespace WebApp
             #endif
 
             #if (IdentityServer)
-            services.AddIdentityServer()
+            if(Environment.IsProduction())
+            {
+                services.AddIdentityServer()
             #if (NoDb)
-                .AddCloudscribeCoreNoDbIdentityServerStorage()
+                    .AddCloudscribeCoreNoDbIdentityServerStorage()
             #endif
             #if (MSSQL)
-                .AddCloudscribeCoreEFIdentityServerStorageMSSQL(connectionString)
+                    .AddCloudscribeCoreEFIdentityServerStorageMSSQL(connectionString)
             #endif
             #if (MySql)
-                .AddCloudscribeCoreEFIdentityServerStorageMySql(connectionString)
+                    .AddCloudscribeCoreEFIdentityServerStorageMySql(connectionString)
             #endif
             #if (pgsql)
-                .AddCloudscribeCoreEFIdentityServerStoragePostgreSql(connectionString)
+                    .AddCloudscribeCoreEFIdentityServerStoragePostgreSql(connectionString)
             #endif
-                .AddCloudscribeIdentityServerIntegration()
-                // https://identityserver4.readthedocs.io/en/dev/topics/crypto.html
-                //.AddSigningCredential(cert) // create a certificate for use in production
-                .AddDeveloperSigningCredential() // don't use this for production
-                ;
+                    .AddCloudscribeIdentityServerIntegration()
+                    // *** IMPORTANT CHANGES NEEDED HERE *** 
+                    // don't use AddDeveloperSigningCredential in production
+                    // https://identityserver4.readthedocs.io/en/dev/topics/crypto.html
+                    //.AddSigningCredential(cert) // create a certificate for use in production
+                    .AddDeveloperSigningCredential() // don't use this for production
+                    ;
+            }
+            else
+            {
+                services.AddIdentityServer()
+            #if (NoDb)
+                    .AddCloudscribeCoreNoDbIdentityServerStorage()
+            #endif
+            #if (MSSQL)
+                    .AddCloudscribeCoreEFIdentityServerStorageMSSQL(connectionString)
+            #endif
+            #if (MySql)
+                    .AddCloudscribeCoreEFIdentityServerStorageMySql(connectionString)
+            #endif
+            #if (pgsql)
+                    .AddCloudscribeCoreEFIdentityServerStoragePostgreSql(connectionString)
+            #endif
+                    .AddCloudscribeIdentityServerIntegration()
+                    .AddDeveloperSigningCredential() // don't use this for production
+                    ;
+            }
             #endif
 
             #if (ContactForm)
