@@ -2,10 +2,10 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>cloudscribe.templates</id>
-    <version>2.0.0-*</version>
+    <version>1.0.0</version>
     <title>cloudscribe Project Templates</title>
     <authors>Joe Audette</authors>
-    <description>Project templates for starting new web application projects with cloudscribe library components</description>
+    <description>Project template for starting new web application projects with cloudscribe library components</description>
     <tags>ASP.NET Core cloudscribe</tags>
     <copyright>Copyright © Source Tree Solutions</copyright>
     <language>en-US</language>
@@ -21,6 +21,6 @@
     </dependencies -->
   </metadata>
   <files>
-    <file src="**" exclude="content\WebApp\**\*;**\bin\**\*;**\obj\**\*;**\*.user;**\*.lock.json" />
+    <file src="**" exclude="content\cloudscribeTemplate\**\*;**\bin\**\*;**\obj\**\*;**\*.user;**\*.lock.json" />
   </files>
 </package>

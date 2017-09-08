@@ -1,9 +1,9 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Joe Audette",
-  "classifications": [ "Console" ], 
+  "classifications": [ "Web" ], 
   "name": "cloudscribe project template",
-  "identity": "cloudscribe.template",         
+  "identity": "cloudscribe.Template.CSharp",         
   "groupIdentity":"cloudscribe",
   "shortName": "cloudscribe",
   "tags": {
@@ -15,6 +15,11 @@
   "guids": [
     "4BC5DF1F-B155-4A69-9719-0AB349B1ACB2",
     "0353CAB0-205A-4FCD-9626-1282ECF47059"
+  ],
+  "primaryOutputs": [
+    {
+      "path": "WebApp.csproj"
+    }
   ],
   "sources": [
     {
