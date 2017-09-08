@@ -105,7 +105,6 @@ namespace WebApp
             #else
             services.AddCloudscribeCoreNoDbStorage();
             #endif
-
             #if (KvpCustomRegistration)  
             #if (NoDb)
             services.AddCloudscribeKvpNoDbStorage();
@@ -120,7 +119,6 @@ namespace WebApp
             services.AddCloudscribeKvpEFStoragePostgreSql(connectionString);
             #endif
             #endif
-
             #if (Logging)
             #if (NoDb)
             services.AddCloudscribeLoggingNoDbStorage(Configuration);
@@ -136,7 +134,6 @@ namespace WebApp
             #endif
             services.AddCloudscribeLogging();
             #endif
-
             #if (SimpleContent)
             #if (NoDb)
             services.AddNoDbStorageForSimpleContent();
@@ -196,12 +193,9 @@ namespace WebApp
                     ;
             }
             #endif
-
             #if (ContactForm)
             services.AddCloudscribeSimpleContactForm(Configuration);
             #endif
-
-            
             services.AddScoped<cloudscribe.Web.Navigation.INavigationNodePermissionResolver, cloudscribe.Web.Navigation.NavigationNodePermissionResolver>();
             #if (SimpleContent)
             services.AddScoped<cloudscribe.Web.Navigation.INavigationNodePermissionResolver, cloudscribe.SimpleContent.Web.Services.PagesNavigationNodePermissionResolver>();
@@ -356,11 +350,12 @@ namespace WebApp
         {
             app.UseMvc(routes =>
             {
+                #if (SimpleContent)
                 if (useFolders)
                 {
                     routes.AddBlogRoutesForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint());
                 }
-                #if (SimpleContent)
+                
                 routes.AddBlogRoutesForSimpleContent();
                 routes.AddSimpleContentStaticResourceRoutes();
                 #endif
