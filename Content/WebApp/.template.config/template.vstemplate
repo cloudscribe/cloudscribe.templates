@@ -2,7 +2,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="ProjectGroup">
   <TemplateData>
     <Name>cloudscribe Web Application</Name>
-    <Description>cloudscribe project template</Description>
+    <Description>Template for creating new Web Application projects using cloudscribe library components</Description>
     <TemplateID>cloudscribe.Template.CSharp</TemplateID>
     <DefaultName>WebApp</DefaultName>
     
@@ -34,7 +34,7 @@
     </CustomParameters>
   </TemplateContent>
   <WizardExtension>
-    <Assembly>cloudscribeTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4c4535ab9334fc42</Assembly>
+    <Assembly>cloudscribeTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=361e99cc09843a61</Assembly>
     <FullClassName>cloudscribeTemplate.ProjectWizard</FullClassName>
   </WizardExtension>
   <WizardExtension>

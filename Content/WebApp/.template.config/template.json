@@ -39,7 +39,8 @@
         {
           "condition": "(!AuthoringMode)",
           "exclude": [
-            ".template.config/**"
+            ".template.config/**",
+            "wwwroot/lib/**"
           ]
         }
       ]
