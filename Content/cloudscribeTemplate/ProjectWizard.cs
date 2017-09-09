@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EnvDTE;
 using System.Windows.Forms;
+using System.IO;
 
 namespace cloudscribeTemplate
 {
@@ -40,6 +41,9 @@ namespace cloudscribeTemplate
         {
             _dte = (DTE)automationObject;
 
+            var projectDirectory = replacementsDictionary["$destinationdirectory$"];
+            //var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
+
             try
             {
                 
@@ -63,6 +67,12 @@ namespace cloudscribeTemplate
             }
             catch (Exception ex)
             {
+                // Clean up the template that was written to disk
+                if (Directory.Exists(projectDirectory))
+                {
+                    Directory.Delete(projectDirectory, true);
+                }
+
                 MessageBox.Show(ex.ToString());
             }
 

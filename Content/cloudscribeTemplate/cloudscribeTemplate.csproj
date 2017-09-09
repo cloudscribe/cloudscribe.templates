@@ -66,7 +66,10 @@
     <None Include="template\templatepack.cloudscribeTemplate.proj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\project-icon.png" />
+    <Content Include="Properties\project-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="stylesheet.css" />
     <Content Include="template.pkgdef">
       <IncludeInVSIX>true</IncludeInVSIX>
