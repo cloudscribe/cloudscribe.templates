@@ -2,7 +2,7 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "Joe Audette",
   "classifications": [ "Web" ], 
-  "name": "cloudscribe project template",
+  "name": "cloudscribe web project template",
   "identity": "cloudscribe.Template.CSharp",         
   "groupIdentity":"cloudscribe",
   "shortName": "cloudscribe",

@@ -7,8 +7,8 @@
           Condition=" '$(TemplatePackPropsFilePath)' != '' and Exists('$(TemplatePackPropsFilePath)') " />
 
   <PropertyGroup Label="TemplatePackInfo">
-    <Authors>Your name here</Authors>
-    <Description>A description for your template pack</Description>
+    <Authors>Joe Audette</Authors>
+    <Description>A Visual Studio project template for starting web application projects using cloudscribe component libraries.</Description>
     <Version>1.0.0</Version>
   </PropertyGroup>
 
