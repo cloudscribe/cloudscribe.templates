@@ -1,2 +1,9 @@
 # cloudscribe.templates
-dotnet new templates for cloudscribe
+
+This repository contains a dotnet new template and a Visual Studio 2017 project template for creating new projects with various configurations of cloudscribe libraries.
+
+To learn more see https://www.cloudscribe.com/docs/introduction
+
+If you have questions or comments you can post issues here on github or for less formal questions feel free to drop into our gitter chat web page and say hello!
+
+[![Join the chat at https://gitter.im/joeaudette/cloudscribe](https://badges.gitter.im/joeaudette/cloudscribe.svg)](https://gitter.im/joeaudette/cloudscribe?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
