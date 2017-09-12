@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>cloudscribe New Project</title>
+    <link href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="main" class="container body-content" role="main">
+
+        <a href="https://www.cloudscribe.com">
+            <img alt="cloudscribe"
+                 class="img-responsive"
+                 src="https://www.cloudscribe.com/media/images/cloudscribe-logo650pt.png">
+        </a>
+
+        <section>
+            <h2>Thanks for starting your project with cloudscribe!</h2>
+            <p>Here are some informative tips to help you get started.</p>
+            <p>Be sure to checkout the <a href="https://www.cloudscribe.com/docs">Documentation</a>.
+            You can also ask questions in our <a href="https://gitter.im/joeaudette/cloudscribe">gitter chat web page</a>.</p>
+
+            <article>
+                <h3><span aria-hidden="true" class="fa fa-check"></span> Next Steps</h3>
+                <ul class="list-group">
+				    <!--#if (MySql)-->
+                    <li class="list-group-item">
+                        <strong>Set your MySql Connection string.</strong> -
+                        You should copy the connection string from appsettings.json into appsettings.Development.json and set it to a valid connection string
+						for MySql using the format shown in appsettings.json. If your project is under source control such as git, you should add the 
+						appsettings.Development.json file to your .gitignore file so it won't be committed to source control.
+                    </li>
+                    <!--#endif-->
+					<!--#if (pgsql)-->
+                    <li class="list-group-item">
+                         <strong>Set your PostgreSql Connection string.</strong> 
+                        You should copy the connection string from appsettings.json into appsettings.Development.json and set it to a valid connection string
+						for PostgreSql using the format shown in appsettings.json. If your project is under source control such as git, you should add the 
+						appsettings.Development.json file to your .gitignore file so it won't be committed to source control.
+                    </li>
+                    <!--#endif-->
+					<!--#if (NoDb)-->
+                    <li class="list-group-item">
+                         <strong>Be aware of potential long file name errors on windows.</strong> 
+                        You chose NoDb file system storage for data storage. There is a known issue on windows that may potentially impact you. Just keep this in mind
+                        if you encounter any "path too long" exceptions.  Since NoDb uses long guids for file names and also for some folder names it can result in long file paths that may exceed the 255 character
+                        file path limit on windows. The best way to avoid that problem is to use a short folder path such as c:\c\yourprojectname, if you use a very deep 
+                        nested path you may encounter errors.
+                    </li>
+                    <!--#endif-->
+                    <li class="list-group-item">
+                        <strong>Login Credentials</strong> 
+                        When you first run the project application an administrative user account will be created automatically with the email admin@admin.com 
+                        and the password admin. Once you login with administrative permissions a new Administration menu will appear, you should take a look around 
+                        the various menu items to find the configurable settings that are of interest to you. One of the first things you shold do is change the email
+                        address and password of the admin user account.  You can change the email under Administration > User Management > User List.
+						You can change the password by clicking the welcome user message at the top of the page. Be careful not to forget your password at least until
+						you have configured SMTP settings for email because password reset emails can't be sent until you do that.
+                        If you deploy the application to public facing web hosting be sure to change these credentials immediately after deployment.
+                        
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Data Protection</strong> 
+                        Be sure to see the comments in Startup.cs about data protection and how to configure the storage location of data protection keys.
+                        Data protection keys are used to encrypt some settings that are persisted to data storage such as the password for SMTP, and the "secrets" 
+                        for social authentication.
+                    </li>
+                    <li class="list-group-item">
+                         <strong>Configure SMTP Settings for email notifications</strong> 
+                         In order for certain features like password reset or requiring a confirmed email to work, your site needs to be able to send email notifications.
+                         You will find settings for this under Administration > Email Settings
+                    </li>
+                    <!--#if (ContactForm)-->
+                    <li class="list-group-item">
+                        <strong>Contact Form Settings</strong> 
+                        In addition to the email settings mentioned above, since you have included cloudscribe SimpleContactForm, you also need to configure SMTP
+                        settings in the appsettings.config file, as well as an email address to receive the contact form submissions. Be sure to test the contact form after your site is online
+                        to verify that the settings are correct.
+                    </li>
+                    <!--#endif-->
+                    <!--#if (KvpCustomRegistration)-->
+                    <li class="list-group-item">
+                        <strong>Customizing the Registration</strong> 
+                        Since you included the Custom Registration with key/value storage feature, we have included the file app-userproperties.json 
+                        which has some sample custom registration fields to get you started. You will want to change those to match the needs of your project.
+                        See the <a href="https://www.cloudscribe.com/docs/configuration-based-custom-registration-and-user-properties">Custom Registration Documentation</a>
+                        for more information.
+                    </li>
+                    <!--#endif-->
+                    <!--#if (IdentityServer)-->
+                    <li class="list-group-item">
+                        <strong>IdentityServer4 Integration</strong> 
+                        You included the IdentityServer4 (fork) integration. It works just like the standard IdentityServer4 but has been modified to 
+                        support our multi-tenancy scenarios. Use of IdentityServer4 is a complex topic, you should mainly consult their 
+                        <a href="http://docs.identityserver.io/en/release/">documentation</a>, but you can also find a working example with 2 tenants
+                        and 2 clients (one per tenant), in our <a href="https://github.com/joeaudette/cloudscribe.StarterKits/tree/master/cloudscribe-idserver-nodb">Starter Kits Repository</a>.
+                        By comparing your setup with that working sample, you should be able to figure out how to configure things for your needs.
+                    </li>
+                    <!--#endif-->
+                    
+                </ul>
+            </article>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Support cloudscribe by Buying Swag at Our CafePress Shop!</h2>
+                    <p>See all the available merchandise on our <a href="http://www.cafepress.com/cloudscribe">CafePress shop!</a> 
+                    We make a small profit on each item and you can help us spread awareness of cloudscribe with our branded products.
+                    Only a few of our branded items are shown below.
+                    </p>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="http://www.cafepress.com/cloudscribe.81640156"><img src="https://www.cloudscribe.com/img/cloudscribewww_tshirt.jpg" /></a>
+                </div>
+                <div class="col-md-4">
+                    <a href="http://www.cafepress.com/cloudscribe.81640151"><img src="https://www.cloudscribe.com/img/cloudscribewww_sweatshirt.jpg" /></a>
+                </div>
+                <div class="col-md-4">
+                    <a href="http://www.cafepress.com/cloudscribe.81640150"><img src="https://www.cloudscribe.com/img/cloudscribe-mug-cp.png" /></a> 
+                </div>
+            </div>
+            
+			<div class="row">
+                <div class="col-md-12">
+                    <h2>Make a Voluntary Payment to Say Thanks!</h2>
+                    <div class="col-md-3 donate-button">
+                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="LRTXQVNQWWJWU">
+                            <table>
+                                <tr><td><input type="hidden" name="on0" value="Support My Work">Support My Work</td></tr>
+                                <tr>
+                                    <td>
+                                        <select name="os0">
+                                            <option value="Good will contribution">Good will contribution $25.00 USD</option>
+                                            <option value="I really benefited from your work">I really benefited from your work $50.00 USD</option>
+                                            <option value="I&#x27;m really getting a lot of value from your work!">I'm really getting a lot of value from your work! $100.00 USD</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            <input type="hidden" name="currency_code" value="USD">
+                            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                        </form>
+                    </div>
+                    <div class="col-md-3 donate-button">
+                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="DHASFB2BGS5UY">
+                            <table>
+                                <tr><td><input type="hidden" name="on0" value="Beer Donation">Beer Donation</td></tr>
+                                <tr>
+                                    <td>
+                                        <select name="os0">
+                                            <option value="Buy Me a Pint of Beer!">Buy Me a Pint of Beer! $5.00 USD</option>
+                                            <option value="Buy Me a 6 Pack!">Buy Me a 6 Pack! $15.00 USD</option>
+                                            <option value="Buy Me a Case of Beer!">Buy Me a Case of Beer! $25.00 USD</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            <input type="hidden" name="currency_code" value="USD">
+                            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                        </form>
+                    </div>
+                    <div class="col-md-3 donate-button">
+                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="AGPRQQBGPGKYN">
+                            <table>
+                                <tr><td><input type="hidden" name="on0" value="Coffee Donation">Coffee Donation</td></tr>
+                                <tr>
+                                    <td>
+                                        <select name="os0">
+                                            <option value="Buy Me a Cup of Coffee!">Buy Me a Cup of Coffee! $5.00 USD</option>
+                                            <option value="Buy Me Breakfast!">Buy Me Breakfast! $15.00 USD</option>
+                                            <option value="Buy Me a Week of Coffee!">Buy Me a Week of Coffee! $25.00 USD</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            <input type="hidden" name="currency_code" value="USD">
+                            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+
+        </section>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.1/bootstrap.min.js"></script>
+    
+</body>
+</html>

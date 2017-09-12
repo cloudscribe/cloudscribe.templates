@@ -33,7 +33,8 @@
         {
           "condition": "(!KvpCustomRegistration)",
           "exclude": [
-            "app-userproperties.json"
+            "app-userproperties.json",
+            "Views/Account/**"
           ]
         },
         {
@@ -190,6 +191,25 @@
       },
       "replaces": "55347"
     }
+	//,
+	//"SkipOpenReadMe": {
+    //  "type": "parameter",
+    //  "datatype": "bool",
+    //  "description": "Skips the opening of the projects Read-Me in a web browser.",
+    //  "defaultValue": "false"
+   //}
   }
+  //,
+  //postActions": [
+  //  {
+  //    "condition": "(!SkipOpenReadMe)",
+  //    "description": "Open the Read-Me for the project in a web browser.",
+  //    "manualInstructions": [
+  //      { "text": "Open the ReadMe.html in a web browser." }
+  //    ],
+  //    "actionId": "FEA7469E-E2E7-4431-B86B-27EBC1744883",
+  //    "continueOnError": true
+  //  }
+  //]
   
 }

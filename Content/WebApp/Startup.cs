@@ -86,7 +86,6 @@ namespace WebApp
 
             #if (KvpCustomRegistration)
             services.Configure<ProfilePropertySetContainer>(Configuration.GetSection("ProfilePropertySetContainer"));
-            services.AddScoped<TenantProfileOptionsResolver>();
             services.AddCloudscribeKvpUserProperties();
             #endif
 

@@ -61,6 +61,8 @@
         <script src="~/js/jquery.min.js" cs-resolve-theme-resource="true" cs-shared-theme="true" cs-tenant="@Tenant"></script>
         <script src="~/js/bootstrap.min.js" cs-resolve-theme-resource="true" cs-shared-theme="true" cs-tenant="@Tenant"></script>
     </environment>
+    @RenderSection("Bottom", required: false)
     @RenderSection("scripts", required: false)
+    <add-this profile-id="@Tenant.AddThisDotComUsername" async></add-this>
 </body>
 </html>
