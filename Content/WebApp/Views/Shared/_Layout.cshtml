@@ -16,8 +16,8 @@
         <link rel="stylesheet" href="~/cssmin/themes/default/bootstrap.min.css"  />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
-	
     @RenderSection("Styles", required: false)
+	<google-analytics profile-id="@Tenant.GoogleAnalyticsProfileId"></google-analytics>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">

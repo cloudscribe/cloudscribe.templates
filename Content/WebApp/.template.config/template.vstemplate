@@ -34,7 +34,7 @@
     </CustomParameters>
   </TemplateContent>
   <WizardExtension>
-    <Assembly>cloudscribeTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4c4535ab9334fc42</Assembly>
+    <Assembly>cloudscribeTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=361e99cc09843a61</Assembly>
     <FullClassName>cloudscribeTemplate.ProjectWizard</FullClassName>
   </WizardExtension>
   <WizardExtension>
