@@ -34,7 +34,9 @@
           "condition": "(!KvpCustomRegistration)",
           "exclude": [
             "app-userproperties.json",
-            "Views/Account/**"
+            "Views/Account/**",
+            "Views/Manage/**",
+            "Views/UserAdmin/**"
           ]
         },
         {
