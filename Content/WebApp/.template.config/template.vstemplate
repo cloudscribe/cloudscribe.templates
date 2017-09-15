@@ -41,4 +41,8 @@
     <Assembly>Microsoft.VisualStudio.TemplateEngine.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
     <FullClassName>Microsoft.VisualStudio.TemplateEngine.Wizard.TemplateEngineWizard</FullClassName>
   </WizardExtension>
+  <WizardExtension>
+    <Assembly>cloudscribeTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=361e99cc09843a61</Assembly>
+    <FullClassName>cloudscribeTemplate.ShowReadMeWizard</FullClassName>
+  </WizardExtension>
 </VSTemplate>

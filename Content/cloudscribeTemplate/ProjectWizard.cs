@@ -14,21 +14,52 @@ namespace cloudscribeTemplate
     {
         public void BeforeOpeningFile(ProjectItem projectItem)
         {
+            
         }
 
         public void ProjectFinishedGenerating(Project project)
         {
+           
+            
         }
 
         public void ProjectItemFinishedGenerating(ProjectItem projectItem)
         {
+            
         }
 
         public void RunFinished()
         {
+            // project hasn't actually been created here because the main
+            // template wizard runs after this wizard replaces values in the dictionary
+            // therefore added ShowReadMeWizard after that wizard
+
+            //if (!_exceptionOccurred)
+            //{
+                //var readmePath = _projectDirectory + "\\readme.html";
+                //var url = "https://www.cloudscribe.com/docs";
+                //var url = "file://" + readmePath.Replace("\\", "/");
+                //try
+                //{
+                //_dte.ItemOperations.OpenFile(readmePath, Constants.vsWindowKindWebBrowser);
+                // _dte.ItemOperations.Navigate(url);
+                //if(File.Exists(readmePath))
+                //{
+                //    _dte.ItemOperations.Navigate(readmePath);
+                //}
+                
+                //_dte.ExecuteCommand("cmd /c start " + readmePath);
+                //_dte.ExecuteCommand("File.OpenFile", readmePath);
+                //}
+                //catch(InvalidOperationException)
+                //{
+
+                //}
+            //}
         }
 
         private DTE _dte;
+        private string _projectDirectory = "";
         private UserInputForm _inputForm;
         private string _dataStorage = "MSSQL";
         private bool _useLogging = true;
@@ -36,12 +67,14 @@ namespace cloudscribeTemplate
         private bool _useContactForm = false;
         private bool _useKvpProfile = false;
         private bool _useIdentityServer = false;
+        private bool _exceptionOccurred = false;
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
             _dte = (DTE)automationObject;
+           
 
-            var projectDirectory = replacementsDictionary["$destinationdirectory$"];
+            _projectDirectory = replacementsDictionary["$destinationdirectory$"];
             //var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
 
             try
@@ -67,16 +100,21 @@ namespace cloudscribeTemplate
             }
             catch (Exception ex)
             {
+                _exceptionOccurred = true;
                 // Clean up the template that was written to disk
-                if (Directory.Exists(projectDirectory))
+                if (Directory.Exists(_projectDirectory))
                 {
-                    Directory.Delete(projectDirectory, true);
+                    Directory.Delete(_projectDirectory, true);
                 }
 
                 MessageBox.Show(ex.ToString());
             }
 
             
+            
+
+
+
         }
 
         public bool ShouldAddProjectItem(string filePath)

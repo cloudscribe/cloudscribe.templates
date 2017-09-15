@@ -27,7 +27,8 @@
         {
           "condition": "(!SimpleContent)",
           "exclude": [
-            "wwwroot/wlwmanifest.xml"
+            "wwwroot/wlwmanifest.xml",
+            "Views/Blog/**"
           ]
         },
         {
