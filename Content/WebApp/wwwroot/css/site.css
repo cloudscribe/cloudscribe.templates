@@ -99,3 +99,4 @@ margin-left:10px;
 -moz-border-radius:6px 0 6px 6px;
 border-radius:6px 0 6px 6px;
 }
+.agreementcontainer { overflow:auto; border:1px solid #CCC; height:300px; }

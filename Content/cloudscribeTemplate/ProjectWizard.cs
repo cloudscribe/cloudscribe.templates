@@ -33,29 +33,7 @@ namespace cloudscribeTemplate
             // project hasn't actually been created here because the main
             // template wizard runs after this wizard replaces values in the dictionary
             // therefore added ShowReadMeWizard after that wizard
-
-            //if (!_exceptionOccurred)
-            //{
-                //var readmePath = _projectDirectory + "\\readme.html";
-                //var url = "https://www.cloudscribe.com/docs";
-                //var url = "file://" + readmePath.Replace("\\", "/");
-                //try
-                //{
-                //_dte.ItemOperations.OpenFile(readmePath, Constants.vsWindowKindWebBrowser);
-                // _dte.ItemOperations.Navigate(url);
-                //if(File.Exists(readmePath))
-                //{
-                //    _dte.ItemOperations.Navigate(readmePath);
-                //}
-                
-                //_dte.ExecuteCommand("cmd /c start " + readmePath);
-                //_dte.ExecuteCommand("File.OpenFile", readmePath);
-                //}
-                //catch(InvalidOperationException)
-                //{
-
-                //}
-            //}
+            
         }
 
         private DTE _dte;
@@ -96,7 +74,13 @@ namespace cloudscribeTemplate
                 replacementsDictionary.Add("passthrough:ContactForm", _useContactForm.ToString().ToLowerInvariant());
                 replacementsDictionary.Add("passthrough:KvpCustomRegistration", _useKvpProfile.ToString().ToLowerInvariant());
                 replacementsDictionary.Add("passthrough:IdentityServer", _useIdentityServer.ToString().ToLowerInvariant());
-                
+                replacementsDictionary.Add("passthrough:IsVsix", "true");
+      
+
+
+
+
+
             }
             catch (Exception ex)
             {

@@ -32,6 +32,12 @@
           ]
         },
         {
+          "condition": "(!ContactForm)",
+          "exclude": [
+            "Views/Contact/**"
+          ]
+        },
+        {
           "condition": "(!KvpCustomRegistration)",
           "exclude": [
             "app-userproperties.json",
@@ -128,6 +134,15 @@
     "NoDb": {
       "type": "computed",
       "value": "(DataStorage == \"NoDb\")"
+    },
+    "UtmCampaign": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source":"DataStorage",
+        "toLower": true
+      },
+      "replaces": "UTM-CAMPAIGN"
     },
     "AuthoringMode": {
       "type": "generated",
