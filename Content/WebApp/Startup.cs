@@ -368,7 +368,15 @@ namespace WebApp
                        defaults: new { controller = "Oops", action = "Error" },
                        constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
                     );
+
                     #if (SimpleContent)
+                    routes.MapRoute(
+                            name: "foldersitemap",
+                            template: "{sitefolder}/sitemap"
+                            , defaults: new { controller = "Page", action = "SiteMap" }
+                            , constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
+                            );
+
                     routes.MapRoute(
                         name: "folderdefault",
                         template: "{sitefolder}/{controller}/{action}/{id?}",
@@ -392,7 +400,15 @@ namespace WebApp
                     template: "oops/error/{statusCode?}",
                     defaults: new { controller = "Oops", action = "Error" }
                     );
+
                 #if (SimpleContent)
+                routes.MapRoute(
+                    name: "sitemap",
+                    template: "sitemap"
+                    , defaults: new { controller = "Page", action = "SiteMap" }
+                    );
+
+
                 routes.MapRoute(
                     name: "def",
                     template: "{controller}/{action}"
