@@ -44,7 +44,17 @@
         @await Html.PartialAsync("AlertsPartial")
         @RenderBody()
         <footer class="container text-center" role="contentinfo" itemscope itemtype="http://schema.org/Person" itemprop="author">
-            <small>Copyright &copy; @DateTime.Now.Year - @(Tenant?.SiteName ?? "Sample")</small>
+            <small>Copyright &copy; @DateTime.Now.Year - @(Tenant?.SiteName ?? "Sample")</small><br />
+            <small>
+            @*#if (ContactForm)*@
+            <a href="/contact">Contact</a> |
+            @*#endif*@
+            @*#if (SimpleContent)*@
+            <a href="/sitemap">Site Map</a> |
+            @*#endif*@
+            @* you are free to remove the powered by cloudscribe link but we appreciate it if you choose to keep it! *@
+            <a target="_blank" href="https://www.cloudscribe.com/?utm_campaign=poweredbycloudscribe">Powered by cloudscribe</a>
+            </small>   
         </footer>
     </div>
     <environment names="Development">
@@ -65,5 +75,6 @@
     </environment>
     @RenderSection("Bottom", required: false)
     @RenderSection("scripts", required: false)
+    <add-this profile-id="@Tenant.AddThisDotComUsername" async></add-this>
 </body>
 </html>

@@ -31,14 +31,12 @@ namespace cloudscribeTemplate
             
             if (File.Exists(readmePath))
             {
-                // _dte.ItemOperations.Navigate(readmePath, vsNavigateOptions.vsNavigateOptionsNewWindow); // this works but browser window inside vs
-                //_dte.ItemOperations.OpenFile(readmePath, Constants.vsWindowKindWebBrowser); //this works but in html raw view
-                //_dte.ExecuteCommand("File.OpenFile", readmePath); // this works but in html raw view
+                // _dte.ItemOperations.Navigate(readmePath, vsNavigateOptions.vsNavigateOptionsNewWindow); // this works but browser window inside VS
+                //_dte.ItemOperations.OpenFile(readmePath, Constants.vsWindowKindWebBrowser); //this works but opens inside VS in html raw view
+                //_dte.ExecuteCommand("File.OpenFile", readmePath); // this works but opens inside VS in html raw view
                 
                 System.Diagnostics.Process.Start(readmePath); //this works and opens external web browser!
-
-
-
+                
             }
         }
 

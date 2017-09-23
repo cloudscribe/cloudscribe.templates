@@ -1,12 +1,9 @@
-﻿using Microsoft.VisualStudio.TemplateWizard;
+﻿using EnvDTE;
+using Microsoft.VisualStudio.TemplateWizard;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EnvDTE;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace cloudscribeTemplate
 {
@@ -49,15 +46,11 @@ namespace cloudscribeTemplate
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            _dte = (DTE)automationObject;
-           
-
+            _dte = (DTE)automationObject; 
             _projectDirectory = replacementsDictionary["$destinationdirectory$"];
-            //var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
 
             try
-            {
-                
+            {  
                 _inputForm = new UserInputForm();
                 _inputForm.ShowDialog();
 
@@ -76,11 +69,6 @@ namespace cloudscribeTemplate
                 replacementsDictionary.Add("passthrough:IdentityServer", _useIdentityServer.ToString().ToLowerInvariant());
                 replacementsDictionary.Add("passthrough:IsVsix", "true");
       
-
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -93,11 +81,6 @@ namespace cloudscribeTemplate
 
                 MessageBox.Show(ex.ToString());
             }
-
-            
-            
-
-
 
         }
 
