@@ -57,7 +57,7 @@ namespace WebApp
             CoreEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
             #endif
             
-            #if (SimpleContent)
+            #if (SimpleContentConfig != "z")
             #if (!NoDb)
             SimpleContentEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
             #endif

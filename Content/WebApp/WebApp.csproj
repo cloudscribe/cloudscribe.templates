@@ -41,7 +41,7 @@
     <PackageReference Include="cloudscribe.Core.Storage.EFCore.pgsql" Version="2.0.*" />
     <!--#endif-->
     
-    <!--#if (SimpleContent)-->
+    <!--#if (SimpleContentConfig != "z")-->
     <PackageReference Include="cloudscribe.Core.SimpleContent.Mvc" Version="2.0.*" />
     <PackageReference Include="cloudscribe.SimpleContent.Web.Mvc" Version="2.0.*" />
     <PackageReference Include="cloudscribe.SimpleContent.MetaWeblog" Version="2.0.*" />

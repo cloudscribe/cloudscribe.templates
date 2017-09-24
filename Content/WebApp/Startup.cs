@@ -13,7 +13,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+#if (!NoDb)
 using Microsoft.EntityFrameworkCore;
+#endif
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -133,7 +135,7 @@ namespace WebApp
             #endif
             services.AddCloudscribeLogging();
             #endif
-            #if (SimpleContent)
+            #if (SimpleContentConfig != "z")
             #if (NoDb)
             services.AddNoDbStorageForSimpleContent();
             #endif
@@ -196,12 +198,12 @@ namespace WebApp
             services.AddCloudscribeSimpleContactForm(Configuration);
             #endif
             services.AddScoped<cloudscribe.Web.Navigation.INavigationNodePermissionResolver, cloudscribe.Web.Navigation.NavigationNodePermissionResolver>();
-            #if (SimpleContent)
+            #if (SimpleContentConfig != "z")
             services.AddScoped<cloudscribe.Web.Navigation.INavigationNodePermissionResolver, cloudscribe.SimpleContent.Web.Services.PagesNavigationNodePermissionResolver>();
             #endif
             services.AddCloudscribeCore(Configuration);
-            #if (SimpleContent)
-            services.AddCloudscribeCoreIntegrationForSimpleContent();
+            #if (SimpleContentConfig != "z")
+            services.AddCloudscribeCoreIntegrationForSimpleContent(Configuration);
             services.AddSimpleContent(Configuration);
             services.AddMetaWeblogForSimpleContent(Configuration.GetSection("MetaWeblogApiOptions"));
             services.AddSimpleContentRssSyndiction();
@@ -258,7 +260,7 @@ namespace WebApp
                     options.Filters.Add(new RequireHttpsAttribute());
                 }
 
-                #if (SimpleContent)
+                #if (SimpleContentConfig == 'a' || SimpleContentConfig == 'b')
                 options.CacheProfiles.Add("SiteMapCacheProfile",
                      new CacheProfile
                      {
@@ -286,7 +288,7 @@ namespace WebApp
                     options.AddCloudscribeCommonEmbeddedViews();
                     options.AddCloudscribeNavigationBootstrap3Views();
                     options.AddCloudscribeCoreBootstrap3Views();
-                    #if (SimpleContent)
+                    #if (SimpleContentConfig != "z")
                     options.AddCloudscribeSimpleContentBootstrap3Views();
                     #endif
                     options.AddCloudscribeFileManagerBootstrap3Views();
@@ -349,13 +351,15 @@ namespace WebApp
         {
             app.UseMvc(routes =>
             {
-                #if (SimpleContent)
+                #if (SimpleContentConfig != "z")
+                #if (SimpleContentConfig != "c")
                 if (useFolders)
                 {
                     routes.AddBlogRoutesForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint());
                 }
                 
                 routes.AddBlogRoutesForSimpleContent();
+                #endif
                 routes.AddSimpleContentStaticResourceRoutes();
                 #endif
                 routes.AddCloudscribeFileManagerRoutes();
@@ -378,29 +382,43 @@ namespace WebApp
                         );
                     #endif
 
-                    #if (SimpleContent)
+                    
+                    #if (SimpleContentConfig == "a" || SimpleContentConfig == "b")
                     routes.MapRoute(
                             name: "foldersitemap",
                             template: "{sitefolder}/sitemap"
                             , defaults: new { controller = "Page", action = "SiteMap" }
                             , constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
                             );
+                    #endif
 
+                    #if (SimpleContentConfig == "a" || SimpleContentConfig == "c")
                     routes.MapRoute(
                         name: "folderdefault",
                         template: "{sitefolder}/{controller}/{action}/{id?}",
                         defaults: null,
                         constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
                         );
-                    
+                    #endif
+                    #if (SimpleContentConfig == "a")
                     routes.AddDefaultPageRouteForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint());
-                    #else
+                    #endif
+                    #if (SimpleContentConfig == "b")
+                    routes.AddCustomPageRouteForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint(), "p");
+                    #endif
+
+                    #if (SimpleContentConfig == "z" || SimpleContentConfig == "b" || SimpleContentConfig == "d")
                     routes.MapRoute(
                         name: "folderdefault",
                         template: "{sitefolder}/{controller}/{action}/{id?}",
                         defaults: new { controller = "Home", action = "Index" },
                         constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
                         );
+                    #endif
+
+                    #if (SimpleContentConfig == "c")
+                    //blog as default route
+                    routes.AddBlogRoutesForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint(),"");
                     #endif
                 }
 
@@ -418,27 +436,39 @@ namespace WebApp
                     );
                 #endif
 
-                #if (SimpleContent)
+                 #if (SimpleContentConfig == "a" || SimpleContentConfig == "b")
                 routes.MapRoute(
                     name: "sitemap",
                     template: "sitemap"
                     , defaults: new { controller = "Page", action = "SiteMap" }
                     );
+                #endif
 
-
+                #if (SimpleContentConfig == "a" || SimpleContentConfig == "c")
                 routes.MapRoute(
                     name: "def",
                     template: "{controller}/{action}"
                     //,defaults: new { controller = "Home", action = "Index" }
                     );
-
+                #endif
+                #if (SimpleContentConfig == "a")
                 routes.AddDefaultPageRouteForSimpleContent();
-                #else
+                #endif
+                #if (SimpleContentConfig == "b")
+                routes.AddCustomPageRouteForSimpleContent("p");
+                #endif
+
+                #if (SimpleContentConfig == "z" || SimpleContentConfig == "b" || SimpleContentConfig == "d")
                 routes.MapRoute(
                     name: "def",
                     template: "{controller}/{action}"
                     ,defaults: new { controller = "Home", action = "Index" }
                     );
+                #endif
+
+                #if (SimpleContentConfig == "c")
+                //blog as default route
+                routes.AddBlogRoutesForSimpleContent("");
                 #endif
 
             });
@@ -455,7 +485,7 @@ namespace WebApp
                 options.AddCloudscribeLoggingDefaultPolicy();
                 #endif
                 
-                #if (SimpleContent)
+                #if (SimpleContentConfig != "z")
                 options.AddCloudscribeCoreSimpleContentIntegrationDefaultPolicies();
                 // this is what the above extension adds
                 //options.AddPolicy(

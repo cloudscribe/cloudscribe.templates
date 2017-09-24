@@ -25,7 +25,7 @@
     {
       "modifiers": [
         {
-          "condition": "(!SimpleContent)",
+          "condition": "(SimpleContentConfig == 'z')",
           "exclude": [
             "wwwroot/wlwmanifest.xml",
             "Views/Blog/**"
@@ -64,11 +64,34 @@
       "replaces": "PROJECT-TITLE",
       "description": "The name of the project which determines the assembly product name."
     },
-	 "SimpleContent": {
+    "SimpleContentConfig": {
       "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "true",
-      "description": "Include cloudscribe SimpleContent blog and content engine."
+      "datatype": "choice",
+      "defaultValue": "a",
+      "description": "SimpleContent configuration.",
+      "choices": [
+        {
+          "choice": "a",
+          "description": "Pages and Bog with Pages as default route"
+        },
+        {
+          "choice": "b",
+          "description": "Pages and Blog with Home Controller as default route"
+        },
+		    {
+          "choice": "c",
+          "description": "Blog ONLY with Blog as default route"
+        },
+		    {
+          "choice": "d",
+          "description": "Blog ONLY with Home Controller as default route"
+        },
+        {
+          "choice": "z",
+          "description": "Not installed, SimpleContent will not be included"
+        }
+      ]
+      
     },
     "ContactForm": {
       "type": "parameter",
