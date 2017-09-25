@@ -73,117 +73,12 @@
             "RegexValidationExpression": "",
             "RegexErrorMessage": "",
             "Options": []
-          },
-          {
-            "Key": "MembershipNo",
-            "Label": "Membership Number",
-            "EditPartialViewName": "FormItemInputPartial",
-            "ReadOnlyPartialViewName": "FormItemLabelPartial",
-            "Tooltip": "",
-            "DefaultValue": "",
-            "CssClass": "memno",
-            "IconCssClass": "glyphicon glyphicon-flash",
-            "IconOnLeft": "true",
-            "VisibleOnRegistration": "true",
-            "VisibleToUserOnProfile": "true",
-            "EditableByUserOnProfile": "false",
-            "VisibleOnAdminUserEdit": "true",
-            "EditableOnAdminUserEdit": "true",
-            "MaxLength": "30",
-            "MaxLengthErrorMessage": "Membership Number has a max length of 30 characters",
-            "Required": "true",
-            "RequiredErrorMessage": "Membership Number is required",
-            "RegexValidationExpression": "",
-            "RegexErrorMessage": "",
-            "Options": []
-          },
-          {
-            "Key": "FavColor",
-            "Label": "Favorite Color",
-            "EditPartialViewName": "FormItemSelectPartial",
-            "ReadOnlyPartialViewName": "FormItemLabelPartial",
-            "Tooltip": "",
-            "DefaultValue": "",
-            "CssClass": "favcolor",
-            "IconCssClass": "glyphicon glyphicon-eye-open",
-            "IconOnLeft": "true",
-            "VisibleOnRegistration": "true",
-            "VisibleToUserOnProfile": "true",
-            "EditableByUserOnProfile": "true",
-            "VisibleOnAdminUserEdit": "true",
-            "EditableOnAdminUserEdit": "true",
-            "Required": "true",
-            "RequiredErrorMessage": "Favorite Color is required",
-            "MaxLength": "-1",
-            "RegexValidationExpression": "",
-            "RegexErrorMessage": "",
-            "Options": [
-              {
-                "Text": "Blue",
-                "Value": "Blue"
-              },
-              {
-                "Text": "Red",
-                "Value": "Red",
-                "Selected": "true"
-              },
-              {
-                "Text": "Green",
-                "Value": "Green"
-              }
-            ]
-          },
-          {
-            "Key": "AuthorBio",
-            "Label": "Short Bio",
-            "EditPartialViewName": "FormItemTextAreaPartial",
-            "ReadOnlyPartialViewName": "FormItemLabelPartial",
-            "Tooltip": "",
-            "DefaultValue": "",
-            "CssClass": "bio",
-            "VisibleOnRegistration": "true",
-            "VisibleToUserOnProfile": "true",
-            "EditableByUserOnProfile": "true",
-            "VisibleOnAdminUserEdit": "true",
-            "EditableOnAdminUserEdit": "true",
-            "Required": "true",
-            "RequiredErrorMessage": "Bio is required",
-            "RegexValidationExpression": "",
-            "RegexErrorMessage": "",
-            "Options": []
           }
-        ]
-      },
-      {
-        "TenantId": "92ef765c-c267-4edf-8eab-17de74da3bd2",
-        "Properties": [
-          {
-            "Key": "NickName",
-            "Label": "Nickname",
-            "EditPartialViewName": "FormItemInputPartial",
-            "ReadOnlyPartialViewName": "FormItemLabelPartial",
-            "Tooltip": "",
-            "DefaultValue": "",
-            "CssClass": "firstname",
-            "IconCssClass": "glyphicon glyphicon-user",
-            "IconOnLeft": "true",
-            "VisibleOnRegistration": "true",
-            "VisibleToUserOnProfile": "false",
-            "EditableByUserOnProfile": "false",
-            "VisibleOnAdminUserEdit": "false",
-            "EditableOnAdminUserEdit": "false",
-            "MaxLength": "100",
-            "MaxLengthErrorMessage": "First Name has a max length of 100 characters",
-            "Required": "true",
-            "RequiredErrorMessage": "First Name is required",
-            "RegexValidationExpression": "",
-            "RegexErrorMessage": "",
-            "Options": []
-          }
+         
+          
+          
         ]
       }
-      
-
 
     ]
   }

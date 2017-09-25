@@ -342,28 +342,36 @@ namespace WebApp
             #if (IdentityServer)
             app.UseIdentityServer();
             #endif
-
+            #if (MultiTenantMode == 'Folder')
             UseMvc(app, multiTenantOptions.Mode == cloudscribe.Core.Models.MultiTenantMode.FolderName);
+            #else
+            UseMvc(app);
+            #endif
             
         }
-
+#if (MultiTenantMode == 'Folder')
         private void UseMvc(IApplicationBuilder app, bool useFolders)
+#else
+        private void UseMvc(IApplicationBuilder app)
+#endif
         {
             app.UseMvc(routes =>
             {
                 #if (SimpleContentConfig != "z")
                 #if (SimpleContentConfig != "c")
+                #if (MultiTenantMode == 'Folder')
                 if (useFolders)
                 {
                     routes.AddBlogRoutesForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint());
                 }
+                #endif
                 
                 routes.AddBlogRoutesForSimpleContent();
                 #endif
                 routes.AddSimpleContentStaticResourceRoutes();
                 #endif
                 routes.AddCloudscribeFileManagerRoutes();
-
+                #if (MultiTenantMode == 'Folder')
                 if (useFolders)
                 {
                     routes.MapRoute(
@@ -404,7 +412,12 @@ namespace WebApp
                     routes.AddDefaultPageRouteForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint());
                     #endif
                     #if (SimpleContentConfig == "b")
-                    routes.AddCustomPageRouteForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint(), "p");
+                    routes.AddCustomPageRouteForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint(), "NONROOTPAGESEGMENT");
+                    #endif
+
+                    #if (SimpleContentConfig == "c")
+                    // you can easily add pages by uncommenting this and uncommenting the coresponding node in navigation.xml
+                    //routes.AddCustomPageRouteForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint(), "NONROOTPAGESEGMENT");
                     #endif
 
                     #if (SimpleContentConfig == "z" || SimpleContentConfig == "b" || SimpleContentConfig == "d")
@@ -421,6 +434,7 @@ namespace WebApp
                     routes.AddBlogRoutesForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint(),"");
                     #endif
                 }
+                #endif
 
                 routes.MapRoute(
                     name: "errorhandler",
@@ -455,7 +469,11 @@ namespace WebApp
                 routes.AddDefaultPageRouteForSimpleContent();
                 #endif
                 #if (SimpleContentConfig == "b")
-                routes.AddCustomPageRouteForSimpleContent("p");
+                routes.AddCustomPageRouteForSimpleContent("NONROOTPAGESEGMENT");
+                #endif
+                #if (SimpleContentConfig == "c")
+                // you can easily add pages by uncommenting this and uncommenting the coresponding node in navigation.xml
+                //routes.AddCustomPageRouteForSimpleContent("NONROOTPAGESEGMENT");
                 #endif
 
                 #if (SimpleContentConfig == "z" || SimpleContentConfig == "b" || SimpleContentConfig == "d")

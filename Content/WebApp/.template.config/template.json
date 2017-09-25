@@ -57,12 +57,26 @@
     }
   ],
   "symbols": {
-    "Title": {
+    "MultiTenantMode": {
       "type": "parameter",
-      "datatype": "string",
-      "defaultValue": "Project Title",
-      "replaces": "PROJECT-TITLE",
-      "description": "The name of the project which determines the assembly product name."
+      "datatype": "choice",
+      "defaultValue": "FolderName",
+      "replaces": "MULTITENANT-MODE",
+      "description": "Multi-tenancy configuration.",
+      "choices": [
+        {
+          "choice": "FolderName",
+          "description": "There is a root tenant, and other tenants can be added starting at a folder segment."
+        },
+        {
+          "choice": "HostName",
+          "description": "You will be able to create additional sites by specifying a host name. Additional tenants require DNS and web server settings."
+        },
+		    {
+          "choice": "None",
+          "description": "A single tenant installation. This can be changed later by configuration."
+        }
+      ]
     },
     "SimpleContentConfig": {
       "type": "parameter",
@@ -92,6 +106,20 @@
         }
       ]
       
+    },
+    "NonRootPagesSegment": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "p",
+      "replaces": "NONROOTPAGESEGMENT",
+      "description": "If you are using SimpleContent pages with SimpleContentConfig option b, this will be used as the url segment for the pages to start at."
+    },
+    "NonRootPagesTitle": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "Articles",
+      "replaces": "NONROOTPAGETITLE",
+      "description": "If you are using SimpleContent pages with SimpleContentConfig option b, this will be used as the title for the pages top level menu item."
     },
     "ContactForm": {
       "type": "parameter",
