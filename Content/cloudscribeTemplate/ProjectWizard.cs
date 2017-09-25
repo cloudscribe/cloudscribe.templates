@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TemplateWizard;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace cloudscribeTemplate
@@ -35,14 +36,20 @@ namespace cloudscribeTemplate
 
         private DTE _dte;
         private string _projectDirectory = "";
-        private UserInputForm _inputForm;
+        //private UserInputForm _inputForm;
         private string _dataStorage = "MSSQL";
+        private string _simpleContentOption = "a";
+        private string _multiTenantMode = "FolderName";
         private bool _useLogging = true;
-        private bool _useSimpleContent = true;
+        //private bool _useSimpleContent = true;
         private bool _useContactForm = false;
         private bool _useKvpProfile = false;
         private bool _useIdentityServer = false;
+        private string _nonRootPagesSegment = "p";
+        private string _nonRootPagesTitle = "Articles";
+
         private bool _exceptionOccurred = false;
+        private ProjectOptionsDialog _dialog;
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
@@ -50,25 +57,26 @@ namespace cloudscribeTemplate
             _projectDirectory = replacementsDictionary["$destinationdirectory$"];
 
             try
-            {  
-                _inputForm = new UserInputForm();
-                _inputForm.ShowDialog();
-
-                _dataStorage = UserInputForm.DataStorage;
-                _useLogging = UserInputForm.UseLogging;
-                _useSimpleContent = UserInputForm.UseSimpleContent;
-                _useContactForm = UserInputForm.UseContactForm;
-                _useKvpProfile = UserInputForm.UseKvpProfile;
-                _useIdentityServer = UserInputForm.UseIdentityServer;
-
+            {
+                _dialog = new ProjectOptionsDialog();
+                var btn = _dialog.Controls["btnOk"] as Button;
+                btn.Click += btnOk_Click;
+                _dialog.ShowDialog();
+                
                 replacementsDictionary.Add("passthrough:DataStorage", _dataStorage);
+                replacementsDictionary.Add("passthrough:MultiTenantMode", _multiTenantMode);
                 replacementsDictionary.Add("passthrough:Logging", _useLogging.ToString().ToLowerInvariant());
-                replacementsDictionary.Add("passthrough:SimpleContent", _useSimpleContent.ToString().ToLowerInvariant());
+                replacementsDictionary.Add("passthrough:SimpleContentConfig", _simpleContentOption);
                 replacementsDictionary.Add("passthrough:ContactForm", _useContactForm.ToString().ToLowerInvariant());
                 replacementsDictionary.Add("passthrough:KvpCustomRegistration", _useKvpProfile.ToString().ToLowerInvariant());
                 replacementsDictionary.Add("passthrough:IdentityServer", _useIdentityServer.ToString().ToLowerInvariant());
-                replacementsDictionary.Add("passthrough:IsVsix", "true");
-      
+                if(_simpleContentOption == "b")
+                {
+                    replacementsDictionary.Add("passthrough:NonRootPagesSegment", _nonRootPagesSegment.ToLowerInvariant());
+                    replacementsDictionary.Add("passthrough:NonRootPagesTitle", _nonRootPagesTitle);
+                }
+
+                
             }
             catch (Exception ex)
             {
@@ -89,153 +97,53 @@ namespace cloudscribeTemplate
             return true;
         }
 
-    }
-
-    public partial class UserInputForm : Form
-    {
-        private static string dataStorage = "MSSQL";
-        public static string DataStorage
+        private void btnOk_Click(object sender, EventArgs e)
         {
-            get { return dataStorage;}
-            set { dataStorage = value; }
-        }
+            if(_dialog != null)
+            {
+                _dataStorage = (string)((ComboBox)_dialog.Controls["cbDataStorage"]).SelectedValue;
+                _useLogging = ((CheckBox)_dialog.Controls["chkLogging"]).Checked;
+                _useContactForm = ((CheckBox)_dialog.Controls["chkContactForm"]).Checked;
+                _useKvpProfile = ((CheckBox)_dialog.Controls["chkKvpProfile"]).Checked;
+                _useIdentityServer = ((CheckBox)_dialog.Controls["chkIdentityServer"]).Checked;
 
-        private static bool useLogging = true;
-        public static bool UseLogging
-        {
-            get { return useLogging; }
-            set { useLogging = value; }
-        }
+                var groupBox = _dialog.Controls["gbSimpleContentConfig"];
 
-        private static bool useSimpleContent = true;
-        public static bool UseSimpleContent
-        {
-            get { return useSimpleContent; }
-            set { useSimpleContent = value; }
-        }
+                var simpleContentOption = groupBox.Controls.OfType<RadioButton>()
+                           .FirstOrDefault(n => n.Checked == true);
 
-        private static bool useContactForm = false;
-        public static bool UseContactForm
-        {
-            get { return useContactForm; }
-            set { useContactForm = value; }
-        }
+                switch(simpleContentOption.Name)
+                {
+                    case "optionA":
+                        _simpleContentOption = "a";
+                        break;
 
-        private static bool useKvpProfile = false;
-        public static bool UseKvpProfile
-        {
-            get { return useKvpProfile; }
-            set { useKvpProfile = value; }
-        }
+                    case "optionB":
+                        _simpleContentOption = "b";
+                        break;
 
-        private static bool useIdentityServer = false;
-        public static bool UseIdentityServer
-        {
-            get { return useIdentityServer; }
-            set { useIdentityServer = value; }
-        }
+                    case "optionC":
+                        _simpleContentOption = "c";
+                        break;
 
+                    case "optionD":
+                        _simpleContentOption = "d";
+                        break;
 
-        private Button button1;
+                    case "optionZ":
+                        _simpleContentOption = "z";
+                        break;
+                }
 
-        private ComboBox cbDataStorage;
-        private CheckBox chkLogging;
-        private CheckBox chkSimpleContent;
-        private CheckBox chkKvpProfile;
-        private CheckBox chkContactForm;
-        private CheckBox chkIdentityServer;
-
-        class ComboItem
-        {
-            public string Key { get; set; }
-            public string Text { get; set; }
-        }
-
-        public UserInputForm()
-        {
-            // set the form size
-            this.Size = new System.Drawing.Size(600, 590);
-            this.Text = "cloudscribe Options";
-
-            cbDataStorage = new ComboBox();
-            cbDataStorage.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbDataStorage.DataSource = new ComboItem[] {
-                new ComboItem{ Key = "MSSQL", Text = "Use Microsoft SqlServer" },
-                new ComboItem{ Key = "MySql", Text = "Use MySql" },
-                new ComboItem{ Key = "pgsql", Text = "Use PostgreSql" },
-                new ComboItem{ Key = "NoDb", Text = "Use NoDb (no database) file system storage" }
-            };
-            cbDataStorage.ValueMember = "Key";
-            cbDataStorage.DisplayMember = "Text";
-            cbDataStorage.Location = new System.Drawing.Point(10, 20);
-            cbDataStorage.Width = 550;
-            this.Controls.Add(cbDataStorage);
-
-            chkLogging = new CheckBox();
-            chkLogging.Checked = useLogging;
-            chkLogging.Text = "Include Logging";
-            chkLogging.Location = new System.Drawing.Point(10, 80);
-            chkLogging.Width = 550;
-            chkLogging.Height = 50;
-            this.Controls.Add(chkLogging);
-
-            chkSimpleContent = new CheckBox();
-            chkSimpleContent.Checked = useSimpleContent;
-            chkSimpleContent.Text = "Include SimpleContent";
-            chkSimpleContent.Location = new System.Drawing.Point(10, 140);
-            chkSimpleContent.Width = 550;
-            chkSimpleContent.Height = 50;
-            this.Controls.Add(chkSimpleContent);
-
-            chkContactForm = new CheckBox();
-            chkContactForm.Checked = useContactForm;
-            chkContactForm.Text = "Include Contact Form";
-            chkContactForm.Location = new System.Drawing.Point(10, 200);
-            chkContactForm.Width = 550;
-            chkContactForm.Height = 50;
-            this.Controls.Add(chkContactForm);
-
-            chkKvpProfile = new CheckBox();
-            chkKvpProfile.Checked = useKvpProfile;
-            chkKvpProfile.Text = "Include (key/value) Custom Registration";
-            chkKvpProfile.Location = new System.Drawing.Point(10, 260);;
-            chkKvpProfile.Width = 550;
-            chkKvpProfile.Height = 50;
-            this.Controls.Add(chkKvpProfile);
-
-            chkIdentityServer = new CheckBox();
-            chkIdentityServer.Checked = useIdentityServer;
-            chkIdentityServer.Text = "Include IdentityServer4 (fork) Integration";
-            chkIdentityServer.Location = new System.Drawing.Point(10, 320);
-            chkIdentityServer.Width = 550;
-            chkIdentityServer.Height = 50;
-            this.Controls.Add(chkIdentityServer);
-
-
-
-            button1 = new Button();
-            button1.Text = "Ok";
-            button1.Location = new System.Drawing.Point(250, 400);
-            button1.Size = new System.Drawing.Size(50, 50);
-            button1.Click += button1_Click;
-            this.Controls.Add(button1);
-
+                _multiTenantMode = (string)((ComboBox)_dialog.Controls["cbMultiTenancy"]).SelectedValue;
+                
+                _dialog.Close();
+            }
             
         }
-        
-        private void button1_Click(object sender, EventArgs e)
-        {
-            dataStorage = (string)cbDataStorage.SelectedValue;
-            useLogging = chkLogging.Checked;
-            useSimpleContent = chkSimpleContent.Checked;
-            useContactForm = chkContactForm.Checked;
-            useKvpProfile = chkKvpProfile.Checked;
-            useIdentityServer = chkIdentityServer.Checked;
 
-            this.Close();
-        }
     }
 
-
+    
 
 }

@@ -342,14 +342,14 @@ namespace WebApp
             #if (IdentityServer)
             app.UseIdentityServer();
             #endif
-            #if (MultiTenantMode == 'Folder')
+            #if (MultiTenantMode == 'FolderName')
             UseMvc(app, multiTenantOptions.Mode == cloudscribe.Core.Models.MultiTenantMode.FolderName);
             #else
             UseMvc(app);
             #endif
             
         }
-#if (MultiTenantMode == 'Folder')
+#if (MultiTenantMode == 'FolderName')
         private void UseMvc(IApplicationBuilder app, bool useFolders)
 #else
         private void UseMvc(IApplicationBuilder app)
@@ -359,7 +359,7 @@ namespace WebApp
             {
                 #if (SimpleContentConfig != "z")
                 #if (SimpleContentConfig != "c")
-                #if (MultiTenantMode == 'Folder')
+                #if (MultiTenantMode == 'FolderName')
                 if (useFolders)
                 {
                     routes.AddBlogRoutesForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint());
@@ -371,7 +371,7 @@ namespace WebApp
                 routes.AddSimpleContentStaticResourceRoutes();
                 #endif
                 routes.AddCloudscribeFileManagerRoutes();
-                #if (MultiTenantMode == 'Folder')
+                #if (MultiTenantMode == 'FolderName')
                 if (useFolders)
                 {
                     routes.MapRoute(
@@ -399,7 +399,10 @@ namespace WebApp
                             , constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
                             );
                     #endif
-
+                    #if (SimpleContentConfig == "c")
+                    // you can easily add pages by uncommenting this and uncommenting the coresponding node in navigation.xml
+                    //routes.AddCustomPageRouteForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint(), "NONROOTPAGESEGMENT");
+                    #endif
                     #if (SimpleContentConfig == "a" || SimpleContentConfig == "c")
                     routes.MapRoute(
                         name: "folderdefault",
@@ -413,11 +416,6 @@ namespace WebApp
                     #endif
                     #if (SimpleContentConfig == "b")
                     routes.AddCustomPageRouteForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint(), "NONROOTPAGESEGMENT");
-                    #endif
-
-                    #if (SimpleContentConfig == "c")
-                    // you can easily add pages by uncommenting this and uncommenting the coresponding node in navigation.xml
-                    //routes.AddCustomPageRouteForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint(), "NONROOTPAGESEGMENT");
                     #endif
 
                     #if (SimpleContentConfig == "z" || SimpleContentConfig == "b" || SimpleContentConfig == "d")
@@ -457,7 +455,10 @@ namespace WebApp
                     , defaults: new { controller = "Page", action = "SiteMap" }
                     );
                 #endif
-
+                #if (SimpleContentConfig == "c")
+                // you can easily add pages by uncommenting this and uncommenting the coresponding node in navigation.xml
+                //routes.AddCustomPageRouteForSimpleContent("NONROOTPAGESEGMENT");
+                #endif
                 #if (SimpleContentConfig == "a" || SimpleContentConfig == "c")
                 routes.MapRoute(
                     name: "def",
@@ -471,10 +472,7 @@ namespace WebApp
                 #if (SimpleContentConfig == "b")
                 routes.AddCustomPageRouteForSimpleContent("NONROOTPAGESEGMENT");
                 #endif
-                #if (SimpleContentConfig == "c")
-                // you can easily add pages by uncommenting this and uncommenting the coresponding node in navigation.xml
-                //routes.AddCustomPageRouteForSimpleContent("NONROOTPAGESEGMENT");
-                #endif
+                
 
                 #if (SimpleContentConfig == "z" || SimpleContentConfig == "b" || SimpleContentConfig == "d")
                 routes.MapRoute(
