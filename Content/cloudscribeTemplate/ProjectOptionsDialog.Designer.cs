@@ -31,6 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectOptionsDialog));
             this.cbDataStorage = new System.Windows.Forms.ComboBox();
             this.gbSimpleContentConfig = new System.Windows.Forms.GroupBox();
+            this.txtNonRootPagesTitle = new System.Windows.Forms.TextBox();
+            this.txtNonRootPagesSegment = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.optionZ = new System.Windows.Forms.RadioButton();
             this.optionD = new System.Windows.Forms.RadioButton();
             this.optionC = new System.Windows.Forms.RadioButton();
@@ -42,10 +46,6 @@
             this.chkIdentityServer = new System.Windows.Forms.CheckBox();
             this.btnOk = new System.Windows.Forms.Button();
             this.cbMultiTenancy = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtNonRootPagesSegment = new System.Windows.Forms.TextBox();
-            this.txtNonRootPagesTitle = new System.Windows.Forms.TextBox();
             this.gbSimpleContentConfig.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +74,42 @@
             this.gbSimpleContentConfig.TabIndex = 1;
             this.gbSimpleContentConfig.TabStop = false;
             this.gbSimpleContentConfig.Text = "SimpleContent Configuration";
+            // 
+            // txtNonRootPagesTitle
+            // 
+            this.txtNonRootPagesTitle.Enabled = false;
+            this.txtNonRootPagesTitle.Location = new System.Drawing.Point(304, 188);
+            this.txtNonRootPagesTitle.Name = "txtNonRootPagesTitle";
+            this.txtNonRootPagesTitle.Size = new System.Drawing.Size(385, 31);
+            this.txtNonRootPagesTitle.TabIndex = 12;
+            this.txtNonRootPagesTitle.Text = "Articles";
+            // 
+            // txtNonRootPagesSegment
+            // 
+            this.txtNonRootPagesSegment.Enabled = false;
+            this.txtNonRootPagesSegment.Location = new System.Drawing.Point(304, 150);
+            this.txtNonRootPagesSegment.Name = "txtNonRootPagesSegment";
+            this.txtNonRootPagesSegment.Size = new System.Drawing.Size(385, 31);
+            this.txtNonRootPagesSegment.TabIndex = 11;
+            this.txtNonRootPagesSegment.Text = "p";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(50, 198);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(247, 25);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Page Section Menu Title";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(50, 157);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(216, 25);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Page Route Segment";
             // 
             // optionZ
             // 
@@ -122,10 +158,10 @@
             this.optionA.Checked = true;
             this.optionA.Location = new System.Drawing.Point(22, 54);
             this.optionA.Name = "optionA";
-            this.optionA.Size = new System.Drawing.Size(456, 29);
+            this.optionA.Size = new System.Drawing.Size(461, 29);
             this.optionA.TabIndex = 0;
             this.optionA.TabStop = true;
-            this.optionA.Text = "Pages and Bog with Pages as default route";
+            this.optionA.Text = "Pages and Blog with Pages as default route";
             this.optionA.UseVisualStyleBackColor = true;
             // 
             // chkLogging
@@ -133,9 +169,9 @@
             this.chkLogging.AutoSize = true;
             this.chkLogging.Location = new System.Drawing.Point(93, 594);
             this.chkLogging.Name = "chkLogging";
-            this.chkLogging.Size = new System.Drawing.Size(196, 29);
+            this.chkLogging.Size = new System.Drawing.Size(571, 29);
             this.chkLogging.TabIndex = 2;
-            this.chkLogging.Text = "Include Logging";
+            this.chkLogging.Text = "Include Logging to data storage with UI for viewing logs";
             this.chkLogging.UseVisualStyleBackColor = true;
             // 
             // chkContactForm
@@ -184,42 +220,6 @@
             this.cbMultiTenancy.Name = "cbMultiTenancy";
             this.cbMultiTenancy.Size = new System.Drawing.Size(973, 33);
             this.cbMultiTenancy.TabIndex = 7;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(50, 157);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(216, 25);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Page Route Segment";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(50, 198);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(247, 25);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Page Section Menu Title";
-            // 
-            // txtNonRootPagesSegment
-            // 
-            this.txtNonRootPagesSegment.Enabled = false;
-            this.txtNonRootPagesSegment.Location = new System.Drawing.Point(304, 150);
-            this.txtNonRootPagesSegment.Name = "txtNonRootPagesSegment";
-            this.txtNonRootPagesSegment.Size = new System.Drawing.Size(385, 31);
-            this.txtNonRootPagesSegment.TabIndex = 11;
-            this.txtNonRootPagesSegment.Text = "p";
-            // 
-            // txtNonRootPagesTitle
-            // 
-            this.txtNonRootPagesTitle.Enabled = false;
-            this.txtNonRootPagesTitle.Location = new System.Drawing.Point(304, 188);
-            this.txtNonRootPagesTitle.Name = "txtNonRootPagesTitle";
-            this.txtNonRootPagesTitle.Size = new System.Drawing.Size(385, 31);
-            this.txtNonRootPagesTitle.TabIndex = 12;
-            this.txtNonRootPagesTitle.Text = "Articles";
             // 
             // ProjectOptionsDialog
             // 
