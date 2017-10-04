@@ -166,7 +166,7 @@ namespace WebApp
             #if (pgsql)
                     .AddCloudscribeCoreEFIdentityServerStoragePostgreSql(connectionString)
             #endif
-                    .AddCloudscribeIdentityServerIntegration()
+                    .AddCloudscribeIdentityServerIntegrationMvc()
                     // *** IMPORTANT CHANGES NEEDED HERE *** 
                     // don't use AddDeveloperSigningCredential in production
                     // https://identityserver4.readthedocs.io/en/dev/topics/crypto.html
@@ -189,7 +189,7 @@ namespace WebApp
             #if (pgsql)
                     .AddCloudscribeCoreEFIdentityServerStoragePostgreSql(connectionString)
             #endif
-                    .AddCloudscribeIdentityServerIntegration()
+                    .AddCloudscribeIdentityServerIntegrationMvc()
                     .AddDeveloperSigningCredential() // don't use this for production
                     ;
             }
@@ -201,7 +201,7 @@ namespace WebApp
             #if (SimpleContentConfig != "z")
             services.AddScoped<cloudscribe.Web.Navigation.INavigationNodePermissionResolver, cloudscribe.SimpleContent.Web.Services.PagesNavigationNodePermissionResolver>();
             #endif
-            services.AddCloudscribeCore(Configuration);
+            services.AddCloudscribeCoreMvc(Configuration);
             #if (SimpleContentConfig != "z")
             services.AddCloudscribeCoreIntegrationForSimpleContent(Configuration);
             services.AddSimpleContent(Configuration);
