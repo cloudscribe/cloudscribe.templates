@@ -179,9 +179,9 @@
             this.chkContactForm.AutoSize = true;
             this.chkContactForm.Location = new System.Drawing.Point(93, 650);
             this.chkContactForm.Name = "chkContactForm";
-            this.chkContactForm.Size = new System.Drawing.Size(248, 29);
+            this.chkContactForm.Size = new System.Drawing.Size(319, 29);
             this.chkContactForm.TabIndex = 3;
-            this.chkContactForm.Text = "Include Contact Form";
+            this.chkContactForm.Text = "Include Simple Contact Form";
             this.chkContactForm.UseVisualStyleBackColor = true;
             // 
             // chkKvpProfile

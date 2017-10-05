@@ -204,12 +204,11 @@ namespace WebApp
             services.AddCloudscribeCoreMvc(Configuration);
             #if (SimpleContentConfig != "z")
             services.AddCloudscribeCoreIntegrationForSimpleContent(Configuration);
-            services.AddSimpleContent(Configuration);
+            services.AddSimpleContentMvc(Configuration);
             services.AddMetaWeblogForSimpleContent(Configuration.GetSection("MetaWeblogApiOptions"));
             services.AddSimpleContentRssSyndiction();
             #endif
-            services.AddCloudscribeFileManagerIntegration(Configuration);
-
+            
             // optional but recommended if you need localization 
             // uncomment to use cloudscribe.Web.localization https://github.com/joeaudette/cloudscribe.Web.Localization
             //services.Configure<GlobalResourceOptions>(Configuration.GetSection("GlobalResourceOptions"));
