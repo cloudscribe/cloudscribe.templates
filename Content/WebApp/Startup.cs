@@ -153,7 +153,7 @@ namespace WebApp
             #if (IdentityServer)
             if(Environment.IsProduction())
             {
-                services.AddIdentityServer()
+                services.AddIdentityServerConfiguredForCloudscribe()
             #if (NoDb)
                     .AddCloudscribeCoreNoDbIdentityServerStorage()
             #endif
@@ -176,7 +176,7 @@ namespace WebApp
             }
             else
             {
-                services.AddIdentityServer()
+                services.AddIdentityServerConfiguredForCloudscribe()
             #if (NoDb)
                     .AddCloudscribeCoreNoDbIdentityServerStorage()
             #endif
@@ -193,6 +193,19 @@ namespace WebApp
                     .AddDeveloperSigningCredential() // don't use this for production
                     ;
             }
+
+            services.AddCors(options =>
+            {
+                // this defines a CORS policy called "default"
+                // add your IdentityServer client apps and apis to allow access to them
+                options.AddPolicy("default", policy =>
+                {
+                    policy.WithOrigins("http://localhost:55347", "http://localhost:55347")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
             #endif
             #if (ContactForm)
             services.AddCloudscribeSimpleContactForm(Configuration);
@@ -330,6 +343,9 @@ namespace WebApp
             //app.UseSession();
 
             app.UseRequestLocalization(localizationOptionsAccessor.Value);
+            #if (IdentityServer)
+            app.UseCors("default"); //use Cors with policy named default, defined above
+            #endif
 
             var multiTenantOptions = multiTenantOptionsAccessor.Value;
 

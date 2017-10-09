@@ -199,9 +199,9 @@
             this.chkIdentityServer.AutoSize = true;
             this.chkIdentityServer.Location = new System.Drawing.Point(93, 760);
             this.chkIdentityServer.Name = "chkIdentityServer";
-            this.chkIdentityServer.Size = new System.Drawing.Size(426, 29);
+            this.chkIdentityServer.Size = new System.Drawing.Size(370, 29);
             this.chkIdentityServer.TabIndex = 5;
-            this.chkIdentityServer.Text = "Include IdentityServer4 (fork) Integration";
+            this.chkIdentityServer.Text = "Include IdentityServer4 Integration";
             this.chkIdentityServer.UseVisualStyleBackColor = true;
             // 
             // btnOk

@@ -103,6 +103,18 @@ border-radius:6px 0 6px 6px;
 
 .navbar-gravatar { padding-top: 10px; margin-top:0; margin-bottom:0;  }
 
+
+.no-gutter {
+    padding-right:0;
+    padding-left:0;
+}
+
+.tiny-gutter {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+
 /*#if (SimpleContentConfig == 'c')
 .breadcrumb { margin-bottom:0;}
 .blog-container {margin-top:20px;}
