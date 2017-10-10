@@ -138,7 +138,7 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Include IdentityServer4 (fork) integration."
+      "description": "Include IdentityServer4 integration."
     },
 	  "Logging": {
       "type": "parameter",
