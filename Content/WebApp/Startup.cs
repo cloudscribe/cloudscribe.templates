@@ -170,6 +170,7 @@ namespace WebApp
                     // *** IMPORTANT CHANGES NEEDED HERE *** 
                     // don't use AddDeveloperSigningCredential in production
                     // https://identityserver4.readthedocs.io/en/dev/topics/crypto.html
+                    // https://identityserver4.readthedocs.io/en/dev/topics/startup.html#refstartupkeymaterial
                     //.AddSigningCredential(cert) // create a certificate for use in production
                     .AddDeveloperSigningCredential() // don't use this for production
                     ;
