@@ -296,8 +296,6 @@ namespace WebApp
             services.AddMvc()
                 .AddRazorOptions(options =>
                 {
-                    options.AddCloudscribeViewLocationFormats();
-
                     options.AddCloudscribeCommonEmbeddedViews();
                     options.AddCloudscribeNavigationBootstrap3Views();
                     options.AddCloudscribeCoreBootstrap3Views();
