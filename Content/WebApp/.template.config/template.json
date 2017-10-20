@@ -48,6 +48,21 @@
           ]
         },
         {
+          "condition": "(!Webpack)",
+          "exclude": [
+            "app-scss/**",
+            "app-vanlliats/**",
+            "app-vendor/**",
+            "sitefiles/s1/themes/custom1/**",
+            "wwwroot/fonts/**",
+            "package.json",
+            "tsconfig.json",
+            "webpack.config.js",
+            "webpack.production.config.js"
+
+          ]
+        },
+        {
           "condition": "(!AuthoringMode)",
           "exclude": [
             ".template.config/**",
@@ -170,6 +185,12 @@
         }
       ]
       
+    },
+    "Webpack": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include client side development setup with webpack, typescript, and theme ready to customize using bootstrap-sass."
     },
     "MSSQL": {
       "type": "computed",
