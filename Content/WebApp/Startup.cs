@@ -33,16 +33,34 @@ namespace WebApp
         {
             Configuration = configuration;
             Environment = env;
+
+            SslIsAvailable = Configuration.GetValue<bool>("AppSettings:UseSsl");
+            #if (IdentityServer)
+            DisableIdentityServer = Configuration.GetValue<bool>("AppSettings:DisableIdentityServer");
+            IdentityServerX509CertificateThumbprintName = Configuration.GetValue<string>("AppSettings:IdentityServerX509CertificateThumbprintName");
+            if(!DisableIdentityServer && Environment.IsProduction())
+            {
+                if (string.IsNullOrEmpty(IdentityServerX509CertificateThumbprintName))
+                {
+                    DisableIdentityServer = true;
+                }
+            }
+            #endif
         }
 
         public IConfiguration Configuration { get; }
         public IHostingEnvironment Environment { get; set; }
         public bool SslIsAvailable { get; set; }
+        #if (IdentityServer)
+        public bool DisableIdentityServer { get; set; }
+        public string IdentityServerX509CertificateThumbprintName { get; set; }
+        #endif
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             // **** VERY IMPORTANT *****
+            // https://www.cloudscribe.com/docs/configuring-data-protection
             // data protection keys are used to encrypt the auth token in the cookie
             // and also to encrypt social auth secrets and smtp password in the data storage
             // therefore we need keys to be persistent in order to be able to decrypt
@@ -151,50 +169,58 @@ namespace WebApp
             #endif
 
             #if (IdentityServer)
-            if(Environment.IsProduction())
+            if (!DisableIdentityServer)
             {
-                services.AddIdentityServerConfiguredForCloudscribe()
-            #if (NoDb)
-                    .AddCloudscribeCoreNoDbIdentityServerStorage()
-            #endif
-            #if (MSSQL)
-                    .AddCloudscribeCoreEFIdentityServerStorageMSSQL(connectionString)
-            #endif
-            #if (MySql)
-                    .AddCloudscribeCoreEFIdentityServerStorageMySql(connectionString)
-            #endif
-            #if (pgsql)
-                    .AddCloudscribeCoreEFIdentityServerStoragePostgreSql(connectionString)
-            #endif
-                    .AddCloudscribeIdentityServerIntegrationMvc()
-                    // *** IMPORTANT CHANGES NEEDED HERE *** 
-                    // don't use AddDeveloperSigningCredential in production
-                    // https://identityserver4.readthedocs.io/en/dev/topics/crypto.html
-                    // https://identityserver4.readthedocs.io/en/dev/topics/startup.html#refstartupkeymaterial
-                    //.AddSigningCredential(cert) // create a certificate for use in production
-                    .AddDeveloperSigningCredential() // don't use this for production
-                    ;
+                if(Environment.IsProduction())
+                {
+                    services.AddIdentityServerConfiguredForCloudscribe()
+                #if (NoDb)
+                        .AddCloudscribeCoreNoDbIdentityServerStorage()
+                #endif
+                #if (MSSQL)
+                        .AddCloudscribeCoreEFIdentityServerStorageMSSQL(connectionString)
+                #endif
+                #if (MySql)
+                        .AddCloudscribeCoreEFIdentityServerStorageMySql(connectionString)
+                #endif
+                #if (pgsql)
+                        .AddCloudscribeCoreEFIdentityServerStoragePostgreSql(connectionString)
+                #endif
+                        .AddCloudscribeIdentityServerIntegrationMvc()
+                        // *** IMPORTANT CHANGES NEEDED HERE *** 
+                        // can't use .AddDeveloperSigningCredential in production it will throw an error
+                        // https://identityserver4.readthedocs.io/en/dev/topics/crypto.html
+                        // https://identityserver4.readthedocs.io/en/dev/topics/startup.html#refstartupkeymaterial
+                        // you need to create an X.509 certificate (can be self signed)
+                        // on your server and configure the thumbprint name in appsettings.json
+                        // OR change this code to wire up a certificate differently
+                         .AddSigningCredential(
+                            IdentityServerX509CertificateThumbprintName, 
+                            System.Security.Cryptography.X509Certificates.StoreLocation.LocalMachine,
+                            NameType.Thumbprint
+                            );
+                }
+                else
+                {
+                    services.AddIdentityServerConfiguredForCloudscribe()
+                #if (NoDb)
+                        .AddCloudscribeCoreNoDbIdentityServerStorage()
+                #endif
+                #if (MSSQL)
+                        .AddCloudscribeCoreEFIdentityServerStorageMSSQL(connectionString)
+                #endif
+                #if (MySql)
+                        .AddCloudscribeCoreEFIdentityServerStorageMySql(connectionString)
+                #endif
+                #if (pgsql)
+                        .AddCloudscribeCoreEFIdentityServerStoragePostgreSql(connectionString)
+                #endif
+                        .AddCloudscribeIdentityServerIntegrationMvc()
+                        .AddDeveloperSigningCredential() // don't use this for production
+                        ;
+                }
             }
-            else
-            {
-                services.AddIdentityServerConfiguredForCloudscribe()
-            #if (NoDb)
-                    .AddCloudscribeCoreNoDbIdentityServerStorage()
-            #endif
-            #if (MSSQL)
-                    .AddCloudscribeCoreEFIdentityServerStorageMSSQL(connectionString)
-            #endif
-            #if (MySql)
-                    .AddCloudscribeCoreEFIdentityServerStorageMySql(connectionString)
-            #endif
-            #if (pgsql)
-                    .AddCloudscribeCoreEFIdentityServerStoragePostgreSql(connectionString)
-            #endif
-                    .AddCloudscribeIdentityServerIntegrationMvc()
-                    .AddDeveloperSigningCredential() // don't use this for production
-                    ;
-            }
-
+            
             services.AddCors(options =>
             {
                 // this defines a CORS policy called "default"
@@ -265,7 +291,6 @@ namespace WebApp
                 //}));
             });
 
-            SslIsAvailable = Configuration.GetValue<bool>("AppSettings:UseSsl");
             services.Configure<MvcOptions>(options =>
             {
                 if (SslIsAvailable)
@@ -354,7 +379,10 @@ namespace WebApp
                     SslIsAvailable);
 
             #if (IdentityServer)
-            app.UseIdentityServer();
+            if (!DisableIdentityServer)
+            {
+               app.UseIdentityServer();
+            }
             #endif
             #if (MultiTenantMode == 'FolderName')
             UseMvc(app, multiTenantOptions.Mode == cloudscribe.Core.Models.MultiTenantMode.FolderName);
