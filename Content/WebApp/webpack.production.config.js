@@ -3,7 +3,6 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const merge = require('webpack-merge');
 const webPackStrip = require('strip-loader');
 const devConfig = require('./webpack.config.js');
-const isProduction = true;
 
 const stripLoader = {
     test: [/\.js$/],

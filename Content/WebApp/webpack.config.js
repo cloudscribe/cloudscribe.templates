@@ -4,13 +4,24 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const config = {
     entry: {
-        'vanillats': ['./app-vanillats/Main.ts'],
+        'vanillats': './app-vanillats/Main.ts',
+        'boot': './app-vendor/boot.js',
         'mainstyle': './scss/style.scss'
     },
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'wwwroot/dist/'),
         publicPath: 'dist/'
+    },
+    resolve: {
+        modules: [path.join(__dirname,"./node_modules/")],
+        extensions: [".tsx", ".ts", ".js"]
+    },
+    devtool: 'source-map',
+    externals: {
+        // require("jquery") is external and available
+        //  on the global var jQuery
+        "jquery": "jQuery"
     },
     module: {
         rules: [
@@ -38,11 +49,6 @@ const config = {
             },
         ]
     },
-    resolve: {
-        modules: [path.join(__dirname,"./node_modules/")],
-        //extensions: [".tsx", ".ts", ".js", ".scss"]
-    },
-    devtool: 'source-map',
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),

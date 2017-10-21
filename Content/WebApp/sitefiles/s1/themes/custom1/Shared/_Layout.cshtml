@@ -11,7 +11,6 @@
     @RenderSection("Meta", required: false)
 	<environment names="Development">
         <link rel="stylesheet" href="~/dist/mainstyle.bundle.css" asp-append-version="true" />
-        
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="~/dist/mainstyle.bundle.min.css" asp-append-version="true" />
@@ -46,27 +45,23 @@
         <footer class="container text-center" role="contentinfo" itemscope itemtype="http://schema.org/Person" itemprop="author">
             <small>Copyright &copy; @DateTime.Now.Year - @(Tenant?.SiteName ?? "Sample")</small><br />
             <small>
+            @*#if (ContactForm)*@
+            <a href="/contact">Contact</a> |
+            @*#endif*@
+            @*#if (SimpleContentConfig == 'a' || SimpleContentConfig == 'b')*@
             <a href="/sitemap">Site Map</a> |
+            @*#endif*@
             @* you are free to remove the powered by cloudscribe link but we appreciate it if you choose to keep it! *@
-            <a target="_blank" href="https://www.cloudscribe.com/?utm_campaign=poweredbycloudscribe">Powered by cloudscribe</a>
+            <a target="_blank" href="https://www.cloudscribe.com/?utm_source=@Context.Request.Host.Value&amp;utm_medium=referral&amp;utm_campaign=poweredbycloudscribe">Powered by cloudscribe</a>
             </small>   
         </footer>
     </div>
+    <script src="~/js/jquery.min.js"></script>
     <environment names="Development">
-        <script src="~/js/jquery.js"></script>
-        <script src="~/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/dist/boot.bundle.js" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="~/js/jquery.min.js"
-                asp-fallback-test="window.jQuery">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
-                asp-fallback-src="~/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/dist/boot.bundle.min.js" asp-append-version="true"></script>
     </environment>
     @RenderSection("Bottom", required: false)
     @RenderSection("scripts", required: false)

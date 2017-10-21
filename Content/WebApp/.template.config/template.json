@@ -63,6 +63,12 @@
           ]
         },
         {
+          "condition": "(Webpack)",
+          "exclude": [
+            "bundleconfig.json"
+          ]
+        },
+        {
           "condition": "(!AuthoringMode)",
           "exclude": [
             ".template.config/**",
@@ -190,7 +196,7 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Include client side development setup with webpack, typescript, and theme ready to customize using bootstrap-sass."
+      "description": "Include client side development setup with webpack, typescript, and theme ready to customize using bootstrap-sass. This is an advanced option and requires that you have node and npm installed."
     },
     "MSSQL": {
       "type": "computed",

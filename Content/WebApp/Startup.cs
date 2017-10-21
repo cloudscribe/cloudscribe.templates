@@ -24,6 +24,9 @@ using Microsoft.Extensions.Logging;
 using cloudscribe.UserProperties.Models;
 using cloudscribe.UserProperties.Services;
 #endif
+#if (Webpack)
+using Microsoft.AspNetCore.SpaServices.Webpack;
+#endif
 
 namespace WebApp
 {
@@ -355,6 +358,12 @@ namespace WebApp
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
+                #if (Webpack)
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
+                    HotModuleReplacement = true
+                });
+                #endif
                 app.UseDatabaseErrorPage();
             }
             else
