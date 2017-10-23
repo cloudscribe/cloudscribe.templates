@@ -16,13 +16,16 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
 
-    <Content Remove="wwwroot\lib\**\*" CopyToPublishDirectory="Never" />
-    <Content Remove="bundleconfig.json" CopyToPublishDirectory="Never" />
     <Content Remove="appsettings.Development.json" CopyToPublishDirectory="Never" />
-    
-    <Content Include="wwwroot\lib\**\*" CopyToPublishDirectory="Never" />
-    <Content Include="bundleconfig.json" CopyToPublishDirectory="Never" />
     <Content Include="appsettings.Development.json" CopyToPublishDirectory="Never" />
+    <!--#if (!Webpack)-->
+    <Content Remove="wwwroot\lib\**\*" CopyToPublishDirectory="Never" />
+    <Content Include="wwwroot\lib\**\*" CopyToPublishDirectory="Never" />
+
+    <Content Remove="bundleconfig.json" CopyToPublishDirectory="Never" />
+    <Content Include="bundleconfig.json" CopyToPublishDirectory="Never" />
+    <!--#endif-->
+    
     
     <Content Include="sitefiles\**\wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="SharedThemes\**\wwwroot\**" CopyToPublishDirectory="PreserveNewest" />

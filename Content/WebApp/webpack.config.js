@@ -4,18 +4,19 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const config = {
     entry: {
-        'vanillats': './app-vanillats/Main.ts',
+        // each entry defines a bundle that will be produced
+        'vanilla': './app-vanillats/Main.ts',
         'boot': './app-vendor/boot.js',
-        'mainstyle': './scss/style.scss'
+        'mainstyle': './app-scss/style.scss'
     },
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'wwwroot/dist/'),
-        publicPath: 'dist/'
+        publicPath: '/dist/'
     },
     resolve: {
         modules: [path.join(__dirname,"./node_modules/")],
-        extensions: [".tsx", ".ts", ".js"]
+        extensions: [".tsx", ".ts", ".js", ".scss"]
     },
     devtool: 'source-map',
     externals: {

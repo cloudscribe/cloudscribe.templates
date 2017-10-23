@@ -23,12 +23,31 @@
             if you haven't already, and be sure to checkout the <a target="_blank" href="https://www.cloudscribe.com/docs?utm_source=projecttemplate&amp;utm_medium=referral&amp;utm_campaign=newproject-UTM-CAMPAIGN">Documentation</a>.
             You can also ask questions in our <a target="_blank" href="https://gitter.im/joeaudette/cloudscribe">gitter chat web page</a>.</p>
             <p>If you like cloudscribe and our Visual Studio project template, please give us a good review in 
-            <a target="_blank" href="https://marketplace.visualstudio.com/items?itemName=joeaudette.cloudscribeProjectTemplate">the Visual Stusio Marketplace</a></p>
+            <a target="_blank" href="https://marketplace.visualstudio.com/items?itemName=joeaudette.cloudscribeProjectTemplate">the Visual Studio Marketplace</a></p>
             <p>Follow <a target="_blank" href="https://twitter.com/cloudscribeweb">@cloudscribeweb</a> and <a target="_blank" href="https://twitter.com/joeaudette">@joeaudette</a> on Twitter!</p>
 
             <article>
                 <h3><span aria-hidden="true" class="fa fa-check"></span> Next Steps</h3>
                 <ul class="list-group">
+                    <!--#if (Webpack)-->
+                    <li class="list-group-item">
+                            <strong>Advanced Client Side Development with Webpack</strong> -
+                            You included the optional webpack setup in your project, a bold choice! Please be aware that by doing that, your project won't build unless
+                            you have the required tools installed including NodeJs and Npm. For Visual Studio, I also reommend that you install the 
+                            <a href"https://marketplace.visualstudio.com/items?itemName=MadsKristensen.NPMTaskRunner">NPM Task Runner extension</a>
+                            which allows you to run the build and build-production tasks using the Visual Studio task runner.
+                            Assuming you have everything installed and setup correctly, the npm tasks should also run on build and on publish.
+                            This setup gives you hot module loading so you can edit the SASS (.scss) files and/or typescript and javascript files,
+                            and immediately see your changes by refreshing the web browser. Webpack is also configured to pre-gzip the js and css bundles,
+                            which can significantly reduce the size and speed the delivery to the web browser. You can optionally add more dependencies in 
+                            package.json, and update the webpack setup if you want to use react or other frameworks.
+                            We will be updating notes for using and troubleshooting the webpack setup at <a href="https://www.cloudscribe.com/docs/advanced-client-side-development-with-webpack?utm_source=projecttemplate&amp;utm_medium=referral&amp;utm_campaign=newproject-UTM-CAMPAIGN">https://www.cloudscribe.com/docs/advanced-client-side-development-with-webpack</a>
+                            I use this setup myself for pretty much all of my client projects because I almost always need a custom bootstrap theme for 
+                            my client projects and I like to use bootstrap-sass.
+                            Since the generated css and js bundles land in wwwroot/ist folder, it is best to exclude that folder
+                            in your .gitignore file if you are using git.
+                        </li>
+                        <!--#endif-->
 				    <!--#if (MySql)-->
                     <li class="list-group-item">
                         <strong>Set your MySql Connection string.</strong> -
@@ -58,7 +77,7 @@
                         <strong>Login Credentials</strong> 
                         When you first run the project application an administrative user account will be created automatically with the email admin@admin.com 
                         and the password admin. Once you login with administrative permissions a new Administration menu will appear, you should take a look around 
-                        the various menu items to find the configurable settings that are of interest to you. One of the first things you shold do is change the email
+                        the various menu items to find the configurable settings that are of interest to you. One of the first things you should do is change the email
                         address and password of the admin user account.  You can change the email under Administration > User Management > User List.
 						You can change the password by clicking the welcome user message at the top of the page. Be careful not to forget your password at least until
 						you have configured SMTP settings for email because password reset emails can't be sent until you do that.
@@ -107,7 +126,7 @@
                         Now that your project is created, you likely have plans to write some code for the custom features you need. cloudscribe doesn't impose 
                         any prescriptive requirements or patterns for how you build your own features, you can typically use any patterns and approaches
                         that you would normally use in ASP.NET Core. But there is some guidance provided for getting the current user information and how to
-                        optionally implement mutli-tenancy in your own features if you need that.
+                        optionally implement multi-tenancy in your own features if you need that.
                         See the <a href="https://www.cloudscribe.com/docs/building-custom-features-that-integrate-with-cloudscribe-core?utm_source=projecttemplate&amp;utm_medium=referral&amp;utm_campaign=newproject-UTM-CAMPAIGN">Building Custom Features Documentation</a>
                         for more information.
                     </li>
@@ -117,6 +136,21 @@
                         But more than likely you will want to create a custom theme.
                         See the <a href="https://www.cloudscribe.com/docs/themes-and-web-design?utm_source=projecttemplate&amp;utm_medium=referral&amp;utm_campaign=newproject-UTM-CAMPAIGN">Themes and Web Design</a>
                         documentation for more information.
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Configuration Sources</strong> 
+                        By default, the configuration will let you override appsettings.json from appsettings.Development.json when the environment is Development.
+                        I generally add that file to my .gitignore file so that any connection strings or credentials I put there won't go into source control.
+                        It also supports overriding appsettings.json with appsettings.Production.json if the environment is Production. We don't include an
+                        appsettings.Production.json file in the template, I usually would create tha file manually on the production server as part of my first deployment.
+                        For Azure hosting you would generally use Environment Variables or Azure Key Vault as discussed in the 
+                        <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration?tabs=basicconfiguration">official documentation</a>.
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Google Analytics</strong> 
+                        There is built in support for google analytics, you just add your profile id under Administration > Site Settings.
+                        There is also tracking of account activities such as site registration and logins, including social login tracking.
+                        To get the most benefit from google analytics, see the <a href="https://www.cloudscribe.com/docs/google-analytics-integration?utm_source=projecttemplate&amp;utm_medium=referral&amp;utm_campaign=newproject-UTM-CAMPAIGN">documentation</a>.
                     </li>
                     
                 </ul>

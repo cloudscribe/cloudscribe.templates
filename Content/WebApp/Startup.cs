@@ -372,7 +372,22 @@ namespace WebApp
             }
 
             app.UseForwardedHeaders();
+            #if (Webpack)
+            // we are pre-gzipping js and css from webpack
+            // this allows us to map the requests for .min.js to .min.js.gz and .min.css to .min.css.gz if the file exists
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                OnPrepareResponse = GzipMappingFileProvider.OnPrepareResponse,
+                FileProvider = new GzipMappingFileProvider(
+                    loggerFactory,
+                    true,
+                    Environment.WebRootFileProvider
+                    )
+            });
+            #else
             app.UseStaticFiles();
+            #endif
+
             //app.UseSession();
 
             app.UseRequestLocalization(localizationOptionsAccessor.Value);
