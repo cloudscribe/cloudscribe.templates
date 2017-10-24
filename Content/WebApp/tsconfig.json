@@ -6,7 +6,8 @@
     "removeComments": false,
     "sourceMap": true,
     "target": "es5",    
-    "lib": [ "es2015", "es2015.iterable", "dom", "dom.iterable" ]
+    "lib": [ "es2015", "es2015.iterable", "dom", "dom.iterable" ],
+    "jsx": "react"
   },  
   "compileOnSave": false,
   "exclude": [

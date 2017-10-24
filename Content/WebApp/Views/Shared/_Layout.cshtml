@@ -43,7 +43,7 @@
         @await Component.InvokeAsync("Navigation", new { viewName = "BootstrapBreadcrumbs", filterName = NamedNavigationFilters.Breadcrumbs, startingNodeKey = "" })
         @await Html.PartialAsync("AlertsPartial")
         @RenderBody()
-        <footer class="container text-center" role="contentinfo" itemscope itemtype="http://schema.org/Person" itemprop="author">
+        <footer class="container text-center">
             <small>Copyright &copy; @DateTime.Now.Year - @(Tenant?.SiteName ?? "Sample")</small><br />
             <small>
             @*#if (ContactForm)*@

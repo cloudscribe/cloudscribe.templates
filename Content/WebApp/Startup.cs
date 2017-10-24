@@ -362,6 +362,9 @@ namespace WebApp
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
                     HotModuleReplacement = true
+                    #if (IncludeReact)
+                    ,ReactHotModuleReplacement = true
+                    #endif
                 });
                 #endif
                 app.UseDatabaseErrorPage();

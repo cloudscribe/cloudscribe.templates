@@ -5,7 +5,11 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const config = {
     entry: {
         // each entry defines a bundle that will be produced
-        'vanilla': './app-vanillats/Main.ts',
+        //#if (IncludeReact)
+        'app-react': './app-react/boot-client.tsx',
+        'app-react-server': './app-react/boot-server.tsx',
+        //#endif
+        'vanilla': './app-vanilla/Main.ts',
         'boot': './app-vendor/boot.js',
         'mainstyle': './app-scss/style.scss'
     },
@@ -39,9 +43,7 @@ const config = {
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: ['css-loader', 'sass-loader']
-                }),
-                
-                
+                }), 
             },
             {
                 test: /\.tsx?$/,

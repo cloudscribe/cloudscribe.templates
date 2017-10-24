@@ -22,6 +22,11 @@ const overrides = {
         loaders: [stripLoader],
     },
     plugins: [
+        new webpack.DefinePlugin({ // <-- key to reducing React's size
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
+        }),
         new ExtractTextPlugin({
             filename: '[name].bundle.min.css',
             allChunks: true,
