@@ -5,6 +5,10 @@
     <UserSecretsId>WebApp-4BC5DF1F-B155-4A69-9719-0AB349B1ACB2</UserSecretsId>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
+    <!--#if (Webpack)-->
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>    
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <!--#endif-->
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,17 +16,26 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
 
-    <Content Remove="wwwroot\lib\**\*" CopyToPublishDirectory="Never" />
-    <Content Remove="bundleconfig.json" CopyToPublishDirectory="Never" />
     <Content Remove="appsettings.Development.json" CopyToPublishDirectory="Never" />
-    
-    <Content Include="wwwroot\lib\**\*" CopyToPublishDirectory="Never" />
-    <Content Include="bundleconfig.json" CopyToPublishDirectory="Never" />
     <Content Include="appsettings.Development.json" CopyToPublishDirectory="Never" />
+    <!--#if (!Webpack)-->
+    <Content Remove="wwwroot\lib\**\*" CopyToPublishDirectory="Never" />
+    <Content Include="wwwroot\lib\**\*" CopyToPublishDirectory="Never" />
+
+    <Content Remove="bundleconfig.json" CopyToPublishDirectory="Never" />
+    <Content Include="bundleconfig.json" CopyToPublishDirectory="Never" />
+    <!--#endif-->
+    
     
     <Content Include="sitefiles\**\wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="SharedThemes\**\wwwroot\**" CopyToPublishDirectory="PreserveNewest" />
 
+    <!--#if (Webpack)-->
+    <Content Remove="tsconfig.json" CopyToPublishDirectory="Never" />
+    <Content Remove="package.json" CopyToPublishDirectory="Never" />
+    <Content Include="tsconfig.json" CopyToPublishDirectory="Never" />
+    <Content Include="package.json" CopyToPublishDirectory="Never" />
+    <!--#endif-->
   </ItemGroup>
 
   <ItemGroup Label="Package References">
@@ -120,7 +133,9 @@
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.AzureStorage" Version="2.0.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.*" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.*" PrivateAssets="All" />
+    <!--#if (!Webpack)-->
     <PackageReference Include="BuildBundlerMinifier" Version="2.5.*" />
+    <!--#endif-->
   </ItemGroup>
 
   <ItemGroup>
@@ -128,5 +143,28 @@
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.*" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.*" />
   </ItemGroup>
+
+  <!--#if (Webpack)-->
+  <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Performing first-run Webpack build..." />
+    <Exec Command="node node_modules/webpack/bin/webpack.js" />
+  </Target>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <Exec Command="npm install" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.production.config.js" />
+    <ItemGroup>
+      <DistFiles Include="wwwroot\dist\**" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+  <!--#endif-->
 
 </Project>

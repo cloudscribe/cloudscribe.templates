@@ -24,6 +24,9 @@ using Microsoft.Extensions.Logging;
 using cloudscribe.UserProperties.Models;
 using cloudscribe.UserProperties.Services;
 #endif
+#if (Webpack)
+using Microsoft.AspNetCore.SpaServices.Webpack;
+#endif
 
 namespace WebApp
 {
@@ -355,6 +358,15 @@ namespace WebApp
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
+                #if (Webpack)
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
+                    HotModuleReplacement = true
+                    #if (IncludeReact)
+                    ,ReactHotModuleReplacement = true
+                    #endif
+                });
+                #endif
                 app.UseDatabaseErrorPage();
             }
             else
@@ -363,7 +375,22 @@ namespace WebApp
             }
 
             app.UseForwardedHeaders();
+            #if (Webpack)
+            // we are pre-gzipping js and css from webpack
+            // this allows us to map the requests for .min.js to .min.js.gz and .min.css to .min.css.gz if the file exists
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                OnPrepareResponse = GzipMappingFileProvider.OnPrepareResponse,
+                FileProvider = new GzipMappingFileProvider(
+                    loggerFactory,
+                    true,
+                    Environment.WebRootFileProvider
+                    )
+            });
+            #else
             app.UseStaticFiles();
+            #endif
+
             //app.UseSession();
 
             app.UseRequestLocalization(localizationOptionsAccessor.Value);

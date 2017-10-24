@@ -53,7 +53,7 @@
         @await Html.PartialAsync("AlertsPartial")
         @RenderBody()
     </div>
-    <footer class="text-center" role="contentinfo" itemscope itemtype="http://schema.org/Person" itemprop="author">
+    <footer class="text-center">
         <small>Copyright &copy; @DateTime.Now.Year - @(Tenant?.SiteName ?? "Sample")</small><br />
         <small>
         @*#if (ContactForm)*@
@@ -63,7 +63,7 @@
         <a href="/sitemap">Site Map</a> |
         @*#endif*@
         @* you are free to remove the powered by cloudscribe link but we appreciate it if you choose to keep it! *@
-        <a target="_blank" href="https://www.cloudscribe.com/?utm_campaign=poweredbycloudscribe">Powered by cloudscribe</a>
+        <a target="_blank" href="https://www.cloudscribe.com/?utm_source=@Context.Request.Host.Value&amp;utm_medium=referral&amp;utm_campaign=poweredbycloudscribe">Powered by cloudscribe</a>
         </small>   
     </footer>
     <environment names="Development">

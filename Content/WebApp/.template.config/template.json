@@ -48,6 +48,34 @@
           ]
         },
         {
+          "condition": "(!Webpack)",
+          "exclude": [
+            "app-scss/**",
+            "app-vanilla/**",
+            "app-vendor/**",
+            "sitefiles/s1/themes/custom1/**",
+            "wwwroot/fonts/**",
+            "package.json",
+            "tsconfig.json",
+            "webpack.config.js",
+            "webpack.production.config.js"
+
+          ]
+        },
+        {
+          "condition": "(Webpack)",
+          "exclude": [
+            "bundleconfig.json"
+          ]
+        },
+        {
+          "condition": "(!IncludeReact)",
+          "exclude": [
+            "app-react/**",
+            "Controllers/SampleDataController.cs"
+          ]
+        },
+        {
           "condition": "(!AuthoringMode)",
           "exclude": [
             ".template.config/**",
@@ -170,6 +198,22 @@
         }
       ]
       
+    },
+    "Webpack": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include client side development setup with webpack, typescript, and theme ready to customize using bootstrap-sass. This is an advanced option and requires that you have node and npm installed."
+    },
+    "ReactSample": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Include a react sample client app, requires Webpack to be true"
+    },
+    "IncludeReact": {
+      "type": "computed",
+      "value": "(Webpack && ReactSample)"
     },
     "MSSQL": {
       "type": "computed",
