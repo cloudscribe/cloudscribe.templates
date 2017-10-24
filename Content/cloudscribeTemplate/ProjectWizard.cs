@@ -48,6 +48,9 @@ namespace cloudscribeTemplate
         private string _nonRootPagesSegment = "p";
         private string _nonRootPagesTitle = "Articles";
 
+        private bool _includeWebpack = false;
+        private bool _includeReactSample = false;
+
         private bool _exceptionOccurred = false;
         private ProjectOptionsDialog _dialog;
 
@@ -76,7 +79,10 @@ namespace cloudscribeTemplate
                     replacementsDictionary.Add("passthrough:NonRootPagesTitle", _nonRootPagesTitle);
                 }
 
-                
+                replacementsDictionary.Add("passthrough:Webpack", _includeWebpack.ToString().ToLowerInvariant());
+                replacementsDictionary.Add("passthrough:ReactSample", _includeReactSample.ToString().ToLowerInvariant());
+
+
             }
             catch (Exception ex)
             {
@@ -107,6 +113,7 @@ namespace cloudscribeTemplate
                 _useKvpProfile = ((CheckBox)_dialog.Controls["chkKvpProfile"]).Checked;
                 _useIdentityServer = ((CheckBox)_dialog.Controls["chkIdentityServer"]).Checked;
 
+               
                 var groupBox = _dialog.Controls["gbSimpleContentConfig"];
 
                 var simpleContentOption = groupBox.Controls.OfType<RadioButton>()
@@ -136,7 +143,15 @@ namespace cloudscribeTemplate
                 }
 
                 _multiTenantMode = (string)((ComboBox)_dialog.Controls["cbMultiTenancy"]).SelectedValue;
-                
+
+                var gbExpert = _dialog.Controls["gbExpert"];
+                _includeWebpack = ((CheckBox)gbExpert.Controls["chkWebpack"]).Checked;
+                _includeReactSample = ((CheckBox)gbExpert.Controls["chkReactSample"]).Checked;
+                if (!_includeWebpack)
+                {
+                    _includeReactSample = false;
+                }
+
                 _dialog.Close();
             }
             

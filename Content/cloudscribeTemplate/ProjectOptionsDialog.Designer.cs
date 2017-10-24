@@ -46,7 +46,13 @@
             this.chkIdentityServer = new System.Windows.Forms.CheckBox();
             this.btnOk = new System.Windows.Forms.Button();
             this.cbMultiTenancy = new System.Windows.Forms.ComboBox();
+            this.gbExpert = new System.Windows.Forms.GroupBox();
+            this.lnkWebpack = new System.Windows.Forms.LinkLabel();
+            this.lblExpertWarning = new System.Windows.Forms.Label();
+            this.chkWebpack = new System.Windows.Forms.CheckBox();
+            this.chkReactSample = new System.Windows.Forms.CheckBox();
             this.gbSimpleContentConfig.SuspendLayout();
+            this.gbExpert.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbDataStorage
@@ -70,7 +76,7 @@
             this.gbSimpleContentConfig.Controls.Add(this.optionA);
             this.gbSimpleContentConfig.Location = new System.Drawing.Point(71, 132);
             this.gbSimpleContentConfig.Name = "gbSimpleContentConfig";
-            this.gbSimpleContentConfig.Size = new System.Drawing.Size(973, 437);
+            this.gbSimpleContentConfig.Size = new System.Drawing.Size(973, 415);
             this.gbSimpleContentConfig.TabIndex = 1;
             this.gbSimpleContentConfig.TabStop = false;
             this.gbSimpleContentConfig.Text = "SimpleContent Configuration";
@@ -167,7 +173,7 @@
             // chkLogging
             // 
             this.chkLogging.AutoSize = true;
-            this.chkLogging.Location = new System.Drawing.Point(93, 594);
+            this.chkLogging.Location = new System.Drawing.Point(93, 587);
             this.chkLogging.Name = "chkLogging";
             this.chkLogging.Size = new System.Drawing.Size(571, 29);
             this.chkLogging.TabIndex = 2;
@@ -177,7 +183,7 @@
             // chkContactForm
             // 
             this.chkContactForm.AutoSize = true;
-            this.chkContactForm.Location = new System.Drawing.Point(93, 650);
+            this.chkContactForm.Location = new System.Drawing.Point(93, 638);
             this.chkContactForm.Name = "chkContactForm";
             this.chkContactForm.Size = new System.Drawing.Size(319, 29);
             this.chkContactForm.TabIndex = 3;
@@ -187,7 +193,7 @@
             // chkKvpProfile
             // 
             this.chkKvpProfile.AutoSize = true;
-            this.chkKvpProfile.Location = new System.Drawing.Point(94, 707);
+            this.chkKvpProfile.Location = new System.Drawing.Point(93, 689);
             this.chkKvpProfile.Name = "chkKvpProfile";
             this.chkKvpProfile.Size = new System.Drawing.Size(425, 29);
             this.chkKvpProfile.TabIndex = 4;
@@ -197,7 +203,7 @@
             // chkIdentityServer
             // 
             this.chkIdentityServer.AutoSize = true;
-            this.chkIdentityServer.Location = new System.Drawing.Point(93, 760);
+            this.chkIdentityServer.Location = new System.Drawing.Point(93, 746);
             this.chkIdentityServer.Name = "chkIdentityServer";
             this.chkIdentityServer.Size = new System.Drawing.Size(370, 29);
             this.chkIdentityServer.TabIndex = 5;
@@ -206,7 +212,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(468, 833);
+            this.btnOk.Location = new System.Drawing.Point(445, 1135);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(219, 51);
             this.btnOk.TabIndex = 6;
@@ -221,11 +227,66 @@
             this.cbMultiTenancy.Size = new System.Drawing.Size(973, 33);
             this.cbMultiTenancy.TabIndex = 7;
             // 
+            // gbExpert
+            // 
+            this.gbExpert.Controls.Add(this.chkReactSample);
+            this.gbExpert.Controls.Add(this.chkWebpack);
+            this.gbExpert.Controls.Add(this.lnkWebpack);
+            this.gbExpert.Controls.Add(this.lblExpertWarning);
+            this.gbExpert.Location = new System.Drawing.Point(83, 816);
+            this.gbExpert.Name = "gbExpert";
+            this.gbExpert.Size = new System.Drawing.Size(951, 301);
+            this.gbExpert.TabIndex = 8;
+            this.gbExpert.TabStop = false;
+            this.gbExpert.Text = "Expert Zone";
+            // 
+            // lnkWebpack
+            // 
+            this.lnkWebpack.AutoSize = true;
+            this.lnkWebpack.Location = new System.Drawing.Point(6, 101);
+            this.lnkWebpack.Name = "lnkWebpack";
+            this.lnkWebpack.Size = new System.Drawing.Size(742, 25);
+            this.lnkWebpack.TabIndex = 1;
+            this.lnkWebpack.TabStop = true;
+            this.lnkWebpack.Text = "To learn more about these options and prerequisites see the documentation.";
+            this.lnkWebpack.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkWebpack_LinkClicked);
+            // 
+            // lblExpertWarning
+            // 
+            this.lblExpertWarning.Location = new System.Drawing.Point(6, 42);
+            this.lblExpertWarning.Name = "lblExpertWarning";
+            this.lblExpertWarning.Size = new System.Drawing.Size(955, 59);
+            this.lblExpertWarning.TabIndex = 0;
+            this.lblExpertWarning.Text = "Note that if you use these options, your project will not build unless you have a" +
+    "dditional tools installed including NodeJs and Npm.";
+            // 
+            // chkWebpack
+            // 
+            this.chkWebpack.Location = new System.Drawing.Point(11, 129);
+            this.chkWebpack.Name = "chkWebpack";
+            this.chkWebpack.Size = new System.Drawing.Size(950, 93);
+            this.chkWebpack.TabIndex = 2;
+            this.chkWebpack.Text = resources.GetString("chkWebpack.Text");
+            this.chkWebpack.UseVisualStyleBackColor = true;
+            this.chkWebpack.CheckedChanged += new System.EventHandler(this.chkWebpack_CheckedChanged);
+            // 
+            // chkReactSample
+            // 
+            this.chkReactSample.AutoSize = true;
+            this.chkReactSample.Location = new System.Drawing.Point(11, 248);
+            this.chkReactSample.Name = "chkReactSample";
+            this.chkReactSample.Size = new System.Drawing.Size(292, 29);
+            this.chkReactSample.TabIndex = 3;
+            this.chkReactSample.Text = "Include React app sample";
+            this.chkReactSample.UseVisualStyleBackColor = true;
+            this.chkReactSample.CheckedChanged += new System.EventHandler(this.chkReactSample_CheckedChanged);
+            // 
             // ProjectOptionsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1113, 924);
+            this.ClientSize = new System.Drawing.Size(1113, 1198);
+            this.Controls.Add(this.gbExpert);
             this.Controls.Add(this.cbMultiTenancy);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.chkIdentityServer);
@@ -239,6 +300,8 @@
             this.Text = "cloudscribe Options";
             this.gbSimpleContentConfig.ResumeLayout(false);
             this.gbSimpleContentConfig.PerformLayout();
+            this.gbExpert.ResumeLayout(false);
+            this.gbExpert.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,5 +326,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNonRootPagesTitle;
         private System.Windows.Forms.TextBox txtNonRootPagesSegment;
+        private System.Windows.Forms.GroupBox gbExpert;
+        private System.Windows.Forms.LinkLabel lnkWebpack;
+        private System.Windows.Forms.Label lblExpertWarning;
+        private System.Windows.Forms.CheckBox chkReactSample;
+        private System.Windows.Forms.CheckBox chkWebpack;
     }
 }

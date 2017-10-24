@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -51,6 +52,18 @@ namespace cloudscribeTemplate
             txtNonRootPagesTitle.MaxLength = 50;
             txtNonRootPagesTitle.KeyPress += TxtNonRootPagesTitle_KeyPress;
             txtNonRootPagesTitle.TextChanged += TxtNonRootPagesTitle_TextChanged;
+
+            LinkLabel.Link link = new LinkLabel.Link();
+            link.LinkData = "https://www.cloudscribe.com/docs/advanced-client-side-development-with-webpack?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
+            lnkWebpack.Links.Add(link);
+           
+        }
+
+        
+
+        private void lnkWebpack_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(e.Link.LinkData as string);
         }
 
         private void TxtNonRootPagesTitle_TextChanged(object sender, EventArgs e)
@@ -98,6 +111,22 @@ namespace cloudscribeTemplate
         {
             txtNonRootPagesSegment.Enabled = optionB.Checked;
             txtNonRootPagesTitle.Enabled = optionB.Checked;
+        }
+
+        private void chkWebpack_CheckedChanged(object sender, EventArgs e)
+        {
+            if(!chkWebpack.Checked)
+            {
+                chkReactSample.Checked = false;
+            }
+        }
+
+        private void chkReactSample_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chkReactSample.Checked)
+            {
+                chkWebpack.Checked = true;
+            }
         }
     }
 
