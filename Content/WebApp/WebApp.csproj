@@ -44,6 +44,9 @@
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.Core.Storage.NoDb" Version="2.0.*" />
     <!--#endif-->
+    <!--#if (SQLite)-->
+    <PackageReference Include="cloudscribe.Core.Storage.EFCore.SQLite" Version="2.0.*" />
+    <!--#endif-->
     <!--#if (MSSQL)-->
     <PackageReference Include="cloudscribe.Core.Storage.EFCore.MSSQL" Version="2.0.*" />
     <!--#endif-->
@@ -63,6 +66,9 @@
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.SimpleContent.Storage.NoDb" Version="2.0.*" />
     <!--#endif-->
+    <!--#if (SQLite)-->
+    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.SQLite" Version="2.0.*" />
+    <!--#endif-->
     <!--#if (MSSQL)-->
     <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MSSQL" Version="2.0.*" />
     <!--#endif-->
@@ -79,6 +85,9 @@
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.Logging.NoDb" Version="2.1.*" />
     <!--#endif-->
+    <!--#if (SQLite)-->
+    <PackageReference Include="cloudscribe.Logging.EFCore.SQLite" Version="2.1.*" />
+    <!--#endif-->
     <!--#if (MSSQL)-->
     <PackageReference Include="cloudscribe.Logging.EFCore.MSSQL" Version="2.1.*" />
     <!--#endif-->
@@ -94,6 +103,9 @@
     <PackageReference Include="cloudscribe.Core.IdentityServerIntegration.Mvc" Version="2.1.*" />
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.Core.IdentityServer.NoDb" Version="2.1.*" />
+    <!--#endif-->
+    <!--#if (SQLite)-->
+    <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.SQLite" Version="2.0.*" />
     <!--#endif-->
     <!--#if (MSSQL)-->
     <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.MSSQL" Version="2.1.*" />
@@ -114,6 +126,9 @@
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.Kvp.Storage.NoDb" Version="2.0.*" />
     <!--#endif-->
+    <!--#if (SQLite)-->
+    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.SQLite" Version="2.0.*" />
+    <!--#endif-->
     <!--#if (MSSQL)-->
     <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MSSQL" Version="2.0.*" />
     <!--#endif-->
@@ -133,6 +148,7 @@
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.AzureStorage" Version="2.0.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.*" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.*" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.AzureStorage" Version="2.0.*" />
     <!--#if (!Webpack)-->
     <PackageReference Include="BuildBundlerMinifier" Version="2.5.*" />
     <!--#endif-->

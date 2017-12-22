@@ -78,10 +78,27 @@ namespace WebApp
             {
                 // If using Azure for production the uri with sas token could be stored in azure as environment variable or using key vault
                 // but the keys go in azure blob storage per docs https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers
-                //var dpKeysUrl = Configuration["AppSettings:DataProtectionKeysBlobStorageUrl"];
-                services.AddDataProtection()
-                    //.PersistKeysToAzureBlobStorage(new Uri(dpKeysUrl))
-                    ;
+                // this is false by default you should set it to true in azure environment variables
+                var useBlobStroageForDataProtection = Configuration.GetValue<bool>("AppSettings:UseAzureBlobForDataProtection");
+                // best to put this in azure environment variables instead of appsettings.json
+                var storageConnectionString = Configuration["AppSettings:DataProtectionBlobStorageConnectionString"];
+                if(useBlobStroageForDataProtection && !string.IsNullOrWhiteSpace(storageConnectionString))
+                { 
+                    var storageAccount =  Microsoft.WindowsAzure.Storage.CloudStorageAccount.Parse(storageConnectionString);
+                    var client = storageAccount.CreateCloudBlobClient();
+                    var container = client.GetContainerReference("key-container");
+                    // The container must exist before calling the DataProtection APIs.
+                    // The specific file within the container does not have to exist,
+                    // as it will be created on-demand.
+                    container.CreateIfNotExistsAsync().GetAwaiter().GetResult();
+                    services.AddDataProtection()
+                        .PersistKeysToAzureBlobStorage(container, "keys.xml");
+ 
+                }
+                else
+                {
+                    services.AddDataProtection();
+                }
             }
             else
             {
@@ -115,6 +132,9 @@ namespace WebApp
             #if (!NoDb)
             var connectionString = Configuration.GetConnectionString("EntityFrameworkConnection");
 
+            #if (SQLite)
+            services.AddCloudscribeCoreEFStorageSQLite(connectionString);
+            #endif
             #if (MSSQL)
             services.AddCloudscribeCoreEFStorageMSSQL(connectionString);
             #endif
@@ -131,6 +151,9 @@ namespace WebApp
             #if (NoDb)
             services.AddCloudscribeKvpNoDbStorage();
             #endif
+            #if (SQLite)
+            services.AddCloudscribeKvpEFStorageSQLite(connectionString);
+            #endif
             #if (MSSQL)
             services.AddCloudscribeKvpEFStorageMSSQL(connectionString);
             #endif
@@ -144,6 +167,9 @@ namespace WebApp
             #if (Logging)
             #if (NoDb)
             services.AddCloudscribeLoggingNoDbStorage(Configuration);
+            #endif
+            #if (SQLite)
+            services.AddCloudscribeLoggingEFStorageSQLite(connectionString);
             #endif
             #if (MSSQL)
             services.AddCloudscribeLoggingEFStorageMSSQL(connectionString);
@@ -159,6 +185,9 @@ namespace WebApp
             #if (SimpleContentConfig != "z")
             #if (NoDb)
             services.AddNoDbStorageForSimpleContent();
+            #endif
+            #if (SQLite)
+            services.AddCloudscribeSimpleContentEFStorageSQLite(connectionString);
             #endif
             #if (MSSQL)
             services.AddCloudscribeSimpleContentEFStorageMSSQL(connectionString);
@@ -179,6 +208,9 @@ namespace WebApp
                     services.AddIdentityServerConfiguredForCloudscribe()
                 #if (NoDb)
                         .AddCloudscribeCoreNoDbIdentityServerStorage()
+                #endif
+                #if (SQLite)
+                        .AddCloudscribeCoreEFIdentityServerStorageSQLite(connectionString)
                 #endif
                 #if (MSSQL)
                         .AddCloudscribeCoreEFIdentityServerStorageMSSQL(connectionString)
@@ -208,6 +240,9 @@ namespace WebApp
                     services.AddIdentityServerConfiguredForCloudscribe()
                 #if (NoDb)
                         .AddCloudscribeCoreNoDbIdentityServerStorage()
+                #endif
+                #if (SQLite)
+                        .AddCloudscribeCoreEFIdentityServerStorageSQLite(connectionString)
                 #endif
                 #if (MSSQL)
                         .AddCloudscribeCoreEFIdentityServerStorageMSSQL(connectionString)
