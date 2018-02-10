@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore;
@@ -32,32 +33,30 @@ namespace WebApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment env)
+        public Startup(
+            IConfiguration configuration, 
+            IHostingEnvironment env,
+            ILogger<Startup> logger
+            )
         {
             Configuration = configuration;
             Environment = env;
+            _log = logger;
 
             SslIsAvailable = Configuration.GetValue<bool>("AppSettings:UseSsl");
             #if (IdentityServer)
             DisableIdentityServer = Configuration.GetValue<bool>("AppSettings:DisableIdentityServer");
-            IdentityServerX509CertificateThumbprintName = Configuration.GetValue<string>("AppSettings:IdentityServerX509CertificateThumbprintName");
-            if(!DisableIdentityServer && Environment.IsProduction())
-            {
-                if (string.IsNullOrEmpty(IdentityServerX509CertificateThumbprintName))
-                {
-                    DisableIdentityServer = true;
-                }
-            }
             #endif
         }
 
-        public IConfiguration Configuration { get; }
-        public IHostingEnvironment Environment { get; set; }
-        public bool SslIsAvailable { get; set; }
+        private IConfiguration Configuration { get; set; }
+        private IHostingEnvironment Environment { get; set; }
+        private bool SslIsAvailable { get; set; }
         #if (IdentityServer)
-        public bool DisableIdentityServer { get; set; }
-        public string IdentityServerX509CertificateThumbprintName { get; set; }
+        private bool DisableIdentityServer { get; set; }
+        private bool didSetupIdServer = false;
         #endif
+        private ILogger _log;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -203,9 +202,9 @@ namespace WebApp
             #if (IdentityServer)
             if (!DisableIdentityServer)
             {
-                if(Environment.IsProduction())
+                try 
                 {
-                    services.AddIdentityServerConfiguredForCloudscribe()
+                    var idsBuilder = services.AddIdentityServerConfiguredForCloudscribe()
                 #if (NoDb)
                         .AddCloudscribeCoreNoDbIdentityServerStorage()
                 #endif
@@ -221,42 +220,47 @@ namespace WebApp
                 #if (pgsql)
                         .AddCloudscribeCoreEFIdentityServerStoragePostgreSql(connectionString)
                 #endif
-                        .AddCloudscribeIdentityServerIntegrationMvc()
-                        // *** IMPORTANT CHANGES NEEDED HERE *** 
+                        .AddCloudscribeIdentityServerIntegrationMvc(); 
+                    if(Environment.IsProduction())
+                    {
+                        // *** IMPORTANT CONFIGURATION NEEDED HERE *** 
                         // can't use .AddDeveloperSigningCredential in production it will throw an error
                         // https://identityserver4.readthedocs.io/en/dev/topics/crypto.html
                         // https://identityserver4.readthedocs.io/en/dev/topics/startup.html#refstartupkeymaterial
                         // you need to create an X.509 certificate (can be self signed)
-                        // on your server and configure the thumbprint name in appsettings.json
+                        // on your server and configure the cert file path and password name in appsettings.json
                         // OR change this code to wire up a certificate differently
-                         .AddSigningCredential(
-                            IdentityServerX509CertificateThumbprintName, 
-                            System.Security.Cryptography.X509Certificates.StoreLocation.LocalMachine,
-                            NameType.Thumbprint
-                            );
+                        _log.LogWarning("setting up identityserver4 for production");
+                        var certPath = Configuration.GetValue<string>("AppSettings:IdServerSigningCertPath");
+                        var certPwd = Configuration.GetValue<string>("AppSettings:IdServerSigningCertPassword");
+                        if(!string.IsNullOrWhiteSpace(certPath) && !string.IsNullOrWhiteSpace(certPwd))
+                        {
+                            var cert = new X509Certificate2(
+                            File.ReadAllBytes(certPath),
+                            certPwd,
+                            X509KeyStorageFlags.MachineKeySet |
+                            X509KeyStorageFlags.PersistKeySet |
+                            X509KeyStorageFlags.Exportable);
+
+                            idsBuilder.AddSigningCredential(cert);
+                            didSetupIdServer = true;
+                        } 
+
+                    }
+                    else
+                    {
+                        idsBuilder.AddDeveloperSigningCredential(); // don't use this for production
+                        didSetupIdServer = true;
+                    }
+
                 }
-                else
+                catch(Exception ex)
                 {
-                    services.AddIdentityServerConfiguredForCloudscribe()
-                #if (NoDb)
-                        .AddCloudscribeCoreNoDbIdentityServerStorage()
-                #endif
-                #if (SQLite)
-                        .AddCloudscribeCoreEFIdentityServerStorageSQLite(connectionString)
-                #endif
-                #if (MSSQL)
-                        .AddCloudscribeCoreEFIdentityServerStorageMSSQL(connectionString)
-                #endif
-                #if (MySql)
-                        .AddCloudscribeCoreEFIdentityServerStorageMySql(connectionString)
-                #endif
-                #if (pgsql)
-                        .AddCloudscribeCoreEFIdentityServerStoragePostgreSql(connectionString)
-                #endif
-                        .AddCloudscribeIdentityServerIntegrationMvc()
-                        .AddDeveloperSigningCredential() // don't use this for production
-                        ;
+                    _log.LogError($"failed to setup identityserver4 {ex.Message} {ex.StackTrace}");
                 }
+
+                
+ 
             }
             
             services.AddCors(options =>
@@ -441,9 +445,16 @@ namespace WebApp
                     SslIsAvailable);
 
             #if (IdentityServer)
-            if (!DisableIdentityServer)
+            if (!DisableIdentityServer && didSetupIdServer)
             {
-               app.UseIdentityServer();
+                try
+                {
+                    app.UseIdentityServer();
+                }
+                catch(Exception ex)
+                {
+                    _log.LogError($"failed to setup identityserver4 {ex.Message} {ex.StackTrace}");
+                }
             }
             #endif
             #if (MultiTenantMode == 'FolderName')
