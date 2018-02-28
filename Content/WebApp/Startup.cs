@@ -578,7 +578,7 @@ namespace WebApp
                 routes.MapRoute(
                     name: "def",
                     template: "{controller}/{action}"
-                    ,defaults: new { controller = "Home", action = "Index" }
+                    ,defaults: new {  action = "Index" }
                     );
                 #endif
                 #if (SimpleContentConfig == "a")
@@ -593,7 +593,7 @@ namespace WebApp
                 routes.MapRoute(
                     name: "def",
                     template: "{controller}/{action}"
-                    ,defaults: new { action = "Index" }
+                    ,defaults: new { controller = "Home", action = "Index" }
                     );
                 #endif
 
