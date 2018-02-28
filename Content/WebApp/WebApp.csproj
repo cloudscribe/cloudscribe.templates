@@ -40,7 +40,8 @@
 
   <ItemGroup Label="Package References">
 
-    <PackageReference Include="cloudscribe.Core.Web.Mvc" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.Core.Web" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.Core.Web.Views.Bootstrap3" Version="2.1.*" />
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.Core.Storage.NoDb" Version="2.0.*" />
     <!--#endif-->
@@ -58,8 +59,9 @@
     <!--#endif-->
     
     <!--#if (SimpleContentConfig != "z")-->
-    <PackageReference Include="cloudscribe.Core.SimpleContent.Mvc" Version="2.0.*" />
-    <PackageReference Include="cloudscribe.SimpleContent.Web.Mvc" Version="2.0.*" />
+    <PackageReference Include="cloudscribe.Core.SimpleContent" Version="2.0.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Web" Version="2.0.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Web.Views.Bootstrap3" Version="2.0.*" />
     <PackageReference Include="cloudscribe.SimpleContent.MetaWeblog" Version="2.0.*" />
     <PackageReference Include="cloudscribe.SimpleContent.Syndication" Version="2.0.*" />
     <PackageReference Include="cloudscribe.Syndication.Web" Version="2.0.*" />
@@ -100,7 +102,8 @@
     <!--#endif-->
 
     <!--#if (IdentityServer)-->
-    <PackageReference Include="cloudscribe.Core.IdentityServerIntegration.Mvc" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.Core.IdentityServerIntegration" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.Core.IdentityServerIntegration.Views.Bootstrap3" Version="2.1.*" />
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.Core.IdentityServer.NoDb" Version="2.1.*" />
     <!--#endif-->

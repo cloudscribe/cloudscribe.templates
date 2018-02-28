@@ -537,7 +537,7 @@ namespace WebApp
                     routes.MapRoute(
                         name: "folderdefault",
                         template: "{sitefolder}/{controller}/{action}/{id?}",
-                        defaults: new { controller = "Home", action = "Index" },
+                        defaults: new { action = "Index" },
                         constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
                         );
                     #endif
@@ -578,7 +578,7 @@ namespace WebApp
                 routes.MapRoute(
                     name: "def",
                     template: "{controller}/{action}"
-                    //,defaults: new { controller = "Home", action = "Index" }
+                    ,defaults: new { controller = "Home", action = "Index" }
                     );
                 #endif
                 #if (SimpleContentConfig == "a")
@@ -593,7 +593,7 @@ namespace WebApp
                 routes.MapRoute(
                     name: "def",
                     template: "{controller}/{action}"
-                    ,defaults: new { controller = "Home", action = "Index" }
+                    ,defaults: new { action = "Index" }
                     );
                 #endif
 
