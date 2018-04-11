@@ -48,6 +48,12 @@
           ]
         },
         {
+          "condition": "(!IdentityServer)",
+          "exclude": [
+            "Config/IdentityServerIntegration.cs"
+          ]
+        },
+        {
           "condition": "(!Webpack)",
           "exclude": [
             "app-scss/**",
