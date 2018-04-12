@@ -50,7 +50,7 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #if (Logging)
 #if (NoDb)
-            services.AddCloudscribeLoggingNoDbStorage(Configuration);
+            services.AddCloudscribeLoggingNoDbStorage(config);
 #endif
 #if (SQLite)
             services.AddCloudscribeLoggingEFStorageSQLite(connectionString);

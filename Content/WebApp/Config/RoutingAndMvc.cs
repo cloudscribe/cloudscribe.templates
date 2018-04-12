@@ -15,33 +15,33 @@ namespace Microsoft.AspNetCore.Builder
 #if (SimpleContentConfig != "z")
 #if (SimpleContentConfig != "c")
 #if (MultiTenantMode == 'FolderName')
-                if (useFolders)
-                {
-                    routes.AddBlogRoutesForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint());
-                }
+            if (useFolders)
+            {
+                routes.AddBlogRoutesForSimpleContent(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint());
+            }
 #endif              
-                routes.AddBlogRoutesForSimpleContent();
+            routes.AddBlogRoutesForSimpleContent();
 #endif
-                routes.AddSimpleContentStaticResourceRoutes();
+            routes.AddSimpleContentStaticResourceRoutes();
 #endif
             routes.AddCloudscribeFileManagerRoutes();
 #if (MultiTenantMode == 'FolderName')
             if (useFolders)
             {
                 routes.MapRoute(
-                   name: "foldererrorhandler",
-                   template: "{sitefolder}/oops/error/{statusCode?}",
-                   defaults: new { controller = "Oops", action = "Error" },
-                   constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
+                    name: "foldererrorhandler",
+                    template: "{sitefolder}/oops/error/{statusCode?}",
+                    defaults: new { controller = "Oops", action = "Error" },
+                    constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
                 );
 
 #if (ContactForm)
-                    routes.MapRoute(
-                        name: "foldercontact",
-                        template: "{sitefolder}/contact",
-                        defaults: new { controller = "Contact", action = "Index" }
-                        , constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
-                        );
+                routes.MapRoute(
+                    name: "foldercontact",
+                    template: "{sitefolder}/contact",
+                    defaults: new { controller = "Contact", action = "Index" }
+                    , constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
+                    );
 #endif
 #if (SimpleContentConfig == "a" || SimpleContentConfig == "b")
                 routes.MapRoute(
@@ -90,11 +90,11 @@ namespace Microsoft.AspNetCore.Builder
                 );
 
 #if (ContactForm)
-                routes.MapRoute(
-                    name: "contact",
-                    template: "contact",
-                    defaults: new { controller = "Contact", action = "Index" }
-                    );
+            routes.MapRoute(
+                name: "contact",
+                template: "contact",
+                defaults: new { controller = "Contact", action = "Index" }
+                );
 #endif
 
 #if (SimpleContentConfig == "a" || SimpleContentConfig == "b")
@@ -122,7 +122,6 @@ namespace Microsoft.AspNetCore.Builder
             routes.AddCustomPageRouteForSimpleContent("NONROOTPAGESEGMENT");
 #endif
 
-
 #if (SimpleContentConfig == "z" || SimpleContentConfig == "b" || SimpleContentConfig == "d")
             routes.MapRoute(
                 name: "def",
@@ -130,13 +129,11 @@ namespace Microsoft.AspNetCore.Builder
                 , defaults: new { controller = "Home", action = "Index" }
                 );
 #endif
-
 #if (SimpleContentConfig == "c")
             //blog as default route
             routes.AddBlogRoutesForSimpleContent("");
 #endif
-
-
+            
             return routes;
         }
 
