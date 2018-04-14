@@ -47,10 +47,10 @@
             this.btnOk = new System.Windows.Forms.Button();
             this.cbMultiTenancy = new System.Windows.Forms.ComboBox();
             this.gbExpert = new System.Windows.Forms.GroupBox();
+            this.chkReactSample = new System.Windows.Forms.CheckBox();
+            this.chkWebpack = new System.Windows.Forms.CheckBox();
             this.lnkWebpack = new System.Windows.Forms.LinkLabel();
             this.lblExpertWarning = new System.Windows.Forms.Label();
-            this.chkWebpack = new System.Windows.Forms.CheckBox();
-            this.chkReactSample = new System.Windows.Forms.CheckBox();
             this.gbSimpleContentConfig.SuspendLayout();
             this.gbExpert.SuspendLayout();
             this.SuspendLayout();
@@ -240,6 +240,27 @@
             this.gbExpert.TabStop = false;
             this.gbExpert.Text = "Expert Zone";
             // 
+            // chkReactSample
+            // 
+            this.chkReactSample.AutoSize = true;
+            this.chkReactSample.Location = new System.Drawing.Point(11, 248);
+            this.chkReactSample.Name = "chkReactSample";
+            this.chkReactSample.Size = new System.Drawing.Size(292, 29);
+            this.chkReactSample.TabIndex = 3;
+            this.chkReactSample.Text = "Include React app sample";
+            this.chkReactSample.UseVisualStyleBackColor = true;
+            this.chkReactSample.CheckedChanged += new System.EventHandler(this.chkReactSample_CheckedChanged);
+            // 
+            // chkWebpack
+            // 
+            this.chkWebpack.Location = new System.Drawing.Point(11, 129);
+            this.chkWebpack.Name = "chkWebpack";
+            this.chkWebpack.Size = new System.Drawing.Size(950, 93);
+            this.chkWebpack.TabIndex = 2;
+            this.chkWebpack.Text = resources.GetString("chkWebpack.Text");
+            this.chkWebpack.UseVisualStyleBackColor = true;
+            this.chkWebpack.CheckedChanged += new System.EventHandler(this.chkWebpack_CheckedChanged);
+            // 
             // lnkWebpack
             // 
             this.lnkWebpack.AutoSize = true;
@@ -260,32 +281,12 @@
             this.lblExpertWarning.Text = "Note that if you use these options, your project will not build unless you have a" +
     "dditional tools installed including NodeJs and Npm.";
             // 
-            // chkWebpack
-            // 
-            this.chkWebpack.Location = new System.Drawing.Point(11, 129);
-            this.chkWebpack.Name = "chkWebpack";
-            this.chkWebpack.Size = new System.Drawing.Size(950, 93);
-            this.chkWebpack.TabIndex = 2;
-            this.chkWebpack.Text = resources.GetString("chkWebpack.Text");
-            this.chkWebpack.UseVisualStyleBackColor = true;
-            this.chkWebpack.CheckedChanged += new System.EventHandler(this.chkWebpack_CheckedChanged);
-            // 
-            // chkReactSample
-            // 
-            this.chkReactSample.AutoSize = true;
-            this.chkReactSample.Location = new System.Drawing.Point(11, 248);
-            this.chkReactSample.Name = "chkReactSample";
-            this.chkReactSample.Size = new System.Drawing.Size(292, 29);
-            this.chkReactSample.TabIndex = 3;
-            this.chkReactSample.Text = "Include React app sample";
-            this.chkReactSample.UseVisualStyleBackColor = true;
-            this.chkReactSample.CheckedChanged += new System.EventHandler(this.chkReactSample_CheckedChanged);
-            // 
             // ProjectOptionsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1113, 1198);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1113, 1281);
             this.Controls.Add(this.gbExpert);
             this.Controls.Add(this.cbMultiTenancy);
             this.Controls.Add(this.btnOk);
