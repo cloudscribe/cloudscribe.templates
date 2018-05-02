@@ -20,22 +20,22 @@ namespace WebApp
             ILogger<Startup> logger
             )
         {
-            Configuration = configuration;
-            Environment = env;
+            _configuration = configuration;
+            _environment = env;
             _log = logger;
 
-            SslIsAvailable = Configuration.GetValue<bool>("AppSettings:UseSsl");
+            _sslIsAvailable = _configuration.GetValue<bool>("AppSettings:UseSsl");
             #if (IdentityServer)
-            DisableIdentityServer = Configuration.GetValue<bool>("AppSettings:DisableIdentityServer");
+            _disableIdentityServer = _configuration.GetValue<bool>("AppSettings:DisableIdentityServer");
             #endif
         }
 
-        private IConfiguration Configuration { get; set; }
-        private IHostingEnvironment Environment { get; set; }
-        private bool SslIsAvailable { get; set; }
+        private IConfiguration _configuration { get; set; }
+        private IHostingEnvironment _environment { get; set; }
+        private bool _sslIsAvailable { get; set; }
         #if (IdentityServer)
-        private bool DisableIdentityServer { get; set; }
-        private bool didSetupIdServer = false;
+        private bool _disableIdentityServer { get; set; }
+        private bool _didSetupIdServer = false;
         #endif
         private ILogger _log;
 
@@ -45,7 +45,7 @@ namespace WebApp
             //// **** VERY IMPORTANT *****
             // This is a custom extension method in Config/DataProtection.cs
             // These settings require your review to correctly configur data protection for your environment
-            services.SetupDataProtection(Configuration, Environment);
+            services.SetupDataProtection(_configuration, _environment);
             
             services.AddAuthorization(options =>
             {
@@ -59,25 +59,25 @@ namespace WebApp
 
             //// **** IMPORTANT *****
             // This is a custom extension method in Config/CloudscribeFeatures.cs
-            services.SetupDataStorage(Configuration);
+            services.SetupDataStorage(_configuration);
             
 #if (IdentityServer)
             //*** Important ***
             // This is a custom extension method in Config/IdentityServerIntegration.cs
             // You should review this and understand what it does before deploying to production
             services.SetupIdentityServerIntegrationAndCORSPolicy(
-                Configuration,
-                Environment,
+                _configuration,
+                _environment,
                 _log,
-                SslIsAvailable,
-                DisableIdentityServer,
-                out didSetupIdServer
+                _sslIsAvailable,
+                _disableIdentityServer,
+                out _didSetupIdServer
                 );
 
 #endif
             //*** Important ***
             // This is a custom extension method in Config/CloudscribeFeatures.cs
-            services.SetupCloudscribeFeatures(Configuration);
+            services.SetupCloudscribeFeatures(_configuration);
 
             //*** Important ***
             // This is a custom extension method in Config/Localization.cs
@@ -85,7 +85,7 @@ namespace WebApp
 
             //*** Important ***
             // This is a custom extension method in Config/RoutingAndMvc.cs
-            services.SetupMvc(SslIsAvailable);
+            services.SetupMvc(_sslIsAvailable);
 
 
         }
@@ -148,10 +148,10 @@ namespace WebApp
             app.UseCloudscribeCore(
                     loggerFactory,
                     multiTenantOptions,
-                    SslIsAvailable);
+                    _sslIsAvailable);
 
 #if (IdentityServer)
-            if (!DisableIdentityServer && didSetupIdServer)
+            if (!_disableIdentityServer && _didSetupIdServer)
             {
                 try
                 {

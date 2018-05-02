@@ -9,9 +9,8 @@ const config = {
         'app-react': './app-react/boot-client.tsx',
         'app-react-server': './app-react/boot-server.tsx',
         //#endif
-        'vanilla': './app-vanilla/Main.ts',
-        'boot': './app-vendor/boot.js',
-        'mainstyle': './app-scss/style.scss'
+        'vanilla': './app-vanilla/Main.ts'
+        
     },
     output: {
         filename: '[name].bundle.js',

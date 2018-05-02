@@ -257,7 +257,8 @@
             this.chkWebpack.Name = "chkWebpack";
             this.chkWebpack.Size = new System.Drawing.Size(950, 93);
             this.chkWebpack.TabIndex = 2;
-            this.chkWebpack.Text = resources.GetString("chkWebpack.Text");
+            this.chkWebpack.Text = "Include advanced client side development setup with webpack, typescript, and a va" +
+    "nilla typescript hello world client side app.";
             this.chkWebpack.UseVisualStyleBackColor = true;
             this.chkWebpack.CheckedChanged += new System.EventHandler(this.chkWebpack_CheckedChanged);
             // 

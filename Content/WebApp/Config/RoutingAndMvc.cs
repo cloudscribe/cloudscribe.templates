@@ -177,18 +177,20 @@ namespace Microsoft.AspNetCore.Builder
             services.AddMvc()
                 .AddRazorOptions(options =>
                 {
+                    options.AddCloudscribeViewLocationFormats();
                     options.AddCloudscribeCommonEmbeddedViews();
-                    options.AddCloudscribeNavigationBootstrap3Views();
-                    options.AddCloudscribeCoreBootstrap3Views();
+                    options.AddCloudscribeNavigationBootstrap4Views();
+                    options.AddCloudscribeCoreBootstrap4Views();
 #if (SimpleContentConfig != "z")
-                    options.AddCloudscribeSimpleContentBootstrap3Views();
+                    options.AddCloudscribeCoreSimpleContentIntegrationBootstrap4Views();
+                    options.AddCloudscribeSimpleContentBootstrap4Views();
 #endif
-                    options.AddCloudscribeFileManagerBootstrap3Views();
+                    options.AddCloudscribeFileManagerBootstrap4Views();
 #if (Logging)
-                    options.AddCloudscribeLoggingBootstrap3Views();
+                    options.AddCloudscribeLoggingBootstrap4Views();
 #endif
 #if (IdentityServer)
-                    options.AddCloudscribeCoreIdentityServerIntegrationBootstrap3Views();
+                    options.AddCloudscribeCoreIdentityServerIntegrationBootstrap4Views();
 #endif
 #if (ContactForm)
                     options.AddCloudscribeSimpleContactFormViews();

@@ -56,22 +56,11 @@
         {
           "condition": "(!Webpack)",
           "exclude": [
-            "app-scss/**",
             "app-vanilla/**",
-            "app-vendor/**",
-            "sitefiles/s1/themes/custom1/**",
-            "wwwroot/fonts/**",
-            "package.json",
             "tsconfig.json",
             "webpack.config.js",
             "webpack.production.config.js"
 
-          ]
-        },
-        {
-          "condition": "(Webpack)",
-          "exclude": [
-            "bundleconfig.json"
           ]
         },
         {
@@ -84,8 +73,7 @@
         {
           "condition": "(!AuthoringMode)",
           "exclude": [
-            ".template.config/**",
-            "wwwroot/lib/**"
+            ".template.config/**"
           ]
         }
       ]
@@ -213,7 +201,7 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Include client side development setup with webpack, typescript, and theme ready to customize using bootstrap-sass. This is an advanced option and requires that you have node and npm installed."
+      "description": "Include client side development setup with webpack and typescript. This is an advanced option and requires that you have node and npm installed."
     },
     "ReactSample": {
       "type": "parameter",

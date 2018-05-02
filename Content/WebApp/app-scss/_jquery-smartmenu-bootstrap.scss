@@ -1,72 +1,84 @@
-﻿/*
- You probably do not need to edit this at all.
-
- Add some SmartMenus required styles not covered in Bootstrap 3's default CSS.
- These are theme independent and should work with any Bootstrap 3 theme mod.
-*/
-/* sub menus arrows on desktop */
-.navbar-nav:not(.sm-collapsible) ul .caret {
+﻿/******** jquery smartmenu bootstrap 4 ******/
+/* Carets in collapsible mode (make them look like +/- buttons) */
+.navbar-nav.sm-collapsible .sub-arrow {
     position: absolute;
+    top: 50%;
     right: 0;
-    margin-top: 6px;
-    margin-right: 15px;
-    border-top: 4px solid transparent;
-    border-bottom: 4px solid transparent;
-    border-left: 4px dashed;
-}
-
-.navbar-nav:not(.sm-collapsible) ul a.has-submenu {
-    padding-right: 30px;
-}
-/* make sub menu arrows look like +/- buttons in collapsible mode */
-.navbar-nav.sm-collapsible .caret, .navbar-nav.sm-collapsible ul .caret {
-    position: absolute;
-    right: 0;
-    margin: -3px 15px 0 0;
+    margin: -0.7em 0.5em 0 0;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: .25rem;
     padding: 0;
-    width: 32px;
-    height: 26px;
-    line-height: 24px;
+    width: 2em;
+    height: 1.4em;
+    font-size: 1.25rem;
+    line-height: 1.2em;
     text-align: center;
-    border-width: 1px;
-    border-style: solid;
 }
 
-.navbar-nav.sm-collapsible .caret:before {
+.navbar-nav.sm-collapsible .sub-arrow::before {
     content: '+';
-    font-family: monospace;
-    font-weight: bold;
 }
 
-.navbar-nav.sm-collapsible .open > a > .caret:before {
+.navbar-nav.sm-collapsible .show > a > .sub-arrow::before {
     content: '-';
 }
 
-.navbar-nav.sm-collapsible a.has-submenu {
-    padding-right: 50px;
+.navbar-dark .navbar-nav.sm-collapsible .nav-link .sub-arrow {
+    border-color: rgba(255, 255, 255, .1);
 }
-/* revert to Bootstrap's default carets in collapsible mode when the "data-sm-skip-collapsible-behavior" attribute is set to the ul.navbar-nav */
-.navbar-nav.sm-collapsible[data-sm-skip-collapsible-behavior] .caret, .navbar-nav.sm-collapsible[data-sm-skip-collapsible-behavior] ul .caret {
-    position: static;
-    margin: 0 0 0 2px;
-    padding: 0;
+/* make sure there's room for the carets */
+.navbar-nav.sm-collapsible .has-submenu {
+    padding-right: 3em;
+}
+/* keep the carets properly positioned */
+.navbar-nav.sm-collapsible .nav-link,
+.navbar-nav.sm-collapsible .dropdown-item {
+    position: relative;
+}
+
+
+/* Nav carets in expanded mode */
+.navbar-nav:not(.sm-collapsible) .nav-link .sub-arrow {
+    display: inline-block;
     width: 0;
     height: 0;
-    border-top: 4px dashed;
-    border-right: 4px solid transparent;
-    border-bottom: 0;
-    border-left: 4px solid transparent;
+    margin-left: .255em;
+    vertical-align: .255em;
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-left: .3em solid transparent;
+}
+/* point the arrows up for .fixed-bottom navbars */
+.fixed-bottom .navbar-nav:not(.sm-collapsible) .nav-link .sub-arrow,
+.fixed-bottom .navbar-nav:not(.sm-collapsible):not([data-sm-skip]) .dropdown-toggle::after {
+    border-top: 0;
+    border-bottom: .3em solid;
 }
 
-.navbar-nav.sm-collapsible[data-sm-skip-collapsible-behavior] .caret:before {
-    content: '' !important;
+
+/* Dropdown carets in expanded mode */
+.navbar-nav:not(.sm-collapsible) .dropdown-item .sub-arrow,
+.navbar-nav:not(.sm-collapsible):not([data-sm-skip]) .dropdown-menu .dropdown-toggle::after {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 0;
+    height: 0;
+    margin-top: -.3em;
+    margin-right: 1em;
+    border-top: .3em solid transparent;
+    border-bottom: .3em solid transparent;
+    border-left: .3em solid;
+}
+/* make sure there's room for the carets */
+.navbar-nav:not(.sm-collapsible) .dropdown-item.has-submenu {
+    padding-right: 2em;
 }
 
-.navbar-nav.sm-collapsible[data-sm-skip-collapsible-behavior] a.has-submenu {
-    padding-right: 15px;
-}
-/* scrolling arrows for tall menus */
-.navbar-nav span.scroll-up, .navbar-nav span.scroll-down {
+
+/* Scrolling arrows for tall menus */
+.navbar-nav .scroll-up,
+.navbar-nav .scroll-down {
     position: absolute;
     display: none;
     visibility: hidden;
@@ -75,7 +87,8 @@
     text-align: center;
 }
 
-.navbar-nav span.scroll-up-arrow, .navbar-nav span.scroll-down-arrow {
+.navbar-nav .scroll-up-arrow,
+.navbar-nav .scroll-down-arrow {
     position: absolute;
     top: -2px;
     left: 50%;
@@ -83,53 +96,33 @@
     width: 0;
     height: 0;
     overflow: hidden;
-    border-top: 7px dashed transparent;
-    border-right: 7px dashed transparent;
+    border-top: 7px solid transparent;
+    border-right: 7px solid transparent;
     border-bottom: 7px solid;
-    border-left: 7px dashed transparent;
+    border-left: 7px solid transparent;
 }
 
-.navbar-nav span.scroll-down-arrow {
+.navbar-nav .scroll-down-arrow {
     top: 6px;
     border-top: 7px solid;
-    border-right: 7px dashed transparent;
-    border-bottom: 7px dashed transparent;
-    border-left: 7px dashed transparent;
-}
-/* add more indentation for 2+ level sub in collapsible mode - Bootstrap normally supports just 1 level sub menus */
-.navbar-nav.sm-collapsible ul .dropdown-menu > li > a,
-.navbar-nav.sm-collapsible ul .dropdown-menu .dropdown-header {
-    padding-left: 35px;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 7px solid transparent;
 }
 
-.navbar-nav.sm-collapsible ul ul .dropdown-menu > li > a,
-.navbar-nav.sm-collapsible ul ul .dropdown-menu .dropdown-header {
-    padding-left: 45px;
+
+/* Add some spacing for 2+ level sub menus in collapsible mode */
+.navbar-nav.sm-collapsible .dropdown-menu .dropdown-menu {
+    margin: .5em;
 }
 
-.navbar-nav.sm-collapsible ul ul ul .dropdown-menu > li > a,
-.navbar-nav.sm-collapsible ul ul ul .dropdown-menu .dropdown-header {
-    padding-left: 55px;
-}
 
-.navbar-nav.sm-collapsible ul ul ul ul .dropdown-menu > li > a,
-.navbar-nav.sm-collapsible ul ul ul ul .dropdown-menu .dropdown-header {
-    padding-left: 65px;
-}
-/* fix SmartMenus sub menus auto width (subMenusMinWidth and subMenusMaxWidth options) */
-.navbar-nav .dropdown-menu > li > a {
+/* Fix SmartMenus sub menus auto width (subMenusMinWidth/subMenusMaxWidth options) */
+.navbar-nav:not([data-sm-skip]) .dropdown-item {
     white-space: normal;
 }
 
-.navbar-nav ul.sm-nowrap > li > a {
+.navbar-nav:not(.sm-collapsible) .sm-nowrap > li > .dropdown-item {
     white-space: nowrap;
 }
 
-.navbar-nav.sm-collapsible ul.sm-nowrap > li > a {
-    white-space: normal;
-}
-/* fix .navbar-right subs alignment */
-.navbar-right ul.dropdown-menu {
-    left: 0;
-    right: auto;
-}
