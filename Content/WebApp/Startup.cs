@@ -129,7 +129,7 @@ namespace WebApp
                 FileProvider = new GzipMappingFileProvider(
                     loggerFactory,
                     true,
-                    Environment.WebRootFileProvider
+                    _environment.WebRootFileProvider
                     )
             });
             #else
