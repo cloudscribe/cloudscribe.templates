@@ -37,13 +37,13 @@ const config = {
                 }),
                 exclude: /node_modules/
             },
-            { 
-                test: /\.(sass|scss)$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader']
-                }), 
-            },
+            //{ 
+            //    test: /\.(sass|scss)$/,
+            //    use: ExtractTextPlugin.extract({
+            //        fallback: 'style-loader',
+            //        use: ['css-loader', 'sass-loader']
+            //    }), 
+           // },
             {
                 test: /\.tsx?$/,
                 loader: 'ts-loader',
