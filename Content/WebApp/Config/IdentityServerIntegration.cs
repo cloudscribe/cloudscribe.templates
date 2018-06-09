@@ -28,7 +28,12 @@ namespace Microsoft.Extensions.DependencyInjection
 #if (!NoDb)
                     var connectionString = config.GetConnectionString("EntityFrameworkConnection");
 #endif
-                    var idsBuilder = services.AddIdentityServerConfiguredForCloudscribe()
+                    var idsBuilder = services.AddIdentityServerConfiguredForCloudscribe(options =>
+                    {
+                        options.UserInteraction.ErrorUrl = "/oops/error";
+
+                    })
+
 #if (NoDb)
                         .AddCloudscribeCoreNoDbIdentityServerStorage()
 #endif

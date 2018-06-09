@@ -398,7 +398,7 @@ readers do not read off random characters that represent icons */
 //.#{$fa-css-prefix}-hands:before { content: fa-content($fa-var-hands); }
 //.#{$fa-css-prefix}-hands-helping:before { content: fa-content($fa-var-hands-helping); }
 //.#{$fa-css-prefix}-handshake:before { content: fa-content($fa-var-handshake); }
-//.#{$fa-css-prefix}-hashtag:before { content: fa-content($fa-var-hashtag); }
+.#{$fa-css-prefix}-hashtag:before { content: fa-content($fa-var-hashtag); }
 //.#{$fa-css-prefix}-hdd:before { content: fa-content($fa-var-hdd); }
 //.#{$fa-css-prefix}-heading:before { content: fa-content($fa-var-heading); }
 //.#{$fa-css-prefix}-headphones:before { content: fa-content($fa-var-headphones); }
