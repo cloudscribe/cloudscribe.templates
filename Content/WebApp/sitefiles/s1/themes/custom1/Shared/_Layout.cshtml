@@ -104,6 +104,7 @@
         </div>
         <div class="p-2 text-nowrap">Copyright &copy; @DateTime.Now.Year - @(Tenant?.SiteName ?? "Sample")</div>
     </footer>
+    <cookie-consent enabled="true" compliance-type="info"></cookie-consent>
     @RenderSection("Toolbar", required: false)
     <environment names="Development">
         <script src="~/js/jquery.js" cs-resolve-theme-resource="true" cs-tenant="@Tenant"></script>
