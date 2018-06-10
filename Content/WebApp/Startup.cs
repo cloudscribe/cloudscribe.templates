@@ -30,14 +30,14 @@ namespace WebApp
             #endif
         }
 
-        private IConfiguration _configuration { get; set; }
-        private IHostingEnvironment _environment { get; set; }
-        private bool _sslIsAvailable { get; set; }
+        private readonly IConfiguration _configuration;
+        private readonly IHostingEnvironment _environment;
+        private readonly bool _sslIsAvailable;
         #if (IdentityServer)
-        private bool _disableIdentityServer { get; set; }
+        private readonly bool _disableIdentityServer;
         private bool _didSetupIdServer = false;
         #endif
-        private ILogger _log;
+        private readonly ILogger _log;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -102,7 +102,6 @@ namespace WebApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
                 #if (Webpack)
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
@@ -135,8 +134,6 @@ namespace WebApp
             #else
             app.UseStaticFiles();
             #endif
-
-            //app.UseSession();
 
             app.UseRequestLocalization(localizationOptionsAccessor.Value);
             #if (IdentityServer)

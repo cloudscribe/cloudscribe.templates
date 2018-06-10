@@ -32,7 +32,8 @@ namespace WebApp
             #if (Logging)
             var env = host.Services.GetRequiredService<IHostingEnvironment>();
             var loggerFactory = host.Services.GetRequiredService<ILoggerFactory>();
-            ConfigureLogging(env, loggerFactory, host.Services);
+            var config = host.Services.GetRequiredService<IConfiguration>();
+            ConfigureLogging(env, loggerFactory, host.Services, config);
             #endif
 
             host.Run();
@@ -88,17 +89,37 @@ namespace WebApp
         private static void ConfigureLogging(
             IHostingEnvironment env,
             ILoggerFactory loggerFactory,
-            IServiceProvider serviceProvider
+            IServiceProvider serviceProvider,
+            IConfiguration config
             )
         {
             LogLevel minimumLevel;
+            string levelConfig;
             if (env.IsProduction())
             {
-                minimumLevel = LogLevel.Warning;
+                levelConfig = config["AppSettings:ProductionLogLevel"];
             }
             else
             {
-                minimumLevel = LogLevel.Information;
+                levelConfig = config["AppSettings:DevLogLevel"];
+            }
+            switch(levelConfig)
+            {
+                case "Debug":
+                    minimumLevel = LogLevel.Debug;
+                    break;
+
+                case "Information":
+                    minimumLevel = LogLevel.Information;
+                    break;
+
+                case "Trace":
+                    minimumLevel = LogLevel.Trace;
+                    break;
+
+                default:
+                    minimumLevel = LogLevel.Warning;
+                    break;
             }
 
             // a customizable filter for logging

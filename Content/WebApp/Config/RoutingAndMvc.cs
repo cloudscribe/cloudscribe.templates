@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -177,25 +178,6 @@ namespace Microsoft.AspNetCore.Builder
             services.AddMvc()
                 .AddRazorOptions(options =>
                 {
-                    options.AddCloudscribeViewLocationFormats();
-                    options.AddCloudscribeCommonEmbeddedViews();
-                    options.AddCloudscribeNavigationBootstrap4Views();
-                    options.AddCloudscribeCoreBootstrap4Views();
-#if (SimpleContentConfig != "z")
-                    options.AddCloudscribeCoreSimpleContentIntegrationBootstrap4Views();
-                    options.AddCloudscribeSimpleContentBootstrap4Views();
-#endif
-                    options.AddCloudscribeFileManagerBootstrap4Views();
-#if (Logging)
-                    options.AddCloudscribeLoggingBootstrap4Views();
-#endif
-#if (IdentityServer)
-                    options.AddCloudscribeCoreIdentityServerIntegrationBootstrap4Views();
-#endif
-#if (ContactForm)
-                    options.AddCloudscribeSimpleContactFormViews();
-#endif
-
                     options.ViewLocationExpanders.Add(new cloudscribe.Core.Web.Components.SiteViewLocationExpander());
                 });
 
