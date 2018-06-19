@@ -36,6 +36,13 @@ namespace Microsoft.AspNetCore.Builder
                     constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
                 );
 
+                routes.MapRoute(
+                       name: "apifoldersitemap",
+                       template: "{sitefolder}/api/sitemap"
+                       , defaults: new { controller = "FolderSiteMap", action = "Index" }
+                       , constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
+                       );
+
 #if (ContactForm)
                 routes.MapRoute(
                     name: "foldercontact",
@@ -51,6 +58,21 @@ namespace Microsoft.AspNetCore.Builder
                         , defaults: new { controller = "Page", action = "SiteMap" }
                         , constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
                         );
+
+                routes.MapRoute(
+                       name: "apifoldermetaweblog",
+                       template: "{sitefolder}/api/metaweblog"
+                       , defaults: new { controller = "FolderMetaweblog", action = "Index" }
+                       , constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
+                       );
+
+                routes.MapRoute(
+                       name: "apifolderrss",
+                       template: "{sitefolder}/api/rss"
+                       , defaults: new { controller = "FolderRss", action = "Index" }
+                       , constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
+                       );
+
 #endif
 #if (SimpleContentConfig == "c")
                 // you can easily add pages by uncommenting this and uncommenting the coresponding node in navigation.xml
@@ -155,12 +177,13 @@ namespace Microsoft.AspNetCore.Builder
                     options.Filters.Add(new RequireHttpsAttribute());
                 }
 
-#if (SimpleContentConfig == 'a' || SimpleContentConfig == 'b')
                 options.CacheProfiles.Add("SiteMapCacheProfile",
                      new CacheProfile
                      {
                          Duration = 30
                      });
+
+#if (SimpleContentConfig == 'a' || SimpleContentConfig == 'b')
 
                 options.CacheProfiles.Add("RssCacheProfile",
                      new CacheProfile
