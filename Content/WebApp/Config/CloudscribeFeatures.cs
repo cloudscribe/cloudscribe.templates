@@ -94,7 +94,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
 
 #if (Logging)
-            services.AddCloudscribeLogging();
+            services.AddCloudscribeLogging(config);
 
 #endif
 #if (KvpCustomRegistration)
@@ -113,6 +113,7 @@ namespace Microsoft.Extensions.DependencyInjection
 #if (SimpleContentConfig != "z")
             services.AddCloudscribeCoreIntegrationForSimpleContent(config);
             services.AddSimpleContentMvc(config);
+            
             services.AddMetaWeblogForSimpleContent(config.GetSection("MetaWeblogApiOptions"));
             services.AddSimpleContentRssSyndiction();
 #endif

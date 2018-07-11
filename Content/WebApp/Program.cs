@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace WebApp
 {
@@ -93,17 +93,18 @@ namespace WebApp
             IConfiguration config
             )
         {
+            var dbLoggerConfig = config.GetSection("DbLoggerConfig").Get<cloudscribe.Logging.Models.DbLoggerConfig>();
             LogLevel minimumLevel;
             string levelConfig;
             if (env.IsProduction())
             {
-                levelConfig = config["AppSettings:ProductionLogLevel"];
+                levelConfig = dbLoggerConfig.ProductionLogLevel;
             }
             else
             {
-                levelConfig = config["AppSettings:DevLogLevel"];
+                levelConfig = dbLoggerConfig.DevLogLevel;
             }
-            switch(levelConfig)
+            switch (levelConfig)
             {
                 case "Debug":
                     minimumLevel = LogLevel.Debug;
@@ -121,29 +122,27 @@ namespace WebApp
                     minimumLevel = LogLevel.Warning;
                     break;
             }
-
+            
             // a customizable filter for logging
-            // add exclusions to remove noise in the logs
-            var excludedLoggers = new List<string>
+            // add exclusions in appsettings.json to remove noise in the logs
+            bool logFilter(string loggerName, LogLevel logLevel)
             {
-                "Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware",
-                "Microsoft.AspNetCore.Hosting.Internal.WebHost",
-            };
+                if (dbLoggerConfig.ExcludedNamesSpaces.Any(f => loggerName.StartsWith(f)))
+                {
+                    return false;
+                }
 
-            Func<string, LogLevel, bool> logFilter = (string loggerName, LogLevel logLevel) =>
-            {
                 if (logLevel < minimumLevel)
                 {
                     return false;
                 }
 
-                if (excludedLoggers.Contains(loggerName))
+                if (dbLoggerConfig.BelowWarningExcludedNamesSpaces.Any(f => loggerName.StartsWith(f)) && logLevel < LogLevel.Warning)
                 {
                     return false;
                 }
-
                 return true;
-            };
+            }
 
             loggerFactory.AddDbLogger(serviceProvider, logFilter);
         }
