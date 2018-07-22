@@ -14,6 +14,8 @@
     var Tenant = await siteResolver.ResolveSite(Context.Request.Host.Host, Context.Request.Path);
     var siteRoot = "";
     if (!string.IsNullOrWhiteSpace(Tenant.SiteFolderName)) { siteRoot = "/" + Tenant.SiteFolderName; }
+    var isIE = Context.Request.Headers["User-Agent"].ToString().Contains("Trident");
+    var ieBodyClass = isIE ? "IE" : "";
 }
 <!DOCTYPE html>
 <html>
@@ -24,17 +26,19 @@
     @RenderSection("Meta", required: false)
     <environment names="Development">
         <link rel="stylesheet" href="~/css/style.css" cs-resolve-theme-resource="true" cs-tenant="@Tenant" />
-        
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="~/css/style.min.css" cs-resolve-theme-resource="true" cs-tenant="@Tenant" />
-        
     </environment>
+    @if (isIE)
+    {
+        <link rel="stylesheet" href="~/css/ie11.css" />
+    }
     @RenderSection("Styles", required: false)
     <google-analytics profile-id="@Tenant.GoogleAnalyticsProfileId" user-id="@User.GetUserId()"></google-analytics>
     <base href="@Context.Request.Path" />
 </head>
-<body class="d-flex flex-column @ViewData["BodyClass"]">
+<body class="d-flex flex-column @ViewData["BodyClass"] @ieBodyClass">
     <header>
         <a id="skippy" class="sr-only sr-only-focusable" href="#content">
             <div class="container">
@@ -107,13 +111,13 @@
     <cookie-consent enabled="true" compliance-type="info"></cookie-consent>
     @RenderSection("Toolbar", required: false)
     <environment names="Development">
-        <script src="~/js/jquery.js" cs-resolve-theme-resource="true" cs-tenant="@Tenant"></script>
-        <script src="~/js/bootstrap4.bundle.js" cs-resolve-theme-resource="true" cs-tenant="@Tenant"></script>
+        <script src="~/js/jquery.min.js" cs-resolve-theme-resource="true" cs-tenant="@Tenant"></script>
+        <script src="~/js/bootstrap.bundle.js" cs-resolve-theme-resource="true" cs-tenant="@Tenant"></script>
         <script src="~/cr/js/bs4.smartmenus.min.js"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="~/js/jquery.min.js" cs-resolve-theme-resource="true" cs-tenant="@Tenant"></script>
-        <script src="~/js/bootstrap4.bundle.min.js" cs-resolve-theme-resource="true" cs-tenant="@Tenant"></script>
+        <script src="~/js/bootstrap.bundle.min.js" cs-resolve-theme-resource="true" cs-tenant="@Tenant"></script>
         <script src="~/cr/js/bs4.smartmenus.min.js"></script>
     </environment>
     @RenderSection("Bottom", required: false)

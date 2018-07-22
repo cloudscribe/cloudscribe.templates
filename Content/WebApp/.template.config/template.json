@@ -26,6 +26,20 @@
     {
       "modifiers": [
         {
+          "condition": "(SimpleContentConfig == 'a')",
+          "exclude": [
+            "Controllers/HomeController.cs",
+            "Views/Home/**"
+          ]
+        },
+        {
+          "condition": "(SimpleContentConfig == 'c')",
+          "exclude": [
+            "Controllers/HomeController.cs",
+            "Views/Home/**"
+          ]
+        },
+        {
           "condition": "(SimpleContentConfig == 'z')",
           "exclude": [
             "wwwroot/wlwmanifest.xml",
@@ -171,7 +185,7 @@
     "DataStorage": {
       "type": "parameter",
       "datatype": "choice",
-      "defaultValue": "SQLite",
+      "defaultValue": "NoDb",
       "description": "The data storage platform you wish to use.",
       "choices": [
         {

@@ -135,6 +135,8 @@ namespace WebApp
             app.UseStaticFiles();
             #endif
 
+            app.UseCloudscribeCommonStaticFiles();
+
             app.UseRequestLocalization(localizationOptionsAccessor.Value);
             #if (IdentityServer)
             app.UseCors("default"); //use Cors with policy named default, defined above
