@@ -113,6 +113,7 @@ namespace Microsoft.Extensions.DependencyInjection
 #if (SimpleContentConfig != "z")
             services.AddCloudscribeCoreIntegrationForSimpleContent(config);
             services.AddSimpleContentMvc(config);
+            services.AddContentTemplatesForSimpleContent(config);
             
             services.AddMetaWeblogForSimpleContent(config.GetSection("MetaWeblogApiOptions"));
             services.AddSimpleContentRssSyndiction();

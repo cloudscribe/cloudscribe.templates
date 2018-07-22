@@ -7,8 +7,8 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>    
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <!--#endif-->
-
   </PropertyGroup>
+
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;0436</NoWarn>
   </PropertyGroup>
@@ -37,8 +37,9 @@
 
   <ItemGroup Label="Package References">
 
-    <PackageReference Include="cloudscribe.Core.Web" Version="3.0.*" />
-    <PackageReference Include="cloudscribe.Core.CompiledViews.Bootstrap4" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.Core.Web" Version="3.1.*" />
+    <PackageReference Include="cloudscribe.Core.CompiledViews.Bootstrap4" Version="3.1.*" />
+    <PackageReference Include="cloudscribe.Web.StaticFiles" Version="1.0.*" />
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.Core.Storage.NoDb" Version="3.0.*" />
     <!--#endif-->
@@ -56,27 +57,27 @@
     <!--#endif-->
     
     <!--#if (SimpleContentConfig != "z")-->
-    <PackageReference Include="cloudscribe.Core.SimpleContent" Version="3.0.*" />
-    <PackageReference Include="cloudscribe.SimpleContent.Web" Version="3.0.*" />
-    <PackageReference Include="cloudscribe.Core.SimpleContent.CompiledViews.Bootstrap4" Version="3.0.*" />
-    <PackageReference Include="cloudscribe.SimpleContent.CompiledViews.Bootstrap4" Version="3.0.*" />
-    <PackageReference Include="cloudscribe.SimpleContent.MetaWeblog" Version="3.0.*" />
-    <PackageReference Include="cloudscribe.SimpleContent.Syndication" Version="3.0.*" />
-    <PackageReference Include="cloudscribe.Web.Common" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.Core.SimpleContent" Version="4.0.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Web" Version="4.0.*" />
+    <PackageReference Include="cloudscribe.Core.SimpleContent.CompiledViews.Bootstrap4" Version="4.0.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.CompiledViews.Bootstrap4" Version="4.0.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.MetaWeblog" Version="4.0.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Syndication" Version="4.0.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.ContentTemplates.Bootstrap4" Version="1.0.*" />
     <!--#if (NoDb)-->
-    <PackageReference Include="cloudscribe.SimpleContent.Storage.NoDb" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Storage.NoDb" Version="4.0.*" />
     <!--#endif-->
     <!--#if (SQLite)-->
-    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.SQLite" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.SQLite" Version="4.0.*" />
     <!--#endif-->
     <!--#if (MSSQL)-->
-    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MSSQL" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MSSQL" Version="4.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MySQL" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MySQL" Version="4.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
-    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.pgsql" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.pgsql" Version="4.0.*" />
     <!--#endif-->
     <!--#endif-->
 

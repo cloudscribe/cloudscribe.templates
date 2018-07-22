@@ -24,11 +24,12 @@ namespace cloudscribeTemplate
             var cbDataStorage = this.Controls["cbDataStorage"] as ComboBox;
             cbDataStorage.DropDownStyle = ComboBoxStyle.DropDownList;
             cbDataStorage.DataSource = new ComboItem[] {
+                new ComboItem{ Key = "NoDb", Text = "Use NoDb (no database) file system storage" },
                 new ComboItem{ Key = "SQLite", Text = "Use SQLite" },
                 new ComboItem{ Key = "MSSQL", Text = "Use Microsoft SqlServer" },
                 new ComboItem{ Key = "MySql", Text = "Use MySql" },
-                new ComboItem{ Key = "pgsql", Text = "Use PostgreSql" },
-                new ComboItem{ Key = "NoDb", Text = "Use NoDb (no database) file system storage" }
+                new ComboItem{ Key = "pgsql", Text = "Use PostgreSql" }
+                
             };
             cbDataStorage.ValueMember = "Key";
             cbDataStorage.DisplayMember = "Text";
