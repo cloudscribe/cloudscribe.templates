@@ -165,11 +165,6 @@ namespace Microsoft.AspNetCore.Builder
             bool sslIsAvailable
             )
         {
-            services.Configure<ForwardedHeadersOptions>(options =>
-            {
-                options.ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto;
-            });
-
             services.Configure<MvcOptions>(options =>
             {
                 if (sslIsAvailable)
