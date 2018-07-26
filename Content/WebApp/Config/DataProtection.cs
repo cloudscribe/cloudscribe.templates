@@ -28,29 +28,35 @@ namespace Microsoft.Extensions.DependencyInjection
             // https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?tabs=aspnetcore2x
             if (environment.IsProduction())
             {
+                // If you are hosted in Azure you should add the package Microsoft.AspNetCore.DataProtection.AzureStorage to the .csproj file
+                // and uncomment/configure the code below as per documentation here: 
+                // https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-2.1&tabs=aspnetcore2x
+
                 // If using Azure for production the uri with sas token could be stored in azure as environment variable or using key vault
                 // but the keys go in azure blob storage per docs https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/implementation/key-storage-providers
                 // this is false by default you should set it to true in azure environment variables
-                var useBlobStorageForDataProtection = config.GetValue<bool>("AppSettings:UseAzureBlobForDataProtection");
+                //var useBlobStorageForDataProtection = config.GetValue<bool>("AppSettings:UseAzureBlobForDataProtection");
                 // best to put this in azure environment variables instead of appsettings.json
-                var storageConnectionString = config["AppSettings:DataProtectionBlobStorageConnectionString"];
-                if (useBlobStorageForDataProtection && !string.IsNullOrWhiteSpace(storageConnectionString))
-                {
-                    var storageAccount = Microsoft.WindowsAzure.Storage.CloudStorageAccount.Parse(storageConnectionString);
-                    var client = storageAccount.CreateCloudBlobClient();
-                    var container = client.GetContainerReference("key-container");
-                    // The container must exist before calling the DataProtection APIs.
+                //var storageConnectionString = config["AppSettings:DataProtectionBlobStorageConnectionString"];
+                // if (useBlobStorageForDataProtection && !string.IsNullOrWhiteSpace(storageConnectionString))
+                //{
+                //    var storageAccount = Microsoft.WindowsAzure.Storage.CloudStorageAccount.Parse(storageConnectionString);
+                //    var client = storageAccount.CreateCloudBlobClient();
+                //    var container = client.GetContainerReference("key-container");
+                   // The container must exist before calling the DataProtection APIs.
                     // The specific file within the container does not have to exist,
                     // as it will be created on-demand.
-                    container.CreateIfNotExistsAsync().GetAwaiter().GetResult();
-                    services.AddDataProtection()
-                        .PersistKeysToAzureBlobStorage(container, "keys.xml");
+                //    container.CreateIfNotExistsAsync().GetAwaiter().GetResult();
+                //    services.AddDataProtection()
+                //        .PersistKeysToAzureBlobStorage(container, "keys.xml")
+                //        .ProtectKeysWithAzureKeyVault("<keyIdentifier>", "<clientId>", "<clientSecret>")
+                //        ;
 
-                }
-                else
-                {
+                //}
+                //else
+                //{
                     services.AddDataProtection();
-                }
+                //}
             }
             else
             {

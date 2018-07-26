@@ -117,8 +117,6 @@ namespace WebApp
             {
                 app.UseExceptionHandler("/oops/error");
             }
-
-            app.UseForwardedHeaders();
             #if (Webpack)
             // we are pre-gzipping js and css from webpack
             // this allows us to map the requests for .min.js to .min.js.gz and .min.css to .min.css.gz if the file exists
