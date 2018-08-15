@@ -6,7 +6,7 @@
     "bootstrap": "4.1.2",
     "smartmenus": "^1.1.0",
     "smartmenus-bootstrap-4": "^0.1.0",
-    "@fortawesome/fontawesome-free": "5.1.1",
+    "@fortawesome/fontawesome-free": "5.1.13",
     "gulp": "^3.9.1",
     "gulp-cli": "^2.0.1",
     "gulp-cssmin": "^0.2.0",

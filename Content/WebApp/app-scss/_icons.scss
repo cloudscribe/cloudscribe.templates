@@ -303,6 +303,8 @@ readers do not read off random characters that represent icons */
 .#{$fa-css-prefix}-file-code:before { content: fa-content($fa-var-file-code); }
 .#{$fa-css-prefix}-file-excel:before { content: fa-content($fa-var-file-excel); }
 .#{$fa-css-prefix}-file-image:before { content: fa-content($fa-var-file-image); }
+.#{$fa-css-prefix}-file-invoice:before { content: fa-content($fa-var-file-invoice); }
+.#{$fa-css-prefix}-file-invoice-dollar:before { content: fa-content($fa-var-file-invoice-dollar); }
 .#{$fa-css-prefix}-file-medical:before { content: fa-content($fa-var-file-medical); }
 .#{$fa-css-prefix}-file-medical-alt:before { content: fa-content($fa-var-file-medical-alt); }
 .#{$fa-css-prefix}-file-pdf:before { content: fa-content($fa-var-file-pdf); }
@@ -348,7 +350,7 @@ readers do not read off random characters that represent icons */
 //.#{$fa-css-prefix}-get-pocket:before { content: fa-content($fa-var-get-pocket); }
 //.#{$fa-css-prefix}-gg:before { content: fa-content($fa-var-gg); }
 //.#{$fa-css-prefix}-gg-circle:before { content: fa-content($fa-var-gg-circle); }
-//.#{$fa-css-prefix}-gift:before { content: fa-content($fa-var-gift); }
+.#{$fa-css-prefix}-gift:before { content: fa-content($fa-var-gift); }
 //.#{$fa-css-prefix}-git:before { content: fa-content($fa-var-git); }
 .#{$fa-css-prefix}-git-square:before { content: fa-content($fa-var-git-square); }
 .#{$fa-css-prefix}-github:before { content: fa-content($fa-var-github); }
@@ -383,7 +385,7 @@ readers do not read off random characters that represent icons */
 //.#{$fa-css-prefix}-hacker-news-square:before { content: fa-content($fa-var-hacker-news-square); }
 //.#{$fa-css-prefix}-hand-holding:before { content: fa-content($fa-var-hand-holding); }
 //.#{$fa-css-prefix}-hand-holding-heart:before { content: fa-content($fa-var-hand-holding-heart); }
-//.#{$fa-css-prefix}-hand-holding-usd:before { content: fa-content($fa-var-hand-holding-usd); }
+.#{$fa-css-prefix}-hand-holding-usd:before { content: fa-content($fa-var-hand-holding-usd); }
 //.#{$fa-css-prefix}-hand-lizard:before { content: fa-content($fa-var-hand-lizard); }
 //.#{$fa-css-prefix}-hand-paper:before { content: fa-content($fa-var-hand-paper); }
 //.#{$fa-css-prefix}-hand-peace:before { content: fa-content($fa-var-hand-peace); }
@@ -431,6 +433,7 @@ readers do not read off random characters that represent icons */
 .#{$fa-css-prefix}-inbox:before { content: fa-content($fa-var-inbox); }
 //.#{$fa-css-prefix}-indent:before { content: fa-content($fa-var-indent); }
 //.#{$fa-css-prefix}-industry:before { content: fa-content($fa-var-industry); }
+.#{$fa-css-prefix}-infinity:before { content: fa-content($fa-var-infinity); }
 .#{$fa-css-prefix}-info:before { content: fa-content($fa-var-info); }
 .#{$fa-css-prefix}-info-circle:before { content: fa-content($fa-var-info-circle); }
 //.#{$fa-css-prefix}-instagram:before { content: fa-content($fa-var-instagram); }
@@ -680,7 +683,7 @@ readers do not read off random characters that represent icons */
 .#{$fa-css-prefix}-skype:before { content: fa-content($fa-var-skype); }
 .#{$fa-css-prefix}-slack:before { content: fa-content($fa-var-slack); }
 //.#{$fa-css-prefix}-slack-hash:before { content: fa-content($fa-var-slack-hash); }
-//.#{$fa-css-prefix}-sliders-h:before { content: fa-content($fa-var-sliders-h); }
+.#{$fa-css-prefix}-sliders-h:before { content: fa-content($fa-var-sliders-h); }
 //.#{$fa-css-prefix}-slideshare:before { content: fa-content($fa-var-slideshare); }
 //.#{$fa-css-prefix}-smile:before { content: fa-content($fa-var-smile); }
 //.#{$fa-css-prefix}-smoking:before { content: fa-content($fa-var-smoking); }
@@ -719,7 +722,7 @@ readers do not read off random characters that represent icons */
 //.#{$fa-css-prefix}-sticky-note:before { content: fa-content($fa-var-sticky-note); }
 .#{$fa-css-prefix}-stop:before { content: fa-content($fa-var-stop); }
 .#{$fa-css-prefix}-stop-circle:before { content: fa-content($fa-var-stop-circle); }
-//.#{$fa-css-prefix}-stopwatch:before { content: fa-content($fa-var-stopwatch); }
+.#{$fa-css-prefix}-stopwatch:before { content: fa-content($fa-var-stopwatch); }
 //.#{$fa-css-prefix}-strava:before { content: fa-content($fa-var-strava); }
 //.#{$fa-css-prefix}-street-view:before { content: fa-content($fa-var-street-view); }
 //.#{$fa-css-prefix}-strikethrough:before { content: fa-content($fa-var-strikethrough); }
@@ -799,7 +802,7 @@ readers do not read off random characters that represent icons */
 //.#{$fa-css-prefix}-uikit:before { content: fa-content($fa-var-uikit); }
 //.#{$fa-css-prefix}-umbrella:before { content: fa-content($fa-var-umbrella); }
 //.#{$fa-css-prefix}-underline:before { content: fa-content($fa-var-underline); }
-//.#{$fa-css-prefix}-undo:before { content: fa-content($fa-var-undo); }
+.#{$fa-css-prefix}-undo:before { content: fa-content($fa-var-undo); }
 //.#{$fa-css-prefix}-undo-alt:before { content: fa-content($fa-var-undo-alt); }
 //.#{$fa-css-prefix}-uniregistry:before { content: fa-content($fa-var-uniregistry); }
 //.#{$fa-css-prefix}-universal-access:before { content: fa-content($fa-var-universal-access); }
@@ -811,10 +814,12 @@ readers do not read off random characters that represent icons */
 //.#{$fa-css-prefix}-upload:before { content: fa-content($fa-var-upload); }
 //.#{$fa-css-prefix}-usb:before { content: fa-content($fa-var-usb); }
 .#{$fa-css-prefix}-user:before { content: fa-content($fa-var-user); }
+.#{$fa-css-prefix}-user-check:before { content: fa-content($fa-var-user-check); }
 .#{$fa-css-prefix}-user-circle:before { content: fa-content($fa-var-user-circle); }
 .#{$fa-css-prefix}-user-md:before { content: fa-content($fa-var-user-md); }
 .#{$fa-css-prefix}-user-plus:before { content: fa-content($fa-var-user-plus); }
 .#{$fa-css-prefix}-user-secret:before { content: fa-content($fa-var-user-secret); }
+.#{$fa-css-prefix}-user-slash:before { content: fa-content($fa-var-user-slash); }
 .#{$fa-css-prefix}-user-times:before { content: fa-content($fa-var-user-times); }
 .#{$fa-css-prefix}-users:before { content: fa-content($fa-var-users); }
 //.#{$fa-css-prefix}-ussunnah:before { content: fa-content($fa-var-ussunnah); }
