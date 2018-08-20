@@ -37,7 +37,6 @@
     @RenderSection("Styles", required: false)
     <google-analytics profile-id="@Tenant.GoogleAnalyticsProfileId" user-id="@User.GetUserId()"></google-analytics>
     <base href="@Context.Request.Path" />
-    <cookie-consent enabled="true" compliance-type="info"></cookie-consent>
 </head>
 <body class="d-flex flex-column @ViewData["BodyClass"] @ieBodyClass">
     <header>
@@ -63,6 +62,7 @@
         <div class="row">
             <main id="content" role="main" class="col order-3">
                 @await Html.PartialAsync("AlertsPartial")
+                <partial name="_CookieConsentPartial" />
                 @RenderBody()
             </main>
             @if (sideNavVisible)
@@ -96,6 +96,12 @@
                     <a class="text-nowrap" href="@siteRoot/sitemap">Site Map</a>
                 </li>
                 @*#endif*@
+                @if (Tenant != null && !string.IsNullOrWhiteSpace(Tenant.PrivacyPolicy))
+                {
+                    <li class="border-left pl-2 mr-2">
+                        <a asp-controller="Privacy" asp-action="Index">Privacy Policy</a>
+                    </li>
+                }
                 @*#if (ContactForm)*@
                  <li class="border-left pl-2 mr-2">
                     <a href="@siteRoot/contact">Contact</a>

@@ -52,6 +52,12 @@ namespace WebApp
 
         private static void EnsureDataStorageIsReady(IServiceProvider scopedServices)
         {
+            #if (Logging)
+            #if (!NoDb)
+            LoggingEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
+
             #if (NoDb)
             CoreNoDbStartup.InitializeDataAsync(scopedServices).Wait();
             #else
@@ -78,11 +84,7 @@ namespace WebApp
             #endif
             #endif
 
-            #if (Logging)
-            #if (!NoDb)
-            LoggingEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
-            #endif
-            #endif
+            
         }
 
 #if (Logging)

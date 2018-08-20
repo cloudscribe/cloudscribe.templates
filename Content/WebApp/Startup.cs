@@ -83,6 +83,19 @@ namespace WebApp
             // This is a custom extension method in Config/Localization.cs
             services.SetupLocalization();
 
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = cloudscribe.Core.Identity.SiteCookieConsent.NeedsConsent;
+                options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
+                options.ConsentCookie.Name = "cookieconsent_status";
+            });
+
+            services.Configure<Microsoft.AspNetCore.Mvc.CookieTempDataProviderOptions>(options =>
+            {
+                options.Cookie.IsEssential = true;
+            });
+
             //*** Important ***
             // This is a custom extension method in Config/RoutingAndMvc.cs
             services.SetupMvc(_sslIsAvailable);
@@ -116,6 +129,14 @@ namespace WebApp
             else
             {
                 app.UseExceptionHandler("/oops/error");
+                if(_sslIsAvailable)
+                {
+                    app.UseHsts();
+                }
+            }
+            if(_sslIsAvailable)
+            {
+                app.UseHttpsRedirection();
             }
             #if (Webpack)
             // we are pre-gzipping js and css from webpack
@@ -132,8 +153,8 @@ namespace WebApp
             #else
             app.UseStaticFiles();
             #endif
-
             app.UseCloudscribeCommonStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseRequestLocalization(localizationOptionsAccessor.Value);
             #if (IdentityServer)
