@@ -111,6 +111,7 @@
             </ul>
         </div>
         <div class="p-2 text-nowrap">Copyright &copy; @DateTime.Now.Year - @(Tenant?.SiteName ?? "Sample")</div>
+        <partial name="_CookieConsentRevokePartial" />
     </footer>
     @RenderSection("Toolbar", required: false)
     <environment names="Development">

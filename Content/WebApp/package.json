@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "bootstrap": "4.1.2",
+    "popper.js": "1.14.3",
     "smartmenus": "^1.1.0",
     "smartmenus-bootstrap-4": "^0.1.0",
     "@fortawesome/fontawesome-free": "5.2.0",
