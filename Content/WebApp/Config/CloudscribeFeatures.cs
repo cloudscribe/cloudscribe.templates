@@ -26,7 +26,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddCloudscribeCoreEFStorageMySql(connectionString);
 #endif
 #if (pgsql)
-            services.AddCloudscribeCoreEFStoragePostgreSql(connectionString);
+            services.AddCloudscribeCorePostgreSqlStorage(connectionString);
 #endif
 #else
             services.AddCloudscribeCoreNoDbStorage();
@@ -45,7 +45,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddCloudscribeKvpEFStorageMySql(connectionString);
 #endif
 #if (pgsql)
-            services.AddCloudscribeKvpEFStoragePostgreSql(connectionString);
+            services.AddCloudscribeKvpPostgreSqlStorage(connectionString);
 #endif
 #endif
 #if (Logging)
@@ -62,7 +62,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddCloudscribeLoggingEFStorageMySQL(connectionString);
 #endif
 #if (pgsql)
-            services.AddCloudscribeLoggingEFStoragePostgreSql(connectionString);
+            services.AddCloudscribeLoggingPostgreSqlStorage(connectionString);
 #endif
             
 #endif
@@ -80,7 +80,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddCloudscribeSimpleContentEFStorageMySQL(connectionString);
 #endif
 #if (pgsql)
-            services.AddCloudscribeSimpleContentEFStoragePostgreSql(connectionString);
+            services.AddCloudscribeSimpleContentPostgreSqlStorage(connectionString);
 #endif
 #endif
 
