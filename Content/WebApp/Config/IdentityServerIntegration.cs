@@ -47,7 +47,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         .AddCloudscribeCoreEFIdentityServerStorageMySql(connectionString)
 #endif
 #if (pgsql)
-                        .AddCloudscribeCoreEFIdentityServerStoragePostgreSql(connectionString)
+                        .AddCloudscribeCoredentityServerPostgreSqlStorage(connectionString)
 #endif
                         .AddCloudscribeIdentityServerIntegrationMvc();
                     if (environment.IsProduction())
@@ -87,9 +87,13 @@ namespace Microsoft.Extensions.DependencyInjection
                         // add your IdentityServer client apps and apis to allow access to them
                         options.AddPolicy("default", policy =>
                         {
-                            policy.WithOrigins("http://localhost:55347", "http://localhost:55347")
-                                .AllowAnyHeader()
-                                .AllowAnyMethod();
+                            //policy.WithOrigins("http://localhost:55347", "https://localhost:44360")
+                            //    .AllowAnyHeader()
+                            //    .AllowAnyMethod();
+                            policy.WithOrigins("*")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod()
+                                            .AllowAnyOrigin();
                         });
                     });
 

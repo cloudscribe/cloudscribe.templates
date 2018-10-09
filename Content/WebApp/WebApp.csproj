@@ -53,7 +53,7 @@
     <PackageReference Include="cloudscribe.Core.Storage.EFCore.MySql" Version="3.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
-    <PackageReference Include="cloudscribe.Core.Storage.EFCore.pgsql" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.Core.Storage.EFCore.PostgreSql" Version="3.0.*" />
     <!--#endif-->
     
     <!--#if (SimpleContentConfig != "z")-->
@@ -77,7 +77,7 @@
     <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MySQL" Version="4.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
-    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.pgsql" Version="4.0.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.PostgreSql" Version="4.0.*" />
     <!--#endif-->
     <!--#endif-->
 
@@ -96,7 +96,7 @@
     <PackageReference Include="cloudscribe.Logging.EFCore.MySql" Version="3.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
-    <PackageReference Include="cloudscribe.Logging.EFCore.pgsql" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.Logging.EFCore.PostgreSql" Version="3.0.*" />
     <!--#endif-->
     <!--#endif-->
 
@@ -116,7 +116,7 @@
     <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.MySql" Version="3.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
-    <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.pgsql" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.PostgreSql" Version="3.0.*" />
     <!--#endif-->
     <!--#endif-->
 
@@ -138,7 +138,7 @@
     <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MySql" Version="3.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
-    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.pgsql" Version="3.0.*" />
+    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.PostgreSql" Version="3.0.*" />
     <!--#endif-->
     <PackageReference Include="cloudscribe.UserProperties.Kvp" Version="3.0.*" />
     <PackageReference Include="cloudscribe.UserProperties" Version="3.0.*" />
