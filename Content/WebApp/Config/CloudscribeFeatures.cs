@@ -8,9 +8,11 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class CloudscribeFeatures
     {
+        
         public static IServiceCollection SetupDataStorage(
             this IServiceCollection services,
-            IConfiguration config
+            IConfiguration config,
+            bool useHangfire
             )
         {
 #if (!NoDb)
@@ -19,6 +21,44 @@ namespace Microsoft.Extensions.DependencyInjection
 #if (SQLite)
             services.AddCloudscribeCoreEFStorageSQLite(connectionString);
 #endif
+
+#if (IncludeHangfire)
+
+#if (MSSQL)
+            if(useHangfire)
+            {
+                services.AddHangfire(hfConfig => hfConfig.UseSqlServerStorage(msSqlConnectionString));
+            }
+#endif
+#if (MySql)
+            if (useHangfire)
+            {
+                services.AddHangfire(hfConfig => { });
+
+                GlobalConfiguration.Configuration.UseStorage(
+                    new MySqlStorage(
+                        connectionString + "Allow User Variables=True",
+                        new MySqlStorageOptions
+                        {
+                            //TransactionIsolationLevel = IsolationLevel.ReadCommitted,
+                            //QueuePollInterval = TimeSpan.FromSeconds(15),
+                            //JobExpirationCheckInterval = TimeSpan.FromHours(1),
+                            //CountersAggregateInterval = TimeSpan.FromMinutes(5),
+                            //PrepareSchemaIfNecessary = true,
+                            //DashboardJobListLimit = 50000,
+                            //TransactionTimeout = TimeSpan.FromMinutes(1),
+                        }));
+            }
+#endif
+#if (pgsql)
+            if (useHangfire)
+            {
+                services.AddHangfire(hfConfig => hfConfig.UsePostgreSqlStorage(connectionString));
+            }
+#endif
+
+#endif
+
 #if (MSSQL)
             services.AddCloudscribeCoreEFStorageMSSQL(connectionString);
 #endif
@@ -102,6 +142,36 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif        
 #endif
 
+#if (DynamicPolicy)
+#if (NoDb)
+            services.AddNoDbStorageForDynamicPolicies(config);
+#endif
+#if (SQLite)
+            services.AddDynamicPolicyEFStorageSQLite(connectionString);
+#endif
+#if (MSSQL)
+            services.AddDynamicPolicyEFStorageMSSQL(connectionString);
+#endif
+#if (MySql)
+            services.AddDynamicPolicyEFStorageMySql(connectionString);
+#endif
+#if (pgsql)
+            services.AddDynamicPolicyPostgreSqlStorage(connectionString);
+#endif       
+#endif
+
+#if (Paywall)
+#if (MSSQL)
+            services.AddMembershipSubscriptionStorageMSSQL(connectionString);
+#endif
+#if (MySql)
+            services.AddMembershipSubscriptionStorageMySql(connectionString);
+#endif
+#if (pgsql)
+            services.AddMembershipSubscriptionPostgreSqlStorage(connectionString);
+#endif        
+#endif
+
 
 
             return services;
@@ -151,7 +221,29 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<cloudscribe.Forms.Models.IHandleFormSubmission, WebApp.Services.FakeFormSubmissionHandler2>();
 #endif
 
+#if (IncludeStripeIntegration)
+            services.AddMembershipSStripeIntegration(config);
+            services.AddCloudscribeCoreStripeIntegration();
+            services.AddStripeIntegrationMvc(config);
 
+#endif
+
+#if (Paywall)
+            services.AddScoped<IRoleRemovalTask, HangfireRoleRemovalTask>();
+            services.AddScoped<ISendRemindersTask, HangfireSendRemindersTask>();
+            services.AddMembershipSubscriptionMvcComponents(config);
+#endif
+
+#if (IncludeEmailQueue)
+            services.AddScoped<IEmailQueueProcessor, HangFireEmailQueueProcessor>();
+            services.AddEmailQueueWithCloudscribeIntegration(config);
+            services.AddEmailRazorTemplating(config);
+#endif
+
+#if (DynamicPolicy)
+            services.AddCloudscribeDynamicPolicyIntegration(config);
+            services.AddDynamicAuthorizationMvc(config);
+#endif
 
             return services;
         }

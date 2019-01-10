@@ -91,6 +91,25 @@ namespace WebApp
             #endif
             #endif
 
+            #if (Paywall)
+            #if (!NoDb)
+            MembershipDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
+
+             #if (IncludeEmailQueue)
+            #if (!NoDb)
+            EmailQueueDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            EmailTemplateDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
+
+            #if (IncludeStripeIntegration)
+            #if (!NoDb)
+            StripeDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
+
             
         }
 

@@ -74,6 +74,12 @@
           ]
         },
         {
+          "condition": "(!IncludeHangfire)",
+          "exclude": [
+            "Config/HangfireAuthorizationFilter.cs"
+          ]
+        },
+        {
           "condition": "(!Webpack)",
           "exclude": [
             "app-vanilla/**",
@@ -200,14 +206,14 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Include cloudscribe Membership Paywall add on product."
+      "description": "Include cloudscribe Membership Paywall add on product. Cannot be used with NoDb or SQLite."
     },
 
     "Newsletter": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Include cloudscribe Newsletter/Email List add on product."
+      "description": "Include cloudscribe Newsletter/Email List add on product. Cannot be used with NoDb or SQLite."
     },
 
     "DynamicPolicy": {
@@ -261,6 +267,18 @@
     "IncludeReact": {
       "type": "computed",
       "value": "(Webpack && ReactSample)"
+    },
+    "IncludeHangfire": {
+      "type": "computed",
+      "value": "((Paywall || Newsletter) && !NoDb)"
+    },
+    "IncludeEmailQueue": {
+      "type": "computed",
+      "value": "(Paywall || Newsletter)"
+    },
+    "IncludeStripeIntegration": {
+      "type": "computed",
+      "value": "(Paywall)"
     },
     "SQLite": {
       "type": "computed",
