@@ -84,6 +84,26 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #endif
 
+#if (FormBuilder)
+#if (NoDb)
+            services.AddFormsStorageNoDb();
+#endif
+#if (SQLite)
+            services.AddFormsStorageSQLite(connectionString);
+#endif
+#if (MSSQL)
+            services.AddFormsStorageMSSQL(connectionString);
+#endif
+#if (MySql)
+            services.AddFormsStorageMySql(connectionString);
+#endif
+#if (pgsql)
+            services.AddFormsStoragePostgreSql(connectionString);
+#endif        
+#endif
+
+
+
             return services;
         }
 
@@ -118,6 +138,20 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddMetaWeblogForSimpleContent(config.GetSection("MetaWeblogApiOptions"));
             services.AddSimpleContentRssSyndiction();
 #endif
+
+#if (FormBuilder)
+            services.AddFormsCloudscribeCoreIntegration(config);
+            services.AddFormsServices(config);
+#if (SimpleContentConfig != "z")
+            services.AddFormSurveyContentTemplatesForSimpleContent(config);
+#endif
+            // these are examples to show you how to implement custom form submission handlers.
+            // see /Services/SampleFormSubmissionHandlers.cs
+            services.AddScoped<cloudscribe.Forms.Models.IHandleFormSubmission, WebApp.Services.FakeFormSubmissionHandler1>();
+            services.AddScoped<cloudscribe.Forms.Models.IHandleFormSubmission, WebApp.Services.FakeFormSubmissionHandler2>();
+#endif
+
+
 
             return services;
         }

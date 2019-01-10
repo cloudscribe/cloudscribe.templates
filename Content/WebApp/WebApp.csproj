@@ -147,6 +147,36 @@
     <PackageReference Include="cloudscribe.Web.Localization" Version="2.0.*" />
     
     <PackageReference Include="Microsoft.AspNetCore.App" />
+
+
+    <!-- Commercial libs start -->
+
+     <!--#if (FormBuilder)-->
+    <PackageReference Include="cloudscribe.Forms.Web" Version="1.0.*" />
+    <PackageReference Include="cloudscribe.Forms.Bootstrap4" Version="1.0.*" />
+    <PackageReference Include="cloudscribe.Forms.CoreIntegration" Version="1.0.*" />
+    <!--#if (SimpleContentConfig != "z")-->
+     <PackageReference Include="cloudscribe.Forms.ContentTemplate.Bootstrap4" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (NoDb)-->
+    <PackageReference Include="cloudscribe.Forms.Data.NoDb" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (SQLite)-->
+    <PackageReference Include="cloudscribe.Forms.Data.EFCore.SQLite" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (MSSQL)-->
+    <PackageReference Include="cloudscribe.Forms.Data.EFCore.MSSQL" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (MySql)-->
+    <PackageReference Include="cloudscribe.Forms.Data.EFCore.MySql" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (pgsql)-->
+    <PackageReference Include="cloudscribe.Forms.Data.EFCore.PostgreSql" Version="1.0.*" />
+    <!--#endif-->
+    <!--#endif-->
+
+
+    <!-- Commercial libs end -->
     
   </ItemGroup>
 

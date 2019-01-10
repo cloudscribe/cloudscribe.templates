@@ -48,7 +48,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 });
 
 #if (IdentityServer)
-                options.AddPolicy(
+            options.AddPolicy(
                     "IdentityServerAdminPolicy",
                     authBuilder =>
                     {
@@ -56,6 +56,21 @@ namespace Microsoft.Extensions.DependencyInjection
                     });
 #endif
 
+#if (FormBuilder)
+            options.AddPolicy(
+                "FormsAdminPolicy",
+                authBuilder =>
+                {
+                    authBuilder.RequireRole("Administrators", "Content Administrators");
+                });
+
+            options.AddPolicy(
+                "FormsChooserPolicy",
+                authBuilder =>
+                {
+                    authBuilder.RequireRole("Administrators", "Content Administrators");
+                });
+#endif
             // add other policies here 
 
 

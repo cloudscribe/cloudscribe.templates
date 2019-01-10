@@ -85,6 +85,12 @@ namespace WebApp
             #endif
             #endif
 
+            #if (FormBuilder)
+            #if (!NoDb)
+            FormsDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
+
             
         }
 
