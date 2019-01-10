@@ -434,7 +434,7 @@
                     controller="ContentHistory"
                     action="Index"
                     text="Content History"
-                    iconCssClass="fas fa-history"
+                    iconCssClass="fas fa-histor fa-fw"
                     preservedRouteParameters=""
                     componentVisibility="breadcrumbs,childtree,parenttree"
                     authorizationPolicy="ViewContentHistoryPolicy"
@@ -443,6 +443,47 @@
                     </Children>
                 </NavNode>
               <!--#endif-->
+
+              <!--#if (FormBuilder)-->
+
+               <NavNode key="CloudscribeForms"
+                            controller="FormsAdmin"
+                            action="Index"
+                            text="Forms and Surveys"
+                            preservedRouteParameters=""
+                            iconCssClass="fas fa-check-square fa-fw"
+                            componentVisibility="breadcrumbs,childtree,parenttree"
+                            authorizationPolicy="FormsAdminPolicy">
+              <Children>
+                <NavNode key="SurveyBuilder"
+                 controller="FormsAdmin"
+                 action="Builder"
+                 text="New Form/Survey"
+                 iconCssClass=""
+                 preservedRouteParameters="key"
+                 componentVisibility="breadcrumbs"
+                 authorizationPolicy="FormsAdminPolicy"
+                 excludeFromSearchSiteMap="true">
+                  <Children />
+                </NavNode>
+                <NavNode key="SurveySubmissions"
+                 controller="FormsAdmin"
+                 action="Submissions"
+                 text="Submissions"
+                 iconCssClass=""
+                 preservedRouteParameters="key"
+                 componentVisibility="breadcrumbs"
+                 authorizationPolicy="FormsAdminPolicy"
+                 excludeFromSearchSiteMap="true">
+                  <Children />
+                </NavNode>
+
+              </Children>
+            </NavNode>
+
+              <!--#endif-->
+
+
               <NavNode key="LoginPageInfo"
                        controller="SiteAdmin"
                        action="LoginPageInfo"
