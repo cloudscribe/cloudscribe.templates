@@ -1,40 +1,44 @@
 ﻿const webpack = require("webpack");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const merge = require('webpack-merge');
-const webPackStrip = require('strip-loader');
 const CompressionPlugin = require('compression-webpack-plugin');
 const devConfig = require('./webpack.config.js');
-
-const stripLoader = {
-    test: [/\.js$/],
-    exclude: /node_modules/,
-    loader: webPackStrip.loader('console.log')
-}
 
 var devFiltered = devConfig;
 devFiltered.plugins = []; //remove dev plugins, we don't want to merge with them we want to replace them
 
 const overrides = {
+    mode: 'production',
     output: {
         filename: '[name].bundle.min.js',
     },
-    module: {
-        loaders: [stripLoader],
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                uglifyOptions: {
+                    compress: false,
+                    ecma: 5,
+                    mangle: true
+                },
+                sourceMap: false
+            })
+        ]
     },
     plugins: [
-        new webpack.DefinePlugin({ // <-- key to reducing React's size
-            'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-            }
-        }),
-        new ExtractTextPlugin({
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            //filename: devMode ? '[name].css' : '[name].[hash].css',
             filename: '[name].bundle.min.css',
-            allChunks: true,
+            chunkFilename: "[id].min.css"
+            //chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
         }),
         new webpack.LoaderOptionsPlugin({
             minimize: true
         }),
-        new webpack.optimize.UglifyJsPlugin(),
         new CompressionPlugin({   
             asset: "[path].gz[query]",
                 algorithm: "gzip",

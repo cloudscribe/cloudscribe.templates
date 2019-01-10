@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 #if (Webpack)
 using Microsoft.AspNetCore.SpaServices.Webpack;
 #endif
@@ -99,6 +100,16 @@ namespace WebApp
             //*** Important ***
             // This is a custom extension method in Config/RoutingAndMvc.cs
             services.SetupMvc(_sslIsAvailable);
+
+            if(!_environment.IsDevelopment())
+            {
+                var httpsPort = _configuration.GetValue<int>("AppSettings:HttpsPort");
+                services.AddHttpsRedirection(options =>
+                {
+                    options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+                    options.HttpsPort = httpsPort;
+                });
+            }
 
 
         }

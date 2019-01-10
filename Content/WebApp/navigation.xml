@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-16"?>
+<?xml version="1.0" encoding="utf-8"?>
 <NavNode key="Home" 
          <!--#if (SimpleContentConfig == 'c')-->
          controller="Blog" 
@@ -409,7 +409,6 @@
                        action="Index"
                        text="Content Settings"
                        iconCssClass="fas fa-book fa-fw"
-                       preservedRouteParameters="siteId"
                        componentVisibility="breadcrumbs,childtree,parenttree"
                        authorizationPolicy="AdminPolicy"
                        excludeFromSearchSiteMap="true">

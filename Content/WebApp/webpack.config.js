@@ -1,17 +1,16 @@
 ﻿const path = require('path');
 const webpack = require("webpack");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const config = {
     entry: {
         // each entry defines a bundle that will be produced
-        //#if (IncludeReact)
         'app-react': './app-react/boot-client.tsx',
         'app-react-server': './app-react/boot-server.tsx',
-        //#endif
         'vanilla': './app-vanilla/Main.ts'
         
     },
+    mode: 'development',
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'wwwroot/dist/'),
@@ -31,10 +30,10 @@ const config = {
         rules: [
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: "css-loader"
-                }),
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader"
+                ],
                 exclude: /node_modules/
             },
             //{ 
@@ -54,10 +53,14 @@ const config = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
-        new ExtractTextPlugin({
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            //filename: devMode ? '[name].css' : '[name].[hash].css',
             filename: '[name].bundle.css',
-            allChunks: true,
-        }),
+            chunkFilename: "[id].css"
+            //chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+        })
        
        
     ]

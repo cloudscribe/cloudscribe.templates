@@ -77,7 +77,8 @@ namespace Microsoft.Extensions.DependencyInjection
                     }
                     else
                     {
-                        idsBuilder.AddDeveloperSigningCredential(); // don't use this for production
+                        var tmpKeyPath = Path.Combine(environment.ContentRootPath, "tempkey.rsa");
+                        idsBuilder.AddDeveloperSigningCredential(true, tmpKeyPath); // don't use this for production
                         didSetupIdServer = true;
                     }
 
