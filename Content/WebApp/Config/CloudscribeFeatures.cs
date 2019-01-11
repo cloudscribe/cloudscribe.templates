@@ -71,7 +71,7 @@ namespace Microsoft.Extensions.DependencyInjection
 #else
             services.AddCloudscribeCoreNoDbStorage();
 #endif
-#if (KvpCustomRegistration)
+#if (KvpCustomRegistration || Newsletter)
 #if (NoDb)
             services.AddCloudscribeKvpNoDbStorage();
 #endif
@@ -172,6 +172,18 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif        
 #endif
 
+#if (Newsletter)
+#if (MSSQL)
+            services.AddEmailListStorageMSSQL(connectionString);
+#endif
+#if (MySql)
+            services.AddEmailListStorageMySql(connectionString);
+#endif
+#if (pgsql)
+            services.AddEmailListPostgreSqlStorage(connectionString);
+#endif        
+#endif
+
 
 
             return services;
@@ -187,7 +199,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddCloudscribeLogging(config);
 
 #endif
-#if (KvpCustomRegistration)
+#if (KvpCustomRegistration || Newsletter)
             services.Configure<ProfilePropertySetContainer>(config.GetSection("ProfilePropertySetContainer"));
             services.AddCloudscribeKvpUserProperties();
 #endif
@@ -238,6 +250,10 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IEmailQueueProcessor, HangFireEmailQueueProcessor>();
             services.AddEmailQueueWithCloudscribeIntegration(config);
             services.AddEmailRazorTemplating(config);
+#endif
+
+#if (Newsletter)
+            services.AddEmailListWithCloudscribeIntegration(config);
 #endif
 
 #if (DynamicPolicy)

@@ -88,6 +88,15 @@ namespace Microsoft.Extensions.DependencyInjection
 
 #endif
 
+#if (Newsletter)
+            // options.AddPolicy(
+            //     "EmailListAdminPolicy",
+            //     authBuilder =>
+            //     {
+            //         authBuilder.RequireRole("Administrators");
+            //     });
+#endif
+
             options.AddPolicy(
                 "ServerAdminPolicy",
                 authBuilder =>
@@ -206,6 +215,15 @@ namespace Microsoft.Extensions.DependencyInjection
                    authBuilder.RequireRole("Administrators");
                });
 
+#endif
+
+#if (Newsletter)
+            options.AddPolicy(
+                "EmailListAdminPolicy",
+                authBuilder =>
+                {
+                    authBuilder.RequireRole("Administrators");
+                });
 #endif
 
 #endif

@@ -53,12 +53,20 @@
           ]
         },
         {
-          "condition": "(!KvpCustomRegistration)",
+          "condition": "(!KvpCustomRegistration && !Newsletter)",
           "exclude": [
             "app-userproperties.json",
-            "Views/Account/**",
+            "Views/Account/RegisterMiddle.cshtml",
             "Views/Manage/**",
             "Views/UserAdmin/**"
+          ]
+        },
+        {
+          "condition": "(!Newsletter)",
+          "exclude": [
+            "Views/Account/RegisterBottom.cshtml",
+            "Views/Shared/_LayoutNewsletterHtml.cshtml",
+            "Views/Shared/_LayoutNewsletterPlainText.cshtml"
           ]
         },
         {
