@@ -239,7 +239,7 @@ namespace WebApp
                 RecurringJob.RemoveIfExists("email-processor");
                 RecurringJob.AddOrUpdate<cloudscribe.EmailQueue.Models.IEmailQueueProcessor>("email-processor", 
                     mp => mp.StartProcessing(), 
-                    Cron.MinuteInterval(10)); //every 10 minutes
+                    Cron.MinuteInterval(3)); //every 3 minutes
 #endif
 
 #if (Paywall)
