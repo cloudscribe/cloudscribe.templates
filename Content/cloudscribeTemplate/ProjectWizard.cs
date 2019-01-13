@@ -51,6 +51,12 @@ namespace cloudscribeTemplate
         private bool _includeWebpack = false;
         private bool _includeReactSample = false;
 
+
+        private bool _includeFormBuilder = false;
+        private bool _includeNewsletter = false;
+        private bool _includePaywall = false;
+        private bool _includeDynamicPolicy = false;
+
         private bool _exceptionOccurred = false;
         private ProjectOptionsDialog _dialog;
 
@@ -81,6 +87,12 @@ namespace cloudscribeTemplate
 
                 replacementsDictionary.Add("passthrough:Webpack", _includeWebpack.ToString().ToLowerInvariant());
                 replacementsDictionary.Add("passthrough:ReactSample", _includeReactSample.ToString().ToLowerInvariant());
+
+
+                replacementsDictionary.Add("passthrough:FormBuilder", _includeFormBuilder.ToString().ToLowerInvariant());
+                replacementsDictionary.Add("passthrough:Newsletter", _includeNewsletter.ToString().ToLowerInvariant());
+                replacementsDictionary.Add("passthrough:Paywall", _includePaywall.ToString().ToLowerInvariant());
+                replacementsDictionary.Add("passthrough:DynamicPolicy", _includeDynamicPolicy.ToString().ToLowerInvariant());
 
 
             }
@@ -151,6 +163,12 @@ namespace cloudscribeTemplate
                 {
                     _includeReactSample = false;
                 }
+
+                var gbCommercial = _dialog.Controls["gbCommercial"];
+                _includeFormBuilder = ((CheckBox)gbCommercial.Controls["chkFormBuilder"]).Checked;
+                _includeNewsletter = ((CheckBox)gbCommercial.Controls["chkNewsletter"]).Checked;
+                _includePaywall = ((CheckBox)gbCommercial.Controls["chkPaywall"]).Checked;
+                _includeDynamicPolicy = ((CheckBox)gbCommercial.Controls["chkDynamicPolicy"]).Checked;
 
                 _dialog.Close();
             }

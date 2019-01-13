@@ -33,6 +33,7 @@ namespace cloudscribeTemplate
             };
             cbDataStorage.ValueMember = "Key";
             cbDataStorage.DisplayMember = "Text";
+            cbDataStorage.SelectedValueChanged += CbDataStorage_SelectedValueChanged;
 
             var cbMultiTenancy = this.Controls["cbMultiTenancy"] as ComboBox;
             cbMultiTenancy.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -58,10 +59,51 @@ namespace cloudscribeTemplate
             LinkLabel.Link link = new LinkLabel.Link();
             link.LinkData = "https://www.cloudscribe.com/docs/advanced-client-side-development-with-webpack?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
             lnkWebpack.Links.Add(link);
-           
+
+
+            LinkLabel.Link formsLink = new LinkLabel.Link();
+            formsLink.LinkData = "https://www.cloudscribe.com/products/cloudscribe-forms-and-surveys-solution?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
+            lnkFormProduct.Links.Add(formsLink);
+
+
+            LinkLabel.Link newsLetterLink = new LinkLabel.Link();
+            newsLetterLink.LinkData = "https://www.cloudscribe.com/products/cloudscribe-newsletter-solution?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
+            lnkNewsletter.Links.Add(newsLetterLink);
+
+
+            LinkLabel.Link paywallLink = new LinkLabel.Link();
+            paywallLink.LinkData = "https://www.cloudscribe.com/products/cloudscribe-membership-paywall?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
+            lnkPaywall.Links.Add(paywallLink);
+
+
+            LinkLabel.Link stripeLink = new LinkLabel.Link();
+            stripeLink.LinkData = "https://www.cloudscribe.com/products/cloudscribe-stripe-integration?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
+            lnkStripeIntegration.Links.Add(stripeLink);
+
+
+            LinkLabel.Link dynamicPolicyLink = new LinkLabel.Link();
+            dynamicPolicyLink.LinkData = "https://www.cloudscribe.com/products/dynamic-authorization-policies?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
+            lnkDynamicPolicy.Links.Add(dynamicPolicyLink);
+
         }
 
-        
+        private void CbDataStorage_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var db = (string)cbDataStorage.SelectedValue;
+            if(db == "NoDb" || db == "SQLite")
+            {
+                chkPaywall.Enabled = false;
+                chkPaywall.Checked = false;
+                chkNewsletter.Enabled = false;
+                chkNewsletter.Checked = false;
+            }
+            else
+            {
+                chkPaywall.Enabled = true;
+                chkNewsletter.Enabled = true;
+               
+            }
+        }
 
         private void lnkWebpack_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -129,6 +171,31 @@ namespace cloudscribeTemplate
             {
                 chkWebpack.Checked = true;
             }
+        }
+
+        private void lnkFormProduct_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(e.Link.LinkData as string);
+        }
+
+        private void lnkNewsletter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(e.Link.LinkData as string);
+        }
+
+        private void lnkPaywall_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(e.Link.LinkData as string);
+        }
+
+        private void lnkStripeIntegration_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(e.Link.LinkData as string);
+        }
+
+        private void lnkDynamicPolicy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(e.Link.LinkData as string);
         }
     }
 
