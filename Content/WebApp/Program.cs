@@ -71,7 +71,7 @@ namespace WebApp
             #endif
             #endif
 
-            #if (KvpCustomRegistration) 
+            #if (KvpCustomRegistration || Newsletter) 
             #if (!NoDb)
             KvpEFCoreStartup.InitializeDatabaseAsync(scopedServices).Wait();
             #endif
@@ -103,6 +103,14 @@ namespace WebApp
             EmailTemplateDatabase.InitializeDatabaseAsync(scopedServices).Wait();
             #endif
             #endif
+
+
+            #if (Newsletter)
+            #if (!NoDb)
+            EmailListDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
+
 
             #if (IncludeStripeIntegration)
             #if (!NoDb)

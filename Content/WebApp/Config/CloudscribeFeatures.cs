@@ -1,8 +1,19 @@
-﻿using Microsoft.Extensions.Configuration;
-#if (KvpCustomRegistration)
+﻿#if (IncludeEmailQueue)
+using cloudscribe.EmailQueue.HangfireIntegration;
+using cloudscribe.EmailQueue.Models;
+#endif
+#if (Paywall)
+using cloudscribe.Membership.HangfireIntegration;
+using cloudscribe.Membership.Models;
+#endif
+#if (KvpCustomRegistration || Newsletter)
 using cloudscribe.UserProperties.Models;
 using cloudscribe.UserProperties.Services;
 #endif
+#if (IncludeHangfire)
+using Hangfire;
+#endif
+using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -27,7 +38,7 @@ namespace Microsoft.Extensions.DependencyInjection
 #if (MSSQL)
             if(useHangfire)
             {
-                services.AddHangfire(hfConfig => hfConfig.UseSqlServerStorage(msSqlConnectionString));
+                services.AddHangfire(hfConfig => hfConfig.UseSqlServerStorage(connectionString));
             }
 #endif
 #if (MySql)
@@ -124,6 +135,24 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #endif
 
+#if (IncludeStripeIntegration)
+#if (NoDb)
+            services.AddStripeIntegrationStorageNoDb();
+#endif
+#if (SQLite)
+             services.AddStripeIntegrationStorageSQLite(connectionString);
+#endif
+#if (MSSQL)
+            services.AddStripeIntegrationStorageMSSQL(connectionString);
+#endif
+#if (MySql)
+            services.AddStripeIntegrationStorageMySql(connectionString);
+#endif
+#if (pgsql)
+            services.AddStripeIntegrationPostgreSqlStorage(connectionString);
+#endif        
+#endif
+
 #if (FormBuilder)
 #if (NoDb)
             services.AddFormsStorageNoDb();
@@ -172,6 +201,21 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif        
 #endif
 
+#if (IncludeEmailQueue)
+#if (MSSQL)
+            services.AddEmailTemplateStorageMSSQL(connectionString);
+            services.AddEmailQueueStorageMSSQL(connectionString);
+#endif
+#if (MySql)
+            services.AddEmailTemplateStorageMySql(connectionString);
+            services.AddEmailQueueStorageMySql(connectionString);
+#endif
+#if (pgsql)
+            services.AddEmailTemplatePostgreSqlStorage(pgsConnection);
+            services.AddEmailQueuePostgreSqlStorage(connectionString);
+#endif        
+#endif
+
 #if (Newsletter)
 #if (MSSQL)
             services.AddEmailListStorageMSSQL(connectionString);
@@ -183,6 +227,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddEmailListPostgreSqlStorage(connectionString);
 #endif        
 #endif
+
+
 
 
 
@@ -201,6 +247,9 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #if (KvpCustomRegistration || Newsletter)
             services.Configure<ProfilePropertySetContainer>(config.GetSection("ProfilePropertySetContainer"));
+#if (Newsletter) 
+            services.AddEmailListKvpIntegration(config);
+#endif
             services.AddCloudscribeKvpUserProperties();
 #endif
 

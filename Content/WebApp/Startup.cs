@@ -136,6 +136,7 @@ namespace WebApp
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(
+            IServiceProvider serviceProvider,
             IApplicationBuilder app, 
             IHostingEnvironment env,
             ILoggerFactory loggerFactory,

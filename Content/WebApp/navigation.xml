@@ -265,7 +265,7 @@
                                action="NewSite"
                                text="New Site"
                                iconCssClass="fas fa-bolt fa-fw"
-                               componentVisibility="breadcrumbs,childtree"
+                               componentVisibility="breadcrumbs"
                                authorizationPolicy="ServerAdminPolicy"
                                excludeFromSearchSiteMap="true">
                           <Children />
@@ -358,6 +358,38 @@
                     </Children>
                 </NavNode>
               <!--#endif-->
+
+               <NavNode key="RoleAdmin"
+                       controller="RoleAdmin"
+                       action="Index"
+                       preservedRouteParameters="siteId"
+                       text="Role Management"
+                       iconCssClass="fas fa-key fa-fw"
+                       componentVisibility="breadcrumbs,childtree,parenttree"
+                       authorizationPolicy="RoleAdminPolicy"
+                       excludeFromSearchSiteMap="true">
+                  <Children>
+                      <NavNode key="RoleMembers"
+                               controller="RoleAdmin"
+                               action="RoleMembers"
+                               text="Role Members"
+                               preservedRouteParameters="siteId,roleId,pageNumber,pageSize"
+                               componentVisibility="breadcrumbs"
+                               authorizationPolicy="RoleAdminPolicy"
+                               excludeFromSearchSiteMap="true">
+                          <Children />
+                      </NavNode>
+                      <NavNode key="RoleEdit"
+                               controller="RoleAdmin"
+                               action="RoleEdit" text="New Role"
+                               preservedRouteParameters="siteId,roleId"
+                               componentVisibility="breadcrumbs"
+                               authorizationPolicy="RoleAdminPolicy"
+                               excludeFromSearchSiteMap="true">
+                          <Children />
+                      </NavNode>
+                  </Children>
+              </NavNode>
 
               <NavNode key="CaptchaSettings"
                     controller="SiteAdmin"
@@ -521,7 +553,7 @@
                     controller="ContentHistory"
                     action="Index"
                     text="Content History"
-                    iconCssClass="fas fa-histor fa-fw"
+                    iconCssClass="fas fa-history fa-fw"
                     preservedRouteParameters=""
                     componentVisibility="breadcrumbs,childtree,parenttree"
                     authorizationPolicy="ViewContentHistoryPolicy"
@@ -642,32 +674,7 @@
                     </NavNode>
               <!--#endif-->
 
-              <NavNode key="LoginPageInfo"
-                       controller="SiteAdmin"
-                       action="LoginPageInfo"
-                       text="Login Page Info"
-                       iconCssClass="fas fa-info-circle fa-fw"
-                       preservedRouteParameters="siteId"
-                       componentVisibility="breadcrumbs,childtree,parenttree"
-                       authorizationPolicy="AdminPolicy"
-                       excludeFromSearchSiteMap="true">
-                  <Children>
-                  </Children>
-              </NavNode>
-              <NavNode key="RegisterPageInfo"
-                       controller="SiteAdmin"
-                       action="RegisterPageInfo"
-                       text="Register Page Info"
-                       iconCssClass="fas fa-info-circle fa-fw"
-                       preservedRouteParameters="siteId"
-                       componentVisibility="breadcrumbs,childtree,parenttree"
-                       authorizationPolicy="AdminPolicy"
-                       excludeFromSearchSiteMap="true">
-                  <Children>
-                  </Children>
-              </NavNode>
-
-              <!--#if (Pawall)-->
+              <!--#if (Paywall)-->
                 <NavNode key="MembershipAdmin"
                             controller="MembershipAdmin"
                             action="Index"
@@ -992,7 +999,7 @@
                              preservedRouteParameters="siteId"
                              text="New User"
                              iconCssClass="fas fa-user-plus fa-fw"
-                             componentVisibility="breadcrumbs,childtree"
+                             componentVisibility="breadcrumbs"
                              authorizationPolicy="UserManagementPolicy"
                              excludeFromSearchSiteMap="true">
                           <Children />
@@ -1054,38 +1061,6 @@
                 <Children />
             </NavNode>
             
-            <NavNode key="RoleAdmin"
-                       controller="RoleAdmin"
-                       action="Index"
-                       preservedRouteParameters="siteId"
-                       text="Role Management"
-                       iconCssClass="fas fa-key fa-fw"
-                       componentVisibility="breadcrumbs,childtree,parenttree"
-                       authorizationPolicy="RoleAdminPolicy"
-                       excludeFromSearchSiteMap="true">
-                  <Children>
-                      <NavNode key="RoleMembers"
-                               controller="RoleAdmin"
-                               action="RoleMembers"
-                               text="Role Members"
-                               preservedRouteParameters="siteId,roleId,pageNumber,pageSize"
-                               componentVisibility="breadcrumbs"
-                               authorizationPolicy="RoleAdminPolicy"
-                               excludeFromSearchSiteMap="true">
-                          <Children />
-                      </NavNode>
-                      <NavNode key="RoleEdit"
-                               controller="RoleAdmin"
-                               action="RoleEdit" text="NewRole"
-                               preservedRouteParameters="siteId,roleId"
-                               componentVisibility="breadcrumbs,childtree"
-                               authorizationPolicy="RoleAdminPolicy"
-                               excludeFromSearchSiteMap="true">
-                          <Children />
-                      </NavNode>
-                  </Children>
-              </NavNode>
-
               <!--#if (IncludeHangfire)-->
                 <NavNode key="Tasks"
                       url="/tasks"
@@ -1098,6 +1073,30 @@
                 </NavNode>
                <!--#endif-->
 
+              <NavNode key="LoginPageInfo"
+                       controller="SiteAdmin"
+                       action="LoginPageInfo"
+                       text="Login Page Info"
+                       iconCssClass="fas fa-info-circle fa-fw"
+                       preservedRouteParameters="siteId"
+                       componentVisibility="breadcrumbs,childtree,parenttree"
+                       authorizationPolicy="AdminPolicy"
+                       excludeFromSearchSiteMap="true">
+                  <Children>
+                  </Children>
+              </NavNode>
+              <NavNode key="RegisterPageInfo"
+                       controller="SiteAdmin"
+                       action="RegisterPageInfo"
+                       text="Register Page Info"
+                       iconCssClass="fas fa-info-circle fa-fw"
+                       preservedRouteParameters="siteId"
+                       componentVisibility="breadcrumbs,childtree,parenttree"
+                       authorizationPolicy="AdminPolicy"
+                       excludeFromSearchSiteMap="true">
+                  <Children>
+                  </Children>
+              </NavNode>
 
               <NavNode key="CountryListPage"
                     controller="CoreData"
@@ -1114,7 +1113,7 @@
                             text="New Country"
                             iconCssClass="fas fa-plus-circle fa-fw"
                             preservedRouteParameters="id"
-                            componentVisibility="breadcrumbs,childtree"
+                            componentVisibility="breadcrumbs"
                             authorizationPolicy="CoreDataPolicy"
                             excludeFromSearchSiteMap="true">
                         <Children />
