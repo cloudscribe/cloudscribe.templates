@@ -69,12 +69,12 @@ namespace Microsoft.Extensions.DependencyInjection
             //        authBuilder.RequireRole("Administrators");
             //    });
 
-            // options.AddPolicy(
-            //    "MembershipJoinPolicy",
-            //    authBuilder =>
-            //    {
-            //        authBuilder.RequireAuthenticatedUser();
-            //    });
+            options.AddPolicy(
+               "MembershipJoinPolicy",
+               authBuilder =>
+               {
+                   authBuilder.RequireAuthenticatedUser();
+               });
 
 #endif
 

@@ -47,6 +47,9 @@ namespace cloudscribeTemplate
 
             chkLogging.Checked = true;
 
+            chkPaywall.Enabled = false;
+            chkNewsletter.Enabled = false;
+
             txtNonRootPagesSegment.CharacterCasing = CharacterCasing.Lower;
             txtNonRootPagesSegment.MaxLength = 30;
             txtNonRootPagesSegment.KeyPress += TxtNonRootPagesSegment_KeyPress;
