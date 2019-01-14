@@ -1,16 +1,32 @@
-﻿using Microsoft.Extensions.Configuration;
-#if (KvpCustomRegistration)
+﻿#if (IncludeEmailQueue)
+using cloudscribe.EmailQueue.HangfireIntegration;
+using cloudscribe.EmailQueue.Models;
+#endif
+#if (Paywall)
+using cloudscribe.Membership.HangfireIntegration;
+using cloudscribe.Membership.Models;
+#endif
+#if (KvpCustomRegistration || Newsletter)
 using cloudscribe.UserProperties.Models;
 using cloudscribe.UserProperties.Services;
 #endif
+#if (IncludeHangfire)
+using Hangfire;
+#if (pgsql)
+using Hangfire.PostgreSql;
+#endif
+#endif
+using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class CloudscribeFeatures
     {
+        
         public static IServiceCollection SetupDataStorage(
             this IServiceCollection services,
-            IConfiguration config
+            IConfiguration config,
+            bool useHangfire
             )
         {
 #if (!NoDb)
@@ -19,6 +35,44 @@ namespace Microsoft.Extensions.DependencyInjection
 #if (SQLite)
             services.AddCloudscribeCoreEFStorageSQLite(connectionString);
 #endif
+
+#if (IncludeHangfire)
+
+#if (MSSQL)
+            if(useHangfire)
+            {
+                services.AddHangfire(hfConfig => hfConfig.UseSqlServerStorage(connectionString));
+            }
+#endif
+#if (MySql)
+            if (useHangfire)
+            {
+                services.AddHangfire(hfConfig => { });
+
+                GlobalConfiguration.Configuration.UseStorage(
+                    new Hangfire.MySql.MySqlStorage(
+                        connectionString + "Allow User Variables=True",
+                        new Hangfire.MySql.MySqlStorageOptions
+                        {
+                            //TransactionIsolationLevel = IsolationLevel.ReadCommitted,
+                            //QueuePollInterval = TimeSpan.FromSeconds(15),
+                            //JobExpirationCheckInterval = TimeSpan.FromHours(1),
+                            //CountersAggregateInterval = TimeSpan.FromMinutes(5),
+                            //PrepareSchemaIfNecessary = true,
+                            //DashboardJobListLimit = 50000,
+                            //TransactionTimeout = TimeSpan.FromMinutes(1),
+                        }));
+            }
+#endif
+#if (pgsql)
+            if (useHangfire)
+            {
+                services.AddHangfire(hfConfig => hfConfig.UsePostgreSqlStorage(connectionString));
+            }
+#endif
+
+#endif
+
 #if (MSSQL)
             services.AddCloudscribeCoreEFStorageMSSQL(connectionString);
 #endif
@@ -31,7 +85,7 @@ namespace Microsoft.Extensions.DependencyInjection
 #else
             services.AddCloudscribeCoreNoDbStorage();
 #endif
-#if (KvpCustomRegistration)
+#if (KvpCustomRegistration || Newsletter)
 #if (NoDb)
             services.AddCloudscribeKvpNoDbStorage();
 #endif
@@ -84,6 +138,103 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #endif
 
+#if (IncludeStripeIntegration)
+#if (NoDb)
+            services.AddStripeIntegrationStorageNoDb();
+#endif
+#if (SQLite)
+             services.AddStripeIntegrationStorageSQLite(connectionString);
+#endif
+#if (MSSQL)
+            services.AddStripeIntegrationStorageMSSQL(connectionString);
+#endif
+#if (MySql)
+            services.AddStripeIntegrationStorageMySql(connectionString);
+#endif
+#if (pgsql)
+            services.AddStripeIntegrationPostgreSqlStorage(connectionString);
+#endif        
+#endif
+
+#if (FormBuilder)
+#if (NoDb)
+            services.AddFormsStorageNoDb();
+#endif
+#if (SQLite)
+            services.AddFormsStorageSQLite(connectionString);
+#endif
+#if (MSSQL)
+            services.AddFormsStorageMSSQL(connectionString);
+#endif
+#if (MySql)
+            services.AddFormsStorageMySql(connectionString);
+#endif
+#if (pgsql)
+            services.AddFormsStoragePostgreSql(connectionString);
+#endif        
+#endif
+
+#if (DynamicPolicy)
+#if (NoDb)
+            services.AddNoDbStorageForDynamicPolicies(config);
+#endif
+#if (SQLite)
+            services.AddDynamicPolicyEFStorageSQLite(connectionString);
+#endif
+#if (MSSQL)
+            services.AddDynamicPolicyEFStorageMSSQL(connectionString);
+#endif
+#if (MySql)
+            services.AddDynamicPolicyEFStorageMySql(connectionString);
+#endif
+#if (pgsql)
+            services.AddDynamicPolicyPostgreSqlStorage(connectionString);
+#endif       
+#endif
+
+#if (Paywall)
+#if (MSSQL)
+            services.AddMembershipSubscriptionStorageMSSQL(connectionString);
+#endif
+#if (MySql)
+            services.AddMembershipSubscriptionStorageMySql(connectionString);
+#endif
+#if (pgsql)
+            services.AddMembershipSubscriptionPostgreSqlStorage(connectionString);
+#endif        
+#endif
+
+#if (IncludeEmailQueue)
+#if (MSSQL)
+            services.AddEmailTemplateStorageMSSQL(connectionString);
+            services.AddEmailQueueStorageMSSQL(connectionString);
+#endif
+#if (MySql)
+            services.AddEmailTemplateStorageMySql(connectionString);
+            services.AddEmailQueueStorageMySql(connectionString);
+#endif
+#if (pgsql)
+            services.AddEmailTemplatePostgreSqlStorage(connectionString);
+            services.AddEmailQueuePostgreSqlStorage(connectionString);
+#endif        
+#endif
+
+#if (Newsletter)
+#if (MSSQL)
+            services.AddEmailListStorageMSSQL(connectionString);
+#endif
+#if (MySql)
+            services.AddEmailListStorageMySql(connectionString);
+#endif
+#if (pgsql)
+            services.AddEmailListPostgreSqlStorage(connectionString);
+#endif        
+#endif
+
+
+
+
+
             return services;
         }
 
@@ -97,8 +248,11 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddCloudscribeLogging(config);
 
 #endif
-#if (KvpCustomRegistration)
+#if (KvpCustomRegistration || Newsletter)
             services.Configure<ProfilePropertySetContainer>(config.GetSection("ProfilePropertySetContainer"));
+#if (Newsletter) 
+            services.AddEmailListKvpIntegration(config);
+#endif
             services.AddCloudscribeKvpUserProperties();
 #endif
 
@@ -117,6 +271,46 @@ namespace Microsoft.Extensions.DependencyInjection
             
             services.AddMetaWeblogForSimpleContent(config.GetSection("MetaWeblogApiOptions"));
             services.AddSimpleContentRssSyndiction();
+#endif
+
+#if (FormBuilder)
+            services.AddFormsCloudscribeCoreIntegration(config);
+            services.AddFormsServices(config);
+#if (SimpleContentConfig != "z")
+            services.AddFormSurveyContentTemplatesForSimpleContent(config);
+#endif
+            // these are examples to show you how to implement custom form submission handlers.
+            // see /Services/SampleFormSubmissionHandlers.cs
+            services.AddScoped<cloudscribe.Forms.Models.IHandleFormSubmission, WebApp.Services.FakeFormSubmissionHandler1>();
+            services.AddScoped<cloudscribe.Forms.Models.IHandleFormSubmission, WebApp.Services.FakeFormSubmissionHandler2>();
+#endif
+
+#if (IncludeStripeIntegration)
+            services.AddMembershipSStripeIntegration(config);
+            services.AddCloudscribeCoreStripeIntegration();
+            services.AddStripeIntegrationMvc(config);
+
+#endif
+
+#if (Paywall)
+            services.AddScoped<IRoleRemovalTask, HangfireRoleRemovalTask>();
+            services.AddScoped<ISendRemindersTask, HangfireSendRemindersTask>();
+            services.AddMembershipSubscriptionMvcComponents(config);
+#endif
+
+#if (IncludeEmailQueue)
+            services.AddScoped<IEmailQueueProcessor, HangFireEmailQueueProcessor>();
+            services.AddEmailQueueWithCloudscribeIntegration(config);
+            services.AddEmailRazorTemplating(config);
+#endif
+
+#if (Newsletter)
+            services.AddEmailListWithCloudscribeIntegration(config);
+#endif
+
+#if (DynamicPolicy)
+            services.AddCloudscribeDynamicPolicyIntegration(config);
+            services.AddDynamicAuthorizationMvc(config);
 #endif
 
             return services;

@@ -53,18 +53,38 @@
           ]
         },
         {
-          "condition": "(!KvpCustomRegistration)",
+          "condition": "(!KvpCustomRegistration && !Newsletter)",
           "exclude": [
             "app-userproperties.json",
-            "Views/Account/**",
+            "Views/Account/RegisterMiddle.cshtml",
             "Views/Manage/**",
             "Views/UserAdmin/**"
+          ]
+        },
+        {
+          "condition": "(!Newsletter)",
+          "exclude": [
+            "Views/Account/RegisterBottom.cshtml",
+            "Views/Shared/_LayoutNewsletterHtml.cshtml",
+            "Views/Shared/_LayoutNewsletterPlainText.cshtml"
           ]
         },
         {
           "condition": "(!IdentityServer)",
           "exclude": [
             "Config/IdentityServerIntegration.cs"
+          ]
+        },
+        {
+          "condition": "(!FormBuilder)",
+          "exclude": [
+            "Services/SampleFormSubmissionHandlers.cs"
+          ]
+        },
+        {
+          "condition": "(!IncludeHangfire)",
+          "exclude": [
+            "Config/HangFireAuthorizationFilter.cs"
           ]
         },
         {
@@ -182,6 +202,35 @@
       "defaultValue": "true",
       "description": "Include cloudscribe logging and log viewer UI."
     },
+
+    "FormBuilder": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include cloudscribe Forms and Surveys add on product."
+    },
+
+    "Paywall": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include cloudscribe Membership Paywall add on product. Cannot be used with NoDb or SQLite."
+    },
+
+    "Newsletter": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include cloudscribe Newsletter/Email List add on product. Cannot be used with NoDb or SQLite."
+    },
+
+    "DynamicPolicy": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include cloudscribe Dynamic Authorization Policies add on product."
+    },
+
     "DataStorage": {
       "type": "parameter",
       "datatype": "choice",
@@ -226,6 +275,18 @@
     "IncludeReact": {
       "type": "computed",
       "value": "(Webpack && ReactSample)"
+    },
+    "IncludeHangfire": {
+      "type": "computed",
+      "value": "((Paywall || Newsletter) && !NoDb)"
+    },
+    "IncludeEmailQueue": {
+      "type": "computed",
+      "value": "(Paywall || Newsletter)"
+    },
+    "IncludeStripeIntegration": {
+      "type": "computed",
+      "value": "(Paywall)"
     },
     "SQLite": {
       "type": "computed",

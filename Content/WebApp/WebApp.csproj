@@ -124,7 +124,7 @@
     <PackageReference Include="cloudscribe.SimpleContactForm.CoreIntegration" Version="3.0.*" />
     <!--#endif-->
 
-    <!--#if (KvpCustomRegistration)-->
+    <!--#if (KvpCustomRegistration || Newsletter)-->
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.Kvp.Storage.NoDb" Version="3.0.*" />
     <!--#endif-->
@@ -147,6 +147,139 @@
     <PackageReference Include="cloudscribe.Web.Localization" Version="2.0.*" />
     
     <PackageReference Include="Microsoft.AspNetCore.App" />
+
+<!--#if (IncludeHangfire)-->
+<!--#if (MSSQL)-->
+   <PackageReference Include="HangFire" Version="1.6.21" />
+    <!--#endif-->
+    <!--#if (MySql)-->
+    <PackageReference Include="Hangfire.MySqlStorage" Version="1.1.2-*" />
+    <!--#endif-->
+    <!--#if (pgsql)-->
+    <PackageReference Include="Hangfire.PostgreSql" Version="1.5.0" />
+    <!--#endif-->
+<!--#endif-->
+
+    <!-- Commercial libs start -->
+
+     <!--#if (FormBuilder)-->
+    <PackageReference Include="cloudscribe.Forms.Web" Version="1.0.*" />
+    <PackageReference Include="cloudscribe.Forms.Bootstrap4" Version="1.0.*" />
+    <PackageReference Include="cloudscribe.Forms.CoreIntegration" Version="1.0.*" />
+    <!--#if (SimpleContentConfig != "z")-->
+     <PackageReference Include="cloudscribe.Forms.ContentTemplate.Bootstrap4" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (NoDb)-->
+    <PackageReference Include="cloudscribe.Forms.Data.NoDb" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (SQLite)-->
+    <PackageReference Include="cloudscribe.Forms.Data.EFCore.SQLite" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (MSSQL)-->
+    <PackageReference Include="cloudscribe.Forms.Data.EFCore.MSSQL" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (MySql)-->
+    <PackageReference Include="cloudscribe.Forms.Data.EFCore.MySql" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (pgsql)-->
+    <PackageReference Include="cloudscribe.Forms.Data.EFCore.PostgreSql" Version="1.0.*" />
+    <!--#endif-->
+    <!--#endif-->
+
+     <!--#if (DynamicPolicy)-->
+    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Mvc" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Views.Bootstrap4" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.CoreIntegration" Version="2.1.*" />
+    <!--#if (NoDb)-->
+    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.NoDb" Version="2.1.*" />
+    <!--#endif-->
+    <!--#if (SQLite)-->
+    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.SQLite" Version="2.1.*" />
+    <!--#endif-->
+    <!--#if (MSSQL)-->
+    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.MSSQL" Version="2.1.*" />
+    <!--#endif-->
+    <!--#if (MySql)-->
+    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.MySql" Version="2.1.*" />
+    <!--#endif-->
+    <!--#if (pgsql)-->
+    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.PostgreSql" Version="2.1.*" />
+    <!--#endif-->
+    <!--#endif-->
+
+<!--#if (IncludeEmailQueue)-->
+    <PackageReference Include="cloudscribe.EmailQueue.CoreIntegration" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.EmailQueue.HangfireIntegration" Version="2.1.*" />
+  <!--#if (MSSQL)-->
+   <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.MSSQL" Version="2.1.*" />
+   <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.MSSQL" Version="2.1.*" />
+    <!--#endif-->
+    <!--#if (MySql)-->
+    <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.MySql" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.MySql" Version="2.1.*" />
+    <!--#endif-->
+    <!--#if (pgsql)-->
+    <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.PostgreSql" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.PostgreSql" Version="2.1.*" />
+    <!--#endif-->
+<!--#endif-->
+
+<!--#if (Paywall)-->
+    <PackageReference Include="cloudscribe.Membership.Web.Mvc" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.Membership.Views.Bootstrap4" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.Membership.HangfireIntegration" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.Membership.StripeIntegration" Version="1.0.*" />
+    <PackageReference Include="cloudscribe.Membership.StripeIntegration.Bootstrap4" Version="1.0.*" />
+  <!--#if (MSSQL)-->
+   <PackageReference Include="cloudscribe.Membership.Data.EFCore.MSSQL" Version="2.1.*" />
+    <!--#endif-->
+    <!--#if (MySql)-->
+    <PackageReference Include="cloudscribe.Membership.Data.EFCore.MySql" Version="2.1.*" />
+    <!--#endif-->
+    <!--#if (pgsql)-->
+     <PackageReference Include="cloudscribe.Membership.Data.EFCore.PostgreSql" Version="2.1.*" />
+    <!--#endif-->
+<!--#endif-->
+
+<!--#if (IncludeStripeIntegration)-->
+    <PackageReference Include="cloudscribe.Core.StripeIntegration" Version="1.0.*" />
+    <PackageReference Include="cloudscribe.StripeIntegration.Mvc" Version="1.0.*" />
+    <PackageReference Include="cloudscribe.StripeIntegration.Mvc.Bootstrap4" Version="1.0.*" />
+    <!--#if (NoDb)-->
+    <PackageReference Include="cloudscribe.StripeIntegration.Data.NoDb" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (SQLite)-->
+    <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.SQLite" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (MSSQL)-->
+    <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.MSSQL" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (MySql)-->
+    <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.MySql" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (pgsql)-->
+    <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.PostgreSql" Version="1.0.*" />
+    <!--#endif-->
+    <!--#endif-->
+
+    <!--#if (Newsletter)-->
+    <PackageReference Include="cloudscribe.EmailList.Web.Mvc" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.EmailList.Views.Bootstrap4" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.EmailList.CoreIntegration" Version="2.1.*" />
+    <PackageReference Include="cloudscribe.EmailList.KvpUserProperties.Integration" Version="1.0.*" />
+  <!--#if (MSSQL)-->
+   <PackageReference Include="cloudscribe.EmailList.Data.EFCore.MSSQL" Version="2.1.*" />
+    <!--#endif-->
+    <!--#if (MySql)-->
+    <PackageReference Include="cloudscribe.EmailList.Data.EFCore.MySql" Version="2.1.*" />
+    <!--#endif-->
+    <!--#if (pgsql)-->
+     <PackageReference Include="cloudscribe.EmailList.Data.EFCore.PostgreSql" Version="2.1.*" />
+    <!--#endif-->
+<!--#endif-->
+
+
+    <!-- Commercial libs end -->
     
   </ItemGroup>
 

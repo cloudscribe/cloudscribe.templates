@@ -54,29 +54,25 @@ namespace WebApp
         {
             #if (Logging)
             #if (!NoDb)
-            var deletePostsOlderThanDays = 90;
-            LoggingEFStartup.InitializeDatabaseAsync(scopedServices, deletePostsOlderThanDays).Wait();
+            var deleteLogsOlderThanDays = 90;
+            LoggingEFStartup.InitializeDatabaseAsync(scopedServices, deleteLogsOlderThanDays).Wait();
             #endif
             #endif
-
             #if (NoDb)
             CoreNoDbStartup.InitializeDataAsync(scopedServices).Wait();
             #else
             CoreEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
             #endif
-            
             #if (SimpleContentConfig != "z")
             #if (!NoDb)
             SimpleContentEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
             #endif
             #endif
-
-            #if (KvpCustomRegistration) 
+            #if (KvpCustomRegistration || Newsletter) 
             #if (!NoDb)
             KvpEFCoreStartup.InitializeDatabaseAsync(scopedServices).Wait();
             #endif
             #endif
-
             #if (IdentityServer)
             #if (NoDb)
             CloudscribeIdentityServerIntegrationNoDbStorage.InitializeDatabaseAsync(scopedServices).Wait();
@@ -84,6 +80,39 @@ namespace WebApp
             CloudscribeIdentityServerIntegrationEFCoreStorage.InitializeDatabaseAsync(scopedServices).Wait();
             #endif
             #endif
+            #if (FormBuilder)
+            #if (!NoDb)
+            FormsDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
+            #if (Paywall)
+            #if (!NoDb)
+            MembershipDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
+             #if (IncludeEmailQueue)
+            #if (!NoDb)
+            EmailQueueDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            EmailTemplateDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
+            #if (Newsletter)
+            #if (!NoDb)
+            EmailListDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
+            #if (IncludeStripeIntegration)
+            #if (!NoDb)
+            StripeDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
+            #if (DynamicPolicy)
+            #if (!NoDb)
+            DynamicPolicyEFCore.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
+
+            
 
             
         }
