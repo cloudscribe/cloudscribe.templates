@@ -12,6 +12,9 @@ using cloudscribe.UserProperties.Services;
 #endif
 #if (IncludeHangfire)
 using Hangfire;
+#if (pgsql)
+using Hangfire.PostgreSql;
+#endif
 #endif
 using Microsoft.Extensions.Configuration;
 
@@ -47,9 +50,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 services.AddHangfire(hfConfig => { });
 
                 GlobalConfiguration.Configuration.UseStorage(
-                    new MySqlStorage(
+                    new Hangfire.MySql.MySqlStorage(
                         connectionString + "Allow User Variables=True",
-                        new MySqlStorageOptions
+                        new Hangfire.MySql.MySqlStorageOptions
                         {
                             //TransactionIsolationLevel = IsolationLevel.ReadCommitted,
                             //QueuePollInterval = TimeSpan.FromSeconds(15),
@@ -211,7 +214,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddEmailQueueStorageMySql(connectionString);
 #endif
 #if (pgsql)
-            services.AddEmailTemplatePostgreSqlStorage(pgsConnection);
+            services.AddEmailTemplatePostgreSqlStorage(connectionString);
             services.AddEmailQueuePostgreSqlStorage(connectionString);
 #endif        
 #endif

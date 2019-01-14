@@ -52,18 +52,19 @@
             this.lnkWebpack = new System.Windows.Forms.LinkLabel();
             this.lblExpertWarning = new System.Windows.Forms.Label();
             this.gbCommercial = new System.Windows.Forms.GroupBox();
+            this.lnkChat = new System.Windows.Forms.LinkLabel();
+            this.lnkDynamicPolicy = new System.Windows.Forms.LinkLabel();
+            this.chkDynamicPolicy = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lnkStripeIntegration = new System.Windows.Forms.LinkLabel();
+            this.lnkPaywall = new System.Windows.Forms.LinkLabel();
+            this.chkPaywall = new System.Windows.Forms.CheckBox();
+            this.lnkNewsletter = new System.Windows.Forms.LinkLabel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.chkNewsletter = new System.Windows.Forms.CheckBox();
             this.lnkFormProduct = new System.Windows.Forms.LinkLabel();
             this.lblComercialAddOns = new System.Windows.Forms.Label();
             this.chkFormBuilder = new System.Windows.Forms.CheckBox();
-            this.chkNewsletter = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lnkNewsletter = new System.Windows.Forms.LinkLabel();
-            this.chkPaywall = new System.Windows.Forms.CheckBox();
-            this.lnkPaywall = new System.Windows.Forms.LinkLabel();
-            this.lnkStripeIntegration = new System.Windows.Forms.LinkLabel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.chkDynamicPolicy = new System.Windows.Forms.CheckBox();
-            this.lnkDynamicPolicy = new System.Windows.Forms.LinkLabel();
             this.gbSimpleContentConfig.SuspendLayout();
             this.gbExpert.SuspendLayout();
             this.gbCommercial.SuspendLayout();
@@ -322,6 +323,7 @@
             // 
             // gbCommercial
             // 
+            this.gbCommercial.Controls.Add(this.lnkChat);
             this.gbCommercial.Controls.Add(this.lnkDynamicPolicy);
             this.gbCommercial.Controls.Add(this.chkDynamicPolicy);
             this.gbCommercial.Controls.Add(this.label4);
@@ -340,6 +342,109 @@
             this.gbCommercial.TabIndex = 9;
             this.gbCommercial.TabStop = false;
             this.gbCommercial.Text = "Commercial Add On Products";
+            // 
+            // lnkChat
+            // 
+            this.lnkChat.AutoSize = true;
+            this.lnkChat.Location = new System.Drawing.Point(13, 614);
+            this.lnkChat.Name = "lnkChat";
+            this.lnkChat.Size = new System.Drawing.Size(60, 13);
+            this.lnkChat.TabIndex = 12;
+            this.lnkChat.TabStop = true;
+            this.lnkChat.Text = "Questions?";
+            this.lnkChat.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkChat_LinkClicked);
+            // 
+            // lnkDynamicPolicy
+            // 
+            this.lnkDynamicPolicy.AutoSize = true;
+            this.lnkDynamicPolicy.Location = new System.Drawing.Point(233, 225);
+            this.lnkDynamicPolicy.Name = "lnkDynamicPolicy";
+            this.lnkDynamicPolicy.Size = new System.Drawing.Size(69, 13);
+            this.lnkDynamicPolicy.TabIndex = 11;
+            this.lnkDynamicPolicy.TabStop = true;
+            this.lnkDynamicPolicy.Text = "Learn more...";
+            this.lnkDynamicPolicy.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDynamicPolicy_LinkClicked);
+            // 
+            // chkDynamicPolicy
+            // 
+            this.chkDynamicPolicy.AutoSize = true;
+            this.chkDynamicPolicy.Location = new System.Drawing.Point(19, 225);
+            this.chkDynamicPolicy.Name = "chkDynamicPolicy";
+            this.chkDynamicPolicy.Size = new System.Drawing.Size(208, 17);
+            this.chkDynamicPolicy.TabIndex = 10;
+            this.chkDynamicPolicy.Text = "Include Dynamic Authorization Policies";
+            this.chkDynamicPolicy.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(13, 566);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(307, 37);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "*** Dynamic Authorization Policies is a recommended but not required companion pr" +
+    "oduct.";
+            // 
+            // lnkStripeIntegration
+            // 
+            this.lnkStripeIntegration.AutoSize = true;
+            this.lnkStripeIntegration.Location = new System.Drawing.Point(34, 190);
+            this.lnkStripeIntegration.Name = "lnkStripeIntegration";
+            this.lnkStripeIntegration.Size = new System.Drawing.Size(217, 13);
+            this.lnkStripeIntegration.TabIndex = 8;
+            this.lnkStripeIntegration.TabStop = true;
+            this.lnkStripeIntegration.Text = "Requires Stripe Integration, sold separately...";
+            this.lnkStripeIntegration.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkStripeIntegration_LinkClicked);
+            // 
+            // lnkPaywall
+            // 
+            this.lnkPaywall.AutoSize = true;
+            this.lnkPaywall.Location = new System.Drawing.Point(233, 171);
+            this.lnkPaywall.Name = "lnkPaywall";
+            this.lnkPaywall.Size = new System.Drawing.Size(69, 13);
+            this.lnkPaywall.TabIndex = 7;
+            this.lnkPaywall.TabStop = true;
+            this.lnkPaywall.Text = "Learn more...";
+            this.lnkPaywall.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkPaywall_LinkClicked);
+            // 
+            // chkPaywall
+            // 
+            this.chkPaywall.AutoSize = true;
+            this.chkPaywall.Location = new System.Drawing.Point(19, 170);
+            this.chkPaywall.Name = "chkPaywall";
+            this.chkPaywall.Size = new System.Drawing.Size(186, 17);
+            this.chkPaywall.TabIndex = 6;
+            this.chkPaywall.Text = "Include Membership Paywall ** ***";
+            this.chkPaywall.UseVisualStyleBackColor = true;
+            // 
+            // lnkNewsletter
+            // 
+            this.lnkNewsletter.AutoSize = true;
+            this.lnkNewsletter.Location = new System.Drawing.Point(233, 136);
+            this.lnkNewsletter.Name = "lnkNewsletter";
+            this.lnkNewsletter.Size = new System.Drawing.Size(69, 13);
+            this.lnkNewsletter.TabIndex = 5;
+            this.lnkNewsletter.TabStop = true;
+            this.lnkNewsletter.Text = "Learn more...";
+            this.lnkNewsletter.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkNewsletter_LinkClicked);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 549);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(185, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "** Not supported with NoDb or SQLite";
+            // 
+            // chkNewsletter
+            // 
+            this.chkNewsletter.AutoSize = true;
+            this.chkNewsletter.Location = new System.Drawing.Point(19, 137);
+            this.chkNewsletter.Name = "chkNewsletter";
+            this.chkNewsletter.Size = new System.Drawing.Size(128, 17);
+            this.chkNewsletter.TabIndex = 3;
+            this.chkNewsletter.Text = "Include Newsletter  **";
+            this.chkNewsletter.UseVisualStyleBackColor = true;
             // 
             // lnkFormProduct
             // 
@@ -369,98 +474,6 @@
             this.chkFormBuilder.TabIndex = 0;
             this.chkFormBuilder.Text = "Include Form/Survery Builder";
             this.chkFormBuilder.UseVisualStyleBackColor = true;
-            // 
-            // chkNewsletter
-            // 
-            this.chkNewsletter.AutoSize = true;
-            this.chkNewsletter.Location = new System.Drawing.Point(19, 137);
-            this.chkNewsletter.Name = "chkNewsletter";
-            this.chkNewsletter.Size = new System.Drawing.Size(128, 17);
-            this.chkNewsletter.TabIndex = 3;
-            this.chkNewsletter.Text = "Include Newsletter  **";
-            this.chkNewsletter.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 583);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(188, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "* * Not supported with NoDb or SQLite";
-            // 
-            // lnkNewsletter
-            // 
-            this.lnkNewsletter.AutoSize = true;
-            this.lnkNewsletter.Location = new System.Drawing.Point(233, 136);
-            this.lnkNewsletter.Name = "lnkNewsletter";
-            this.lnkNewsletter.Size = new System.Drawing.Size(69, 13);
-            this.lnkNewsletter.TabIndex = 5;
-            this.lnkNewsletter.TabStop = true;
-            this.lnkNewsletter.Text = "Learn more...";
-            this.lnkNewsletter.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkNewsletter_LinkClicked);
-            // 
-            // chkPaywall
-            // 
-            this.chkPaywall.AutoSize = true;
-            this.chkPaywall.Location = new System.Drawing.Point(19, 170);
-            this.chkPaywall.Name = "chkPaywall";
-            this.chkPaywall.Size = new System.Drawing.Size(186, 17);
-            this.chkPaywall.TabIndex = 6;
-            this.chkPaywall.Text = "Include Membership Paywall ** ***";
-            this.chkPaywall.UseVisualStyleBackColor = true;
-            // 
-            // lnkPaywall
-            // 
-            this.lnkPaywall.AutoSize = true;
-            this.lnkPaywall.Location = new System.Drawing.Point(233, 171);
-            this.lnkPaywall.Name = "lnkPaywall";
-            this.lnkPaywall.Size = new System.Drawing.Size(69, 13);
-            this.lnkPaywall.TabIndex = 7;
-            this.lnkPaywall.TabStop = true;
-            this.lnkPaywall.Text = "Learn more...";
-            this.lnkPaywall.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkPaywall_LinkClicked);
-            // 
-            // lnkStripeIntegration
-            // 
-            this.lnkStripeIntegration.AutoSize = true;
-            this.lnkStripeIntegration.Location = new System.Drawing.Point(34, 190);
-            this.lnkStripeIntegration.Name = "lnkStripeIntegration";
-            this.lnkStripeIntegration.Size = new System.Drawing.Size(217, 13);
-            this.lnkStripeIntegration.TabIndex = 8;
-            this.lnkStripeIntegration.TabStop = true;
-            this.lnkStripeIntegration.Text = "Requires Stripe Integration, sold separately...";
-            this.lnkStripeIntegration.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkStripeIntegration_LinkClicked);
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(37, 600);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(307, 37);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "*** Dynamic Authorization Policies is a recommended but not required companion pr" +
-    "oduct.";
-            // 
-            // chkDynamicPolicy
-            // 
-            this.chkDynamicPolicy.AutoSize = true;
-            this.chkDynamicPolicy.Location = new System.Drawing.Point(19, 225);
-            this.chkDynamicPolicy.Name = "chkDynamicPolicy";
-            this.chkDynamicPolicy.Size = new System.Drawing.Size(208, 17);
-            this.chkDynamicPolicy.TabIndex = 10;
-            this.chkDynamicPolicy.Text = "Include Dynamic Authorization Policies";
-            this.chkDynamicPolicy.UseVisualStyleBackColor = true;
-            // 
-            // lnkDynamicPolicy
-            // 
-            this.lnkDynamicPolicy.AutoSize = true;
-            this.lnkDynamicPolicy.Location = new System.Drawing.Point(233, 225);
-            this.lnkDynamicPolicy.Name = "lnkDynamicPolicy";
-            this.lnkDynamicPolicy.Size = new System.Drawing.Size(69, 13);
-            this.lnkDynamicPolicy.TabIndex = 11;
-            this.lnkDynamicPolicy.TabStop = true;
-            this.lnkDynamicPolicy.Text = "Learn more...";
-            this.lnkDynamicPolicy.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDynamicPolicy_LinkClicked);
             // 
             // ProjectOptionsDialog
             // 
@@ -530,5 +543,6 @@
         private System.Windows.Forms.LinkLabel lnkDynamicPolicy;
         private System.Windows.Forms.CheckBox chkDynamicPolicy;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.LinkLabel lnkChat;
     }
 }

@@ -11,7 +11,7 @@
     <language>en-US</language>
     <iconUrl>https://raw.githubusercontent.com/joeaudette/cloudscribe/master/cloudscribe-icon-32.png</iconUrl>
     <projectUrl>https://github.com/joeaudette/cloudscribe.templates</projectUrl>
-    <licenseUrl>https://github.com/joeaudette/cloudscribe.templates/blob/master/LICENSE</licenseUrl>
+    <license type="expression">Apache-2.0</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <packageTypes>
       <packageType name="Template" />
@@ -21,6 +21,6 @@
     </dependencies -->
   </metadata>
   <files>
-    <file src="**" exclude="content\cloudscribeTemplate\**\*;**\bin\**\*;**\obj\**\*;**\*.user;**\*.lock.json" />
+    <file src="**" exclude="content\cloudscribeTemplate\**\*;**\bin\**\*;**\obj\**\*;**\*.user;**\*.lock.json;nuget.exe;packtemplate.cmd;template.sln;marketplace-desc.md;*.nuspec;.git/**;.vs/**;nupkgs/**;.gitignore" />
   </files>
 </package>

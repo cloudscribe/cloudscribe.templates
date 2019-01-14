@@ -59,6 +59,10 @@ namespace cloudscribeTemplate
             txtNonRootPagesTitle.KeyPress += TxtNonRootPagesTitle_KeyPress;
             txtNonRootPagesTitle.TextChanged += TxtNonRootPagesTitle_TextChanged;
 
+            LinkLabel.Link chatLink = new LinkLabel.Link();
+            chatLink.LinkData = "https://gitter.im/joeaudette/cloudscribe";
+            lnkChat.Links.Add(chatLink);
+
             LinkLabel.Link link = new LinkLabel.Link();
             link.LinkData = "https://www.cloudscribe.com/docs/advanced-client-side-development-with-webpack?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
             lnkWebpack.Links.Add(link);
@@ -197,6 +201,11 @@ namespace cloudscribeTemplate
         }
 
         private void lnkDynamicPolicy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(e.Link.LinkData as string);
+        }
+
+        private void lnkChat_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(e.Link.LinkData as string);
         }

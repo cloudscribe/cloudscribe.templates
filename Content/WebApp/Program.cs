@@ -54,8 +54,8 @@ namespace WebApp
         {
             #if (Logging)
             #if (!NoDb)
-            var deletePostsOlderThanDays = 90;
-            LoggingEFStartup.InitializeDatabaseAsync(scopedServices, deletePostsOlderThanDays).Wait();
+            var deleteLogsOlderThanDays = 90;
+            LoggingEFStartup.InitializeDatabaseAsync(scopedServices, deleteLogsOlderThanDays).Wait();
             #endif
             #endif
             #if (NoDb)

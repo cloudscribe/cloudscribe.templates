@@ -84,7 +84,7 @@
         {
           "condition": "(!IncludeHangfire)",
           "exclude": [
-            "Config/HangfireAuthorizationFilter.cs"
+            "Config/HangFireAuthorizationFilter.cs"
           ]
         },
         {
