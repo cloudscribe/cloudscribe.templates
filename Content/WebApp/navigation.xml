@@ -1106,6 +1106,16 @@
                   </Children>
               </NavNode>
 
+              <NavNode key="FileManager"
+                 controller="FileManager"
+                 action="Index"
+                 text="File Manager"
+                 iconCssClass="far fa-file-image fa-fw"
+                 componentVisibility="breadcrumbs,childtree,parenttree"
+                 authorizationPolicy="FileManagerPolicy">
+                    <Children> </Children>
+                </NavNode>
+
               <NavNode key="CountryListPage"
                     controller="CoreData"
                     action="CountryListPage"
