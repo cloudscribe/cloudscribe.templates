@@ -470,9 +470,9 @@
             this.chkFormBuilder.AutoSize = true;
             this.chkFormBuilder.Location = new System.Drawing.Point(19, 107);
             this.chkFormBuilder.Name = "chkFormBuilder";
-            this.chkFormBuilder.Size = new System.Drawing.Size(163, 17);
+            this.chkFormBuilder.Size = new System.Drawing.Size(160, 17);
             this.chkFormBuilder.TabIndex = 0;
-            this.chkFormBuilder.Text = "Include Form/Survery Builder";
+            this.chkFormBuilder.Text = "Include Form/Survey Builder";
             this.chkFormBuilder.UseVisualStyleBackColor = true;
             // 
             // ProjectOptionsDialog
