@@ -40,13 +40,6 @@
           ]
         },
         {
-          "condition": "(SimpleContentConfig == 'z')",
-          "exclude": [
-            "wwwroot/wlwmanifest.xml",
-            "Views/Blog/**"
-          ]
-        },
-        {
           "condition": "(!ContactForm)",
           "exclude": [
             "Views/Contact/**"
