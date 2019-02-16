@@ -14,9 +14,14 @@
     var Tenant = await siteResolver.ResolveSite(Context.Request.Host.Host, Context.Request.Path);
     var siteRoot = "";
     if (!string.IsNullOrWhiteSpace(Tenant.SiteFolderName)) { siteRoot = "/" + Tenant.SiteFolderName; }
+    var lang = "en";
+    if(!string.IsNullOrWhiteSpace(Tenant.ForcedUICulture))
+    {
+        lang = Tenant.ForcedUICulture;
+    }
 }
 <!DOCTYPE html>
-<html>
+<html lang="@lang">
 <head>
     <meta charset="utf-8" />
     <title>@ViewData["Title"] - @(Tenant?.SiteName ?? "Sample")</title>
@@ -57,7 +62,7 @@
     <div id="wrapper" class="container cs-container flex-fill">
         @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4Breadcrumbs", filterName = NamedNavigationFilters.Breadcrumbs, startingNodeKey = "" })
         <div class="row">
-            <main id="content" role="main" class="col order-3">
+            <main id="content" class="col order-3">
                 @await Html.PartialAsync("AlertsPartial")
                 <partial name="_CookieConsentPartial" />
                 @RenderBody()
