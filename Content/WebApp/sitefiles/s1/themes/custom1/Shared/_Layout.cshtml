@@ -51,14 +51,18 @@
             </div>
         </a>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-            <a href="~/@(Tenant?.SiteFolderName ?? "")" class="navbar-brand">@(Tenant?.SiteName ?? "Sample")</a>
+             @if (Tenant.ShowSiteNameLink)
+            {
+                <a href="~/@(Tenant?.SiteFolderName ?? "")" class="navbar-brand">@Tenant.SiteName </a>
+            }
+            <partial name="SiteHeaderPartial" />
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4TopNavWithDropdowns", filterName = NamedNavigationFilters.TopNav, startingNodeKey = "" })
-                @await Html.PartialAsync("_LoginPartialWithDropdowns")
+                <partial name="_LoginPartialWithDropdowns" />
             </div>
         </nav>
     </header>
@@ -66,7 +70,7 @@
         @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4Breadcrumbs", filterName = NamedNavigationFilters.Breadcrumbs, startingNodeKey = "" })
         <div class="row">
             <main id="content" class="col order-3">
-                @await Html.PartialAsync("AlertsPartial")
+                <partial name="AlertsPartial" />
                 <partial name="_CookieConsentPartial" />
                 @RenderBody()
             </main>
@@ -94,6 +98,7 @@
         </div>
     </div>
     <footer class="sticky-bottom border pt-2 d-flex h-100 flex-wrap flex-grow justify-content-center">
+        <partial name="SiteFooterPartial" />
         <div class="p-2">
             <ul class="list-unstyled d-flex flex-wrap">
                 @*#if (SimpleContentConfig == 'a' || SimpleContentConfig == 'b')*@
