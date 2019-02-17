@@ -1,5 +1,7 @@
 ﻿@inject ISiteContextResolver siteResolver
+@inject ICoreThemeHelper themHelper
 @{
+    var themeSetings = themHelper.GetThemeSettings();
     @*
         These settings can be set by a main view to show additional columns.
         Views that push content into the optional sections SideNav, AsidePrimary, and AsideSecondary
@@ -43,15 +45,19 @@
     <google-analytics profile-id="@Tenant.GoogleAnalyticsProfileId" user-id="@User.GetUserId()"></google-analytics>
     <base href="@Context.Request.Path" />
 </head>
-<body class="d-flex flex-column @ViewData["BodyClass"] @ieBodyClass">
+<body class="d-flex flex-column @ViewData["BodyClass"] @ieBodyClass" style="@themeSetings.GetBodyStyle()">
     <header>
         <a id="skippy" class="sr-only sr-only-focusable" href="#content">
             <div class="container">
                 <span class="skiplink-text">Skip to main content</span>
             </div>
         </a>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-             @if (Tenant.ShowSiteNameLink)
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark" style="@themeSetings.GetNavbarStyle()">
+            @if (!string.IsNullOrWhiteSpace(Tenant.LogoUrl))
+            {
+                <a style="@themeSetings.GetNavbarStyle()" href="~/@(Tenant?.SiteFolderName ?? "")" ><img src="@Tenant.LogoUrl" style="height:100%;" class="mr-1" /></a>  
+            }
+            @if (Tenant.ShowSiteNameLink)
             {
                 <a href="~/@(Tenant?.SiteFolderName ?? "")" class="navbar-brand">@Tenant.SiteName </a>
             }
