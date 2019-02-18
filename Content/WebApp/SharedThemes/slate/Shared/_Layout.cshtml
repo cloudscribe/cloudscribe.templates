@@ -49,7 +49,7 @@
                 <span class="skiplink-text">Skip to main content</span>
             </div>
         </a>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark" style="@themeSettings.GetNavbarStyle()">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark pt-0 pb-0" style="@themeSettings.GetNavbarStyle()">
             @if (!string.IsNullOrWhiteSpace(Tenant.LogoUrl))
             {
                 <a style="@themeSettings.GetNavbarStyle()" href="~/@(Tenant?.SiteFolderName ?? "")" ><img src="@Tenant.LogoUrl" style="height:100%;" class="mr-1" /></a>  
@@ -63,7 +63,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse bg-dark pl-2" id="navbarNavDropdown">
                 @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4TopNavWithDropdowns", filterName = NamedNavigationFilters.TopNav, startingNodeKey = "" })
                 <partial name="_LoginPartialWithDropdowns" />
             </div>
