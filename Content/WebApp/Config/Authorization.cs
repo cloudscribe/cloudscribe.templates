@@ -159,6 +159,13 @@ namespace Microsoft.Extensions.DependencyInjection
                 });
 
             options.AddPolicy(
+                "FileUploadPolicy",
+                authBuilder =>
+                {
+                    authBuilder.RequireRole("Administrators", "Content Administrators");
+                });
+
+            options.AddPolicy(
                 "FileManagerDeletePolicy",
                 authBuilder =>
                 {
