@@ -11,49 +11,49 @@ body {
 
 #newPostLink {
     position: absolute;
-    top: 115px;
+    top: 170px;
     right: 0px;
 }
 
 #editPostLink {
     position: absolute;
-    top: 150px;
+    top: 200px;
     right: 0px;
 }
 
 #unpublishPostLink {
     position: absolute;
-    top: 185px !important;
+    top: 230px !important;
     right: 0px !important;
 }
 
 #pageManagerLink {
     position: absolute;
-    top: 115px;
+    top: 170px;
     right: 0px;
 }
 
 #newPageLink {
     position: absolute;
-    top: 150px;
+    top: 200px;
     right: 0px;
 }
 
 #editPageLink {
     position: absolute;
-    top: 185px;
+    top: 230px;
     right: 0px
 }
 
 #unpublishPageLink {
     position: absolute;
-    top: 220px !important;
+    top: 260px !important;
     right: 0px !important
 }
 
 #sidenavtoggle {
     position: absolute;
-    top: 120px;
+    top: 220px;
     right: 5px;
 }
 
