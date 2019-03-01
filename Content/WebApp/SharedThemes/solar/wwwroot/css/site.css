@@ -5,7 +5,7 @@
 
 body {
     min-height: 100vh;
-    padding-top: 3.8rem;
+    padding-top: 160px;
 }
 
 #newPostLink {
@@ -225,3 +225,12 @@ td img, video, iframe {
     white-space: nowrap;
 }
 /******** end jquery smart menu bootstrap-4 *****************/
+
+.brand-header {
+    height: 100px;
+    background-color: #002B36;
+}
+
+.navbar {
+    top: 100px;
+}

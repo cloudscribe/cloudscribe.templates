@@ -5,7 +5,7 @@
 
 body {
     min-height: 100vh;
-    padding-top: 3.7rem;
+    padding-top: 142px;
 }
 
 
@@ -226,3 +226,11 @@ td img, video, iframe {
     white-space: nowrap;
 }
 /******** end jquery smart menu bootstrap-4 *****************/
+
+.brand-header {
+    height: 100px;
+}
+
+.navbar {
+    top: 100px;
+}

@@ -10,7 +10,7 @@ html {
 
 body {
     min-height: 100vh;
-    padding-top: 3.5rem;
+    padding-top: 142px;
 }
 
 #newPostLink {
@@ -82,4 +82,12 @@ td img, video, iframe {
 
 .table td, .table th {
     vertical-align: inherit;
+}
+
+.brand-header {
+    height:100px;
+}
+
+.navbar {
+    top: 100px;
 }
