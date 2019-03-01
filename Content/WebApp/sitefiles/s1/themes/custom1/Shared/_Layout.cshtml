@@ -45,19 +45,19 @@
     <google-analytics profile-id="@Tenant.GoogleAnalyticsProfileId" user-id="@User.GetUserId()"></google-analytics>
     <base href="@Context.Request.Path" />
 </head>
-<body class="d-flex flex-column @ViewData["BodyClass"] @ieBodyClass" style="@themeSettings.GetBodyStyle()">
+<body class="d-flex flex-column @ViewData["BodyClass"] @ieBodyClass">
     <header>
         <a id="skippy" class="sr-only sr-only-focusable" href="#content">
             <div class="container">
                 <span class="skiplink-text">Skip to main content</span>
             </div>
         </a>
-        <div class="fixed-top container-fluid brand-header bg-white" style="@themeSettings.GetBrandHeaderStyle()">
+        <div class="fixed-top container-fluid brand-header bg-white">
             <div class="d-flex flex-wrap align-content-around ">
                 @if (!string.IsNullOrWhiteSpace(Tenant.LogoUrl))
                 {
                     <div class="d-none d-sm-block">
-                        <a style="@themeSettings.GetNavbarStyle()" href="~/@(Tenant?.SiteFolderName ?? "")"><img src="@Tenant.LogoUrl" alt="@Tenant.SiteName" style="height:100px;" class="mr-3" /></a>
+                        <a href="~/@(Tenant?.SiteFolderName ?? "")"><img src="@Tenant.LogoUrl" alt="@Tenant.SiteName" style="height:100px;" class="mr-3" /></a>
                     </div>
                 }
                 @if (Tenant.ShowSiteNameLink)
@@ -74,7 +74,7 @@
                 }
             </div>
         </div>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark pt-0 pb-0" style="@themeSettings.GetNavbarStyle()">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark pt-0 pb-0">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

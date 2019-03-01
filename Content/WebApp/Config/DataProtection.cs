@@ -52,6 +52,12 @@ namespace Microsoft.Extensions.DependencyInjection
                 //        .ProtectKeysWithAzureKeyVault("<keyIdentifier>", "<clientId>", "<clientSecret>")
                 //        ;
 
+                // https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?view=aspnetcore-2.2
+                //latest docs show it like this:
+                //services.AddDataProtection()
+                //        .PersistKeysToAzureBlobStorage(new Uri("<blobUriWithSasToken>"))
+                //        .ProtectKeysWithAzureKeyVault("<keyIdentifier>", "<clientId>", "<clientSecret>");
+
                 //}
                 //else
                 //{
