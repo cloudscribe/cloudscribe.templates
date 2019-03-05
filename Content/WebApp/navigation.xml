@@ -1112,7 +1112,8 @@
                  text="File Manager"
                  iconCssClass="far fa-file-image fa-fw"
                  componentVisibility="breadcrumbs,childtree,parenttree"
-                 authorizationPolicy="FileManagerPolicy">
+                 authorizationPolicy="FileManagerPolicy"
+                 excludeFromSearchSiteMap="true">
                     <Children> </Children>
                 </NavNode>
 

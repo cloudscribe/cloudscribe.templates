@@ -1,31 +1,47 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using cloudscribe.Core.Web.Localization;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Localization;
 using System.Globalization;
+using System.Linq;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class Localization
     {
         public static IServiceCollection SetupLocalization(
-            this IServiceCollection services
+            this IServiceCollection services,
+            IConfiguration config
             )
         {
-            // optional but recommended if you need localization 
-            // uncomment to use cloudscribe.Web.localization https://github.com/joeaudette/cloudscribe.Web.Localization
-            //services.Configure<GlobalResourceOptions>(Configuration.GetSection("GlobalResourceOptions"));
-            //services.AddSingleton<IStringLocalizerFactory, GlobalResourceManagerStringLocalizerFactory>();
+            // https://github.com/cloudscribe/cloudscribe.Web.Localization
+            // https://www.cloudscribe.com/localization
+            services.Configure<GlobalResourceOptions>(config.GetSection("GlobalResourceOptions"));
+            services.AddSingleton<IStringLocalizerFactory, GlobalResourceManagerStringLocalizerFactory>();
 
             services.AddLocalization(options => options.ResourcesPath = "GlobalResources");
 
-            services.Configure<RequestLocalizationOptions>(options =>
-            {
-                var supportedCultures = new[]
+            //you should only add cultures that you really plan to support
+            //if you translate the resx files or other files please share them back with us, email zip to info@cloudscribe.com
+            var supportedCultures = new[]
                 {
                     new CultureInfo("en-US"),
                     new CultureInfo("en-GB"),
+                    //new CultureInfo("cy-GB"),
                     //new CultureInfo("fr-FR"),
-                    //new CultureInfo("fr"),
+                    //new CultureInfo("it-IT"),
+                    //new CultureInfo("ar-AR"),
+                    //new CultureInfo("es-ES"),
+                   
                 };
+
+            //this comes from cloudscribe core
+            var routeSegmentLocalizationProvider = new UrlSegmentRequestCultureProvider(supportedCultures.ToList());
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                
 
                 // State what the default culture for your application is. This will be used if no specific culture
                 // can be determined for a given request.
@@ -50,6 +66,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 //  // My custom request culture logic
                 //  return new ProviderCultureResult("en");
                 //}));
+
+                options.RequestCultureProviders.Insert(0, routeSegmentLocalizationProvider);
+
             });
 
             return services;

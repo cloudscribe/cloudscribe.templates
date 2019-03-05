@@ -102,7 +102,7 @@ namespace WebApp
 
             //*** Important ***
             // This is a custom extension method in Config/Localization.cs
-            services.SetupLocalization();
+            services.SetupLocalization(_configuration);
 
             services.Configure<CookiePolicyOptions>(options =>
             {
