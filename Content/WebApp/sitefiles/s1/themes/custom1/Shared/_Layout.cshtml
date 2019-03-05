@@ -56,14 +56,22 @@
             <div class="d-flex flex-wrap align-content-around ">
                 @if (!string.IsNullOrWhiteSpace(Tenant.LogoUrl))
                 {
-                    <div class="d-none d-sm-block">
-                        <a href="~/@(Tenant?.SiteFolderName ?? "")"><img src="@Tenant.LogoUrl" alt="@Tenant.SiteName" style="height:100px;" class="mr-3" /></a>
+                    <div>
+                         @*#if (SimpleContentConfig == 'a' || SimpleContentConfig == 'b')*@
+                         <partial name="CmsSiteLogoPartial" model="@Tenant" />
+                         @*#else*@
+                         <partial name="SiteLogoPartial" model="@Tenant" />
+                         @*#endif*@
                     </div>
                 }
                 @if (Tenant.ShowSiteNameLink)
                 {
                     <div class="align-self-center pt-4 pt-sm-0">
-                        <a href="~/@(Tenant?.SiteFolderName ?? "")" class="h2 mr-3 text-dark" aria-hidden="true">@Tenant.SiteName </a>
+                         @*#if (SimpleContentConfig == 'a' || SimpleContentConfig == 'b')*@
+                         <partial name="CmsSiteTitlePartial" model="@Tenant" />
+                         @*#else*@
+                         <partial name="SiteTitlePartial" model="@Tenant" />
+                         @*#endif*@
                     </div>
                 }
                 @if (!string.IsNullOrWhiteSpace(Tenant.HeaderContent))

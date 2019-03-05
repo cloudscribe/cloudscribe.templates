@@ -41,6 +41,7 @@
     </environment>
     @RenderSection("Styles", required: false)
     <google-analytics profile-id="@Tenant.GoogleAnalyticsProfileId" user-id="@User.GetUserId()"></google-analytics>
+    <base href="@Context.Request.Path" />
 </head>
 <body class="d-flex flex-column @ViewData["BodyClass"]">
     <header>
@@ -54,13 +55,21 @@
                 @if (!string.IsNullOrWhiteSpace(Tenant.LogoUrl))
                 {
                     <div>
-                        <a href="~/@(Tenant?.SiteFolderName ?? "")"><img src="@Tenant.LogoUrl" alt="@Tenant.SiteName" style="height:100px;" class="mr-3" /></a>
+                         @*#if (SimpleContentConfig == 'a' || SimpleContentConfig == 'b')*@
+                         <partial name="CmsSiteLogoPartial" model="@Tenant" />
+                         @*#else*@
+                         <partial name="SiteLogoPartial" model="@Tenant" />
+                         @*#endif*@
                     </div>
                 }
                 @if (Tenant.ShowSiteNameLink)
                 {
                     <div class="align-self-center pt-4 pt-sm-0">
-                        <a href="~/@(Tenant?.SiteFolderName ?? "")" class="h3 mr-3" aria-hidden="true">@Tenant.SiteName </a>
+                         @*#if (SimpleContentConfig == 'a' || SimpleContentConfig == 'b')*@
+                         <partial name="CmsSiteTitlePartial" model="@Tenant" />
+                         @*#else*@
+                         <partial name="SiteTitlePartial" model="@Tenant" />
+                         @*#endif*@
                     </div>
                 }
                 @if (!string.IsNullOrWhiteSpace(Tenant.HeaderContent))
