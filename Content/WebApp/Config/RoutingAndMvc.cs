@@ -197,7 +197,7 @@ namespace Microsoft.AspNetCore.Builder
             routes.MapRoute(
                     name: "default-localized",
                     template: "{culture}/{controller}/{action}/{id?}",
-                    defaults: null,
+                    defaults: new { action = "Index" },
                     constraints: new { culture = new CultureSegmentRouteConstraint() }
                     );
                     
