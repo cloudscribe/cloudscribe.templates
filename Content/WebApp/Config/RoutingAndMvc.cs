@@ -178,7 +178,7 @@ namespace Microsoft.AspNetCore.Builder
 
             routes.MapRoute(
                 name: "sitemap-localized",
-                template: "sitemap"
+                template: "{culture}/sitemap"
                 , defaults: new { controller = "Page", action = "SiteMap" }
                 , constraints: new { culture = new CultureSegmentRouteConstraint() }
                 );
