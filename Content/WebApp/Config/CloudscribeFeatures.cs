@@ -256,9 +256,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddCloudscribeKvpUserProperties();
 #endif
 
-#if (ContactForm)
-            services.AddCloudscribeSimpleContactForm(config);
-#endif
+
             services.AddScoped<cloudscribe.Web.Navigation.INavigationNodePermissionResolver, cloudscribe.Web.Navigation.NavigationNodePermissionResolver>();
 #if (SimpleContentConfig != "z")
             services.AddScoped<cloudscribe.Web.Navigation.INavigationNodePermissionResolver, cloudscribe.SimpleContent.Web.Services.PagesNavigationNodePermissionResolver>();
@@ -271,6 +269,10 @@ namespace Microsoft.Extensions.DependencyInjection
             
             services.AddMetaWeblogForSimpleContent(config.GetSection("MetaWeblogApiOptions"));
             services.AddSimpleContentRssSyndiction();
+#endif
+#if (ContactForm)
+            services.AddCloudscribeSimpleContactFormCoreIntegration(config);
+            services.AddCloudscribeSimpleContactForm(config);
 #endif
 
 #if (FormBuilder)
