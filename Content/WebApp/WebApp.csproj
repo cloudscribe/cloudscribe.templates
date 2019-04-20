@@ -1,12 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>WebApp-4BC5DF1F-B155-4A69-9719-0AB349B1ACB2</UserSecretsId>
     <!--#if (Webpack)-->
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>    
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <!--#endif-->
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -160,7 +164,7 @@
     <!--#endif-->
 <!--#endif-->
 
-    <!-- Commercial libs start -->
+   
 
      <!--#if (FormBuilder)-->
     <PackageReference Include="cloudscribe.Forms.Web" Version="1.0.*" />
@@ -279,7 +283,7 @@
 <!--#endif-->
 
 
-    <!-- Commercial libs end -->
+    
     
   </ItemGroup>
 

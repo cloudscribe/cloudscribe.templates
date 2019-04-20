@@ -40,13 +40,13 @@
     <base href="@Context.Request.Path" />
 </head>
 <body class="d-flex flex-column @ViewData["BodyClass"]">
-    <header class="bg-dark">
+    <header class="bg-light">
         <a id="skippy" class="sr-only sr-only-focusable" href="#content">
             <div class="container">
                 <span class="skiplink-text">Skip to main content</span>
             </div>
         </a>
-        <div class="fixed-top brand-header bg-dark">
+        <div class="fixed-top brand-header bg-light">
             <div class="d-flex align-items-center bg-dark">
                 @if (!string.IsNullOrWhiteSpace(Tenant.LogoUrl))
                 {
@@ -76,11 +76,11 @@
                 }
             </div>
         </div>
-        <nav class="navbar navbar-expand-md  fixed-top bg-dark">
+        <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
             <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse bg-dark pl-2" id="navbarNavDropdown"> 
+            <div class="collapse navbar-collapse bg-primary pl-2" id="navbarNavDropdown"> 
                 @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4TopNavWithDropdowns", filterName = NamedNavigationFilters.TopNav, startingNodeKey = "" })
                 <partial name="_LoginPartialWithDropdowns" />
             </div>
@@ -153,12 +153,12 @@
     @RenderSection("Toolbar", required: false)
     <environment names="Development">
         <script src="~/js/jquery.js" cs-resolve-theme-resource="true" cs-shared-theme="true" cs-tenant="@Tenant"></script>
-        <script src="~/js/bootstrap4.bundle.js" cs-resolve-theme-resource="true" cs-shared-theme="true" cs-tenant="@Tenant"></script>
+        <script src="~/js/bootstrap.bundle.js" cs-resolve-theme-resource="true" cs-shared-theme="true" cs-tenant="@Tenant"></script>
         <script src="~/cr/js/bs4.smartmenus.min.js"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="~/js/jquery.min.js" cs-resolve-theme-resource="true" cs-shared-theme="true" cs-tenant="@Tenant"></script>
-        <script src="~/js/bootstrap4.bundle.min.js" cs-resolve-theme-resource="true" cs-shared-theme="true" cs-tenant="@Tenant"></script>
+        <script src="~/js/bootstrap.bundle.min.js" cs-resolve-theme-resource="true" cs-shared-theme="true" cs-tenant="@Tenant"></script>
         <script src="~/cr/js/bs4.smartmenus.min.js"></script>
     </environment>
     @RenderSection("Bottom", required: false)
