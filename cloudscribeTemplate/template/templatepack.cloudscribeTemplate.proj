@@ -26,6 +26,14 @@
     <ExcludeFromPackage Include="$(TemplateSourceRoot)**/.vs/**/*" />
     <ExcludeFromPackage Include="$(TemplateSourceRoot)**/.git/**/*" />
     <ExcludeFromPackage Include="$(TemplateSourceRoot)**/packages/**/*" />
+	
+	<ExcludeFromPackage Include="$(TemplateSourceRoot)**/*.exe" />
+	<ExcludeFromPackage Include="$(TemplateSourceRoot)**/*.pfx" />
+	<ExcludeFromPackage Include="$(TemplateSourceRoot)**/*.cmd" />
+	<ExcludeFromPackage Include="$(TemplateSourceRoot)/template.sln" />
+	<ExcludeFromPackage Include="$(TemplateSourceRoot)/.gitignore" />
+	<ExcludeFromPackage Include="$(TemplateSourceRoot)/cloudscribeTemplate/**" />
+	<ExcludeFromPackage Include="$(TemplateSourceRoot)/nupkgs/**" />
 
     <TemplateFiles  Include="$(TemplateSourceRoot)/**/*" 
                     Exclude="@(ExcludeFromPackage)" />

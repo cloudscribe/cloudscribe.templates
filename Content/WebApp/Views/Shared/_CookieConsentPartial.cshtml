@@ -4,6 +4,7 @@
 @{
     var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
     var showBanner = !consentFeature?.CanTrack ?? false;
+	if(Context.Request.Path.ToString().Contains("/offline")) { showBanner = false; }
     var cookieString = consentFeature?.CreateConsentCookie();
     var policySummary = sr["To ensure you get the best experience, this website uses cookies."];
     var tenant = await siteResolver.ResolveSite(Context.Request.Host.Host, Context.Request.Path);
