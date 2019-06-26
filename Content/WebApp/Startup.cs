@@ -195,10 +195,7 @@ namespace WebApp
 
             var multiTenantOptions = multiTenantOptionsAccessor.Value;
 
-            app.UseCloudscribeCore(
-                    loggerFactory,
-                    multiTenantOptions,
-                    _sslIsAvailable);
+            app.UseCloudscribeCore();
 
 #if (IdentityServer)
             if (!_disableIdentityServer && _didSetupIdServer)

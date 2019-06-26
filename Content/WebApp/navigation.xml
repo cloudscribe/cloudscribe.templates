@@ -246,7 +246,7 @@
                controller="SiteAdmin" 
                action="Index" 
                text="Administration" 
-               authorizationPolicy="AdminPolicy"
+               authorizationPolicy="AdminMenuPolicy"
                excludeFromSearchSiteMap="true"
                >
           <Children>
