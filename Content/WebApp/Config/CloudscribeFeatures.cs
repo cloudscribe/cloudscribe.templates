@@ -231,7 +231,23 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif        
 #endif
 
-
+#if (CommentSystem)
+#if (NoDb)
+            services.AddTalkAboutStorageNoDb();
+#endif
+#if (SQLite)
+            services.AddCommentStorageSQLite(connectionString);
+#endif
+#if (MSSQL)
+            services.AddCommentStorageMSSQL(connectionString);
+#endif
+#if (MySql)
+            services.AddCommentStorageMySql(connectionString);
+#endif
+#if (pgsql)
+            services.AddCommentStoragePostgreSql(connectionString);
+#endif       
+#endif
 
 
 
@@ -313,6 +329,13 @@ namespace Microsoft.Extensions.DependencyInjection
 #if (DynamicPolicy)
             services.AddCloudscribeDynamicPolicyIntegration(config);
             services.AddDynamicAuthorizationMvc(config);
+#endif
+
+#if (CommentSystem)
+            services.AddTalkAboutCloudscribeIntegration(config);
+            services.AddTalkAboutServices(config)
+                .AddTalkAboutNotificationServices(config)
+                ;
 #endif
 
             return services;

@@ -41,6 +41,7 @@ namespace cloudscribeTemplate
         private string _simpleContentOption = "a";
         private string _multiTenantMode = "FolderName";
         private bool _useLogging = true;
+        private bool _includeDynamicPolicy = true;
         //private bool _useSimpleContent = true;
         private bool _useContactForm = false;
         private bool _useKvpProfile = false;
@@ -55,7 +56,9 @@ namespace cloudscribeTemplate
         private bool _includeFormBuilder = false;
         private bool _includeNewsletter = false;
         private bool _includePaywall = false;
-        private bool _includeDynamicPolicy = false;
+
+        private bool _includeCommentSystem = false;
+
 
         private bool _exceptionOccurred = false;
         private ProjectOptionsDialog _dialog;
@@ -94,6 +97,8 @@ namespace cloudscribeTemplate
                 replacementsDictionary.Add("passthrough:Paywall", _includePaywall.ToString().ToLowerInvariant());
                 replacementsDictionary.Add("passthrough:DynamicPolicy", _includeDynamicPolicy.ToString().ToLowerInvariant());
 
+                replacementsDictionary.Add("passthrough:CommentSystem", _includeCommentSystem.ToString().ToLowerInvariant());
+
 
             }
             catch (Exception ex)
@@ -120,7 +125,9 @@ namespace cloudscribeTemplate
             if(_dialog != null)
             {
                 _dataStorage = (string)((ComboBox)_dialog.Controls["cbDataStorage"]).SelectedValue;
+                _includeDynamicPolicy = ((CheckBox)_dialog.Controls["chkDynamicPolicy"]).Checked;
                 _useLogging = ((CheckBox)_dialog.Controls["chkLogging"]).Checked;
+                
                 _useContactForm = ((CheckBox)_dialog.Controls["chkContactForm"]).Checked;
                 _useKvpProfile = ((CheckBox)_dialog.Controls["chkKvpProfile"]).Checked;
                 _useIdentityServer = ((CheckBox)_dialog.Controls["chkIdentityServer"]).Checked;
@@ -168,7 +175,8 @@ namespace cloudscribeTemplate
                 _includeFormBuilder = ((CheckBox)gbCommercial.Controls["chkFormBuilder"]).Checked;
                 _includeNewsletter = ((CheckBox)gbCommercial.Controls["chkNewsletter"]).Checked;
                 _includePaywall = ((CheckBox)gbCommercial.Controls["chkPaywall"]).Checked;
-                _includeDynamicPolicy = ((CheckBox)gbCommercial.Controls["chkDynamicPolicy"]).Checked;
+                _includeCommentSystem = ((CheckBox)gbCommercial.Controls["chkCommentSystem"]).Checked;
+
 
                 _dialog.Close();
             }

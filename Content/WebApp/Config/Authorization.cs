@@ -172,6 +172,20 @@ namespace Microsoft.Extensions.DependencyInjection
                     authBuilder.RequireRole("Administrators", "Content Administrators");
                 });
 
+            options.AddPolicy(
+                "CommentAdminPolicy",
+                authBuilder =>
+                {
+                    authBuilder.RequireRole("Administrators", "Content Administrators");
+                });
+
+            options.AddPolicy(
+                "CommentModerationPolicy",
+                authBuilder =>
+                {
+                    authBuilder.RequireRole("Administrators", "Content Administrators");
+                });
+
 #if (IdentityServer)
             options.AddPolicy(
                     "IdentityServerAdminPolicy",

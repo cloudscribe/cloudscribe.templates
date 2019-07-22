@@ -45,6 +45,7 @@ namespace cloudscribeTemplate
             cbMultiTenancy.ValueMember = "Key";
             cbMultiTenancy.DisplayMember = "Text";
 
+            chkDynamicPolicy.Checked = true;
             chkLogging.Checked = true;
 
             chkPaywall.Enabled = false;
@@ -88,9 +89,9 @@ namespace cloudscribeTemplate
             lnkStripeIntegration.Links.Add(stripeLink);
 
 
-            LinkLabel.Link dynamicPolicyLink = new LinkLabel.Link();
-            dynamicPolicyLink.LinkData = "https://www.cloudscribe.com/products/dynamic-authorization-policies?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
-            lnkDynamicPolicy.Links.Add(dynamicPolicyLink);
+            LinkLabel.Link commentSystemLink = new LinkLabel.Link();
+            commentSystemLink.LinkData = "https://www.cloudscribe.com/products/cloudscribe-talkabout-comment-system?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
+            lnkCommentSystem.Links.Add(commentSystemLink);
 
         }
 
@@ -200,12 +201,22 @@ namespace cloudscribeTemplate
             Process.Start(e.Link.LinkData as string);
         }
 
-        private void lnkDynamicPolicy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        //private void lnkDynamicPolicy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        //{
+        //    Process.Start(e.Link.LinkData as string);
+        //}
+
+        private void lnkChat_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(e.Link.LinkData as string);
         }
 
-        private void lnkChat_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lnkCommentSystem_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(e.Link.LinkData as string);
         }
