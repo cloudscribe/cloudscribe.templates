@@ -52,6 +52,8 @@
             this.lnkWebpack = new System.Windows.Forms.LinkLabel();
             this.lblExpertWarning = new System.Windows.Forms.Label();
             this.gbCommercial = new System.Windows.Forms.GroupBox();
+            this.lnkCommentSystem = new System.Windows.Forms.LinkLabel();
+            this.chkCommentSystem = new System.Windows.Forms.CheckBox();
             this.lnkChat = new System.Windows.Forms.LinkLabel();
             this.lnkStripeIntegration = new System.Windows.Forms.LinkLabel();
             this.lnkPaywall = new System.Windows.Forms.LinkLabel();
@@ -321,6 +323,8 @@
             // 
             // gbCommercial
             // 
+            this.gbCommercial.Controls.Add(this.lnkCommentSystem);
+            this.gbCommercial.Controls.Add(this.chkCommentSystem);
             this.gbCommercial.Controls.Add(this.lnkChat);
             this.gbCommercial.Controls.Add(this.lnkStripeIntegration);
             this.gbCommercial.Controls.Add(this.lnkPaywall);
@@ -338,6 +342,27 @@
             this.gbCommercial.TabStop = false;
             this.gbCommercial.Text = "Commercial Add On Products";
             // 
+            // lnkCommentSystem
+            // 
+            this.lnkCommentSystem.AutoSize = true;
+            this.lnkCommentSystem.Location = new System.Drawing.Point(230, 104);
+            this.lnkCommentSystem.Name = "lnkCommentSystem";
+            this.lnkCommentSystem.Size = new System.Drawing.Size(69, 13);
+            this.lnkCommentSystem.TabIndex = 14;
+            this.lnkCommentSystem.TabStop = true;
+            this.lnkCommentSystem.Text = "Learn more...";
+            this.lnkCommentSystem.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCommentSystem_LinkClicked);
+            // 
+            // chkCommentSystem
+            // 
+            this.chkCommentSystem.AutoSize = true;
+            this.chkCommentSystem.Location = new System.Drawing.Point(16, 104);
+            this.chkCommentSystem.Name = "chkCommentSystem";
+            this.chkCommentSystem.Size = new System.Drawing.Size(207, 17);
+            this.chkCommentSystem.TabIndex = 13;
+            this.chkCommentSystem.Text = "Include \"TalkAbout\" Comment System";
+            this.chkCommentSystem.UseVisualStyleBackColor = true;
+            // 
             // lnkChat
             // 
             this.lnkChat.AutoSize = true;
@@ -352,7 +377,7 @@
             // lnkStripeIntegration
             // 
             this.lnkStripeIntegration.AutoSize = true;
-            this.lnkStripeIntegration.Location = new System.Drawing.Point(34, 190);
+            this.lnkStripeIntegration.Location = new System.Drawing.Point(31, 220);
             this.lnkStripeIntegration.Name = "lnkStripeIntegration";
             this.lnkStripeIntegration.Size = new System.Drawing.Size(217, 13);
             this.lnkStripeIntegration.TabIndex = 8;
@@ -363,7 +388,7 @@
             // lnkPaywall
             // 
             this.lnkPaywall.AutoSize = true;
-            this.lnkPaywall.Location = new System.Drawing.Point(233, 171);
+            this.lnkPaywall.Location = new System.Drawing.Point(230, 201);
             this.lnkPaywall.Name = "lnkPaywall";
             this.lnkPaywall.Size = new System.Drawing.Size(69, 13);
             this.lnkPaywall.TabIndex = 7;
@@ -374,17 +399,17 @@
             // chkPaywall
             // 
             this.chkPaywall.AutoSize = true;
-            this.chkPaywall.Location = new System.Drawing.Point(19, 170);
+            this.chkPaywall.Location = new System.Drawing.Point(16, 200);
             this.chkPaywall.Name = "chkPaywall";
-            this.chkPaywall.Size = new System.Drawing.Size(186, 17);
+            this.chkPaywall.Size = new System.Drawing.Size(171, 17);
             this.chkPaywall.TabIndex = 6;
-            this.chkPaywall.Text = "Include Membership Paywall ** ***";
+            this.chkPaywall.Text = "Include Membership Paywall **";
             this.chkPaywall.UseVisualStyleBackColor = true;
             // 
             // lnkNewsletter
             // 
             this.lnkNewsletter.AutoSize = true;
-            this.lnkNewsletter.Location = new System.Drawing.Point(233, 136);
+            this.lnkNewsletter.Location = new System.Drawing.Point(230, 166);
             this.lnkNewsletter.Name = "lnkNewsletter";
             this.lnkNewsletter.Size = new System.Drawing.Size(69, 13);
             this.lnkNewsletter.TabIndex = 5;
@@ -404,7 +429,7 @@
             // chkNewsletter
             // 
             this.chkNewsletter.AutoSize = true;
-            this.chkNewsletter.Location = new System.Drawing.Point(19, 137);
+            this.chkNewsletter.Location = new System.Drawing.Point(16, 167);
             this.chkNewsletter.Name = "chkNewsletter";
             this.chkNewsletter.Size = new System.Drawing.Size(128, 17);
             this.chkNewsletter.TabIndex = 3;
@@ -414,7 +439,7 @@
             // lnkFormProduct
             // 
             this.lnkFormProduct.AutoSize = true;
-            this.lnkFormProduct.Location = new System.Drawing.Point(233, 107);
+            this.lnkFormProduct.Location = new System.Drawing.Point(230, 137);
             this.lnkFormProduct.Name = "lnkFormProduct";
             this.lnkFormProduct.Size = new System.Drawing.Size(69, 13);
             this.lnkFormProduct.TabIndex = 2;
@@ -433,7 +458,7 @@
             // chkFormBuilder
             // 
             this.chkFormBuilder.AutoSize = true;
-            this.chkFormBuilder.Location = new System.Drawing.Point(19, 107);
+            this.chkFormBuilder.Location = new System.Drawing.Point(16, 137);
             this.chkFormBuilder.Name = "chkFormBuilder";
             this.chkFormBuilder.Size = new System.Drawing.Size(160, 17);
             this.chkFormBuilder.TabIndex = 0;
@@ -518,5 +543,7 @@
         private System.Windows.Forms.LinkLabel lnkStripeIntegration;
         private System.Windows.Forms.CheckBox chkDynamicPolicy;
         private System.Windows.Forms.LinkLabel lnkChat;
+        private System.Windows.Forms.LinkLabel lnkCommentSystem;
+        private System.Windows.Forms.CheckBox chkCommentSystem;
     }
 }

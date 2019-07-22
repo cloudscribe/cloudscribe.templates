@@ -111,6 +111,11 @@ namespace WebApp
             DynamicPolicyEFCore.InitializeDatabaseAsync(scopedServices).Wait();
             #endif
             #endif
+            #if (CommentSystem)
+            #if (!NoDb)
+            CommentsDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
 
             
 

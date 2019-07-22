@@ -46,6 +46,22 @@
           ]
         },
         {
+          "condition": "(!CommentSystem)",
+          "exclude": [
+            "Views/Shared/TalkAboutCoreImageModalContent.cshtml",
+            "Views/Shared/TalkAboutImageModalContent.cshtml"
+          ]
+        },
+        {
+          "condition": "(!CommentSystem || SimpleContentConfig == 'z')",
+          "exclude": [
+            "Views/Shared/CommentScriptsPartial.cshtml",
+            "Views/Shared/CommentStylePartial.cshtml",
+            "Views/Blog/**",
+            "Views/Page/**"
+          ]
+        },
+        {
           "condition": "(!KvpCustomRegistration && !Newsletter)",
           "exclude": [
             "app-userproperties.json",
@@ -215,6 +231,13 @@
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Include cloudscribe Newsletter/Email List add on product. Cannot be used with NoDb or SQLite."
+    },
+
+    "CommentSystem": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include cloudscribe TalkAbout GDPR friendly comment system add on product."
     },
 
     "DynamicPolicy": {

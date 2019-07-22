@@ -860,6 +860,20 @@
                 </NavNode>
               <!--#endif-->
 
+               <!--#if (CommentSystem)-->
+               <NavNode key="CommentSystemSettings"
+                            controller="Talk"
+                            action="Config"
+                            text="Comment System Settings"
+                            preservedRouteParameters=""
+                            iconCssClass="fas fa-cog fa-fw"
+                            componentVisibility="breadcrumbs,childtree,parenttree"
+                            authorizationPolicy="CommentAdminPolicy">
+              <Children></Children>
+            </NavNode>
+
+               <!--#endif-->
+
               <!--#if (FormBuilder)-->
 
                <NavNode key="CloudscribeForms"
