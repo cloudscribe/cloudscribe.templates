@@ -220,8 +220,8 @@
     "DynamicPolicy": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": "false",
-      "description": "Include cloudscribe Dynamic Authorization Policies add on product."
+      "defaultValue": "true",
+      "description": "Include cloudscribe Dynamic Authorization Policies."
     },
 
     "DataStorage": {

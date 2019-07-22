@@ -53,9 +53,6 @@
             this.lblExpertWarning = new System.Windows.Forms.Label();
             this.gbCommercial = new System.Windows.Forms.GroupBox();
             this.lnkChat = new System.Windows.Forms.LinkLabel();
-            this.lnkDynamicPolicy = new System.Windows.Forms.LinkLabel();
-            this.chkDynamicPolicy = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.lnkStripeIntegration = new System.Windows.Forms.LinkLabel();
             this.lnkPaywall = new System.Windows.Forms.LinkLabel();
             this.chkPaywall = new System.Windows.Forms.CheckBox();
@@ -65,6 +62,7 @@
             this.lnkFormProduct = new System.Windows.Forms.LinkLabel();
             this.lblComercialAddOns = new System.Windows.Forms.Label();
             this.chkFormBuilder = new System.Windows.Forms.CheckBox();
+            this.chkDynamicPolicy = new System.Windows.Forms.CheckBox();
             this.gbSimpleContentConfig.SuspendLayout();
             this.gbExpert.SuspendLayout();
             this.gbCommercial.SuspendLayout();
@@ -200,7 +198,7 @@
             // chkLogging
             // 
             this.chkLogging.AutoSize = true;
-            this.chkLogging.Location = new System.Drawing.Point(46, 305);
+            this.chkLogging.Location = new System.Drawing.Point(46, 337);
             this.chkLogging.Margin = new System.Windows.Forms.Padding(2);
             this.chkLogging.Name = "chkLogging";
             this.chkLogging.Size = new System.Drawing.Size(288, 17);
@@ -211,7 +209,7 @@
             // chkContactForm
             // 
             this.chkContactForm.AutoSize = true;
-            this.chkContactForm.Location = new System.Drawing.Point(46, 332);
+            this.chkContactForm.Location = new System.Drawing.Point(46, 364);
             this.chkContactForm.Margin = new System.Windows.Forms.Padding(2);
             this.chkContactForm.Name = "chkContactForm";
             this.chkContactForm.Size = new System.Drawing.Size(161, 17);
@@ -222,7 +220,7 @@
             // chkKvpProfile
             // 
             this.chkKvpProfile.AutoSize = true;
-            this.chkKvpProfile.Location = new System.Drawing.Point(46, 358);
+            this.chkKvpProfile.Location = new System.Drawing.Point(46, 390);
             this.chkKvpProfile.Margin = new System.Windows.Forms.Padding(2);
             this.chkKvpProfile.Name = "chkKvpProfile";
             this.chkKvpProfile.Size = new System.Drawing.Size(215, 17);
@@ -233,7 +231,7 @@
             // chkIdentityServer
             // 
             this.chkIdentityServer.AutoSize = true;
-            this.chkIdentityServer.Location = new System.Drawing.Point(46, 388);
+            this.chkIdentityServer.Location = new System.Drawing.Point(46, 420);
             this.chkIdentityServer.Margin = new System.Windows.Forms.Padding(2);
             this.chkIdentityServer.Name = "chkIdentityServer";
             this.chkIdentityServer.Size = new System.Drawing.Size(188, 17);
@@ -243,7 +241,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(222, 590);
+            this.btnOk.Location = new System.Drawing.Point(222, 622);
             this.btnOk.Margin = new System.Windows.Forms.Padding(2);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(110, 27);
@@ -266,7 +264,7 @@
             this.gbExpert.Controls.Add(this.chkWebpack);
             this.gbExpert.Controls.Add(this.lnkWebpack);
             this.gbExpert.Controls.Add(this.lblExpertWarning);
-            this.gbExpert.Location = new System.Drawing.Point(42, 424);
+            this.gbExpert.Location = new System.Drawing.Point(42, 456);
             this.gbExpert.Margin = new System.Windows.Forms.Padding(2);
             this.gbExpert.Name = "gbExpert";
             this.gbExpert.Padding = new System.Windows.Forms.Padding(2);
@@ -324,9 +322,6 @@
             // gbCommercial
             // 
             this.gbCommercial.Controls.Add(this.lnkChat);
-            this.gbCommercial.Controls.Add(this.lnkDynamicPolicy);
-            this.gbCommercial.Controls.Add(this.chkDynamicPolicy);
-            this.gbCommercial.Controls.Add(this.label4);
             this.gbCommercial.Controls.Add(this.lnkStripeIntegration);
             this.gbCommercial.Controls.Add(this.lnkPaywall);
             this.gbCommercial.Controls.Add(this.chkPaywall);
@@ -353,36 +348,6 @@
             this.lnkChat.TabStop = true;
             this.lnkChat.Text = "Questions?";
             this.lnkChat.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkChat_LinkClicked);
-            // 
-            // lnkDynamicPolicy
-            // 
-            this.lnkDynamicPolicy.AutoSize = true;
-            this.lnkDynamicPolicy.Location = new System.Drawing.Point(233, 225);
-            this.lnkDynamicPolicy.Name = "lnkDynamicPolicy";
-            this.lnkDynamicPolicy.Size = new System.Drawing.Size(69, 13);
-            this.lnkDynamicPolicy.TabIndex = 11;
-            this.lnkDynamicPolicy.TabStop = true;
-            this.lnkDynamicPolicy.Text = "Learn more...";
-            this.lnkDynamicPolicy.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDynamicPolicy_LinkClicked);
-            // 
-            // chkDynamicPolicy
-            // 
-            this.chkDynamicPolicy.AutoSize = true;
-            this.chkDynamicPolicy.Location = new System.Drawing.Point(19, 225);
-            this.chkDynamicPolicy.Name = "chkDynamicPolicy";
-            this.chkDynamicPolicy.Size = new System.Drawing.Size(208, 17);
-            this.chkDynamicPolicy.TabIndex = 10;
-            this.chkDynamicPolicy.Text = "Include Dynamic Authorization Policies";
-            this.chkDynamicPolicy.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(13, 566);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(307, 37);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "*** Dynamic Authorization Policies is a recommended but not required companion pr" +
-    "oduct.";
             // 
             // lnkStripeIntegration
             // 
@@ -430,7 +395,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 549);
+            this.label3.Location = new System.Drawing.Point(13, 586);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(185, 13);
             this.label3.TabIndex = 4;
@@ -475,6 +440,16 @@
             this.chkFormBuilder.Text = "Include Form/Survey Builder";
             this.chkFormBuilder.UseVisualStyleBackColor = true;
             // 
+            // chkDynamicPolicy
+            // 
+            this.chkDynamicPolicy.AutoSize = true;
+            this.chkDynamicPolicy.Location = new System.Drawing.Point(46, 305);
+            this.chkDynamicPolicy.Name = "chkDynamicPolicy";
+            this.chkDynamicPolicy.Size = new System.Drawing.Size(208, 17);
+            this.chkDynamicPolicy.TabIndex = 10;
+            this.chkDynamicPolicy.Text = "Include Dynamic Authorization Policies";
+            this.chkDynamicPolicy.UseVisualStyleBackColor = true;
+            // 
             // ProjectOptionsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,6 +458,7 @@
             this.ClientSize = new System.Drawing.Size(947, 666);
             this.Controls.Add(this.gbCommercial);
             this.Controls.Add(this.gbExpert);
+            this.Controls.Add(this.chkDynamicPolicy);
             this.Controls.Add(this.cbMultiTenancy);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.chkIdentityServer);
@@ -540,9 +516,7 @@
         private System.Windows.Forms.LinkLabel lnkPaywall;
         private System.Windows.Forms.CheckBox chkPaywall;
         private System.Windows.Forms.LinkLabel lnkStripeIntegration;
-        private System.Windows.Forms.LinkLabel lnkDynamicPolicy;
         private System.Windows.Forms.CheckBox chkDynamicPolicy;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel lnkChat;
     }
 }
