@@ -360,6 +360,7 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 
 #if (CommentSystem)
+            services.AddTalkAboutCommentsCloudscribeIntegration(config);
             services.AddTalkAboutServices(config)
                 .AddTalkAboutNotificationServices(config);
 #endif

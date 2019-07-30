@@ -284,6 +284,7 @@
 
  <!--#if (CommentSystem)-->
     <PackageReference Include="cloudscribe.TalkAbout.Web" Version="1.0.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Comments.Integration.CloudscribeCore" Version="1.0.*" />
     <PackageReference Include="cloudscribe.TalkAbout.Web.Bootstrap4" Version="1.0.*" />
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.TalkAbout.Storage.NoDb" Version="1.0.*" />
