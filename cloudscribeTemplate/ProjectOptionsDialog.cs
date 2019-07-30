@@ -61,7 +61,7 @@ namespace cloudscribeTemplate
             txtNonRootPagesTitle.TextChanged += TxtNonRootPagesTitle_TextChanged;
 
             LinkLabel.Link chatLink = new LinkLabel.Link();
-            chatLink.LinkData = "https://gitter.im/joeaudette/cloudscribe";
+            chatLink.LinkData = "https://www.cloudscribe.com/forum?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
             lnkChat.Links.Add(chatLink);
 
             LinkLabel.Link link = new LinkLabel.Link();
@@ -92,6 +92,14 @@ namespace cloudscribeTemplate
             LinkLabel.Link commentSystemLink = new LinkLabel.Link();
             commentSystemLink.LinkData = "https://www.cloudscribe.com/products/cloudscribe-talkabout-comment-system?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
             lnkCommentSystem.Links.Add(commentSystemLink);
+
+            LinkLabel.Link forumLink = new LinkLabel.Link();
+            forumLink.LinkData = "https://www.cloudscribe.com/products/cloudscribe-talkabout-forums?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
+            lnkForum.Links.Add(forumLink);
+
+            LinkLabel.Link dynAuthLink = new LinkLabel.Link();
+            dynAuthLink.LinkData = "https://www.cloudscribe.com/dynamic-authorization-policies?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
+            lnkDynamicAuth.Links.Add(dynAuthLink);
 
         }
 
@@ -217,6 +225,16 @@ namespace cloudscribeTemplate
         }
 
         private void lnkCommentSystem_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(e.Link.LinkData as string);
+        }
+
+        private void lnkForum_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(e.Link.LinkData as string);
+        }
+
+        private void lnkDynamicAuth_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(e.Link.LinkData as string);
         }

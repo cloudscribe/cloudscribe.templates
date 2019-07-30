@@ -283,23 +283,47 @@
 <!--#endif-->
 
  <!--#if (CommentSystem)-->
-    <PackageReference Include="cloudscribe.TalkAbout.Web" Version="1.0.0-*" />
-    <PackageReference Include="cloudscribe.TalkAbout.Web.Bootstrap4" Version="1.0.0-*" />
-    <PackageReference Include="cloudscribe.TalkAbout.Integration.CloudscribeCore" Version="1.0.0-*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Web" Version="1.0.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Comments.Integration.CloudscribeCore" Version="1.0.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Web.Bootstrap4" Version="1.0.*" />
     <!--#if (NoDb)-->
-    <PackageReference Include="cloudscribe.TalkAbout.Storage.NoDb" Version="1.0.0-*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Storage.NoDb" Version="1.0.*" />
     <!--#endif-->
     <!--#if (SQLite)-->
-    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.SQLite" Version="1.0.0-*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.SQLite" Version="1.0.*" />
     <!--#endif-->
     <!--#if (MSSQL)-->
-   <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.MSSQL" Version="1.0.0-*" />
+   <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.MSSQL" Version="1.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.MySql" Version="1.0.0-*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.MySql" Version="1.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
-    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.PostgreSql" Version="1.0.0-*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.PostgreSql" Version="1.0.*" />
+    <!--#endif-->
+    <!--#endif-->
+
+     <!--#if (CommentSystem || Forum)-->
+     <PackageReference Include="cloudscribe.TalkAbout.Integration.CloudscribeCore" Version="1.0.*" />
+     <!--#endif-->
+
+    <!--#if (Forum)-->
+    <PackageReference Include="cloudscribe.TalkAbout.Forum.Web" Version="1.0.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Forum.Web.Bootstrap4" Version="1.0.*" />
+    <!--#if (NoDb)-->
+     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.NoDb" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (SQLite)-->
+     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.SQLite" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (MSSQL)-->
+    <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.MSSQL" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (MySql)-->
+     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.MySql" Version="1.0.*" />
+    <!--#endif-->
+    <!--#if (pgsql)-->
+     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.PostgreSql" Version="1.0.*" />
     <!--#endif-->
     <!--#endif-->
     

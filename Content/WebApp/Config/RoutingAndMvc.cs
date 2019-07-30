@@ -145,6 +145,9 @@ namespace Microsoft.AspNetCore.Builder
                 template: "oops/error/{statusCode?}",
                 defaults: new { controller = "Oops", action = "Error" }
                 );
+#if (Forum)
+            routes.AddForumRoutes(new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint());
+#endif            
 
 #if (ContactForm)
             routes.MapRoute(

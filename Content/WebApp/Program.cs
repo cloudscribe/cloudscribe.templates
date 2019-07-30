@@ -116,6 +116,11 @@ namespace WebApp
             CommentsDatabase.InitializeDatabaseAsync(scopedServices).Wait();
             #endif
             #endif
+            #if (Forum)
+            #if (!NoDb)
+            ForumDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            #endif
+            #endif
 
             
 

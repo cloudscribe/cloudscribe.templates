@@ -249,6 +249,24 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif       
 #endif
 
+#if (Forum)
+#if (NoDb)
+            services.AddTalkAboutForumStorageNoDb();
+#endif
+#if (SQLite)
+            services.AddForumStorageSQLite(connectionString);
+#endif
+#if (MSSQL)
+            services.AddForumStorageMSSQL(connectionString);
+#endif
+#if (MySql)
+            services.AddForumStorageMySql(connectionString);
+#endif
+#if (pgsql)
+            services.AddForumStoragePostgreSql(connectionString);
+#endif       
+#endif
+
 
 
             return services;
@@ -331,11 +349,20 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddDynamicAuthorizationMvc(config);
 #endif
 
+#if (CommentSystem || Forum)
+            services.AddTalkAboutCloudscribeIntegration(config);    
+#endif
+
+#if (Forum)
+  
+            services.AddTalkAboutForumServices(config)
+                .AddTalkAboutForumNotificationServices(config);
+#endif
+
 #if (CommentSystem)
-            services.AddTalkAboutCloudscribeIntegration(config);
+            services.AddTalkAboutCommentsCloudscribeIntegration(config);
             services.AddTalkAboutServices(config)
-                .AddTalkAboutNotificationServices(config)
-                ;
+                .AddTalkAboutNotificationServices(config);
 #endif
 
             return services;

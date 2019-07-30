@@ -12,6 +12,62 @@
          <!--#endif-->
          >
   <Children>
+    <!--#if (Forum)-->
+ <NavNode key="ForumIndex"
+              controller="Forum"
+              action="Index"
+              text="Forum"
+              authorizationPolicy="ForumViewPolicy"
+              componentVisibility=""
+              >
+      <Children>
+
+        <NavNode key="ForumSettings"
+                            controller="Forum"
+                            action="Config"
+                            text="Configuration"
+                            preservedRouteParameters=""
+                            iconCssClass="fas fa-cog fa-fw"
+                            componentVisibility="breadcrumbs,appmenu"
+                            authorizationPolicy="ForumAdminPolicy">
+          <Children></Children>
+        </NavNode>
+
+        <NavNode key="ForumTags"
+                   controller="Forum"
+                   action="Tags"
+                   text="Tags"
+                   preservedRouteParameters=""
+                   iconCssClass="fas fa-tags fa-fw"
+                   componentVisibility="breadcrumbs,appmenu"
+                   authorizationPolicy="ForumViewPolicy">
+          <Children></Children>
+        </NavNode>
+
+        <NavNode key="ForumThread"
+              controller="Forum"
+              action="Thread"
+              text="Thread"
+              authorizationPolicy="ForumViewPolicy"
+              componentVisibility="breadcrumbs"
+              >
+          <Children></Children>
+        </NavNode>
+        <NavNode key="ForumNewThread"
+              controller="Forum"
+              action="Ask"
+              text="Ask a question"
+              authorizationPolicy="ForumPostPolicy"
+              componentVisibility="breadcrumbs"
+              >
+          <Children></Children>
+        </NavNode>
+
+      </Children>
+    </NavNode>
+
+    <!--#endif-->
+
       <!--#if (SimpleContentConfig == 'd' || SimpleContentConfig == 'b')-->
        <NavNode key="Blog"
             controller="Blog"
