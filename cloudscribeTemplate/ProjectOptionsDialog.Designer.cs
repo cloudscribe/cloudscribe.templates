@@ -52,6 +52,8 @@
             this.lnkWebpack = new System.Windows.Forms.LinkLabel();
             this.lblExpertWarning = new System.Windows.Forms.Label();
             this.gbCommercial = new System.Windows.Forms.GroupBox();
+            this.lnkForum = new System.Windows.Forms.LinkLabel();
+            this.chkForum = new System.Windows.Forms.CheckBox();
             this.lnkCommentSystem = new System.Windows.Forms.LinkLabel();
             this.chkCommentSystem = new System.Windows.Forms.CheckBox();
             this.lnkChat = new System.Windows.Forms.LinkLabel();
@@ -65,6 +67,7 @@
             this.lblComercialAddOns = new System.Windows.Forms.Label();
             this.chkFormBuilder = new System.Windows.Forms.CheckBox();
             this.chkDynamicPolicy = new System.Windows.Forms.CheckBox();
+            this.lnkDynamicAuth = new System.Windows.Forms.LinkLabel();
             this.gbSimpleContentConfig.SuspendLayout();
             this.gbExpert.SuspendLayout();
             this.gbCommercial.SuspendLayout();
@@ -323,6 +326,8 @@
             // 
             // gbCommercial
             // 
+            this.gbCommercial.Controls.Add(this.lnkForum);
+            this.gbCommercial.Controls.Add(this.chkForum);
             this.gbCommercial.Controls.Add(this.lnkCommentSystem);
             this.gbCommercial.Controls.Add(this.chkCommentSystem);
             this.gbCommercial.Controls.Add(this.lnkChat);
@@ -342,10 +347,31 @@
             this.gbCommercial.TabStop = false;
             this.gbCommercial.Text = "Commercial Add On Products";
             // 
+            // lnkForum
+            // 
+            this.lnkForum.AutoSize = true;
+            this.lnkForum.Location = new System.Drawing.Point(283, 200);
+            this.lnkForum.Name = "lnkForum";
+            this.lnkForum.Size = new System.Drawing.Size(69, 13);
+            this.lnkForum.TabIndex = 16;
+            this.lnkForum.TabStop = true;
+            this.lnkForum.Text = "Learn more...";
+            this.lnkForum.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkForum_LinkClicked);
+            // 
+            // chkForum
+            // 
+            this.chkForum.Location = new System.Drawing.Point(6, 169);
+            this.chkForum.Name = "chkForum";
+            this.chkForum.Size = new System.Drawing.Size(346, 36);
+            this.chkForum.TabIndex = 15;
+            this.chkForum.Text = "Include \"TalkAbout\" Forum, a stackoverflow like question and answer forum";
+            this.chkForum.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.chkForum.UseVisualStyleBackColor = true;
+            // 
             // lnkCommentSystem
             // 
             this.lnkCommentSystem.AutoSize = true;
-            this.lnkCommentSystem.Location = new System.Drawing.Point(230, 104);
+            this.lnkCommentSystem.Location = new System.Drawing.Point(286, 153);
             this.lnkCommentSystem.Name = "lnkCommentSystem";
             this.lnkCommentSystem.Size = new System.Drawing.Size(69, 13);
             this.lnkCommentSystem.TabIndex = 14;
@@ -355,12 +381,13 @@
             // 
             // chkCommentSystem
             // 
-            this.chkCommentSystem.AutoSize = true;
-            this.chkCommentSystem.Location = new System.Drawing.Point(16, 104);
+            this.chkCommentSystem.Location = new System.Drawing.Point(6, 117);
             this.chkCommentSystem.Name = "chkCommentSystem";
-            this.chkCommentSystem.Size = new System.Drawing.Size(207, 17);
+            this.chkCommentSystem.Size = new System.Drawing.Size(346, 33);
             this.chkCommentSystem.TabIndex = 13;
-            this.chkCommentSystem.Text = "Include \"TalkAbout\" Comment System";
+            this.chkCommentSystem.Text = "Include \"TalkAbout\" Comment System, a self hosted, GDPR friendly alternative to D" +
+    "isqus";
+            this.chkCommentSystem.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.chkCommentSystem.UseVisualStyleBackColor = true;
             // 
             // lnkChat
@@ -368,16 +395,16 @@
             this.lnkChat.AutoSize = true;
             this.lnkChat.Location = new System.Drawing.Point(13, 614);
             this.lnkChat.Name = "lnkChat";
-            this.lnkChat.Size = new System.Drawing.Size(60, 13);
+            this.lnkChat.Size = new System.Drawing.Size(185, 13);
             this.lnkChat.TabIndex = 12;
             this.lnkChat.TabStop = true;
-            this.lnkChat.Text = "Questions?";
+            this.lnkChat.Text = "Questions? Visit our community forum.";
             this.lnkChat.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkChat_LinkClicked);
             // 
             // lnkStripeIntegration
             // 
             this.lnkStripeIntegration.AutoSize = true;
-            this.lnkStripeIntegration.Location = new System.Drawing.Point(31, 220);
+            this.lnkStripeIntegration.Location = new System.Drawing.Point(21, 329);
             this.lnkStripeIntegration.Name = "lnkStripeIntegration";
             this.lnkStripeIntegration.Size = new System.Drawing.Size(217, 13);
             this.lnkStripeIntegration.TabIndex = 8;
@@ -388,7 +415,7 @@
             // lnkPaywall
             // 
             this.lnkPaywall.AutoSize = true;
-            this.lnkPaywall.Location = new System.Drawing.Point(230, 201);
+            this.lnkPaywall.Location = new System.Drawing.Point(283, 309);
             this.lnkPaywall.Name = "lnkPaywall";
             this.lnkPaywall.Size = new System.Drawing.Size(69, 13);
             this.lnkPaywall.TabIndex = 7;
@@ -399,7 +426,7 @@
             // chkPaywall
             // 
             this.chkPaywall.AutoSize = true;
-            this.chkPaywall.Location = new System.Drawing.Point(16, 200);
+            this.chkPaywall.Location = new System.Drawing.Point(6, 309);
             this.chkPaywall.Name = "chkPaywall";
             this.chkPaywall.Size = new System.Drawing.Size(171, 17);
             this.chkPaywall.TabIndex = 6;
@@ -409,7 +436,7 @@
             // lnkNewsletter
             // 
             this.lnkNewsletter.AutoSize = true;
-            this.lnkNewsletter.Location = new System.Drawing.Point(230, 166);
+            this.lnkNewsletter.Location = new System.Drawing.Point(283, 276);
             this.lnkNewsletter.Name = "lnkNewsletter";
             this.lnkNewsletter.Size = new System.Drawing.Size(69, 13);
             this.lnkNewsletter.TabIndex = 5;
@@ -429,7 +456,7 @@
             // chkNewsletter
             // 
             this.chkNewsletter.AutoSize = true;
-            this.chkNewsletter.Location = new System.Drawing.Point(16, 167);
+            this.chkNewsletter.Location = new System.Drawing.Point(6, 276);
             this.chkNewsletter.Name = "chkNewsletter";
             this.chkNewsletter.Size = new System.Drawing.Size(128, 17);
             this.chkNewsletter.TabIndex = 3;
@@ -439,7 +466,7 @@
             // lnkFormProduct
             // 
             this.lnkFormProduct.AutoSize = true;
-            this.lnkFormProduct.Location = new System.Drawing.Point(230, 137);
+            this.lnkFormProduct.Location = new System.Drawing.Point(283, 243);
             this.lnkFormProduct.Name = "lnkFormProduct";
             this.lnkFormProduct.Size = new System.Drawing.Size(69, 13);
             this.lnkFormProduct.TabIndex = 2;
@@ -457,12 +484,12 @@
             // 
             // chkFormBuilder
             // 
-            this.chkFormBuilder.AutoSize = true;
-            this.chkFormBuilder.Location = new System.Drawing.Point(16, 137);
+            this.chkFormBuilder.Location = new System.Drawing.Point(6, 225);
             this.chkFormBuilder.Name = "chkFormBuilder";
-            this.chkFormBuilder.Size = new System.Drawing.Size(160, 17);
+            this.chkFormBuilder.Size = new System.Drawing.Size(346, 31);
             this.chkFormBuilder.TabIndex = 0;
-            this.chkFormBuilder.Text = "Include Form/Survey Builder";
+            this.chkFormBuilder.Text = "Include Form/Survey Builder, easily add forms and surveys to your site";
+            this.chkFormBuilder.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.chkFormBuilder.UseVisualStyleBackColor = true;
             // 
             // chkDynamicPolicy
@@ -475,12 +502,24 @@
             this.chkDynamicPolicy.Text = "Include Dynamic Authorization Policies";
             this.chkDynamicPolicy.UseVisualStyleBackColor = true;
             // 
+            // lnkDynamicAuth
+            // 
+            this.lnkDynamicAuth.AutoSize = true;
+            this.lnkDynamicAuth.Location = new System.Drawing.Point(380, 305);
+            this.lnkDynamicAuth.Name = "lnkDynamicAuth";
+            this.lnkDynamicAuth.Size = new System.Drawing.Size(69, 13);
+            this.lnkDynamicAuth.TabIndex = 11;
+            this.lnkDynamicAuth.TabStop = true;
+            this.lnkDynamicAuth.Text = "Learn more...";
+            this.lnkDynamicAuth.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDynamicAuth_LinkClicked);
+            // 
             // ProjectOptionsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(947, 666);
+            this.Controls.Add(this.lnkDynamicAuth);
             this.Controls.Add(this.gbCommercial);
             this.Controls.Add(this.gbExpert);
             this.Controls.Add(this.chkDynamicPolicy);
@@ -545,5 +584,8 @@
         private System.Windows.Forms.LinkLabel lnkChat;
         private System.Windows.Forms.LinkLabel lnkCommentSystem;
         private System.Windows.Forms.CheckBox chkCommentSystem;
+        private System.Windows.Forms.LinkLabel lnkForum;
+        private System.Windows.Forms.CheckBox chkForum;
+        private System.Windows.Forms.LinkLabel lnkDynamicAuth;
     }
 }

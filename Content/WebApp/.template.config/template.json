@@ -240,6 +240,13 @@
       "description": "Include cloudscribe TalkAbout GDPR friendly comment system add on product."
     },
 
+    "Forum": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include cloudscribe TalkAbout GDPR friendly forum add on product."
+    },
+
     "DynamicPolicy": {
       "type": "parameter",
       "datatype": "bool",

@@ -58,6 +58,7 @@ namespace cloudscribeTemplate
         private bool _includePaywall = false;
 
         private bool _includeCommentSystem = false;
+        private bool _includeForum = false;
 
 
         private bool _exceptionOccurred = false;
@@ -98,6 +99,7 @@ namespace cloudscribeTemplate
                 replacementsDictionary.Add("passthrough:DynamicPolicy", _includeDynamicPolicy.ToString().ToLowerInvariant());
 
                 replacementsDictionary.Add("passthrough:CommentSystem", _includeCommentSystem.ToString().ToLowerInvariant());
+                replacementsDictionary.Add("passthrough:Forum", _includeForum.ToString().ToLowerInvariant());
 
 
             }
@@ -176,6 +178,7 @@ namespace cloudscribeTemplate
                 _includeNewsletter = ((CheckBox)gbCommercial.Controls["chkNewsletter"]).Checked;
                 _includePaywall = ((CheckBox)gbCommercial.Controls["chkPaywall"]).Checked;
                 _includeCommentSystem = ((CheckBox)gbCommercial.Controls["chkCommentSystem"]).Checked;
+                _includeForum = ((CheckBox)gbCommercial.Controls["chkForum"]).Checked;
 
 
                 _dialog.Close();
