@@ -76,9 +76,9 @@ namespace WebApp
             // This is a custom extension method in Config/CloudscribeFeatures.cs
             #if (IncludeHangfire)
             var useHangfire = _enableHangfireService || _enableHangfireDashboard;
-            services.SetupDataStorage(_configuration, useHangfire);
+            services.SetupDataStorage(_configuration, _environment, useHangfire);
             #else
-            services.SetupDataStorage(_configuration, false);
+            services.SetupDataStorage(_configuration, _environment, false);
             #endif
             
             

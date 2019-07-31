@@ -1,4 +1,5 @@
-﻿#if (IncludeEmailQueue)
+﻿using Microsoft.AspNetCore.Hosting;
+#if (IncludeEmailQueue)
 using cloudscribe.EmailQueue.HangfireIntegration;
 using cloudscribe.EmailQueue.Models;
 #endif
@@ -17,6 +18,7 @@ using Hangfire.PostgreSql;
 #endif
 #endif
 using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -26,16 +28,21 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection SetupDataStorage(
             this IServiceCollection services,
             IConfiguration config,
+            IHostingEnvironment env,
             bool useHangfire
             )
         {
-#if (!NoDb)
+#if (!NoDb && !SQLite)
             var connectionString = config.GetConnectionString("EntityFrameworkConnection");
 
+#endif
 #if (SQLite)
+            var dbName = config.GetConnectionString("SQLiteDbName");
+            var dbPath = Path.Combine(env.ContentRootPath, dbName);
+            var connectionString = $"Data Source={dbPath}";
             services.AddCloudscribeCoreEFStorageSQLite(connectionString);
 #endif
-
+#if (!NoDb && !SQLite)
 #if (IncludeHangfire)
 
 #if (MSSQL)
@@ -82,7 +89,10 @@ namespace Microsoft.Extensions.DependencyInjection
 #if (pgsql)
             services.AddCloudscribeCorePostgreSqlStorage(connectionString);
 #endif
-#else
+
+#endif
+
+#if(NoDb)
             services.AddCloudscribeCoreNoDbStorage();
 #endif
 #if (KvpCustomRegistration || Newsletter)
