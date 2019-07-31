@@ -25,8 +25,13 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 try
                 {
-#if (!NoDb)
+#if (!NoDb && !SQLite)
                     var connectionString = config.GetConnectionString("EntityFrameworkConnection");
+#endif
+#if(SQLite)
+                   var dbName = config.GetConnectionString("SQLiteDbName");
+                   var dbPath = Path.Combine(environment.ContentRootPath, dbName);
+                   var connectionString = $"Data Source={dbPath}";
 #endif
                     var idsBuilder = services.AddIdentityServerConfiguredForCloudscribe(options =>
                     {

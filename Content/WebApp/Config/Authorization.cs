@@ -63,15 +63,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     authBuilder.RequireRole("Administrators");
                 });
 
-            // if you want the blog to be public then keep this policy here:
-            // if you want to protect the blog and require membership to view it, comment out this policy
-            // and manage it from the UI.
-            options.AddPolicy("BlogViewPolicy", policy =>
-                policy.RequireAssertion(context =>
-                {
-                    return true; //allow anonymous
-                })
-                );
+           
 
 #else
            options.AddCloudscribeCoreDefaultPolicies();
