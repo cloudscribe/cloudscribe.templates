@@ -68,6 +68,7 @@
             this.chkFormBuilder = new System.Windows.Forms.CheckBox();
             this.chkDynamicPolicy = new System.Windows.Forms.CheckBox();
             this.lnkDynamicAuth = new System.Windows.Forms.LinkLabel();
+            this.lblPlanned = new System.Windows.Forms.Label();
             this.gbSimpleContentConfig.SuspendLayout();
             this.gbExpert.SuspendLayout();
             this.gbCommercial.SuspendLayout();
@@ -326,6 +327,7 @@
             // 
             // gbCommercial
             // 
+            this.gbCommercial.Controls.Add(this.lblPlanned);
             this.gbCommercial.Controls.Add(this.lnkForum);
             this.gbCommercial.Controls.Add(this.chkForum);
             this.gbCommercial.Controls.Add(this.lnkCommentSystem);
@@ -513,6 +515,15 @@
             this.lnkDynamicAuth.Text = "Learn more...";
             this.lnkDynamicAuth.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDynamicAuth_LinkClicked);
             // 
+            // lblPlanned
+            // 
+            this.lblPlanned.Location = new System.Drawing.Point(9, 367);
+            this.lblPlanned.Name = "lblPlanned";
+            this.lblPlanned.Size = new System.Drawing.Size(343, 128);
+            this.lblPlanned.TabIndex = 17;
+            this.lblPlanned.Text = "Planned Future Products\r\n\r\nScheduler\r\n     Events\r\n     Appointments\r\n     Resour" +
+    "ces\r\n\r\nShopping Cart";
+            // 
             // ProjectOptionsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -587,5 +598,6 @@
         private System.Windows.Forms.LinkLabel lnkForum;
         private System.Windows.Forms.CheckBox chkForum;
         private System.Windows.Forms.LinkLabel lnkDynamicAuth;
+        private System.Windows.Forms.Label lblPlanned;
     }
 }
