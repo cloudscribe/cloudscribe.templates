@@ -1,7 +1,4 @@
-﻿#if (IncludeHangfire)
-using Hangfire;
-#endif
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 #if (Webpack)
@@ -12,10 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
-#if (IncludeHangfire)
-using WebApp.Config;
-#endif
-
 
 namespace WebApp
 {
@@ -35,10 +28,6 @@ namespace WebApp
             #if (IdentityServer)
             _disableIdentityServer = _configuration.GetValue<bool>("AppSettings:DisableIdentityServer");
             #endif
-            #if (IncludeHangfire)
-            _enableHangfireService = _configuration.GetValue<bool>("AppSettings:EnableHangfireService");
-            _enableHangfireDashboard = _configuration.GetValue<bool>("AppSettings:EnableHangfireDashboard");
-            #endif
         }
 
         private readonly IConfiguration _configuration;
@@ -47,10 +36,6 @@ namespace WebApp
         #if (IdentityServer)
         private readonly bool _disableIdentityServer;
         private bool _didSetupIdServer = false;
-        #endif
-        #if (IncludeHangfire)
-        private readonly bool _enableHangfireService = true;
-        private readonly bool _enableHangfireDashboard = true;
         #endif
         private readonly ILogger _log;
 
@@ -74,12 +59,7 @@ namespace WebApp
 
             //// **** IMPORTANT *****
             // This is a custom extension method in Config/CloudscribeFeatures.cs
-            #if (IncludeHangfire)
-            var useHangfire = _enableHangfireService || _enableHangfireDashboard;
-            services.SetupDataStorage(_configuration, _environment, useHangfire);
-            #else
-            services.SetupDataStorage(_configuration, _environment, false);
-            #endif
+            services.SetupDataStorage(_configuration, _environment);
             
             
 #if (IdentityServer)
@@ -209,52 +189,6 @@ namespace WebApp
                     _log.LogError($"failed to setup identityserver4 {ex.Message} {ex.StackTrace}");
                 }
             }
-#endif
-
-#if (IncludeHangfire)
-
-            if (_enableHangfireDashboard)
-            {
-                app.UseHangfireDashboard("/tasks", new DashboardOptions
-                {
-                    Authorization = new[] { new HangFireAuthorizationFilter() }
-                });
-            }
-
-            if (_enableHangfireService)
-            {
-                var options = new BackgroundJobServerOptions
-                {
-                    // This is the default value
-                    //WorkerCount = Environment.ProcessorCount * 5
-                    WorkerCount = 5
-                };
-                app.UseHangfireServer(options);
-
-                GlobalConfiguration.Configuration.UseActivator(new cloudscribe.EmailQueue.HangfireIntegration.HangfireActivator(serviceProvider));
-
-#if (IncludeEmailQueue)
-                RecurringJob.RemoveIfExists("email-processor");
-                RecurringJob.AddOrUpdate<cloudscribe.EmailQueue.Models.IEmailQueueProcessor>("email-processor", 
-                    mp => mp.StartProcessing(), 
-                    Cron.MinuteInterval(3)); //every 3 minutes
-#endif
-
-#if (Paywall)
-                RecurringJob.RemoveIfExists("expired-membership-processor");
-                RecurringJob.AddOrUpdate<cloudscribe.Membership.Models.IRoleRemovalTask>("expired-membership-processor", 
-                    x => x.RemoveExpiredMembersFromGrantedRoles(), 
-                    Cron.Daily(23)); //11pm
-
-                RecurringJob.RemoveIfExists("membership-reminder-email-processor");
-                RecurringJob.AddOrUpdate<cloudscribe.Membership.Models.ISendRemindersTask>("membership-reminder-email-processor", 
-                    x => x.SendRenewalReminders(), 
-                    Cron.Daily(7)); //7am
-#endif
-
-
-            }
-
 #endif
 
             app.UseMvc(routes =>

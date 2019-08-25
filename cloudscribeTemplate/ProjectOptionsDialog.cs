@@ -48,8 +48,8 @@ namespace cloudscribeTemplate
             chkDynamicPolicy.Checked = true;
             chkLogging.Checked = true;
 
-            chkPaywall.Enabled = false;
-            chkNewsletter.Enabled = false;
+            //chkPaywall.Enabled = false;
+            //chkNewsletter.Enabled = false;
 
             txtNonRootPagesSegment.CharacterCasing = CharacterCasing.Lower;
             txtNonRootPagesSegment.MaxLength = 30;
@@ -105,20 +105,20 @@ namespace cloudscribeTemplate
 
         private void CbDataStorage_SelectedValueChanged(object sender, EventArgs e)
         {
-            var db = (string)cbDataStorage.SelectedValue;
-            if(db == "NoDb" || db == "SQLite")
-            {
-                chkPaywall.Enabled = false;
-                chkPaywall.Checked = false;
-                chkNewsletter.Enabled = false;
-                chkNewsletter.Checked = false;
-            }
-            else
-            {
-                chkPaywall.Enabled = true;
-                chkNewsletter.Enabled = true;
+            //var db = (string)cbDataStorage.SelectedValue;
+            //if(db == "NoDb" || db == "SQLite")
+            //{
+            //    chkPaywall.Enabled = false;
+            //    chkPaywall.Checked = false;
+            //    chkNewsletter.Enabled = false;
+            //    chkNewsletter.Checked = false;
+            //}
+            //else
+            //{
+            //    chkPaywall.Enabled = true;
+            //    chkNewsletter.Enabled = true;
                
-            }
+            //}
         }
 
         private void lnkWebpack_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

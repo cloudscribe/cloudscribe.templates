@@ -1,21 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
-#if (IncludeEmailQueue)
-using cloudscribe.EmailQueue.HangfireIntegration;
-using cloudscribe.EmailQueue.Models;
-#endif
-#if (Paywall)
-using cloudscribe.Membership.HangfireIntegration;
-using cloudscribe.Membership.Models;
-#endif
 #if (KvpCustomRegistration || Newsletter)
 using cloudscribe.UserProperties.Models;
 using cloudscribe.UserProperties.Services;
-#endif
-#if (IncludeHangfire)
-using Hangfire;
-#if (pgsql)
-using Hangfire.PostgreSql;
-#endif
 #endif
 using Microsoft.Extensions.Configuration;
 using System.IO;
@@ -28,8 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection SetupDataStorage(
             this IServiceCollection services,
             IConfiguration config,
-            IHostingEnvironment env,
-            bool useHangfire
+            IHostingEnvironment env
             )
         {
 #if (!NoDb && !SQLite)
@@ -43,42 +28,6 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddCloudscribeCoreEFStorageSQLite(connectionString);
 #endif
 #if (!NoDb && !SQLite)
-#if (IncludeHangfire)
-
-#if (MSSQL)
-            if(useHangfire)
-            {
-                services.AddHangfire(hfConfig => hfConfig.UseSqlServerStorage(connectionString));
-            }
-#endif
-#if (MySql)
-            if (useHangfire)
-            {
-                services.AddHangfire(hfConfig => { });
-
-                GlobalConfiguration.Configuration.UseStorage(
-                    new Hangfire.MySql.MySqlStorage(
-                        connectionString + "Allow User Variables=True",
-                        new Hangfire.MySql.MySqlStorageOptions
-                        {
-                            //TransactionIsolationLevel = IsolationLevel.ReadCommitted,
-                            //QueuePollInterval = TimeSpan.FromSeconds(15),
-                            //JobExpirationCheckInterval = TimeSpan.FromHours(1),
-                            //CountersAggregateInterval = TimeSpan.FromMinutes(5),
-                            //PrepareSchemaIfNecessary = true,
-                            //DashboardJobListLimit = 50000,
-                            //TransactionTimeout = TimeSpan.FromMinutes(1),
-                        }));
-            }
-#endif
-#if (pgsql)
-            if (useHangfire)
-            {
-                services.AddHangfire(hfConfig => hfConfig.UsePostgreSqlStorage(connectionString));
-            }
-#endif
-
-#endif
 
 #if (MSSQL)
             services.AddCloudscribeCoreEFStorageMSSQL(connectionString);
@@ -203,6 +152,9 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 
 #if (Paywall)
+#if (NoDb)
+            services.AddMembershipSubscriptionStorageNoDb();
+#endif
 #if (MSSQL)
             services.AddMembershipSubscriptionStorageMSSQL(connectionString);
 #endif
@@ -211,10 +163,17 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #if (pgsql)
             services.AddMembershipSubscriptionPostgreSqlStorage(connectionString);
-#endif        
+#endif  
+#if (SQLite)
+            services.AddMembershipSubscriptionStorageSQLite(connectionString);
+#endif       
 #endif
 
 #if (IncludeEmailQueue)
+#if (NoDb)
+            services.AddEmailTemplateStorageNoDb();
+            services.AddEmailQueueStorageNoDb();
+#endif
 #if (MSSQL)
             services.AddEmailTemplateStorageMSSQL(connectionString);
             services.AddEmailQueueStorageMSSQL(connectionString);
@@ -226,10 +185,17 @@ namespace Microsoft.Extensions.DependencyInjection
 #if (pgsql)
             services.AddEmailTemplatePostgreSqlStorage(connectionString);
             services.AddEmailQueuePostgreSqlStorage(connectionString);
-#endif        
+#endif  
+#if (SQLite)
+             services.AddEmailTemplateStorageSQLite(connectionString);
+             services.AddEmailQueueStorageSQLite(connectionString);
+#endif         
 #endif
 
 #if (Newsletter)
+#if (NoDb)
+            services.AddEmailListStorageNoDb();
+#endif
 #if (MSSQL)
             services.AddEmailListStorageMSSQL(connectionString);
 #endif
@@ -238,6 +204,9 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #if (pgsql)
             services.AddEmailListPostgreSqlStorage(connectionString);
+#endif 
+#if (SQLite)
+            services.AddEmailListStorageSQLite(connectionString);
 #endif        
 #endif
 
@@ -332,20 +301,19 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 
 #if (IncludeStripeIntegration)
-            services.AddMembershipSStripeIntegration(config);
+            services.AddMembershipStripeIntegration(config);
             services.AddCloudscribeCoreStripeIntegration();
             services.AddStripeIntegrationMvc(config);
 
 #endif
 
 #if (Paywall)
-            services.AddScoped<IRoleRemovalTask, HangfireRoleRemovalTask>();
-            services.AddScoped<ISendRemindersTask, HangfireSendRemindersTask>();
             services.AddMembershipSubscriptionMvcComponents(config);
+            services.AddMembershipBackgroundTasks(config);
 #endif
 
 #if (IncludeEmailQueue)
-            services.AddScoped<IEmailQueueProcessor, HangFireEmailQueueProcessor>();
+            services.AddEmailQueueBackgroundTask(config);
             services.AddEmailQueueWithCloudscribeIntegration(config);
             services.AddEmailRazorTemplating(config);
 #endif
