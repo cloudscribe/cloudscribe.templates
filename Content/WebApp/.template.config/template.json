@@ -102,12 +102,6 @@
           ]
         },
         {
-          "condition": "(!IncludeHangfire)",
-          "exclude": [
-            "Config/HangFireAuthorizationFilter.cs"
-          ]
-        },
-        {
           "condition": "(!Webpack)",
           "exclude": [
             "app-vanilla/**",
@@ -310,10 +304,7 @@
       "type": "computed",
       "value": "(Webpack && ReactSample)"
     },
-    "IncludeHangfire": {
-      "type": "computed",
-      "value": "((Paywall || Newsletter) && !NoDb)"
-    },
+   
     "IncludeEmailQueue": {
       "type": "computed",
       "value": "(Paywall || Newsletter)"

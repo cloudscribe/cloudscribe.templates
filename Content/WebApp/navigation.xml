@@ -1137,20 +1137,6 @@
 
               <!--#endif-->
 
-             
-            
-              <!--#if (IncludeHangfire)-->
-                <NavNode key="Tasks"
-                      url="/tasks"
-                      text="Tasks Dashboard"
-                      iconCssClass="far fa-clock fa-fw"
-                      componentVisibility="breadcrumbs,childtree"
-                      excludeFromSearchSiteMap="true"
-                      authorizationPolicy="AdminPolicy">
-                    <Children/>
-                </NavNode>
-               <!--#endif-->
-
               <NavNode key="LoginPageInfo"
                        controller="SiteAdmin"
                        action="LoginPageInfo"

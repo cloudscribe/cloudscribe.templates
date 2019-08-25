@@ -43,7 +43,7 @@
 
     <PackageReference Include="cloudscribe.Core.Web" Version="3.1.*" />
     <PackageReference Include="cloudscribe.Core.CompiledViews.Bootstrap4" Version="3.1.*" />
-    <PackageReference Include="cloudscribe.Web.StaticFiles" Version="1.0.*" />
+    <PackageReference Include="cloudscribe.Web.StaticFiles" Version="1.1.*" />
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.Core.Storage.NoDb" Version="3.0.*" />
     <!--#endif-->
@@ -152,20 +152,6 @@
     
     <PackageReference Include="Microsoft.AspNetCore.App" />
 
-<!--#if (IncludeHangfire)-->
-<!--#if (MSSQL)-->
-   <PackageReference Include="HangFire" Version="1.6.21" />
-    <!--#endif-->
-    <!--#if (MySql)-->
-    <PackageReference Include="Hangfire.MySqlStorage" Version="1.1.2-*" />
-    <!--#endif-->
-    <!--#if (pgsql)-->
-    <PackageReference Include="Hangfire.PostgreSql" Version="1.5.0" />
-    <!--#endif-->
-<!--#endif-->
-
-   
-
      <!--#if (FormBuilder)-->
     <PackageReference Include="cloudscribe.Forms.Web" Version="1.0.*" />
     <PackageReference Include="cloudscribe.Forms.Bootstrap4" Version="1.0.*" />
@@ -213,7 +199,9 @@
 
 <!--#if (IncludeEmailQueue)-->
     <PackageReference Include="cloudscribe.EmailQueue.CoreIntegration" Version="2.1.*" />
-    <PackageReference Include="cloudscribe.EmailQueue.HangfireIntegration" Version="2.1.*" />
+  <!--#if (NoDb)-->
+    <PackageReference Include="cloudscribe.EmailQueue.Data.NoDb" Version="2.1.*" />
+    <!--#endif-->
   <!--#if (MSSQL)-->
    <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.MSSQL" Version="2.1.*" />
    <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.MSSQL" Version="2.1.*" />
@@ -226,14 +214,20 @@
     <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.PostgreSql" Version="2.1.*" />
     <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.PostgreSql" Version="2.1.*" />
     <!--#endif-->
+     <!--#if (SQLite)-->
+   <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.SQLite" Version="2.1.*" />
+   <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.SQLite" Version="2.1.*" />
+    <!--#endif-->
 <!--#endif-->
 
 <!--#if (Paywall)-->
     <PackageReference Include="cloudscribe.Membership.Web.Mvc" Version="2.1.*" />
     <PackageReference Include="cloudscribe.Membership.Views.Bootstrap4" Version="2.1.*" />
-    <PackageReference Include="cloudscribe.Membership.HangfireIntegration" Version="2.1.*" />
     <PackageReference Include="cloudscribe.Membership.StripeIntegration" Version="1.0.*" />
     <PackageReference Include="cloudscribe.Membership.StripeIntegration.Bootstrap4" Version="1.0.*" />
+     <!--#if (NoDb)-->
+    <PackageReference Include="cloudscribe.Membership.Data.NoDb" Version="2.1.*" />
+    <!--#endif-->
   <!--#if (MSSQL)-->
    <PackageReference Include="cloudscribe.Membership.Data.EFCore.MSSQL" Version="2.1.*" />
     <!--#endif-->
@@ -242,6 +236,9 @@
     <!--#endif-->
     <!--#if (pgsql)-->
      <PackageReference Include="cloudscribe.Membership.Data.EFCore.PostgreSql" Version="2.1.*" />
+    <!--#endif-->
+    <!--#if (SQLite)-->
+     <PackageReference Include="cloudscribe.Membership.Data.EFCore.SQLite" Version="2.1.*" />
     <!--#endif-->
 <!--#endif-->
 
@@ -271,6 +268,9 @@
     <PackageReference Include="cloudscribe.EmailList.Views.Bootstrap4" Version="2.1.*" />
     <PackageReference Include="cloudscribe.EmailList.CoreIntegration" Version="2.1.*" />
     <PackageReference Include="cloudscribe.EmailList.KvpUserProperties.Integration" Version="1.0.*" />
+   <!--#if (NoDb)-->
+    <PackageReference Include="cloudscribe.EmailList.Data.NoDb" Version="2.1.*" />
+    <!--#endif-->
   <!--#if (MSSQL)-->
    <PackageReference Include="cloudscribe.EmailList.Data.EFCore.MSSQL" Version="2.1.*" />
     <!--#endif-->
@@ -279,6 +279,9 @@
     <!--#endif-->
     <!--#if (pgsql)-->
      <PackageReference Include="cloudscribe.EmailList.Data.EFCore.PostgreSql" Version="2.1.*" />
+    <!--#endif-->
+    <!--#if (SQLite)-->
+     <PackageReference Include="cloudscribe.EmailList.Data.EFCore.SQLite" Version="2.1.*" />
     <!--#endif-->
 <!--#endif-->
 
