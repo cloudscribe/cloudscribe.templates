@@ -52,7 +52,6 @@
             this.lnkWebpack = new System.Windows.Forms.LinkLabel();
             this.lblExpertWarning = new System.Windows.Forms.Label();
             this.gbCommercial = new System.Windows.Forms.GroupBox();
-            this.lblPlanned = new System.Windows.Forms.Label();
             this.lnkForum = new System.Windows.Forms.LinkLabel();
             this.chkForum = new System.Windows.Forms.CheckBox();
             this.lnkCommentSystem = new System.Windows.Forms.LinkLabel();
@@ -326,7 +325,6 @@
             // 
             // gbCommercial
             // 
-            this.gbCommercial.Controls.Add(this.lblPlanned);
             this.gbCommercial.Controls.Add(this.lnkForum);
             this.gbCommercial.Controls.Add(this.chkForum);
             this.gbCommercial.Controls.Add(this.lnkCommentSystem);
@@ -346,15 +344,6 @@
             this.gbCommercial.TabIndex = 9;
             this.gbCommercial.TabStop = false;
             this.gbCommercial.Text = "Commercial Add On Products";
-            // 
-            // lblPlanned
-            // 
-            this.lblPlanned.Location = new System.Drawing.Point(9, 367);
-            this.lblPlanned.Name = "lblPlanned";
-            this.lblPlanned.Size = new System.Drawing.Size(343, 128);
-            this.lblPlanned.TabIndex = 17;
-            this.lblPlanned.Text = "Planned Future Products\r\n\r\nScheduler\r\n     Events\r\n     Appointments\r\n     Resour" +
-    "ces\r\n\r\nShopping Cart";
             // 
             // lnkForum
             // 
@@ -586,6 +575,5 @@
         private System.Windows.Forms.LinkLabel lnkForum;
         private System.Windows.Forms.CheckBox chkForum;
         private System.Windows.Forms.LinkLabel lnkDynamicAuth;
-        private System.Windows.Forms.Label lblPlanned;
     }
 }
