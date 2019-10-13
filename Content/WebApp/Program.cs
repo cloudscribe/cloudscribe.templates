@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace WebApp
     {
         public static void Main(string[] args)
         {
-            var hostBuilder = CreateWebHostBuilder(args);
+            var hostBuilder = CreateHostBuilder(args);
             var host = hostBuilder.Build();
             
             using (var scope = host.Services.CreateScope())
@@ -31,7 +32,7 @@ namespace WebApp
             }
 
             #if (Logging)
-            var env = host.Services.GetRequiredService<IHostingEnvironment>();
+            var env = host.Services.GetRequiredService<IWebHostEnvironment>();
             var loggerFactory = host.Services.GetRequiredService<ILoggerFactory>();
             var config = host.Services.GetRequiredService<IConfiguration>();
             ConfigureLogging(env, loggerFactory, host.Services, config);
@@ -40,15 +41,12 @@ namespace WebApp
             host.Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-            #if (KvpCustomRegistration) 
-                .ConfigureAppConfiguration((builderContext, config) =>
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    config.AddJsonFile("app-userproperties.json", optional: true, reloadOnChange: true);
-                })
-            #endif
-                .UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>();
+                });
 
         private static void EnsureDataStorageIsReady(IServiceProvider scopedServices)
         {
@@ -129,7 +127,7 @@ namespace WebApp
 
 #if (Logging)
         private static void ConfigureLogging(
-            IHostingEnvironment env,
+            IWebHostEnvironment env,
             ILoggerFactory loggerFactory,
             IServiceProvider serviceProvider,
             IConfiguration config

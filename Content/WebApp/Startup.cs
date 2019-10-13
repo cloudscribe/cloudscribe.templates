@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 #endif
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
@@ -16,14 +17,12 @@ namespace WebApp
     {
         public Startup(
             IConfiguration configuration, 
-            IHostingEnvironment env,
-            ILogger<Startup> logger
+            IWebHostEnvironment env
             )
         {
             _configuration = configuration;
             _environment = env;
-            _log = logger;
-
+            
             _sslIsAvailable = _configuration.GetValue<bool>("AppSettings:UseSsl");
             #if (IdentityServer)
             _disableIdentityServer = _configuration.GetValue<bool>("AppSettings:DisableIdentityServer");
@@ -31,13 +30,13 @@ namespace WebApp
         }
 
         private readonly IConfiguration _configuration;
-        private readonly IHostingEnvironment _environment;
+        private readonly IWebHostEnvironment _environment;
         private readonly bool _sslIsAvailable;
         #if (IdentityServer)
         private readonly bool _disableIdentityServer;
         private bool _didSetupIdServer = false;
         #endif
-        private readonly ILogger _log;
+        
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -118,7 +117,7 @@ namespace WebApp
         public void Configure(
             IServiceProvider serviceProvider,
             IApplicationBuilder app, 
-            IHostingEnvironment env,
+            IWebHostEnvironment env,
             ILoggerFactory loggerFactory,
             IOptions<cloudscribe.Core.Models.MultiTenantOptions> multiTenantOptionsAccessor,
             IOptions<RequestLocalizationOptions> localizationOptionsAccessor
@@ -168,6 +167,8 @@ namespace WebApp
             app.UseCloudscribeCommonStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseRouting();
+
             app.UseRequestLocalization(localizationOptionsAccessor.Value);
             #if (IdentityServer)
             app.UseCors("default"); //use Cors with policy named default, defined above
@@ -180,27 +181,20 @@ namespace WebApp
 #if (IdentityServer)
             if (!_disableIdentityServer && _didSetupIdServer)
             {
-                try
-                {
-                    app.UseIdentityServer();
-                }
-                catch(Exception ex)
-                {
-                    _log.LogError($"failed to setup identityserver4 {ex.Message} {ex.StackTrace}");
-                }
+                app.UseIdentityServer();  
             }
 #endif
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
 #if (MultiTenantMode == 'FolderName')
                 var useFolders = multiTenantOptions.Mode == cloudscribe.Core.Models.MultiTenantMode.FolderName;
                 //*** IMPORTANT ***
                 // this is in Config/RoutingAndMvc.cs
                 // you can change or add routes there
-                routes.UseCustomRoutes(useFolders);
+                endpoints.UseCustomRoutes(useFolders);
 #else
-                routes.UseCustomRoutes();
+                endpoints.UseCustomRoutes();
 #endif
             });
    
