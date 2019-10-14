@@ -116,30 +116,19 @@
                         See the <a href="https://www.cloudscribe.com/docs/building-custom-features-that-integrate-with-cloudscribe-core?utm_source=projecttemplate&amp;utm_medium=referral&amp;utm_campaign=newproject-UTM-CAMPAIGN">Building Custom Features Documentation</a>
                         for more information.
                     </li>
-                    <!--#if (Webpack)-->
-                    <li class="list-group-item">
-                        <strong>Advanced Client Side Development with Webpack</strong> -
-                        You included the optional webpack setup in your project, well done, a bold choice! 
-                        I use this setup myself for pretty much all of my client projects because I almost always need a custom bootstrap theme for 
-                        my client projects and I like to use bootstrap-sass. When you run your project, the site will be all setup to use a custom theme named custom1
-                        that is already wired up to use bootstrap-sass so it is ready to customize easily. You will want to customize the sass files under app-scss, and 
-                        the _Layout.cshtml file under sitefiles/s1/themes/custom1/Shared. For example look in the _variables.scss file for $navbar-inverse-bg:  
-                        which controls the background color of the top navigation. Change the color and refresh the page and it should change right away because
-                        we are using webpack hot module loading.
-                        Since the generated css and js bundles land in wwwroot/dist folder, it is best to exclude that folder
-                        in your .gitignore file if you are using git.
-                        Please see the documentation to learn about the tooling prerequisites and the benefits and features of this setup at <a href="https://www.cloudscribe.com/docs/advanced-client-side-development-with-webpack?utm_source=projecttemplate&amp;utm_medium=referral&amp;utm_campaign=newproject-UTM-CAMPAIGN">https://www.cloudscribe.com/docs/advanced-client-side-development-with-webpack</a>.
-                        
-                    </li>
-                    <!--#else-->
+                   
                     <li class="list-group-item">
                         <strong>Create a Custom theme</strong> 
                         There are a bunch of bootswatch themes included and you can choose the theme from a dropdown list under Administration > Site Settings after you login to your project.
                         But more than likely you will want to create a custom theme.
+                        You will want to customize the sass files under app-scss, and 
+                        the _Layout.cshtml file under sitefiles/s1/themes/custom1/Shared. For example look in the _variables.scss file for $navbar-inverse-bg:  
+                        which controls the background color of the top navigation. Change the color and refresh the page and it should change right away because
+                        we have a gulp task for hot reloading.
                         See the <a href="https://www.cloudscribe.com/docs/themes-and-web-design?utm_source=projecttemplate&amp;utm_medium=referral&amp;utm_campaign=newproject-UTM-CAMPAIGN">Themes and Web Design</a>
                         documentation for more information.
                     </li>
-                    <!--#endif-->
+
                     <li class="list-group-item">
                         <strong>Configuration Sources</strong> 
                         By default, the configuration system will let you override appsettings.json from appsettings.Development.json when the environment is Development.

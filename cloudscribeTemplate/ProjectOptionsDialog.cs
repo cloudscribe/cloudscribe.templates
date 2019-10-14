@@ -64,9 +64,9 @@ namespace cloudscribeTemplate
             chatLink.LinkData = "https://www.cloudscribe.com/forum?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
             lnkChat.Links.Add(chatLink);
 
-            LinkLabel.Link link = new LinkLabel.Link();
-            link.LinkData = "https://www.cloudscribe.com/docs/advanced-client-side-development-with-webpack?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
-            lnkWebpack.Links.Add(link);
+            //LinkLabel.Link link = new LinkLabel.Link();
+            //link.LinkData = "https://www.cloudscribe.com/docs/advanced-client-side-development-with-webpack?utm_source=projecttemplate&utm_medium=referral&utm_campaign=newproject-vsix";
+            //lnkWebpack.Links.Add(link);
 
 
             LinkLabel.Link formsLink = new LinkLabel.Link();
@@ -121,10 +121,10 @@ namespace cloudscribeTemplate
             //}
         }
 
-        private void lnkWebpack_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start(e.Link.LinkData as string);
-        }
+        //private void lnkWebpack_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        //{
+        //    Process.Start(e.Link.LinkData as string);
+        //}
 
         private void TxtNonRootPagesTitle_TextChanged(object sender, EventArgs e)
         {
@@ -173,21 +173,21 @@ namespace cloudscribeTemplate
             txtNonRootPagesTitle.Enabled = optionB.Checked;
         }
 
-        private void chkWebpack_CheckedChanged(object sender, EventArgs e)
-        {
-            if(!chkWebpack.Checked)
-            {
-                chkReactSample.Checked = false;
-            }
-        }
+        //private void chkWebpack_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if(!chkWebpack.Checked)
+        //    {
+        //        chkReactSample.Checked = false;
+        //    }
+        //}
 
-        private void chkReactSample_CheckedChanged(object sender, EventArgs e)
-        {
-            if(chkReactSample.Checked)
-            {
-                chkWebpack.Checked = true;
-            }
-        }
+        //private void chkReactSample_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if(chkReactSample.Checked)
+        //    {
+        //        chkWebpack.Checked = true;
+        //    }
+        //}
 
         private void lnkFormProduct_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -237,6 +237,11 @@ namespace cloudscribeTemplate
         private void lnkDynamicAuth_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(e.Link.LinkData as string);
+        }
+
+        private void ProjectOptionsDialog_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

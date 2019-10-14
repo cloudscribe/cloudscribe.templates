@@ -68,7 +68,6 @@ namespace WebApp
             services.SetupIdentityServerIntegrationAndCORSPolicy(
                 _configuration,
                 _environment,
-                _log,
                 _sslIsAvailable,
                 _disableIdentityServer,
                 out _didSetupIdServer
@@ -126,16 +125,6 @@ namespace WebApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                #if (Webpack)
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-                {
-                    HotModuleReplacement = true
-                    #if (IncludeReact)
-                    ,ReactHotModuleReplacement = true
-                    #endif
-                });
-                #endif
-                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -149,21 +138,8 @@ namespace WebApp
             {
                 app.UseHttpsRedirection();
             }
-            #if (Webpack)
-            // we are pre-gzipping js and css from webpack
-            // this allows us to map the requests for .min.js to .min.js.gz and .min.css to .min.css.gz if the file exists
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                OnPrepareResponse = GzipMappingFileProvider.OnPrepareResponse,
-                FileProvider = new GzipMappingFileProvider(
-                    loggerFactory,
-                    true,
-                    _environment.WebRootFileProvider
-                    )
-            });
-            #else
+            
             app.UseStaticFiles();
-            #endif
             app.UseCloudscribeCommonStaticFiles();
             app.UseCookiePolicy();
 

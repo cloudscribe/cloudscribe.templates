@@ -46,11 +46,6 @@
             this.chkIdentityServer = new System.Windows.Forms.CheckBox();
             this.btnOk = new System.Windows.Forms.Button();
             this.cbMultiTenancy = new System.Windows.Forms.ComboBox();
-            this.gbExpert = new System.Windows.Forms.GroupBox();
-            this.chkReactSample = new System.Windows.Forms.CheckBox();
-            this.chkWebpack = new System.Windows.Forms.CheckBox();
-            this.lnkWebpack = new System.Windows.Forms.LinkLabel();
-            this.lblExpertWarning = new System.Windows.Forms.Label();
             this.gbCommercial = new System.Windows.Forms.GroupBox();
             this.lnkForum = new System.Windows.Forms.LinkLabel();
             this.chkForum = new System.Windows.Forms.CheckBox();
@@ -68,7 +63,6 @@
             this.chkDynamicPolicy = new System.Windows.Forms.CheckBox();
             this.lnkDynamicAuth = new System.Windows.Forms.LinkLabel();
             this.gbSimpleContentConfig.SuspendLayout();
-            this.gbExpert.SuspendLayout();
             this.gbCommercial.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -245,7 +239,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(222, 622);
+            this.btnOk.Location = new System.Drawing.Point(224, 477);
             this.btnOk.Margin = new System.Windows.Forms.Padding(2);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(110, 27);
@@ -261,67 +255,6 @@
             this.cbMultiTenancy.Name = "cbMultiTenancy";
             this.cbMultiTenancy.Size = new System.Drawing.Size(488, 21);
             this.cbMultiTenancy.TabIndex = 7;
-            // 
-            // gbExpert
-            // 
-            this.gbExpert.Controls.Add(this.chkReactSample);
-            this.gbExpert.Controls.Add(this.chkWebpack);
-            this.gbExpert.Controls.Add(this.lnkWebpack);
-            this.gbExpert.Controls.Add(this.lblExpertWarning);
-            this.gbExpert.Location = new System.Drawing.Point(42, 456);
-            this.gbExpert.Margin = new System.Windows.Forms.Padding(2);
-            this.gbExpert.Name = "gbExpert";
-            this.gbExpert.Padding = new System.Windows.Forms.Padding(2);
-            this.gbExpert.Size = new System.Drawing.Size(476, 157);
-            this.gbExpert.TabIndex = 8;
-            this.gbExpert.TabStop = false;
-            this.gbExpert.Text = "Expert Zone";
-            // 
-            // chkReactSample
-            // 
-            this.chkReactSample.AutoSize = true;
-            this.chkReactSample.Location = new System.Drawing.Point(6, 129);
-            this.chkReactSample.Margin = new System.Windows.Forms.Padding(2);
-            this.chkReactSample.Name = "chkReactSample";
-            this.chkReactSample.Size = new System.Drawing.Size(150, 17);
-            this.chkReactSample.TabIndex = 3;
-            this.chkReactSample.Text = "Include React app sample";
-            this.chkReactSample.UseVisualStyleBackColor = true;
-            this.chkReactSample.CheckedChanged += new System.EventHandler(this.chkReactSample_CheckedChanged);
-            // 
-            // chkWebpack
-            // 
-            this.chkWebpack.Location = new System.Drawing.Point(6, 67);
-            this.chkWebpack.Margin = new System.Windows.Forms.Padding(2);
-            this.chkWebpack.Name = "chkWebpack";
-            this.chkWebpack.Size = new System.Drawing.Size(475, 48);
-            this.chkWebpack.TabIndex = 2;
-            this.chkWebpack.Text = "Include advanced client side development setup with webpack, typescript, and a va" +
-    "nilla typescript hello world client side app.";
-            this.chkWebpack.UseVisualStyleBackColor = true;
-            this.chkWebpack.CheckedChanged += new System.EventHandler(this.chkWebpack_CheckedChanged);
-            // 
-            // lnkWebpack
-            // 
-            this.lnkWebpack.AutoSize = true;
-            this.lnkWebpack.Location = new System.Drawing.Point(3, 53);
-            this.lnkWebpack.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lnkWebpack.Name = "lnkWebpack";
-            this.lnkWebpack.Size = new System.Drawing.Size(365, 13);
-            this.lnkWebpack.TabIndex = 1;
-            this.lnkWebpack.TabStop = true;
-            this.lnkWebpack.Text = "To learn more about these options and prerequisites see the documentation.";
-            this.lnkWebpack.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkWebpack_LinkClicked);
-            // 
-            // lblExpertWarning
-            // 
-            this.lblExpertWarning.Location = new System.Drawing.Point(3, 22);
-            this.lblExpertWarning.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblExpertWarning.Name = "lblExpertWarning";
-            this.lblExpertWarning.Size = new System.Drawing.Size(478, 31);
-            this.lblExpertWarning.TabIndex = 0;
-            this.lblExpertWarning.Text = "Note that if you use these options, your project will not build unless you have a" +
-    "dditional tools installed including NodeJs and Npm.";
             // 
             // gbCommercial
             // 
@@ -391,7 +324,7 @@
             // lnkChat
             // 
             this.lnkChat.AutoSize = true;
-            this.lnkChat.Location = new System.Drawing.Point(13, 614);
+            this.lnkChat.Location = new System.Drawing.Point(3, 410);
             this.lnkChat.Name = "lnkChat";
             this.lnkChat.Size = new System.Drawing.Size(185, 13);
             this.lnkChat.TabIndex = 12;
@@ -507,10 +440,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(947, 666);
+            this.ClientSize = new System.Drawing.Size(947, 564);
             this.Controls.Add(this.lnkDynamicAuth);
             this.Controls.Add(this.gbCommercial);
-            this.Controls.Add(this.gbExpert);
             this.Controls.Add(this.chkDynamicPolicy);
             this.Controls.Add(this.cbMultiTenancy);
             this.Controls.Add(this.btnOk);
@@ -524,10 +456,9 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ProjectOptionsDialog";
             this.Text = "cloudscribe Options";
+            this.Load += new System.EventHandler(this.ProjectOptionsDialog_Load);
             this.gbSimpleContentConfig.ResumeLayout(false);
             this.gbSimpleContentConfig.PerformLayout();
-            this.gbExpert.ResumeLayout(false);
-            this.gbExpert.PerformLayout();
             this.gbCommercial.ResumeLayout(false);
             this.gbCommercial.PerformLayout();
             this.ResumeLayout(false);
@@ -554,11 +485,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNonRootPagesTitle;
         private System.Windows.Forms.TextBox txtNonRootPagesSegment;
-        private System.Windows.Forms.GroupBox gbExpert;
-        private System.Windows.Forms.LinkLabel lnkWebpack;
-        private System.Windows.Forms.Label lblExpertWarning;
-        private System.Windows.Forms.CheckBox chkReactSample;
-        private System.Windows.Forms.CheckBox chkWebpack;
         private System.Windows.Forms.GroupBox gbCommercial;
         private System.Windows.Forms.LinkLabel lnkFormProduct;
         private System.Windows.Forms.Label lblComercialAddOns;
