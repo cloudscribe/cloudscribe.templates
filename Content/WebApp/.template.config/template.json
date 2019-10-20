@@ -102,23 +102,6 @@
           ]
         },
         {
-          "condition": "(!Webpack)",
-          "exclude": [
-            "app-vanilla/**",
-            "tsconfig.json",
-            "webpack.config.js",
-            "webpack.production.config.js"
-
-          ]
-        },
-        {
-          "condition": "(!IncludeReact)",
-          "exclude": [
-            "app-react/**",
-            "Controllers/SampleDataController.cs"
-          ]
-        },
-        {
           "condition": "(!AuthoringMode)",
           "exclude": [
             ".template.config/**"
@@ -288,23 +271,7 @@
       ]
       
     },
-    "Webpack": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "false",
-      "description": "Include client side development setup with webpack and typescript. This is an advanced option and requires that you have node and npm installed."
-    },
-    "ReactSample": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "true",
-      "description": "Include a react sample client app, requires Webpack to be true"
-    },
-    "IncludeReact": {
-      "type": "computed",
-      "value": "(Webpack && ReactSample)"
-    },
-   
+    
     "IncludeEmailQueue": {
       "type": "computed",
       "value": "(Paywall || Newsletter)"

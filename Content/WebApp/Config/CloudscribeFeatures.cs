@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 #if (KvpCustomRegistration || Newsletter)
 using cloudscribe.UserProperties.Models;
 using cloudscribe.UserProperties.Services;
@@ -14,7 +15,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection SetupDataStorage(
             this IServiceCollection services,
             IConfiguration config,
-            IHostingEnvironment env
+            IWebHostEnvironment env
             )
         {
 #if (!NoDb && !SQLite)

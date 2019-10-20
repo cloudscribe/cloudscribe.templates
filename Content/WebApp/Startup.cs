@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 #endif
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
@@ -16,14 +17,12 @@ namespace WebApp
     {
         public Startup(
             IConfiguration configuration, 
-            IHostingEnvironment env,
-            ILogger<Startup> logger
+            IWebHostEnvironment env
             )
         {
             _configuration = configuration;
             _environment = env;
-            _log = logger;
-
+            
             _sslIsAvailable = _configuration.GetValue<bool>("AppSettings:UseSsl");
             #if (IdentityServer)
             _disableIdentityServer = _configuration.GetValue<bool>("AppSettings:DisableIdentityServer");
@@ -31,13 +30,13 @@ namespace WebApp
         }
 
         private readonly IConfiguration _configuration;
-        private readonly IHostingEnvironment _environment;
+        private readonly IWebHostEnvironment _environment;
         private readonly bool _sslIsAvailable;
         #if (IdentityServer)
         private readonly bool _disableIdentityServer;
         private bool _didSetupIdServer = false;
         #endif
-        private readonly ILogger _log;
+        
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -69,7 +68,6 @@ namespace WebApp
             services.SetupIdentityServerIntegrationAndCORSPolicy(
                 _configuration,
                 _environment,
-                _log,
                 _sslIsAvailable,
                 _disableIdentityServer,
                 out _didSetupIdServer
@@ -118,7 +116,7 @@ namespace WebApp
         public void Configure(
             IServiceProvider serviceProvider,
             IApplicationBuilder app, 
-            IHostingEnvironment env,
+            IWebHostEnvironment env,
             ILoggerFactory loggerFactory,
             IOptions<cloudscribe.Core.Models.MultiTenantOptions> multiTenantOptionsAccessor,
             IOptions<RequestLocalizationOptions> localizationOptionsAccessor
@@ -127,16 +125,6 @@ namespace WebApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                #if (Webpack)
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-                {
-                    HotModuleReplacement = true
-                    #if (IncludeReact)
-                    ,ReactHotModuleReplacement = true
-                    #endif
-                });
-                #endif
-                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -150,23 +138,12 @@ namespace WebApp
             {
                 app.UseHttpsRedirection();
             }
-            #if (Webpack)
-            // we are pre-gzipping js and css from webpack
-            // this allows us to map the requests for .min.js to .min.js.gz and .min.css to .min.css.gz if the file exists
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                OnPrepareResponse = GzipMappingFileProvider.OnPrepareResponse,
-                FileProvider = new GzipMappingFileProvider(
-                    loggerFactory,
-                    true,
-                    _environment.WebRootFileProvider
-                    )
-            });
-            #else
+            
             app.UseStaticFiles();
-            #endif
             app.UseCloudscribeCommonStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseRouting();
 
             app.UseRequestLocalization(localizationOptionsAccessor.Value);
             #if (IdentityServer)
@@ -180,18 +157,14 @@ namespace WebApp
 #if (IdentityServer)
             if (!_disableIdentityServer && _didSetupIdServer)
             {
-                try
-                {
-                    app.UseIdentityServer();
-                }
-                catch(Exception ex)
-                {
-                    _log.LogError($"failed to setup identityserver4 {ex.Message} {ex.StackTrace}");
-                }
+                app.UseIdentityServer();  
             }
 #endif
 
-            app.UseMvc(routes =>
+#pragma warning disable MVC1005 // Cannot use UseMvc with Endpoint Routing.
+// workaround for 
+//https://github.com/cloudscribe/cloudscribe.SimpleContent/issues/466
+ app.UseMvc(routes =>
             {
 #if (MultiTenantMode == 'FolderName')
                 var useFolders = multiTenantOptions.Mode == cloudscribe.Core.Models.MultiTenantMode.FolderName;
@@ -203,6 +176,20 @@ namespace WebApp
                 routes.UseCustomRoutes();
 #endif
             });
+#pragma warning restore MVC1005 // Cannot use UseMvc with Endpoint Routing.
+
+//             app.UseEndpoints(endpoints =>
+//             {
+// #if (MultiTenantMode == 'FolderName')
+//                 var useFolders = multiTenantOptions.Mode == cloudscribe.Core.Models.MultiTenantMode.FolderName;
+//                 //*** IMPORTANT ***
+//                 // this is in Config/RoutingAndMvc.cs
+//                 // you can change or add routes there
+//                 endpoints.UseCustomRoutes(useFolders);
+// #else
+//                 endpoints.UseCustomRoutes();
+// #endif
+//             });
    
         }
 
