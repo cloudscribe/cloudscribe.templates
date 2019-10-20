@@ -56,7 +56,7 @@
     <PackageReference Include="cloudscribe.Core.Storage.EFCore.MSSQL" Version="4.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.Core.Storage.EFCore.MySql" Version="4.0.0-*" />
+    <PackageReference Include="cloudscribe.Core.Storage.EFCore.MySql" Version="4.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
     <PackageReference Include="cloudscribe.Core.Storage.EFCore.PostgreSql" Version="4.0.*" />
@@ -80,7 +80,7 @@
     <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MSSQL" Version="5.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MySQL" Version="5.0.0-*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MySQL" Version="5.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
     <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.PostgreSql" Version="5.0.*" />
@@ -99,7 +99,7 @@
     <PackageReference Include="cloudscribe.Logging.EFCore.MSSQL" Version="4.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.Logging.EFCore.MySql" Version="4.0.1-*" />
+    <PackageReference Include="cloudscribe.Logging.EFCore.MySql" Version="4.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
     <PackageReference Include="cloudscribe.Logging.EFCore.PostgreSql" Version="4.0.*" />
@@ -119,7 +119,7 @@
     <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.MSSQL" Version="4.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.MySql" Version="4.0.0-*" />
+    <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.MySql" Version="4.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
     <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.PostgreSql" Version="4.0.*" />
@@ -141,7 +141,7 @@
     <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MSSQL" Version="4.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MySql" Version="4.0.0-*" />
+    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MySql" Version="4.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
     <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.PostgreSql" Version="4.0.*" />
@@ -169,7 +169,7 @@
     <PackageReference Include="cloudscribe.Forms.Data.EFCore.MSSQL" Version="3.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.Forms.Data.EFCore.MySql" Version="3.0.0-*" />
+    <PackageReference Include="cloudscribe.Forms.Data.EFCore.MySql" Version="3.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
     <PackageReference Include="cloudscribe.Forms.Data.EFCore.PostgreSql" Version="3.0.*" />
@@ -190,7 +190,7 @@
     <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.MSSQL" Version="3.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.MySql" Version="3.0.0-*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.MySql" Version="3.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
     <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.PostgreSql" Version="3.0.*" />
@@ -208,7 +208,7 @@
     <!--#endif-->
     <!--#if (MySql)-->
     <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.MySql" Version="3.0.0-*" />
-    <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.MySql" Version="3.0.0-*" />
+    <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.MySql" Version="3.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
     <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.PostgreSql" Version="3.0.*" />
@@ -232,7 +232,7 @@
    <PackageReference Include="cloudscribe.Membership.Data.EFCore.MSSQL" Version="3.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.Membership.Data.EFCore.MySql" Version="3.0.0-*" />
+    <PackageReference Include="cloudscribe.Membership.Data.EFCore.MySql" Version="3.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
      <PackageReference Include="cloudscribe.Membership.Data.EFCore.PostgreSql" Version="3.0.*" />
@@ -256,7 +256,7 @@
     <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.MSSQL" Version="3.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.MySql" Version="3.0.0-*" />
+    <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.MySql" Version="3.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
     <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.PostgreSql" Version="3.0.*" />
@@ -275,7 +275,7 @@
    <PackageReference Include="cloudscribe.EmailList.Data.EFCore.MSSQL" Version="3.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.EmailList.Data.EFCore.MySql" Version="3.0.0-*" />
+    <PackageReference Include="cloudscribe.EmailList.Data.EFCore.MySql" Version="3.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
      <PackageReference Include="cloudscribe.EmailList.Data.EFCore.PostgreSql" Version="3.0.*" />
@@ -299,7 +299,7 @@
    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.MSSQL" Version="3.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.MySql" Version="3.0.0-*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.MySql" Version="3.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
     <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.PostgreSql" Version="3.0.*" />
@@ -323,7 +323,7 @@
     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.MSSQL" Version="3.0.*" />
     <!--#endif-->
     <!--#if (MySql)-->
-     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.MySql" Version="3.0.0-*" />
+     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.MySql" Version="3.0.*" />
     <!--#endif-->
     <!--#if (pgsql)-->
      <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.PostgreSql" Version="3.0.*" />

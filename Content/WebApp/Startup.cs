@@ -161,18 +161,35 @@ namespace WebApp
             }
 #endif
 
-            app.UseEndpoints(endpoints =>
+#pragma warning disable MVC1005 // Cannot use UseMvc with Endpoint Routing.
+// workaround for 
+//https://github.com/cloudscribe/cloudscribe.SimpleContent/issues/466
+ app.UseMvc(routes =>
             {
 #if (MultiTenantMode == 'FolderName')
                 var useFolders = multiTenantOptions.Mode == cloudscribe.Core.Models.MultiTenantMode.FolderName;
                 //*** IMPORTANT ***
                 // this is in Config/RoutingAndMvc.cs
                 // you can change or add routes there
-                endpoints.UseCustomRoutes(useFolders);
+                routes.UseCustomRoutes(useFolders);
 #else
-                endpoints.UseCustomRoutes();
+                routes.UseCustomRoutes();
 #endif
             });
+#pragma warning restore MVC1005 // Cannot use UseMvc with Endpoint Routing.
+
+//             app.UseEndpoints(endpoints =>
+//             {
+// #if (MultiTenantMode == 'FolderName')
+//                 var useFolders = multiTenantOptions.Mode == cloudscribe.Core.Models.MultiTenantMode.FolderName;
+//                 //*** IMPORTANT ***
+//                 // this is in Config/RoutingAndMvc.cs
+//                 // you can change or add routes there
+//                 endpoints.UseCustomRoutes(useFolders);
+// #else
+//                 endpoints.UseCustomRoutes();
+// #endif
+//             });
    
         }
 

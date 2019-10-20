@@ -9,7 +9,7 @@
     <tags>ASP.NET Core cloudscribe</tags>
     <copyright>Copyright © Source Tree Solutions</copyright>
     <language>en-US</language>
-    <iconUrl>https://raw.githubusercontent.com/joeaudette/cloudscribe/master/cloudscribe-icon-32.png</iconUrl>
+    <icon>\images\icon.png</icon>
     <projectUrl>https://github.com/joeaudette/cloudscribe.templates</projectUrl>
     <license type="expression">Apache-2.0</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -22,5 +22,6 @@
   </metadata>
   <files>
     <file src="Content\**" exclude="content\cloudscribeTemplate\**\*;**\bin\**\*;**\obj\**\*;**\*.user;**\*.lock.json;nuget.exe;cloudscribe.templates.nuspec;packtemplate.cmd;template.sln;marketplace-desc.md;*.nuspec;.git/**;.vs/**;nupkgs/**;.gitignore" />
+	<file src="Content\icon.png" target="images\" />
   </files>
 </package>
