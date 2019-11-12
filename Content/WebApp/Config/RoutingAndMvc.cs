@@ -531,7 +531,6 @@ namespace Microsoft.AspNetCore.Builder
                 {
                     options.ViewLocationExpanders.Add(new cloudscribe.Core.Web.Components.SiteViewLocationExpander());
                 })
-                .AddNewtonsoftJson()
                 ;
 
             return services;
