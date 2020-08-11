@@ -34,7 +34,7 @@
     </CustomParameters>
   </TemplateContent>
   <WizardExtension>
-    <Assembly>cloudscribeTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=361e99cc09843a61</Assembly>
+    <Assembly>cloudscribeTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2830b8ed925a836a</Assembly>
     <FullClassName>cloudscribeTemplate.ProjectWizard</FullClassName>
   </WizardExtension>
   <WizardExtension>
@@ -42,7 +42,7 @@
     <FullClassName>Microsoft.VisualStudio.TemplateEngine.Wizard.TemplateEngineWizard</FullClassName>
   </WizardExtension>
   <WizardExtension>
-    <Assembly>cloudscribeTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=361e99cc09843a61</Assembly>
+    <Assembly>cloudscribeTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2830b8ed925a836a</Assembly>
     <FullClassName>cloudscribeTemplate.ShowReadMeWizard</FullClassName>
   </WizardExtension>
 </VSTemplate>
