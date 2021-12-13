@@ -46,6 +46,7 @@
     <PackageReference Include="cloudscribe.Core.Web" Version="5.0.*" />
     <PackageReference Include="cloudscribe.Core.CompiledViews.Bootstrap4" Version="5.0.*" />
     <PackageReference Include="cloudscribe.Web.StaticFiles" Version="5.0.*" />
+    <PackageReference Include="cloudscribe.Core.Models" Version="5.0.*" />  <!-- to resolve downgrade warnings only: remove at v6 -->
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.Core.Storage.NoDb" Version="5.0.*" />
     <!--#endif-->
@@ -70,6 +71,7 @@
     <PackageReference Include="cloudscribe.SimpleContent.MetaWeblog" Version="5.5.*" />
     <PackageReference Include="cloudscribe.SimpleContent.Syndication" Version="5.5.*" />
     <PackageReference Include="cloudscribe.SimpleContent.ContentTemplates.Bootstrap4" Version="5.5.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Models" Version="5.5.*" /> <!-- to resolve downgrade warnings only: remove at v6 -->
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.SimpleContent.Storage.NoDb" Version="5.5.*" />
     <!--#endif-->
