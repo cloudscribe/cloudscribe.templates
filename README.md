@@ -1,6 +1,6 @@
 # cloudscribe.templates
 
-This repository contains a dotnet new template and a Visual Studio 2017 project template for creating new projects with various configurations of cloudscribe libraries.
+This repository contains a dotnet new template and a Visual Studio 2019 project template for creating new projects with various configurations of cloudscribe libraries.
 
 To learn more see https://www.cloudscribe.com/docs/introduction
 
