@@ -75,7 +75,6 @@
         {
           "condition": "(!KvpCustomRegistration && !Newsletter)",
           "exclude": [
-            "app-userproperties.json",
             "Views/Account/RegisterMiddle.cshtml",
             "Views/Manage/**",
             "Views/UserAdmin/**"
