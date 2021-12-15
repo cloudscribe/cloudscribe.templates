@@ -1,24 +1,22 @@
 {
-  "name": "app",
-  "version": "1.0.0",
-  "private": true,
-  "devDependencies": {
-    "bootstrap": "4.3.1",
-    "popper.js": "1.14.6",
-    "smartmenus": "^1.1.0",
-    "smartmenus-bootstrap-4": "^0.1.0",
-    "@fortawesome/fontawesome-free": "5.6.3",
-    "clean-css": ">=4.1.11",
-    "gulp": "^4.0.0",
-    "gulp-cli": "^2.0.1",
-    "gulp-cssmin": "^0.2.0",
-    "gulp-sass": "^4.0.1",
-    "gulp-uglify": "^3.0.0",
-    "gulp-sourcemaps": "^2.6.4",
-    "gulp-concat": "^2.6.1",
-    "gulp-connect": "^5.5.0",
-    "merge-stream": "^1.0.1"
-    
-
-  }
+    "name": "app",
+    "version": "1.0.0",
+    "private": true,
+    "devDependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.4",
+        "bootstrap": "^4.6.1",
+        "clean-css": "^5.2.2",
+        "gulp": "^4.0.2",
+        "gulp-cli": "^2.3.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-connect": "^5.7.0",
+        "gulp-cssmin": "^0.2.0",
+        "gulp-rename": "^2.0.0",
+        "gulp-sass": "^4.1.1",
+        "gulp-sourcemaps": "^3.0.0",
+        "gulp-uglify": "^3.0.2",
+        "merge-stream": "^2.0.0",
+        "smartmenus": "^1.1.1",
+        "smartmenus-bootstrap-4": "^0.1.0"
+    }
 }

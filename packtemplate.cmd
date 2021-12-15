@@ -1,1 +1,1 @@
-nuget pack cloudscribe.templates.nuspec -Version 3.2.0 -OutputDirectory "nupkgs"
+nuget pack cloudscribe.templates.nuspec -Version 5.0.0 -OutputDirectory "nupkgs"

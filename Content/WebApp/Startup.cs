@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 #if (Webpack)
 using Microsoft.AspNetCore.SpaServices.Webpack;
 #endif
@@ -41,6 +42,8 @@ namespace WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
+
             //// **** VERY IMPORTANT *****
             // This is a custom extension method in Config/DataProtection.cs
             // These settings require your review to correctly configur data protection for your environment
@@ -88,6 +91,7 @@ namespace WebApp
                 options.CheckConsentNeeded = cloudscribe.Core.Identity.SiteCookieConsent.NeedsConsent;
                 options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
                 options.ConsentCookie.Name = "cookieconsent_status";
+                options.Secure = CookieSecurePolicy.Always;
             });
 
             services.Configure<Microsoft.AspNetCore.Mvc.CookieTempDataProviderOptions>(options =>
@@ -122,6 +126,17 @@ namespace WebApp
             IOptions<RequestLocalizationOptions> localizationOptionsAccessor
             )
         {
+            // When running behind a proxy, the request to the proxy may be made via https,
+            // but the proxy may be configured to talk to cloudscribe by http only. In that case,
+            // we want our httpContext to contain the correct client IP address (rather than 127.0.0.1)
+            // and the correct protocol (https).
+            // See: https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-apache?view=aspnetcore-3.1#configure-apache
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

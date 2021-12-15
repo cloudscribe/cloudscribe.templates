@@ -78,7 +78,8 @@
       <!--#endif-->
       <!--#if (SimpleContentConfig == 'b')-->
        <NavNode key="Pages"
-            url="/NONROOTPAGESEGMENT"
+            controller="Page"
+            action="Index"
             text="NONROOTPAGETITLE"
             componentVisibility=""
             treeBuilderName="cloudscribe.SimpleContent.Services.PagesNavigationTreeBuilder"
