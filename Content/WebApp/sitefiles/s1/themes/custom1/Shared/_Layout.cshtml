@@ -82,7 +82,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse bg-dark pl-2" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse bg-dark ps-2" id="navbarNavDropdown">
                 @await Component.InvokeAsync("Navigation", new { viewName = "Bootstrap4TopNavWithDropdowns", filterName = NamedNavigationFilters.TopNav, startingNodeKey = "" })
                 <partial name="_LoginPartialWithDropdowns" />
             </div>
@@ -127,28 +127,28 @@
             <div class="p-2">
             <ul class="list-unstyled d-flex flex-wrap">
                 @*#if (SimpleContentConfig == 'a' || SimpleContentConfig == 'b')*@
-                <li class=" mr-2">
+                <li class=" me-2">
                     <a class="text-nowrap" href="@siteRoot/sitemap">Site Map</a>
                 </li>
                 @*#endif*@
                 @if (Tenant != null && !string.IsNullOrWhiteSpace(Tenant.PrivacyPolicy))
                 {
-                    <li class="border-left pl-2 mr-2">
+                    <li class="border-left ps-2 me-2">
                         <a asp-controller="Privacy" asp-action="Index">Privacy Policy</a>
                     </li>
                 }
                 @*#if (ContactForm)*@
-                 <li class="border-left pl-2 mr-2">
+                 <li class="border-left ps-2 me-2">
                     <a href="@siteRoot/contact">Contact</a>
                 </li>
                 @*#endif*@
-                <li class="border-left pl-2 mr-2">
+                <li class="border-left ps-2 me-2">
                     @* you are free to remove the powered by cloudscribe link but we appreciate it if you choose to keep it! *@
                     <a class="text-nowrap" target="_blank" href="https://www.cloudscribe.com/?utm_source=@Context.Request.Host.Value&amp;utm_medium=referral&amp;utm_campaign=poweredbycloudscribe">Powered by cloudscribe</a>
                 </li>
             </ul>
         </div>
-        <div class="pl-sm-2  text-center w-100"><span class="text-nowrap">Copyright &copy; @DateTime.Now.Year</span><span class="d-none d-sm-inline"> - </span><span> @(Tenant?.SiteName ?? "Sample")</span></div>
+        <div class="ps-sm-2  text-center w-100"><span class="text-nowrap">Copyright &copy; @DateTime.Now.Year</span><span class="d-none d-sm-inline"> - </span><span> @(Tenant?.SiteName ?? "Sample")</span></div>
         <partial name="_CookieConsentRevokePartial" />
 
         </div>
