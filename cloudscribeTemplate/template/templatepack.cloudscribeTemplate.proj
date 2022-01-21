@@ -34,7 +34,8 @@
 	<ExcludeFromPackage Include="$(TemplateSourceRoot)/.gitignore" />
 	<ExcludeFromPackage Include="$(TemplateSourceRoot)/cloudscribeTemplate/**" />
 	<ExcludeFromPackage Include="$(TemplateSourceRoot)/nupkgs/**" />
-
+  <ExcludeFromPackage Include="$(TemplateSourceRoot)/Archive/**" />
+    
     <TemplateFiles  Include="$(TemplateSourceRoot)/**/*" 
                     Exclude="@(ExcludeFromPackage)" />
   </ItemGroup>
