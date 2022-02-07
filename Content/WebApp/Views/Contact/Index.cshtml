@@ -56,11 +56,11 @@
         <div class="col-md-offset-2 col-md-10">
 @if (Model.RecaptchaPublicKey.Length > 0 && Model.UseInvisibleCaptcha)
 {
-    <button class="btn btn-default g-recaptcha" data-sitekey="@Model.RecaptchaPublicKey" data-callback='onCaptchaSubmit'>@sr["Submit"]</button>
+    <button class="btn btn-primary g-recaptcha" data-sitekey="@Model.RecaptchaPublicKey" data-callback='onCaptchaSubmit'>@sr["Submit"]</button>
 }
 else
 {
-    <button name="submit" type="submit" class="btn btn-default">@sr["Submit"]</button>
+    <button name="submit" type="submit" class="btn btn-primary">@sr["Submit"]</button>
 }
             
         </div>
