@@ -44,7 +44,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
 
     <PackageReference Include="cloudscribe.Core.Web" Version="5.0.*" />
-    <PackageReference Include="cloudscribe.Core.CompiledViews.Bootstrap4" Version="5.0.*" />
+    <PackageReference Include="cloudscribe.Core.CompiledViews.Bootstrap5" Version="5.0.*" />
     <PackageReference Include="cloudscribe.Web.StaticFiles" Version="5.0.*" />
     <PackageReference Include="cloudscribe.Core.Models" Version="5.0.*" />  <!-- to resolve downgrade warnings only: remove at v6 -->
     <!--#if (NoDb)-->
@@ -66,11 +66,11 @@
     <!--#if (SimpleContentConfig != "z")-->
     <PackageReference Include="cloudscribe.Core.SimpleContent" Version="5.5.*" />
     <PackageReference Include="cloudscribe.SimpleContent.Web" Version="5.5.*" />
-    <PackageReference Include="cloudscribe.Core.SimpleContent.CompiledViews.Bootstrap4" Version="5.5.*" />
-    <PackageReference Include="cloudscribe.SimpleContent.CompiledViews.Bootstrap4" Version="5.5.*" />
+    <PackageReference Include="cloudscribe.Core.SimpleContent.CompiledViews.Bootstrap5" Version="5.5.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.CompiledViews.Bootstrap5" Version="5.5.*" />
     <PackageReference Include="cloudscribe.SimpleContent.MetaWeblog" Version="5.5.*" />
     <PackageReference Include="cloudscribe.SimpleContent.Syndication" Version="5.5.*" />
-    <PackageReference Include="cloudscribe.SimpleContent.ContentTemplates.Bootstrap4" Version="5.5.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.ContentTemplates.Bootstrap5" Version="5.5.*" />
     <PackageReference Include="cloudscribe.SimpleContent.Models" Version="5.5.*" /> <!-- to resolve downgrade warnings only: remove at v6 -->
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.SimpleContent.Storage.NoDb" Version="5.5.*" />
@@ -110,7 +110,7 @@
 
     <!--#if (IdentityServer)-->
     <PackageReference Include="cloudscribe.Core.IdentityServerIntegration" Version="5.0.*" />
-    <PackageReference Include="cloudscribe.IdentityServerIntegration.CompiledViews.Bootstrap4" Version="5.0.*" />
+    <PackageReference Include="cloudscribe.IdentityServerIntegration.CompiledViews.Bootstrap5" Version="5.0.*" />
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.Core.IdentityServer.NoDb" Version="5.0.*" />
     <!--#endif-->
@@ -156,10 +156,10 @@
     
      <!--#if (FormBuilder)-->
     <PackageReference Include="cloudscribe.Forms.Web" Version="5.0.*" />
-    <PackageReference Include="cloudscribe.Forms.Bootstrap4" Version="5.0.*" />
+    <PackageReference Include="cloudscribe.Forms.Bootstrap5" Version="5.0.*" />
     <PackageReference Include="cloudscribe.Forms.CoreIntegration" Version="5.0.*" />
     <!--#if (SimpleContentConfig != "z")-->
-     <PackageReference Include="cloudscribe.Forms.ContentTemplate.Bootstrap4" Version="5.0.*" />
+     <PackageReference Include="cloudscribe.Forms.ContentTemplate.Bootstrap5" Version="5.0.*" />
     <!--#endif-->
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.Forms.Data.NoDb" Version="5.0.*" />
@@ -180,7 +180,7 @@
 
      <!--#if (DynamicPolicy)-->
     <PackageReference Include="cloudscribe.DynamicPolicy.Web.Mvc" Version="5.0.*" />
-    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Views.Bootstrap4" Version="5.0.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Views.Bootstrap5" Version="5.0.*" />
     <PackageReference Include="cloudscribe.DynamicPolicy.CoreIntegration" Version="5.0.*" />
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.DynamicPolicy.Storage.NoDb" Version="5.0.*" />
@@ -224,9 +224,9 @@
 
 <!--#if (Paywall)-->
     <PackageReference Include="cloudscribe.Membership.Web.Mvc" Version="5.0.*" />
-    <PackageReference Include="cloudscribe.Membership.Views.Bootstrap4" Version="5.0.*" />
+    <PackageReference Include="cloudscribe.Membership.Views.Bootstrap5" Version="5.0.*" />
     <PackageReference Include="cloudscribe.Membership.StripeIntegration" Version="5.0.*" />
-    <PackageReference Include="cloudscribe.Membership.StripeIntegration.Bootstrap4" Version="5.0.*" />
+    <PackageReference Include="cloudscribe.Membership.StripeIntegration.Bootstrap5" Version="5.0.*" />
      <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.Membership.Data.NoDb" Version="5.0.*" />
     <!--#endif-->
@@ -247,7 +247,7 @@
 <!--#if (IncludeStripeIntegration)-->
     <PackageReference Include="cloudscribe.Core.StripeIntegration" Version="5.0.*" />
     <PackageReference Include="cloudscribe.StripeIntegration.Mvc" Version="5.0.*" />
-    <PackageReference Include="cloudscribe.StripeIntegration.Mvc.Bootstrap4" Version="5.0.*" />
+    <PackageReference Include="cloudscribe.StripeIntegration.Mvc.Bootstrap5" Version="5.0.*" />
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.StripeIntegration.Data.NoDb" Version="5.0.*" />
     <!--#endif-->
@@ -267,7 +267,7 @@
 
     <!--#if (Newsletter)-->
     <PackageReference Include="cloudscribe.EmailList.Web.Mvc" Version="5.0.*" />
-    <PackageReference Include="cloudscribe.EmailList.Views.Bootstrap4" Version="5.0.*" />
+    <PackageReference Include="cloudscribe.EmailList.Views.Bootstrap5" Version="5.0.*" />
     <PackageReference Include="cloudscribe.EmailList.CoreIntegration" Version="5.0.*" />
     <PackageReference Include="cloudscribe.EmailList.KvpUserProperties.Integration" Version="5.0.*" />
    <!--#if (NoDb)-->
@@ -290,7 +290,7 @@
  <!--#if (CommentSystem)-->
     <PackageReference Include="cloudscribe.TalkAbout.Web" Version="5.0.*" />
     <PackageReference Include="cloudscribe.TalkAbout.Comments.Integration.CloudscribeCore" Version="5.0.*" />
-    <PackageReference Include="cloudscribe.TalkAbout.Web.Bootstrap4" Version="5.0.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Web.Bootstrap5" Version="5.0.*" />
     <!--#if (NoDb)-->
     <PackageReference Include="cloudscribe.TalkAbout.Storage.NoDb" Version="5.0.*" />
     <!--#endif-->
@@ -314,7 +314,7 @@
 
     <!--#if (Forum)-->
     <PackageReference Include="cloudscribe.TalkAbout.Forum.Web" Version="5.0.*" />
-    <PackageReference Include="cloudscribe.TalkAbout.Forum.Web.Bootstrap4" Version="5.0.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Forum.Web.Bootstrap5" Version="5.0.*" />
     <!--#if (NoDb)-->
      <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.NoDb" Version="5.0.*" />
     <!--#endif-->

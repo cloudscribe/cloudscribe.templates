@@ -18,26 +18,26 @@
 <form id="contact-form" asp-controller="Contact" asp-action="Index" method="post" class="form-horizontal" role="form">
     <div asp-validation-summary="All" class="text-danger"></div>
     <input asp-for="FormId" type="hidden" />
-    <div class="form-group">
+    <div class="mb-3">
         <label asp-for="Name" class="col-md-2 control-label">@sr["Name"]</label>
         <div class="col-md-10">
             <input asp-for="Name" class="form-control" placeholder="Name" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
     </div>
-    <div class="form-group">
+    <div class="mb-3">
         <label asp-for="Email" class="col-md-2 control-label">@sr["Email"]</label>
         <div class="col-md-10">
             <input asp-for="Email" class="form-control" placeholder="Email" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
     </div>
-    <div class="form-group">
+    <div class="mb-3">
         <div class="col-md-10 col-md-offset-2">
             <label asp-for="Message" class="control-label">@sr["Comment/Enquiry"]</label>
         </div>
     </div>
-    <div class="form-group">
+    <div class="mb-3">
         <div class="col-md-10 col-md-offset-2">
             <textarea asp-for="Message" rows="7" class="form-control"></textarea>
             <span asp-validation-for="Message" class="text-danger"></span>
@@ -45,22 +45,22 @@
     </div>
     @if (Model.RecaptchaPublicKey.Length > 0 && !Model.UseInvisibleCaptcha)
     {
-        <div class="form-group">
+        <div class="mb-3">
             <div class="col-md-offset-2 col-md-10">
                 <div class="g-recaptcha" data-sitekey="@Model.RecaptchaPublicKey"></div>
                 @Html.ValidationMessage("recaptchaerror", new { @class = "text-danger" })
             </div>
         </div>
     }
-    <div class="form-group">
+    <div class="mb-3">
         <div class="col-md-offset-2 col-md-10">
 @if (Model.RecaptchaPublicKey.Length > 0 && Model.UseInvisibleCaptcha)
 {
-    <button class="btn btn-default g-recaptcha" data-sitekey="@Model.RecaptchaPublicKey" data-callback='onCaptchaSubmit'>@sr["Submit"]</button>
+    <button class="btn btn-primary g-recaptcha" data-sitekey="@Model.RecaptchaPublicKey" data-callback='onCaptchaSubmit'>@sr["Submit"]</button>
 }
 else
 {
-    <button name="submit" type="submit" class="btn btn-default">@sr["Submit"]</button>
+    <button name="submit" type="submit" class="btn btn-primary">@sr["Submit"]</button>
 }
             
         </div>

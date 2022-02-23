@@ -6,7 +6,7 @@
     var tokens = antiforgery.GetAndStoreTokens(Context);
     var ckOptions = await editorOptionsResolver.GetCkeditorOptions();
 }
-<div class="form-group" style="height:150px">
+<div class="mb-3" style="height:150px">
     <div class="">
         <div class="cs-crop-container" style="display:none">
             <img id="dzImage" style="max-width:300px;" src="/cr/images/690x517-placeholder.png" />
@@ -40,7 +40,7 @@
                  data-crop-area-height="">
                 @sr["Drop file here or click to browse device for file."]
             </div>
-            <div data-bind="visible: $root.allowImageBrowse() === true" class="pl-1 pt-1">
+            <div data-bind="visible: $root.allowImageBrowse() === true" class="ps-1 pt-1">
                 <div class="">
                     <button id="dz1-browse-server" type="button" class="mb-1 btn btn-primary collapse">@sr["Browse Server"] <i class="fas fa-search" aria-hidden="true"></i></button>
                 </div>

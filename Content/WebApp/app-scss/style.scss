@@ -1,5 +1,5 @@
 ﻿@charset "UTF-8";
-@import "bs4";
+@import "bs5";
 @import "jquery-smartmenu-bootstrap";
 @import "font-awesome";
 
@@ -112,4 +112,8 @@ header .navbar {
 
 #toast-container > #toast-wrapper > .toast > .toast-header strong {
     padding-right: 20px
+}
+
+div.input-group-prepend > span.input-group-text > i {
+    line-height: 1.5em;
 }
