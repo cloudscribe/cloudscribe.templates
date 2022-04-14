@@ -94,6 +94,16 @@ namespace WebApp
                 options.Secure = CookieSecurePolicy.Always;
             });
 
+            if (_sslIsAvailable)
+            {
+                services.AddHsts(options =>
+                {
+                    options.Preload = true;
+                    options.IncludeSubDomains = true;
+                    options.MaxAge = TimeSpan.FromDays(180);
+                });
+            }
+
             services.Configure<Microsoft.AspNetCore.Mvc.CookieTempDataProviderOptions>(options =>
             {
                 options.Cookie.IsEssential = true;
