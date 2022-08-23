@@ -7,8 +7,7 @@
   "groupIdentity":"cloudscribe",
   "shortName": "cloudscribe",
   "tags": {
-    "language": "C#",
-    "type":"project"
+    "language": "C#"
   },
   "sourceName": "WebApp",
   "preferNameDirectory": true,
