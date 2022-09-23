@@ -52,7 +52,7 @@
                 @if (!string.IsNullOrWhiteSpace(Tenant.LogoUrl))
                 {
                     <div>
-                         @*#if (SimpleContentConfig == 'a' || SimpleContentConfig == 'b')*@
+                         @*#if (SimpleContentConfig == 'a')*@
                          <partial name="CmsSiteLogoPartial" model="@Tenant" />
                          @*#else*@
                          <partial name="SiteLogoPartial" model="@Tenant" />
@@ -62,7 +62,7 @@
                 @if (Tenant.ShowSiteNameLink)
                 {
                     <div class="align-self-center pt-4 pt-sm-0">
-                         @*#if (SimpleContentConfig == 'a' || SimpleContentConfig == 'b')*@
+                         @*#if (SimpleContentConfig == 'a')*@
                          <partial name="CmsSiteTitlePartial" model="@Tenant" />
                          @*#else*@
                          <partial name="SiteTitlePartial" model="@Tenant" />

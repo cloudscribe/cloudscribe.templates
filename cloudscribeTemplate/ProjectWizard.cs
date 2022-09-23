@@ -75,7 +75,11 @@ namespace cloudscribeTemplate
                 var btn = _dialog.Controls["btnOk"] as Button;
                 btn.Click += btnOk_Click;
                 _dialog.ShowDialog();
-                
+
+
+                // ** Note - look in the \Content\WebApp\.template.config\template.json file for definitions of how these map
+                // onto the upper-case placeholders in template code
+
                 replacementsDictionary.Add("passthrough:DataStorage", _dataStorage);
                 replacementsDictionary.Add("passthrough:MultiTenantMode", _multiTenantMode);
                 replacementsDictionary.Add("passthrough:Logging", _useLogging.ToString().ToLowerInvariant());
@@ -83,7 +87,7 @@ namespace cloudscribeTemplate
                 replacementsDictionary.Add("passthrough:ContactForm", _useContactForm.ToString().ToLowerInvariant());
                 replacementsDictionary.Add("passthrough:KvpCustomRegistration", _useKvpProfile.ToString().ToLowerInvariant());
                 replacementsDictionary.Add("passthrough:IdentityServer", _useIdentityServer.ToString().ToLowerInvariant());
-                if(_simpleContentOption == "b")
+                if (_simpleContentOption == "b")
                 {
                     replacementsDictionary.Add("passthrough:NonRootPagesSegment", _nonRootPagesSegment.ToLowerInvariant());
                     replacementsDictionary.Add("passthrough:NonRootPagesTitle", _nonRootPagesTitle);
@@ -134,13 +138,17 @@ namespace cloudscribeTemplate
                 _useKvpProfile = ((CheckBox)_dialog.Controls["chkKvpProfile"]).Checked;
                 _useIdentityServer = ((CheckBox)_dialog.Controls["chkIdentityServer"]).Checked;
 
-               
+
                 var groupBox = _dialog.Controls["gbSimpleContentConfig"];
 
                 var simpleContentOption = groupBox.Controls.OfType<RadioButton>()
                            .FirstOrDefault(n => n.Checked == true);
 
-                switch(simpleContentOption.Name)
+                _nonRootPagesSegment = ((TextBox)groupBox.Controls["txtNonRootPagesSegment"]).Text;
+                _nonRootPagesTitle = ((TextBox)groupBox.Controls["txtNonRootPagesTitle"]).Text;
+
+
+                switch (simpleContentOption.Name)
                 {
                     case "optionA":
                         _simpleContentOption = "a";
