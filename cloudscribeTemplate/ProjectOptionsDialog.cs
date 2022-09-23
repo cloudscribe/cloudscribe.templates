@@ -129,11 +129,11 @@ namespace cloudscribeTemplate
         private void TxtNonRootPagesTitle_TextChanged(object sender, EventArgs e)
         {
             //in case text is pasted in instead of keyed
-            var currentValue = txtNonRootPagesSegment.Text;
+            var currentValue = txtNonRootPagesTitle.Text;
             var filtered = new string(currentValue.Where(c => Char.IsLetter(c)).ToArray());
             if (currentValue != filtered)
             {
-                txtNonRootPagesSegment.Text = filtered;
+                txtNonRootPagesTitle.Text = filtered;
             }
         }
 
