@@ -36,7 +36,7 @@
         <link rel="stylesheet" href="~/css/site.min.css"  />
     </environment>
     @RenderSection("Styles", required: false)    
-    @Html.RenderResources("css") @*render any css resources declared via helpers in partial views etc*@
+    
     <google-analytics profile-id="@Tenant.GoogleAnalyticsProfileId" user-id="@User.GetUserId()"></google-analytics>
     <base href="@Context.Request.Path" />
 </head>
