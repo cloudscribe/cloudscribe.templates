@@ -136,6 +136,17 @@
                     <a href="@siteRoot/contact">Contact</a>
                 </li>
                 @*#endif*@
+
+                  @* uncomment if you want the registration agreement in the footer*@
+                    @*                    
+                    @if (Tenant != null && !string.IsNullOrWhiteSpace(Tenant.RegistrationAgreement))
+                    {
+                        <li class="border-left ps-2 me-2">
+                            <a asp-controller="registrationagreement" asp-action="Index">Registration Agreement</a>
+                        </li>
+                    }
+                    *@
+
                 <li class="border-left ps-2 me-2">
                     @* you are free to remove the powered by cloudscribe link but we appreciate it if you choose to keep it! *@
                     <a class="text-nowrap" target="_blank" href="https://www.cloudscribe.com/?utm_source=@Context.Request.Host.Value&amp;utm_medium=referral&amp;utm_campaign=poweredbycloudscribe">Powered by cloudscribe</a>
