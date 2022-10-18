@@ -1237,4 +1237,19 @@
   <data name="Reset Authenticator" xml:space="preserve">
     <value>Reset Authenticator</value>
   </data>
+  <data name="For your security, you have been automatically logged out.&lt;br /&gt;This is to protect your personal data, in case you are away from your computer." xml:space="preserve">
+    <value>For your security, you have been automatically logged out.&lt;br /&gt;This is to protect your personal data, in case you are away from your computer.</value>
+  </data>
+  <data name="For your security, your session will time out in {0} seconds..." xml:space="preserve">
+    <value>For your security, your session will time out in {0} seconds...</value>
+  </data>
+  <data name="Log out" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="Stay logged in" xml:space="preserve">
+    <value>Stay logged in</value>
+  </data>
+  <data name="Timed out" xml:space="preserve">
+    <value>Timed out</value>
+  </data>
 </root>
