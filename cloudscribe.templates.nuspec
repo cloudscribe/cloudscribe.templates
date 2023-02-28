@@ -2,12 +2,12 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>cloudscribe.templates</id>
-    <version>6.4.0</version>
+    <version>6.5.0</version>
     <title>cloudscribe Project Templates</title>
     <authors>Joe Audette</authors>
     <description>Project template for starting new web application projects with cloudscribe library components</description>
     <tags>ASP.NET Core cloudscribe</tags>
-    <copyright>Copyright © Exegesis Spatial Data Management Ltd</copyright>
+    <copyright>Copyright © Exegesis Spatial Data Management</copyright>
     <language>en-US</language>
     <projectUrl>https://github.com/cloudscribe/cloudscribe.templates</projectUrl>
     <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>

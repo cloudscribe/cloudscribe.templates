@@ -1174,7 +1174,21 @@
                     <Children> </Children>
                 </NavNode>
 
-              <NavNode key="CountryListPage"
+            <!--#if (QueryTool && !NoDb)-->
+            <NavNode key="QueryTool"
+               controller="QueryTool"
+               action="Index"
+               text="Query Tool"
+               iconCssClass="far fa-file-image fa-fw"
+               componentVisibility="breadcrumbs,childtree,parenttree"
+               excludeFromSearchSiteMap="true">
+              <Children> </Children>
+            </NavNode>
+            <!--#endif-->
+
+
+         
+            <NavNode key="CountryListPage"
                     controller="CoreData"
                     action="CountryListPage"
                     text="Country State Administration"

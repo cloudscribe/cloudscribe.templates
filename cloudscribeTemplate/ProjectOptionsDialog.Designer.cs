@@ -62,6 +62,7 @@
             this.chkFormBuilder = new System.Windows.Forms.CheckBox();
             this.chkDynamicPolicy = new System.Windows.Forms.CheckBox();
             this.lnkDynamicAuth = new System.Windows.Forms.LinkLabel();
+            this.chkQueryTool = new System.Windows.Forms.CheckBox();
             this.gbSimpleContentConfig.SuspendLayout();
             this.gbCommercial.SuspendLayout();
             this.SuspendLayout();
@@ -229,7 +230,7 @@
             // chkIdentityServer
             // 
             this.chkIdentityServer.AutoSize = true;
-            this.chkIdentityServer.Location = new System.Drawing.Point(46, 420);
+            this.chkIdentityServer.Location = new System.Drawing.Point(46, 417);
             this.chkIdentityServer.Margin = new System.Windows.Forms.Padding(2);
             this.chkIdentityServer.Name = "chkIdentityServer";
             this.chkIdentityServer.Size = new System.Drawing.Size(188, 17);
@@ -239,7 +240,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(224, 477);
+            this.btnOk.Location = new System.Drawing.Point(224, 491);
             this.btnOk.Margin = new System.Windows.Forms.Padding(2);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(110, 27);
@@ -417,7 +418,7 @@
             // chkDynamicPolicy
             // 
             this.chkDynamicPolicy.AutoSize = true;
-            this.chkDynamicPolicy.Location = new System.Drawing.Point(46, 305);
+            this.chkDynamicPolicy.Location = new System.Drawing.Point(45, 310);
             this.chkDynamicPolicy.Name = "chkDynamicPolicy";
             this.chkDynamicPolicy.Size = new System.Drawing.Size(208, 17);
             this.chkDynamicPolicy.TabIndex = 10;
@@ -435,12 +436,25 @@
             this.lnkDynamicAuth.Text = "Learn more...";
             this.lnkDynamicAuth.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDynamicAuth_LinkClicked);
             // 
+            // chkQueryTool
+            // 
+            this.chkQueryTool.AutoSize = true;
+            this.chkQueryTool.Location = new System.Drawing.Point(46, 443);
+            this.chkQueryTool.Margin = new System.Windows.Forms.Padding(2);
+            this.chkQueryTool.Name = "chkQueryTool";
+            this.chkQueryTool.Size = new System.Drawing.Size(116, 17);
+            this.chkQueryTool.TabIndex = 12;
+            this.chkQueryTool.Text = "Include Query Tool";
+            this.chkQueryTool.UseVisualStyleBackColor = true;
+            this.chkQueryTool.CheckedChanged += new System.EventHandler(this.chkQueryTool_CheckedChanged);
+            // 
             // ProjectOptionsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(947, 564);
+            this.Controls.Add(this.chkQueryTool);
             this.Controls.Add(this.lnkDynamicAuth);
             this.Controls.Add(this.gbCommercial);
             this.Controls.Add(this.chkDynamicPolicy);
@@ -501,5 +515,6 @@
         private System.Windows.Forms.LinkLabel lnkForum;
         private System.Windows.Forms.CheckBox chkForum;
         private System.Windows.Forms.LinkLabel lnkDynamicAuth;
+        private System.Windows.Forms.CheckBox chkQueryTool;
     }
 }

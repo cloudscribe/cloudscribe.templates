@@ -191,6 +191,12 @@
       "defaultValue": "false",
       "description": "Include IdentityServer4 integration."
     },
+	"QueryTool": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include Query Tool."
+    },
 	  "Logging": {
       "type": "parameter",
       "datatype": "bool",
