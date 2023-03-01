@@ -1174,19 +1174,7 @@
                     <Children> </Children>
                 </NavNode>
 
-            <!--#if (QueryTool && !NoDb)-->
-            <NavNode key="QueryTool"
-               controller="QueryTool"
-               action="Index"
-               text="Query Tool"
-               iconCssClass="far fa-file-image fa-fw"
-               componentVisibility="breadcrumbs,childtree,parenttree"
-               excludeFromSearchSiteMap="true">
-              <Children> </Children>
-            </NavNode>
-            <!--#endif-->
-
-
+           
          
             <NavNode key="CountryListPage"
                     controller="CoreData"
@@ -1231,7 +1219,20 @@
                 </Children>
             </NavNode>
 
-              <NavNode key="SystemInfo"
+  <!--#if (QueryTool && !NoDb)-->
+            <NavNode key="QueryTool"
+               controller="QueryTool"
+               action="Index"
+               text="Query Tool"
+               iconCssClass="fas fa-database fa-fw"
+               componentVisibility="breadcrumbs,childtree,parenttree"
+               authorizationPolicy="QueryToolAdminPolicy"
+               excludeFromSearchSiteMap="true">
+              <Children> </Children>
+            </NavNode>
+  <!--#endif-->
+
+            <NavNode key="SystemInfo"
                        controller="SystemInfo"
                        action="Index"
                        text="System Information"
