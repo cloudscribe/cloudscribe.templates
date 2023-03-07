@@ -39,10 +39,6 @@ namespace Microsoft.Extensions.DependencyInjection
             var connectionString = config.GetConnectionString("EntityFrameworkConnection");
 #endif
 
-#if (QueryTool && !NoDb)
-            var queryToolConnectionString = config.GetConnectionString("QueryToolConnectionString");
-#endif
-
 
 #if (SQLite)
             var dbName = config.GetConnectionString("SQLiteDbName");
@@ -272,16 +268,16 @@ namespace Microsoft.Extensions.DependencyInjection
 
 #if (QueryTool && !NoDb)
 #if (SQLite)
-            services.AddQueryToolEFStorageSQLite(connectionString:queryToolConnectionString,maxConnectionRetryCount:0,maxConnectionRetryDelaySeconds:30,commandTimeout:30);
+            services.AddQueryToolEFStorageSQLite(connectionString:connectionString,maxConnectionRetryCount:0,maxConnectionRetryDelaySeconds:30,commandTimeout:30);
 #endif
 #if (MSSQL)
-            services.AddQueryToolEFStorageMSSQL(connectionString:queryToolConnectionString,maxConnectionRetryCount:0,maxConnectionRetryDelaySeconds:30,transientSqlErrorNumbersToAdd:null);
+            services.AddQueryToolEFStorageMSSQL(connectionString:connectionString,maxConnectionRetryCount:0,maxConnectionRetryDelaySeconds:30,transientSqlErrorNumbersToAdd:null);
 #endif
 #if (MySql)
-            services.AddQueryToolEFStorageMySql(connectionString:queryToolConnectionString,maxConnectionRetryCount:0,maxConnectionRetryDelaySeconds:30,transientSqlErrorNumbersToAdd:null);
+            services.AddQueryToolEFStorageMySql(connectionString:connectionString,maxConnectionRetryCount:0,maxConnectionRetryDelaySeconds:30,transientSqlErrorNumbersToAdd:null);
 #endif
 #if (pgsql)
-            services.AddQueryToolEFStoragePostgreSql(connectionString:queryToolConnectionString,maxConnectionRetryCount:0,maxConnectionRetryDelaySeconds:30,transientErrorCodesToAdd:null);
+            services.AddQueryToolEFStoragePostgreSql(connectionString:connectionString,maxConnectionRetryCount:0,maxConnectionRetryDelaySeconds:30,transientErrorCodesToAdd:null);
 #endif
 #endif
 
