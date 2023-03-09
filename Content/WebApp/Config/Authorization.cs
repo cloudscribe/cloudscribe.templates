@@ -101,6 +101,12 @@ namespace Microsoft.Extensions.DependencyInjection
                {
                    authBuilder.RequireRole("Administrators");
                });
+            options.AddPolicy(
+                "QueryToolApiPolicy",
+                authBuilder =>
+                {
+                    authBuilder.RequireRole("Administrators");
+                });
 #endif
 
 
