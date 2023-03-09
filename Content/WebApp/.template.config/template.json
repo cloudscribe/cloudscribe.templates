@@ -138,7 +138,7 @@
       "choices": [
         {
           "choice": "a",
-          "description": "Pages and Bog with Pages as default route"
+          "description": "Pages and Blog with Pages as default route"
         },
         {
           "choice": "b",
@@ -190,6 +190,12 @@
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Include IdentityServer4 integration."
+    },
+	"QueryTool": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include Query Tool."
     },
 	  "Logging": {
       "type": "parameter",

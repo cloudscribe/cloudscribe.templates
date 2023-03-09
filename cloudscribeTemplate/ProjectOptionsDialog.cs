@@ -47,6 +47,8 @@ namespace cloudscribeTemplate
 
             chkDynamicPolicy.Checked = true;
             chkLogging.Checked = true;
+            chkQueryTool.Checked = false;
+            chkQueryTool.Enabled = false;
 
             //chkPaywall.Enabled = false;
             //chkNewsletter.Enabled = false;
@@ -105,20 +107,16 @@ namespace cloudscribeTemplate
 
         private void CbDataStorage_SelectedValueChanged(object sender, EventArgs e)
         {
-            //var db = (string)cbDataStorage.SelectedValue;
-            //if(db == "NoDb" || db == "SQLite")
-            //{
-            //    chkPaywall.Enabled = false;
-            //    chkPaywall.Checked = false;
-            //    chkNewsletter.Enabled = false;
-            //    chkNewsletter.Checked = false;
-            //}
-            //else
-            //{
-            //    chkPaywall.Enabled = true;
-            //    chkNewsletter.Enabled = true;
-               
-            //}
+            var db = (string)cbDataStorage.SelectedValue;
+            if (db == "NoDb")
+            {
+                chkQueryTool.Enabled = false;
+                chkQueryTool.Checked = false;
+            }
+            else
+            {
+                chkQueryTool.Enabled = true;
+            }
         }
 
         //private void lnkWebpack_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -240,6 +238,11 @@ namespace cloudscribeTemplate
         }
 
         private void ProjectOptionsDialog_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkQueryTool_CheckedChanged(object sender, EventArgs e)
         {
 
         }

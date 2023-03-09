@@ -46,6 +46,7 @@ namespace cloudscribeTemplate
         private bool _useContactForm = false;
         private bool _useKvpProfile = false;
         private bool _useIdentityServer = false;
+        private bool _useQueryTool = false;
         private string _nonRootPagesSegment = "p";
         private string _nonRootPagesTitle = "Articles";
 
@@ -87,6 +88,7 @@ namespace cloudscribeTemplate
                 replacementsDictionary.Add("passthrough:ContactForm", _useContactForm.ToString().ToLowerInvariant());
                 replacementsDictionary.Add("passthrough:KvpCustomRegistration", _useKvpProfile.ToString().ToLowerInvariant());
                 replacementsDictionary.Add("passthrough:IdentityServer", _useIdentityServer.ToString().ToLowerInvariant());
+                replacementsDictionary.Add("passthrough:QueryTool", _useQueryTool.ToString().ToLowerInvariant());
                 if (_simpleContentOption == "b")
                 {
                     replacementsDictionary.Add("passthrough:NonRootPagesSegment", _nonRootPagesSegment.ToLowerInvariant());
@@ -130,13 +132,14 @@ namespace cloudscribeTemplate
         {
             if(_dialog != null)
             {
-                _dataStorage = (string)((ComboBox)_dialog.Controls["cbDataStorage"]).SelectedValue;
+                _dataStorage          = (string)((ComboBox)_dialog.Controls["cbDataStorage"]).SelectedValue;
                 _includeDynamicPolicy = ((CheckBox)_dialog.Controls["chkDynamicPolicy"]).Checked;
-                _useLogging = ((CheckBox)_dialog.Controls["chkLogging"]).Checked;
+                _useLogging           = ((CheckBox)_dialog.Controls["chkLogging"]).Checked;
                 
-                _useContactForm = ((CheckBox)_dialog.Controls["chkContactForm"]).Checked;
-                _useKvpProfile = ((CheckBox)_dialog.Controls["chkKvpProfile"]).Checked;
-                _useIdentityServer = ((CheckBox)_dialog.Controls["chkIdentityServer"]).Checked;
+                _useContactForm       = ((CheckBox)_dialog.Controls["chkContactForm"]).Checked;
+                _useKvpProfile        = ((CheckBox)_dialog.Controls["chkKvpProfile"]).Checked;
+                _useIdentityServer    = ((CheckBox)_dialog.Controls["chkIdentityServer"]).Checked;
+                _useQueryTool         = ((CheckBox)_dialog.Controls["chkQueryTool"]).Checked;
 
 
                 var groupBox = _dialog.Controls["gbSimpleContentConfig"];
@@ -145,7 +148,7 @@ namespace cloudscribeTemplate
                            .FirstOrDefault(n => n.Checked == true);
 
                 _nonRootPagesSegment = ((TextBox)groupBox.Controls["txtNonRootPagesSegment"]).Text;
-                _nonRootPagesTitle = ((TextBox)groupBox.Controls["txtNonRootPagesTitle"]).Text;
+                _nonRootPagesTitle   = ((TextBox)groupBox.Controls["txtNonRootPagesTitle"]).Text;
 
 
                 switch (simpleContentOption.Name)
@@ -181,13 +184,12 @@ namespace cloudscribeTemplate
                 //    _includeReactSample = false;
                 //}
 
-                var gbCommercial = _dialog.Controls["gbCommercial"];
-                _includeFormBuilder = ((CheckBox)gbCommercial.Controls["chkFormBuilder"]).Checked;
-                _includeNewsletter = ((CheckBox)gbCommercial.Controls["chkNewsletter"]).Checked;
-                _includePaywall = ((CheckBox)gbCommercial.Controls["chkPaywall"]).Checked;
+                var gbCommercial      = _dialog.Controls["gbCommercial"];
+                _includeFormBuilder   = ((CheckBox)gbCommercial.Controls["chkFormBuilder"]).Checked;
+                _includeNewsletter    = ((CheckBox)gbCommercial.Controls["chkNewsletter"]).Checked;
+                _includePaywall       = ((CheckBox)gbCommercial.Controls["chkPaywall"]).Checked;
                 _includeCommentSystem = ((CheckBox)gbCommercial.Controls["chkCommentSystem"]).Checked;
-                _includeForum = ((CheckBox)gbCommercial.Controls["chkForum"]).Checked;
-
+                _includeForum         = ((CheckBox)gbCommercial.Controls["chkForum"]).Checked;
 
                 _dialog.Close();
             }
@@ -195,7 +197,4 @@ namespace cloudscribeTemplate
         }
 
     }
-
-    
-
 }

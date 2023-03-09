@@ -4,6 +4,23 @@ using Microsoft.Extensions.Hosting;
 using cloudscribe.UserProperties.Models;
 using cloudscribe.UserProperties.Services;
 #endif
+
+#if (QueryTool && !NoDb)
+using cloudscribe.QueryTool.Services;
+#if (MSSQL)
+using cloudscribe.QueryTool.EFCore.MSSQL;
+#endif
+#if (MySql)
+using cloudscribe.QueryTool.EFCore.MySql;
+#endif
+#if (pgsql)
+using cloudscribe.QueryTool.EFCore.PostgreSql;
+#endif
+#if (SQLite)
+using cloudscribe.QueryTool.EFCore.SQLite;
+#endif
+#endif
+
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
@@ -20,8 +37,9 @@ namespace Microsoft.Extensions.DependencyInjection
         {
 #if (!NoDb && !SQLite)
             var connectionString = config.GetConnectionString("EntityFrameworkConnection");
-
 #endif
+
+
 #if (SQLite)
             var dbName = config.GetConnectionString("SQLiteDbName");
             var dbPath = Path.Combine(env.ContentRootPath, dbName);
@@ -42,7 +60,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
 #endif
 
-#if(NoDb)
+#if (NoDb)
             services.AddCloudscribeCoreNoDbStorage();
 #endif
 #if (KvpCustomRegistration || Newsletter)
@@ -113,7 +131,7 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #if (pgsql)
             services.AddStripeIntegrationPostgreSqlStorage(connectionString);
-#endif        
+#endif
 #endif
 
 #if (FormBuilder)
@@ -131,7 +149,7 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #if (pgsql)
             services.AddFormsStoragePostgreSql(connectionString);
-#endif        
+#endif
 #endif
 
 #if (DynamicPolicy)
@@ -149,7 +167,7 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #if (pgsql)
             services.AddDynamicPolicyPostgreSqlStorage(connectionString);
-#endif       
+#endif
 #endif
 
 #if (Paywall)
@@ -164,10 +182,10 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #if (pgsql)
             services.AddMembershipSubscriptionPostgreSqlStorage(connectionString);
-#endif  
+#endif
 #if (SQLite)
             services.AddMembershipSubscriptionStorageSQLite(connectionString);
-#endif       
+#endif
 #endif
 
 #if (IncludeEmailQueue)
@@ -186,11 +204,11 @@ namespace Microsoft.Extensions.DependencyInjection
 #if (pgsql)
             services.AddEmailTemplatePostgreSqlStorage(connectionString);
             services.AddEmailQueuePostgreSqlStorage(connectionString);
-#endif  
+#endif
 #if (SQLite)
              services.AddEmailTemplateStorageSQLite(connectionString);
              services.AddEmailQueueStorageSQLite(connectionString);
-#endif         
+#endif
 #endif
 
 #if (Newsletter)
@@ -205,10 +223,10 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #if (pgsql)
             services.AddEmailListPostgreSqlStorage(connectionString);
-#endif 
+#endif
 #if (SQLite)
             services.AddEmailListStorageSQLite(connectionString);
-#endif        
+#endif
 #endif
 
 #if (CommentSystem)
@@ -226,7 +244,7 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #if (pgsql)
             services.AddCommentStoragePostgreSql(connectionString);
-#endif       
+#endif
 #endif
 
 #if (Forum)
@@ -244,9 +262,24 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #if (pgsql)
             services.AddForumStoragePostgreSql(connectionString);
-#endif       
+#endif
 #endif
 
+
+#if (QueryTool && !NoDb)
+#if (SQLite)
+            services.AddQueryToolEFStorageSQLite(connectionString:connectionString,maxConnectionRetryCount:0,maxConnectionRetryDelaySeconds:30,commandTimeout:30);
+#endif
+#if (MSSQL)
+            services.AddQueryToolEFStorageMSSQL(connectionString:connectionString,maxConnectionRetryCount:0,maxConnectionRetryDelaySeconds:30,transientSqlErrorNumbersToAdd:null);
+#endif
+#if (MySql)
+            services.AddQueryToolEFStorageMySql(connectionString:connectionString,maxConnectionRetryCount:0,maxConnectionRetryDelaySeconds:30,transientSqlErrorNumbersToAdd:null);
+#endif
+#if (pgsql)
+            services.AddQueryToolEFStoragePostgreSql(connectionString:connectionString,maxConnectionRetryCount:0,maxConnectionRetryDelaySeconds:30,transientErrorCodesToAdd:null);
+#endif
+#endif
 
 
             return services;
@@ -342,6 +375,12 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddTalkAboutCommentsCloudscribeIntegration(config);
             services.AddTalkAboutServices(config)
                 .AddTalkAboutNotificationServices(config);
+#endif
+
+
+#if (QueryTool && !NoDb)
+            //The QueryTool can only work with Entity Framework databases and not with NoDb
+            services.AddScoped<IQueryTool,QueryTool>();
 #endif
 
             return services;

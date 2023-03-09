@@ -203,6 +203,24 @@
     <!--#endif-->
     <!--#endif-->
 
+
+    <!--#if (QueryTool && !NoDb)-->
+    <PackageReference Include="cloudscribe.QueryTool.Web" Version="6.0.*" />
+    <!--#if (SQLite)-->
+    <PackageReference Include="cloudscribe.QueryTool.EFCore.SQLite" Version="6.0.*" />
+    <!--#endif-->
+    <!--#if (MSSQL)-->
+    <PackageReference Include="cloudscribe.QueryTool.EFCore.MSSQL" Version="6.0.*" />
+    <!--#endif-->                          
+    <!--#if (MySql)-->                     
+    <PackageReference Include="cloudscribe.QueryTool.EFCore.MySql" Version="6.0.*" />
+    <!--#endif-->                          
+    <!--#if (pgsql)-->                     
+    <PackageReference Include="cloudscribe.QueryTool.EFCore.PostgreSql" Version="6.0.*" />
+    <!--#endif-->
+    <!--#endif-->
+    
+
 <!--#if (IncludeEmailQueue)-->
     <PackageReference Include="cloudscribe.EmailQueue.CoreIntegration" Version="6.0.*" />
   <!--#if (NoDb)-->

@@ -94,6 +94,22 @@ namespace Microsoft.Extensions.DependencyInjection
                     authBuilder.RequireRole("Administrators", "Content Administrators");
                 });
 
+#if (QueryTool && !NoDb)
+            options.AddPolicy(
+               "QueryToolAdminPolicy",
+               authBuilder =>
+               {
+                   authBuilder.RequireRole("Administrators");
+               });
+            options.AddPolicy(
+                "QueryToolApiPolicy",
+                authBuilder =>
+                {
+                    authBuilder.RequireRole("Administrators");
+                });
+#endif
+
+
 #if (CommentSystem)
            options.AddPolicy(
                 "CommentAdminPolicy",
@@ -149,7 +165,7 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 
 
-            
+
 
 #if (IdentityServer)
             options.AddPolicy(
@@ -214,7 +230,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
 #endif
 
-            
+
             // add other policies here 
 
 
