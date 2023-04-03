@@ -116,7 +116,7 @@ namespace Microsoft.AspNetCore.Builder
                 routes.MapRoute(
                     name: "folderdefault",
                     template: "{sitefolder}/{controller}/{action}/{id?}",
-                    defaults: null,
+                    defaults: new { action = "Index" },
                     constraints: new { name = new cloudscribe.Core.Web.Components.SiteFolderRouteConstraint() }
                     );
 #endif
