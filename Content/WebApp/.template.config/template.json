@@ -68,7 +68,10 @@
             "Views/Shared/CommentScriptsPartial.cshtml",
             "Views/Shared/CommentStylePartial.cshtml",
             "Views/Blog/**",
-            "Views/Page/**"
+            "Views/Page/CommentWrapperPartial.cshtml",
+			"Views/Page/EditCommentsEnabledPartial.cshtml",
+			"Views/Page/EditWithTemplateCommentsEnabledPartial.cshtml",
+			"Views/Page/PageScriptsPartial.cshtml"
           ]
         },
         {
@@ -84,7 +87,8 @@
           "exclude": [
             "Views/Account/RegisterBottom.cshtml",
             "Views/Shared/_LayoutNewsletterHtml.cshtml",
-            "Views/Shared/_LayoutNewsletterPlainText.cshtml"
+            "Views/Shared/_LayoutNewsletterPlainText.cshtml",
+			"Views/Page/PageBottomPartial.cshtml"
           ]
         },
         {

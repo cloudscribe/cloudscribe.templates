@@ -1,0 +1,8 @@
+﻿@model cloudscribe.SimpleContent.Web.ViewModels.PageViewModel
+
+@if (Context.Request.Path == "/" || Context.Request.Path == "/home")
+{
+    // render the sign-up widget for the email list / newsletter
+    Html.Resource(@<script src="~/cr/js/jquery.unobtrusive-ajax.min.js"></script>, "js");
+    @await Component.InvokeAsync("EmailListSubscribe", new { })
+}
