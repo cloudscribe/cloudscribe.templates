@@ -35,6 +35,8 @@ namespace Microsoft.Extensions.DependencyInjection
             IWebHostEnvironment env
             )
         {
+#region "Single database storage choices"            
+#if (!AllStorage)
 #if (!NoDb && !SQLite)
             var connectionString = config.GetConnectionString("EntityFrameworkConnection");
 #endif
@@ -281,6 +283,237 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #endif
 
+#endif
+#endregion
+
+#region "All database storage choice"
+#if (AllStorage)
+            var storage = config["DevOptions:DbPlatform"].ToLowerInvariant();
+            var efProvider = config["DevOptions:EFProvider"].ToLowerInvariant();
+
+            switch (storage)
+            {
+                case "efcore":
+                default:
+                    switch (efProvider)
+                    {
+                        case "mysql":
+                            connectionString = config.GetConnectionString("MySqlEntityFrameworkConnection");
+                            services.AddCloudscribeCoreEFStorageMySql(connectionString);
+#if (KvpCustomRegistration || Newsletter)
+                            services.AddCloudscribeKvpEFStorageMySql(connectionString);
+#endif
+#if (Logging)
+                            services.AddCloudscribeLoggingEFStorageMySQL(connectionString);
+#endif
+#if (SimpleContentConfig != "z")
+                            services.AddCloudscribeSimpleContentEFStorageMySQL(connectionString);
+#endif
+#if (IncludeStripeIntegration)
+                            services.AddStripeIntegrationStorageMySql(connectionString);
+#endif
+#if (FormBuilder)
+                            services.AddFormsStorageMySql(connectionString);
+#endif
+#if (DynamicPolicy)
+                            services.AddDynamicPolicyEFStorageMySql(connectionString);
+#endif
+#if (Paywall)
+                            services.AddMembershipSubscriptionStorageMySql(connectionString);
+#endif
+#if (IncludeEmailQueue)
+                            services.AddEmailTemplateStorageMySql(connectionString);
+                            services.AddEmailQueueStorageMySql(connectionString);
+#endif
+#if (Newsletter)
+                            services.AddEmailListStorageMySql(connectionString);
+#endif
+#if (CommentSystem)
+                            services.AddCommentStorageMySql(connectionString);
+#endif
+#if (Forum)
+                            services.AddForumStorageMySql(connectionString);
+#endif
+#if (QueryTool)
+                            services.AddQueryToolEFStorageMySql(connectionString);
+#endif
+                            break;
+
+                        case "pgsql":
+                            connectionString = config.GetConnectionString("PostgreSqlEntityFrameworkConnection");
+                            services.AddCloudscribeCorePostgreSqlStorage(connectionString);
+#if (KvpCustomRegistration || Newsletter)
+                            services.AddCloudscribeKvpPostgreSqlStorage(connectionString);
+#endif
+#if (Logging)
+                            services.AddCloudscribeLoggingPostgreSqlStorage(connectionString);
+#endif
+#if (SimpleContentConfig != "z")
+                            services.AddCloudscribeSimpleContentPostgreSqlStorage(connectionString);
+#endif
+#if (IncludeStripeIntegration)
+                            services.AddStripeIntegrationPostgreSqlStorage(connectionString);
+#endif
+#if (FormBuilder)
+                            services.AddFormsStoragePostgreSql(connectionString);
+#endif
+#if (DynamicPolicy)
+                            services.AddDynamicPolicyPostgreSqlStorage(connectionString);
+#endif
+#if (Paywall)
+                            services.AddMembershipSubscriptionPostgreSqlStorage(connectionString);
+#endif
+#if (IncludeEmailQueue)
+                            services.AddEmailTemplatePostgreSqlStorage(connectionString);
+                            services.AddEmailQueuePostgreSqlStorage(connectionString);
+#endif
+#if (Newsletter)
+                            services.AddEmailListPostgreSqlStorage(connectionString);
+#endif
+#if (CommentSystem)
+                            services.AddCommentStoragePostgreSql(connectionString);
+#endif
+#if (Forum)
+                            services.AddForumStoragePostgreSql(connectionString);
+#endif
+#if (QueryTool)
+                            services.AddQueryToolEFStoragePostgreSql(connectionString);
+#endif
+                            break;
+
+                        case "sqlite":
+                            var dbName = config.GetConnectionString("SQLiteDbName");
+                            var dbPath = Path.Combine(env.ContentRootPath, dbName);
+                            connectionString = $"Data Source={dbPath}";
+                            services.AddCloudscribeCoreEFStorageSQLite(connectionString);
+#if (KvpCustomRegistration || Newsletter)
+                            services.AddCloudscribeKvpEFStorageSQLite(connectionString);
+#endif
+#if (Logging)
+                            services.AddCloudscribeLoggingEFStorageSQLite(connectionString);
+#endif
+#if (SimpleContentConfig != "z")
+                            services.AddCloudscribeSimpleContentEFStorageSQLite(connectionString);
+#endif
+#if (IncludeStripeIntegration)
+                            services.AddStripeIntegrationStorageSQLite(connectionString);
+#endif
+#if (FormBuilder)
+                            services.AddFormsStorageSQLite(connectionString);
+#endif
+#if (DynamicPolicy)
+                            services.AddDynamicPolicyEFStorageSQLite(connectionString);
+#endif
+#if (Paywall)
+                            services.AddMembershipSubscriptionStorageSQLite(connectionString);
+#endif
+#if (IncludeEmailQueue)
+                            services.AddEmailTemplateStorageSQLite(connectionString);
+                            services.AddEmailQueueStorageSQLite(connectionString);
+#endif
+#if (Newsletter)
+                            services.AddEmailListStorageSQLite(connectionString);
+#endif
+#if (CommentSystem)
+                            services.AddCommentStorageSQLite(connectionString);
+#endif
+#if (Forum)
+                            services.AddForumStorageSQLite(connectionString);
+#endif
+#if (QueryTool)
+                            services.AddQueryToolEFStorageSQLite(connectionString);
+#endif
+                            break;
+
+                        case "mssql":
+                        default:
+                            var connectionString = config.GetConnectionString("EntityFrameworkConnection");
+                            services.AddCloudscribeCoreEFStorageMSSQL(connectionString);
+#if (KvpCustomRegistration || Newsletter)
+                            services.AddCloudscribeKvpEFStorageMSSQL(connectionString);
+#endif
+#if (Logging)
+                            services.AddCloudscribeLoggingEFStorageMSSQL(connectionString);
+#endif
+#if (SimpleContentConfig != "z")
+                            services.AddCloudscribeSimpleContentEFStorageMSSQL(connectionString);
+#endif
+#if (IncludeStripeIntegration)
+                            services.AddStripeIntegrationStorageMSSQL(connectionString);
+#endif
+#if (FormBuilder)
+                            services.AddFormsStorageMSSQL(connectionString);
+#endif
+#if (DynamicPolicy)
+                            services.AddDynamicPolicyEFStorageMSSQL(connectionString);
+#endif
+#if (Paywall)
+                            services.AddMembershipSubscriptionStorageMSSQL(connectionString);
+#endif
+#if (IncludeEmailQueue)
+                            services.AddEmailTemplateStorageMSSQL(connectionString);
+                            services.AddEmailQueueStorageMSSQL(connectionString);
+#endif
+#if (Newsletter)
+                            services.AddEmailListStorageMSSQL(connectionString);
+#endif
+#if (CommentSystem)
+                            services.AddCommentStorageMSSQL(connectionString);
+#endif
+#if (Forum)
+                            services.AddForumStorageMSSQL(connectionString);
+#endif
+#if (QueryTool)
+                            services.AddQueryToolEFStorageMSSQL(connectionString);
+#endif
+                            break;
+                    }
+                    break;
+
+                case "nodb":
+                default:
+                    services.AddCloudscribeCoreNoDbStorage();
+#if (KvpCustomRegistration || Newsletter)
+                    services.AddCloudscribeKvpNoDbStorage();
+#endif
+#if (Logging)
+                    services.AddCloudscribeLoggingNoDbStorage(config);
+#endif
+#if (SimpleContentConfig != "z")
+                    services.AddNoDbStorageForSimpleContent();
+#endif
+#if (IncludeStripeIntegration)
+                    services.AddStripeIntegrationStorageNoDb();
+#endif
+#if (FormBuilder)
+                    services.AddFormsStorageNoDb();
+#endif
+#if (DynamicPolicy)
+                    services.AddNoDbStorageForDynamicPolicies(config);
+#endif
+#if (Paywall)
+                    services.AddMembershipSubscriptionStorageNoDb();
+#endif
+#if (IncludeEmailQueue)
+                    services.AddEmailTemplateStorageNoDb();
+                    services.AddEmailQueueStorageNoDb();
+#endif
+#if (Newsletter)
+                    services.AddEmailListStorageNoDb();
+#endif
+#if (CommentSystem)
+                    services.AddTalkAboutStorageNoDb();
+#endif
+#if (Forum)
+                    services.AddTalkAboutForumStorageNoDb();
+#endif
+#if (QueryTool)
+                    services.AddQueryToolNoDbStorage();
+#endif
+                    break;                    
+            }
+#endif
+#endregion
 
             return services;
         }
