@@ -49,19 +49,19 @@
     
     <!--<PackageReference Include="cloudscribe.Core.Models" Version="5.0.*" />  --><!-- to resolve downgrade warnings only: remove at v6 -->
     
-    <!--#if (NoDb)-->
+    <!--#if (NoDb || AllStorage)-->
     <PackageReference Include="cloudscribe.Core.Storage.NoDb" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (SQLite)-->
+    <!--#if (SQLite || AllStorage)-->
     <PackageReference Include="cloudscribe.Core.Storage.EFCore.SQLite" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MSSQL)-->
+    <!--#if (MSSQL || AllStorage)-->
     <PackageReference Include="cloudscribe.Core.Storage.EFCore.MSSQL" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MySql)-->
+    <!--#if (MySql || AllStorage)-->
     <PackageReference Include="cloudscribe.Core.Storage.EFCore.MySql" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (pgsql)-->
+    <!--#if (pgsql || AllStorage)-->
     <PackageReference Include="cloudscribe.Core.Storage.EFCore.PostgreSql" Version="6.0.*" />
     <!--#endif-->
     
@@ -76,38 +76,38 @@
     
     <!--<PackageReference Include="cloudscribe.SimpleContent.Models" Version="5.5.*" /> --><!-- to resolve downgrade warnings only: remove at v6 -->
     
-    <!--#if (NoDb)-->
+    <!--#if (NoDb || AllStorage)-->
     <PackageReference Include="cloudscribe.SimpleContent.Storage.NoDb" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (SQLite)-->
+    <!--#if (SQLite || AllStorage)-->
     <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.SQLite" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MSSQL)-->
+    <!--#if (MSSQL || AllStorage)-->
     <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MSSQL" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MySql)-->
+    <!--#if (MySql || AllStorage)-->
     <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MySQL" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (pgsql)-->
+    <!--#if (pgsql || AllStorage)-->
     <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.PostgreSql" Version="6.0.*" />
     <!--#endif-->
     <!--#endif-->
 
     <!--#if (Logging)-->
-    <PackageReference Include="cloudscribe.Logging.Web" Version="6.0.*" />
-    <!--#if (NoDb)-->
+    <PackageReference Include="cloudscribe.Logging.Web" Version="6.0.*" />    
+    <!--#if (NoDb || AllStorage)-->
     <PackageReference Include="cloudscribe.Logging.NoDb" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (SQLite)-->
+    <!--#if (SQLite || AllStorage)-->
     <PackageReference Include="cloudscribe.Logging.EFCore.SQLite" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MSSQL)-->
+    <!--#if (MSSQL || AllStorage)-->
     <PackageReference Include="cloudscribe.Logging.EFCore.MSSQL" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MySql)-->
+    <!--#if (MySql || AllStorage)-->
     <PackageReference Include="cloudscribe.Logging.EFCore.MySql" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (pgsql)-->
+    <!--#if (pgsql || AllStorage)-->
     <PackageReference Include="cloudscribe.Logging.EFCore.PostgreSql" Version="6.0.*" />
     <!--#endif-->
     <!--#endif-->
@@ -115,19 +115,19 @@
     <!--#if (IdentityServer)-->
     <PackageReference Include="cloudscribe.Core.IdentityServerIntegration" Version="6.0.*" />
     <PackageReference Include="cloudscribe.IdentityServerIntegration.CompiledViews.Bootstrap5" Version="6.0.*" />
-    <!--#if (NoDb)-->
+    <!--#if (NoDb || AllStorage)-->
     <PackageReference Include="cloudscribe.Core.IdentityServer.NoDb" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (SQLite)-->
+    <!--#if (SQLite || AllStorage)-->
     <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.SQLite" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MSSQL)-->
+    <!--#if (MSSQL || AllStorage)-->
     <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.MSSQL" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MySql)-->
+    <!--#if (MySql || AllStorage)-->
     <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.MySql" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (pgsql)-->
+    <!--#if (pgsql || AllStorage)-->
     <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.PostgreSql" Version="6.0.*" />
     <!--#endif-->
     <!--#endif-->
@@ -137,19 +137,19 @@
     <!--#endif-->
 
     <!--#if (KvpCustomRegistration || Newsletter)-->
-    <!--#if (NoDb)-->
+    <!--#if (NoDb || AllStorage)-->
     <PackageReference Include="cloudscribe.Kvp.Storage.NoDb" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (SQLite)-->
+    <!--#if (SQLite || AllStorage)-->
     <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.SQLite" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MSSQL)-->
+    <!--#if (MSSQL || AllStorage)-->
     <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MSSQL" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MySql)-->
+    <!--#if (MySql || AllStorage)-->
     <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MySql" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (pgsql)-->
+    <!--#if (pgsql || AllStorage)-->
     <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.PostgreSql" Version="6.0.*" />
     <!--#endif-->
     <PackageReference Include="cloudscribe.UserProperties.Kvp" Version="6.0.*" />
@@ -166,19 +166,19 @@
     <!--#if (SimpleContentConfig != "z")-->
      <PackageReference Include="cloudscribe.Forms.ContentTemplate.Bootstrap5" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (NoDb)-->
+    <!--#if (NoDb || AllStorage)-->
     <PackageReference Include="cloudscribe.Forms.Data.NoDb" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (SQLite)-->
+    <!--#if (SQLite || AllStorage)-->
     <PackageReference Include="cloudscribe.Forms.Data.EFCore.SQLite" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MSSQL)-->
+    <!--#if (MSSQL || AllStorage)-->
     <PackageReference Include="cloudscribe.Forms.Data.EFCore.MSSQL" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MySql)-->
+    <!--#if (MySql || AllStorage)-->
     <PackageReference Include="cloudscribe.Forms.Data.EFCore.MySql" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (pgsql)-->
+    <!--#if (pgsql || AllStorage)-->
     <PackageReference Include="cloudscribe.Forms.Data.EFCore.PostgreSql" Version="6.0.*" />
     <!--#endif-->
     <!--#endif-->
@@ -187,36 +187,35 @@
     <PackageReference Include="cloudscribe.DynamicPolicy.Web.Mvc" Version="6.0.*" />
     <PackageReference Include="cloudscribe.DynamicPolicy.Web.Views.Bootstrap5" Version="6.0.*" />
     <PackageReference Include="cloudscribe.DynamicPolicy.CoreIntegration" Version="6.0.*" />
-    <!--#if (NoDb)-->
+    <!--#if (NoDb || AllStorage)-->
     <PackageReference Include="cloudscribe.DynamicPolicy.Storage.NoDb" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (SQLite)-->
+    <!--#if (SQLite || AllStorage)-->
     <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.SQLite" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MSSQL)-->
+    <!--#if (MSSQL || AllStorage)-->
     <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.MSSQL" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MySql)-->
+    <!--#if (MySql || AllStorage)-->
     <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.MySql" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (pgsql)-->
+    <!--#if (pgsql || AllStorage)-->
     <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.PostgreSql" Version="6.0.*" />
     <!--#endif-->
     <!--#endif-->
 
-
     <!--#if (QueryTool && !NoDb)-->
     <PackageReference Include="cloudscribe.QueryTool.Web" Version="6.0.*" />
-    <!--#if (SQLite)-->
+    <!--#if (SQLite || AllStorage)-->
     <PackageReference Include="cloudscribe.QueryTool.EFCore.SQLite" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MSSQL)-->
+    <!--#if (MSSQL || AllStorage)-->
     <PackageReference Include="cloudscribe.QueryTool.EFCore.MSSQL" Version="6.0.*" />
     <!--#endif-->                          
-    <!--#if (MySql)-->                     
+    <!--#if (MySql || AllStorage)-->                     
     <PackageReference Include="cloudscribe.QueryTool.EFCore.MySql" Version="6.0.*" />
     <!--#endif-->                          
-    <!--#if (pgsql)-->                     
+    <!--#if (pgsql || AllStorage)-->                     
     <PackageReference Include="cloudscribe.QueryTool.EFCore.PostgreSql" Version="6.0.*" />
     <!--#endif-->
     <!--#endif-->
@@ -224,22 +223,22 @@
 
 <!--#if (IncludeEmailQueue)-->
     <PackageReference Include="cloudscribe.EmailQueue.CoreIntegration" Version="6.0.*" />
-  <!--#if (NoDb)-->
+  <!--#if (NoDb || AllStorage)-->
     <PackageReference Include="cloudscribe.EmailQueue.Data.NoDb" Version="6.0.*" />
     <!--#endif-->
-  <!--#if (MSSQL)-->
+  <!--#if (MSSQL || AllStorage)-->
    <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.MSSQL" Version="6.0.*" />
    <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.MSSQL" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MySql)-->
+    <!--#if (MySql || AllStorage)-->
     <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.MySql" Version="6.0.*" />
     <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.MySql" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (pgsql)-->
+    <!--#if (pgsql || AllStorage)-->
     <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.PostgreSql" Version="6.0.*" />
     <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.PostgreSql" Version="6.0.*" />
     <!--#endif-->
-     <!--#if (SQLite)-->
+     <!--#if (SQLite || AllStorage)-->
    <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.SQLite" Version="6.0.*" />
    <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.SQLite" Version="6.0.*" />
     <!--#endif-->
@@ -250,19 +249,19 @@
     <PackageReference Include="cloudscribe.Membership.Views.Bootstrap5" Version="6.0.*" />
     <PackageReference Include="cloudscribe.Membership.StripeIntegration" Version="6.0.*" />
     <PackageReference Include="cloudscribe.Membership.StripeIntegration.Bootstrap5" Version="6.0.*" />
-     <!--#if (NoDb)-->
+     <!--#if (NoDb || AllStorage)-->
     <PackageReference Include="cloudscribe.Membership.Data.NoDb" Version="6.0.*" />
     <!--#endif-->
-  <!--#if (MSSQL)-->
+  <!--#if (MSSQL || AllStorage)-->
    <PackageReference Include="cloudscribe.Membership.Data.EFCore.MSSQL" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MySql)-->
+    <!--#if (MySql || AllStorage)-->
     <PackageReference Include="cloudscribe.Membership.Data.EFCore.MySql" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (pgsql)-->
+    <!--#if (pgsql || AllStorage)-->
      <PackageReference Include="cloudscribe.Membership.Data.EFCore.PostgreSql" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (SQLite)-->
+    <!--#if (SQLite || AllStorage)-->
      <PackageReference Include="cloudscribe.Membership.Data.EFCore.SQLite" Version="6.0.*" />
     <!--#endif-->
 <!--#endif-->
@@ -271,19 +270,19 @@
     <PackageReference Include="cloudscribe.Core.StripeIntegration" Version="6.0.*" />
     <PackageReference Include="cloudscribe.StripeIntegration.Mvc" Version="6.0.*" />
     <PackageReference Include="cloudscribe.StripeIntegration.Mvc.Bootstrap5" Version="6.0.*" />
-    <!--#if (NoDb)-->
+    <!--#if (NoDb || AllStorage)-->
     <PackageReference Include="cloudscribe.StripeIntegration.Data.NoDb" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (SQLite)-->
+    <!--#if (SQLite || AllStorage)-->
     <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.SQLite" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MSSQL)-->
+    <!--#if (MSSQL || AllStorage)-->
     <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.MSSQL" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MySql)-->
+    <!--#if (MySql || AllStorage)-->
     <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.MySql" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (pgsql)-->
+    <!--#if (pgsql || AllStorage)-->
     <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.PostgreSql" Version="6.0.*" />
     <!--#endif-->
     <!--#endif-->
@@ -293,19 +292,19 @@
     <PackageReference Include="cloudscribe.EmailList.Views.Bootstrap5" Version="6.0.*" />
     <PackageReference Include="cloudscribe.EmailList.CoreIntegration" Version="6.0.*" />
     <PackageReference Include="cloudscribe.EmailList.KvpUserProperties.Integration" Version="6.0.*" />
-   <!--#if (NoDb)-->
+   <!--#if (NoDb || AllStorage)-->
     <PackageReference Include="cloudscribe.EmailList.Data.NoDb" Version="6.0.*" />
     <!--#endif-->
-  <!--#if (MSSQL)-->
+  <!--#if (MSSQL || AllStorage)-->
    <PackageReference Include="cloudscribe.EmailList.Data.EFCore.MSSQL" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MySql)-->
+    <!--#if (MySql || AllStorage)-->
     <PackageReference Include="cloudscribe.EmailList.Data.EFCore.MySql" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (pgsql)-->
+    <!--#if (pgsql || AllStorage)-->
      <PackageReference Include="cloudscribe.EmailList.Data.EFCore.PostgreSql" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (SQLite)-->
+    <!--#if (SQLite || AllStorage)-->
      <PackageReference Include="cloudscribe.EmailList.Data.EFCore.SQLite" Version="6.0.*" />
     <!--#endif-->
 <!--#endif-->
@@ -314,19 +313,19 @@
     <PackageReference Include="cloudscribe.TalkAbout.Web" Version="6.0.*" />
     <PackageReference Include="cloudscribe.TalkAbout.Comments.Integration.CloudscribeCore" Version="6.0.*" />
     <PackageReference Include="cloudscribe.TalkAbout.Web.Bootstrap5" Version="6.0.*" />
-    <!--#if (NoDb)-->
+    <!--#if (NoDb || AllStorage)-->
     <PackageReference Include="cloudscribe.TalkAbout.Storage.NoDb" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (SQLite)-->
+    <!--#if (SQLite || AllStorage)-->
     <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.SQLite" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MSSQL)-->
+    <!--#if (MSSQL || AllStorage)-->
    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.MSSQL" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MySql)-->
+    <!--#if (MySql || AllStorage)-->
     <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.MySql" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (pgsql)-->
+    <!--#if (pgsql || AllStorage)-->
     <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.PostgreSql" Version="6.0.*" />
     <!--#endif-->
     <!--#endif-->
@@ -338,19 +337,19 @@
     <!--#if (Forum)-->
     <PackageReference Include="cloudscribe.TalkAbout.Forum.Web" Version="6.0.*" />
     <PackageReference Include="cloudscribe.TalkAbout.Forum.Web.Bootstrap5" Version="6.0.*" />
-    <!--#if (NoDb)-->
+    <!--#if (NoDb || AllStorage)-->
      <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.NoDb" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (SQLite)-->
+    <!--#if (SQLite || AllStorage)-->
      <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.SQLite" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MSSQL)-->
+    <!--#if (MSSQL || AllStorage)-->
     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.MSSQL" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (MySql)-->
+    <!--#if (MySql || AllStorage)-->
      <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.MySql" Version="6.0.*" />
     <!--#endif-->
-    <!--#if (pgsql)-->
+    <!--#if (pgsql || AllStorage)-->
      <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.PostgreSql" Version="6.0.*" />
     <!--#endif-->
     <!--#endif-->
