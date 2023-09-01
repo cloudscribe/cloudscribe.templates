@@ -7,16 +7,16 @@ using cloudscribe.UserProperties.Services;
 
 #if (QueryTool && !NoDb)
 using cloudscribe.QueryTool.Services;
-#if (MSSQL)
+#if (MSSQL || AllStorage)
 using cloudscribe.QueryTool.EFCore.MSSQL;
 #endif
-#if (MySql)
+#if (MySql || AllStorage)
 using cloudscribe.QueryTool.EFCore.MySql;
 #endif
-#if (pgsql)
+#if (pgsql || AllStorage)
 using cloudscribe.QueryTool.EFCore.PostgreSql;
 #endif
-#if (SQLite)
+#if (SQLite || AllStorage)
 using cloudscribe.QueryTool.EFCore.SQLite;
 #endif
 #endif
@@ -35,7 +35,6 @@ namespace Microsoft.Extensions.DependencyInjection
             IWebHostEnvironment env
             )
         {
-#region "Single database storage choices"            
 #if (!AllStorage)
 #if (!NoDb && !SQLite)
             var connectionString = config.GetConnectionString("EntityFrameworkConnection");
@@ -284,17 +283,14 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 
 #endif
-#endregion
-
-#region "All database storage choice"
 #if (AllStorage)
             var storage = config["DevOptions:DbPlatform"].ToLowerInvariant();
             var efProvider = config["DevOptions:EFProvider"].ToLowerInvariant();
+            string connectionString;
 
             switch (storage)
             {
                 case "efcore":
-                default:
                     switch (efProvider)
                     {
                         case "mysql":
@@ -427,7 +423,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
                         case "mssql":
                         default:
-                            var connectionString = config.GetConnectionString("EntityFrameworkConnection");
+                            connectionString = config.GetConnectionString("EntityFrameworkConnection");
                             services.AddCloudscribeCoreEFStorageMSSQL(connectionString);
 #if (KvpCustomRegistration || Newsletter)
                             services.AddCloudscribeKvpEFStorageMSSQL(connectionString);
@@ -508,12 +504,11 @@ namespace Microsoft.Extensions.DependencyInjection
                     services.AddTalkAboutForumStorageNoDb();
 #endif
 #if (QueryTool)
-                    services.AddQueryToolNoDbStorage();
+                    //The QueryTool can only work with Entity Framework databases and not with NoDb
 #endif
                     break;                    
             }
 #endif
-#endregion
 
             return services;
         }
@@ -532,16 +527,17 @@ namespace Microsoft.Extensions.DependencyInjection
             services.Configure<ProfilePropertySetContainer>(config.GetSection("ProfilePropertySetContainer"));
 #if (Newsletter) 
             services.AddEmailListKvpIntegration(config);
+
 #endif
             services.AddCloudscribeKvpUserProperties();
+
 #endif
-
-
             services.AddScoped<cloudscribe.Web.Navigation.INavigationNodePermissionResolver, cloudscribe.Web.Navigation.NavigationNodePermissionResolver>();
 #if (SimpleContentConfig != "z")
             services.AddScoped<cloudscribe.Web.Navigation.INavigationNodePermissionResolver, cloudscribe.SimpleContent.Web.Services.PagesNavigationNodePermissionResolver>();
 #endif
             services.AddCloudscribeCoreMvc(config);
+
 #if (SimpleContentConfig != "z")
             services.AddCloudscribeCoreIntegrationForSimpleContent(config);
             services.AddSimpleContentMvc(config);
@@ -549,73 +545,84 @@ namespace Microsoft.Extensions.DependencyInjection
             
             services.AddMetaWeblogForSimpleContent(config.GetSection("MetaWeblogApiOptions"));
             services.AddSimpleContentRssSyndiction();
+
 #endif
 #if (ContactForm)
             services.AddCloudscribeSimpleContactFormCoreIntegration(config);
             services.AddCloudscribeSimpleContactForm(config);
-#endif
 
+#endif
 #if (FormBuilder)
             services.AddFormsCloudscribeCoreIntegration(config);
             services.AddFormsServices(config);
+
 #if (SimpleContentConfig != "z")
             services.AddFormSurveyContentTemplatesForSimpleContent(config);
+
 #endif
             // these are examples to show you how to implement custom form submission handlers.
             // see /Services/SampleFormSubmissionHandlers.cs
             services.AddScoped<cloudscribe.Forms.Models.IHandleFormSubmission, WebApp.Services.FakeFormSubmissionHandler1>();
             services.AddScoped<cloudscribe.Forms.Models.IHandleFormSubmission, WebApp.Services.FakeFormSubmissionHandler2>();
-#endif
 
+#endif
 #if (IncludeStripeIntegration)
             services.AddMembershipStripeIntegration(config);
             services.AddCloudscribeCoreStripeIntegration();
             services.AddStripeIntegrationMvc(config);
 
 #endif
-
 #if (Paywall)
             services.AddMembershipSubscriptionMvcComponents(config);
             services.AddMembershipBackgroundTasks(config);
-#endif
 
+#endif
 #if (IncludeEmailQueue)
             services.AddEmailQueueBackgroundTask(config);
             services.AddEmailQueueWithCloudscribeIntegration(config);
             services.AddEmailRazorTemplating(config);
-#endif
 
+#endif
 #if (Newsletter)
             services.AddEmailListWithCloudscribeIntegration(config);
-#endif
 
+#endif
 #if (DynamicPolicy)
             services.AddCloudscribeDynamicPolicyIntegration(config);
             services.AddDynamicAuthorizationMvc(config);
-#endif
 
+#endif
 #if (CommentSystem || Forum)
-            services.AddTalkAboutCloudscribeIntegration(config);    
-#endif
+            services.AddTalkAboutCloudscribeIntegration(config); 
 
+#endif
 #if (Forum)
   
             services.AddTalkAboutForumServices(config)
                 .AddTalkAboutForumNotificationServices(config);
-#endif
 
+#endif
 #if (CommentSystem)
             services.AddTalkAboutCommentsCloudscribeIntegration(config);
             services.AddTalkAboutServices(config)
                 .AddTalkAboutNotificationServices(config);
+
 #endif
-
-
+#if(!AllStorage)
 #if (QueryTool && !NoDb)
             //The QueryTool can only work with Entity Framework databases and not with NoDb
             services.AddScoped<IQueryTool,QueryTool>();
-#endif
 
+#endif
+#endif
+#if(AllStorage)
+            var storage = config["DevOptions:DbPlatform"].ToLowerInvariant(); 
+            if (storage == "efcore")
+            {
+                services.AddScoped<IQueryTool, QueryTool>();
+            }
+
+#endif
             return services;
         }
 

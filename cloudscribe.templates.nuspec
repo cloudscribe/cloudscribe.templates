@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>cloudscribe.templates</id>
-    <version>6.5.0</version>
+    <version>6.5.1</version>
     <title>cloudscribe Project Templates</title>
     <authors>Joe Audette</authors>
     <description>Project template for starting new web application projects with cloudscribe library components</description>
@@ -21,6 +21,6 @@
   </metadata>
   <files>
     <file src="Content\**" exclude="content\cloudscribeTemplate\**\*;Archive\**;**\bin\**\*;**\obj\**\*;**\*.user;**\*.lock.json;nuget.exe;cloudscribe.templates.nuspec;packtemplate.cmd;template.sln;marketplace-desc.md;*.nuspec;.git/**;.vs/**;nupkgs/**;.gitignore" />
-	<file src="Content\icon.png" target="images\" />
+	  <file src="Content\icon.png" target="images\" />
   </files>
 </package>
