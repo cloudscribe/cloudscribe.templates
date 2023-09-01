@@ -154,6 +154,7 @@
     <!--#endif-->
     <PackageReference Include="cloudscribe.UserProperties.Kvp" Version="6.0.*" />
     <PackageReference Include="cloudscribe.UserProperties" Version="6.0.*" />
+    <PackageReference Include="cloudscribe.Kvp.Views.BS5" Version="6.0.*" />
     <!--#endif-->
 
     <PackageReference Include="cloudscribe.Web.Localization" Version="6.0.*" />
