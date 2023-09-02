@@ -291,4 +291,4 @@ __pycache__/
 **/wwwroot/lib/**
 nuget.exe
 
-cloudscribe.template.test/
+cloudscribe.templates.test/
