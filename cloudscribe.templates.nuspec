@@ -10,7 +10,7 @@
     <copyright>Copyright © Exegesis Spatial Data Management</copyright>
     <language>en-US</language>
     <projectUrl>https://github.com/cloudscribe/cloudscribe.templates</projectUrl>
-    <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+    <license type="expression">Apache-2.0</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <packageTypes>
       <packageType name="Template" />

@@ -3,6 +3,8 @@
 # the purpose of this script is to try and test the various template options
 # to make sure that they produce valid cloudscribe projects that build and run
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 TESTPROJECTDIR="cloudscribe.templates.test"
 
 # this will build a new cloudscribe.templates nuget package and install it locally
@@ -26,29 +28,44 @@ dotnet new --install ./nupkgs/*.nupkg
 # some of which are not supported in NoDb or SQLite mode!
 
 # options for dotnet new cloudscribe -Da
-DBOPTIONS = "NoDb MSSQL MySql SQLite pgsql AllStorage"
+DBOPTIONS="NoDb MSSQL MySql SQLite pgsql AllStorage"
 
-# cloudcribe module inclusions
-MODULEOPTIONS = "-C -K -I -Q -L -F -P -Ne -Co -Fo -D"
+S=0
 
-# but some modules are not supported in NoDb or SQLite mode!
+for DB in $DBOPTIONS; do
 
+    echo "Building project with $DB database in $SCRIPT_DIR/$TESTPROJECTDIR ..."
 
+    # cloudcribe module inclusions
+    MODULEOPTIONS="-C -K -I -Q -L -F -P -Ne -Co -Fo -D"
 
+    # but some modules are not supported in NoDb or SQLite mode!
+    if [ $DB == "SQLite" ]; then
+        MODULEOPTIONS="-C -K -I -Q -L -F -Co -Fo -D"
+    fi
+    if [ $DB == "NoDb" ]; then
+        MODULEOPTIONS="-C -K -I -L -F -Co -Fo -D"
+    fi
 
-#remove and recreate the test project directory
-rm -Rf ./$TESTPROJECTDIR 2>/dev/null
-mkdir ./$TESTPROJECTDIR 2>/dev/null
+    #remove and recreate the test project directory
+    rm -Rf $SCRIPT_DIR/$TESTPROJECTDIR 2>/dev/null
+    mkdir $SCRIPT_DIR/$TESTPROJECTDIR 2>/dev/null
 
-#if the test project directory exists, try and create a new project from the template
-if [ -d "./$TESTPROJECTDIR" ]; then
-    cd ./$TESTPROJECTDIR
-    dotnet new cloudscribe -Da AllStorage -Q
-    [ $? -ne 0 ] && echo "dotnet new failed" && exit 1
-    dotnet restore --force --no-cache --forec-evaluate
-    [ $? -ne 0 ] && echo "dotnet restore failed" && exit 1
-    dotnet build
-    [ $? -ne 0 ] && echo "dotnet build failed" && exit 1
-fi
+    #if the test project directory exists, try and create a new project from the template
+    if [ -d "$SCRIPT_DIR/$TESTPROJECTDIR" ]; then
+        cd $SCRIPT_DIR/$TESTPROJECTDIR
+        dotnet new cloudscribe -Da $DB $MODULEOPTIONS
+        [ $? -ne 0 ] && echo "dotnet new failed" && break
+        dotnet restore --force --no-cache --force-evaluate
+        [ $? -ne 0 ] && echo "dotnet restore failed" && break
+        dotnet build
+        [ $? -ne 0 ] && echo "dotnet build failed" && break
+        cd $SCRIPT_DIR
+        S=$((S+1))
+    fi
 
+done
+rm -Rf $SCRIPT_DIR/$TESTPROJECTDIR 2>/dev/null
+
+echo "Successfully built $S/6 projects with various options!"
 
