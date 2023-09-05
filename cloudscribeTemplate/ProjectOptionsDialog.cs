@@ -28,7 +28,8 @@ namespace cloudscribeTemplate
                 new ComboItem{ Key = "SQLite", Text = "Use SQLite" },
                 new ComboItem{ Key = "MSSQL", Text = "Use Microsoft SqlServer" },
                 new ComboItem{ Key = "MySql", Text = "Use MySql" },
-                new ComboItem{ Key = "pgsql", Text = "Use PostgreSql" }
+                new ComboItem{ Key = "pgsql", Text = "Use PostgreSql",
+                new ComboItem{ Key = "AllStorage", Text = "Use all database types (for developing new cloudscribe modules)" }
                 
             };
             cbDataStorage.ValueMember = "Key";

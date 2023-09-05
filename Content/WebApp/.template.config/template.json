@@ -275,7 +275,11 @@
 		    {
           "choice": "MySql",
           "description": "MySql storage using Entity Framework Core"
-        }
+        },
+		    {
+          "choice": "AllStorage",
+          "description": "All database storage types (for developing new cloudscribe modules)"
+        }        
       ]
       
     },
@@ -307,6 +311,10 @@
     "NoDb": {
       "type": "computed",
       "value": "(DataStorage == \"NoDb\")"
+    },
+    "AllStorage": {
+      "type": "computed",
+      "value": "(DataStorage == \"AllStorage\")"
     },
     "UtmCampaign": {
       "type": "generated",

@@ -877,6 +877,18 @@
 
 
               <!--#if (SimpleContentConfig != 'z')-->
+              <NavNode key="ContentCloning"
+                      controller="ContentCloning"
+                      action="Index"
+                      text="Content Cloning"
+                      iconCssClass="fas fa-copy fa-fw"
+                      preservedRouteParameters="siteId"
+                      componentVisibility="breadcrumbs,childtree,parenttree"
+                      authorizationPolicy="AdminPolicy"
+                      excludeFromSearchSiteMap="true">
+                <Children></Children>
+              </NavNode>
+
               <NavNode key="ContentSettings"
                        controller="ContentSettings"
                        action="Index"
