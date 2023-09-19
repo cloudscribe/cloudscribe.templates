@@ -224,6 +224,7 @@
     <PackageReference Include="cloudscribe.EmailQueue.CoreIntegration" Version="6.0.*" />
   <!--#if (NoDb || AllStorage)-->
     <PackageReference Include="cloudscribe.EmailQueue.Data.NoDb" Version="6.0.*" />
+    <PackageReference Include="cloudscribe.Email.Templating.Data.NoDb" Version="6.0.*" />
   <!--#endif-->
   <!--#if (MSSQL || AllStorage)-->
    <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.MSSQL" Version="6.0.*" />
