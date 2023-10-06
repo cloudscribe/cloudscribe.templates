@@ -4,7 +4,6 @@ using Microsoft.Extensions.Hosting;
 using cloudscribe.UserProperties.Models;
 using cloudscribe.UserProperties.Services;
 #endif
-
 #if (QueryTool && !NoDb)
 using cloudscribe.QueryTool.Services;
 #if (MSSQL || AllStorage)
@@ -20,7 +19,6 @@ using cloudscribe.QueryTool.EFCore.PostgreSql;
 using cloudscribe.QueryTool.EFCore.SQLite;
 #endif
 #endif
-
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
@@ -28,7 +26,6 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class CloudscribeFeatures
     {
-        
         public static IServiceCollection SetupDataStorage(
             this IServiceCollection services,
             IConfiguration config,
@@ -281,7 +278,6 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddQueryToolEFStoragePostgreSql(connectionString:connectionString,maxConnectionRetryCount:0,maxConnectionRetryDelaySeconds:30,transientErrorCodesToAdd:null);
 #endif
 #endif
-
 #endif
 #if (AllStorage)
             var storage = config["DevOptions:DbPlatform"].ToLowerInvariant();
@@ -506,10 +502,9 @@ namespace Microsoft.Extensions.DependencyInjection
 #if (QueryTool)
                     //The QueryTool can only work with Entity Framework databases and not with NoDb
 #endif
-                    break;                    
+                    break;
             }
 #endif
-
             return services;
         }
 
@@ -525,7 +520,7 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 #if (KvpCustomRegistration || Newsletter)
             services.Configure<ProfilePropertySetContainer>(config.GetSection("ProfilePropertySetContainer"));
-#if (Newsletter) 
+#if (Newsletter)
             services.AddEmailListKvpIntegration(config);
 
 #endif
@@ -593,7 +588,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
 #endif
 #if (CommentSystem || Forum)
-            services.AddTalkAboutCloudscribeIntegration(config); 
+            services.AddTalkAboutCloudscribeIntegration(config);
 
 #endif
 #if (Forum)
@@ -608,23 +603,20 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddTalkAboutNotificationServices(config);
 
 #endif
-#if(!AllStorage)
-#if (QueryTool && !NoDb)
-            //The QueryTool can only work with Entity Framework databases and not with NoDb
-            services.AddScoped<IQueryTool,QueryTool>();
-
-#endif
-#endif
-#if(AllStorage)
-            var storage = config["DevOptions:DbPlatform"].ToLowerInvariant(); 
+#if (QueryTool)
+#if (AllStorage)
+            var storage = config["DevOptions:DbPlatform"].ToLowerInvariant();
             if (storage == "efcore")
             {
+                //The QueryTool can only work with Entity Framework databases and not with NoDb
                 services.AddScoped<IQueryTool, QueryTool>();
             }
-
+#endif
+#if (!AllStorage && !NoDb)
+            services.AddScoped<IQueryTool, QueryTool>();
+#endif
 #endif
             return services;
         }
-
     }
 }
