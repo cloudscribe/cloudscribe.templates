@@ -18,14 +18,19 @@ namespace WebApp
         {
             var hostBuilder = CreateHostBuilder(args);
             var host = hostBuilder.Build();
+            IConfiguration config;
             
             using (var scope = host.Services.CreateScope())
             {
-                var scopedServices = scope.ServiceProvider; 
+                var scopedServices = scope.ServiceProvider;
+                config = scopedServices.GetRequiredService<IConfiguration>();
                 try
                 {
+#if (AllStorage)
+                    EnsureDataStorageIsReady(config, scopedServices);
+#else
                     EnsureDataStorageIsReady(scopedServices);
-
+#endif
                 }
                 catch (Exception ex)
                 {
@@ -37,7 +42,6 @@ namespace WebApp
 #if (Logging)
             var env = host.Services.GetRequiredService<IWebHostEnvironment>();
             var loggerFactory = host.Services.GetRequiredService<ILoggerFactory>();
-            var config = host.Services.GetRequiredService<IConfiguration>();
             ConfigureLogging(env, loggerFactory, host.Services, config);
 #endif
 
@@ -51,12 +55,13 @@ namespace WebApp
                     webBuilder.UseStartup<Startup>();
                 });
 
+#if (!AllStorage)
         private static void EnsureDataStorageIsReady(IServiceProvider scopedServices)
         {
 #if (Logging)
 #if (!NoDb)
-            var deleteLogsOlderThanDays = 90;
-            LoggingEFStartup.InitializeDatabaseAsync(scopedServices, deleteLogsOlderThanDays).Wait();
+            var deletePostsOlderThanDays = 90;
+            LoggingEFStartup.InitializeDatabaseAsync(scopedServices, deletePostsOlderThanDays).Wait();
 #endif
 #endif
 #if (NoDb)
@@ -128,8 +133,68 @@ namespace WebApp
 #endif
 #endif
         }
+#endif
+#if (AllStorage)
+        private static void EnsureDataStorageIsReady(IConfiguration config, IServiceProvider scopedServices)
+        {
+            var storage = config["DevOptions:DbPlatform"].ToLowerInvariant();
 
+            switch (storage)
+            {
+                case "efcore":
+                    CoreEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
 #if (Logging)
+                    var deletePostsOlderThanDays = 90;
+                    LoggingEFStartup.InitializeDatabaseAsync(scopedServices, deletePostsOlderThanDays).Wait();
+#endif
+#if (SimpleContentConfig != "z")
+                    SimpleContentEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
+#endif
+#if (KvpCustomRegistration || Newsletter)
+                    KvpEFCoreStartup.InitializeDatabaseAsync(scopedServices).Wait();
+#endif
+#if (IdentityServer)
+                    CloudscribeIdentityServerIntegrationEFCoreStorage.InitializeDatabaseAsync(scopedServices).Wait();
+#endif
+#if (FormBuilder)
+                    FormsDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+#endif
+#if (Paywall)
+                    MembershipDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+#endif
+#if (IncludeEmailQueue)
+                    EmailQueueDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+                    EmailTemplateDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+#endif
+#if (Newsletter)
+                    EmailListDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+#endif
+#if (IncludeStripeIntegration)
+                    StripeDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+#endif
+#if (DynamicPolicy)
+                    DynamicPolicyEFCore.InitializeDatabaseAsync(scopedServices).Wait();
+#endif
+#if (CommentSystem)
+                    CommentsDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+#endif
+#if (Forum)
+                    ForumDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+#endif
+#if (QueryTool)
+                    QueryToolStartup.InitializeDatabaseAsync(scopedServices).Wait();
+#endif
+                    break;
+                
+                case "nodb":
+                default:
+                    CoreNoDbStartup.InitializeDataAsync(scopedServices).Wait();
+                    break;
+            }
+        }
+#endif
+#if (Logging)
+
         private static void ConfigureLogging(
             IWebHostEnvironment env,
             ILoggerFactory loggerFactory,
@@ -191,8 +256,5 @@ namespace WebApp
             loggerFactory.AddDbLogger(serviceProvider, logFilter);
         }
 #endif
-
     }
-
-
 }
