@@ -1,7 +1,14 @@
 Cloudscribe Template Change Log
 -------------------------------
 
-Version 6.5.1
+Version 6.7.0
+
+06 Oct 2023 - Fix missing DbPlatform database switching via config code for the AllStorage database option in program.cs
+              Fix QueryTool logic for AllStorage where DbPlatform is 'nodb'
+              Fix typo in Postgresql pooling options in appsettings.*.json
+                https://github.com/cloudscribe/cloudscribe.templates/issues/108
+
+Version 6.6.0
 
 01 Sep 2023 - If SimpleContent is enabled then add Content Cloning tool to navigation.xml
                 https://github.com/cloudscribe/cloudscribe.SimpleContent/issues/577
