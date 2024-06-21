@@ -1252,4 +1252,10 @@
   <data name="Timed out" xml:space="preserve">
     <value>Timed out</value>
   </data>
+  <data name="Forced Culture" xml:space="preserve">
+    <value>Forced Culture (used for formatting dates, numbers etc.)</value>
+  </data>
+  <data name="Forced UI Culture" xml:space="preserve">
+    <value>Forced UI Culture (used for text strings, i.e. language)</value>
+  </data>
 </root>
