@@ -954,9 +954,8 @@
   <data name="Back To List" xml:space="preserve">
     <value>Back To List</value>
   </data>
-  <data name="Before you can Log in, we need to confirm that the email address you provided is valid. We sent an email to the address you&#xD;&#xA;    provided with a link that you need to click in order to confirm your email address is valid." xml:space="preserve">
-    <value>Before you can Log in, we need to confirm that the email address you provided is valid. We sent an email to the address you
-    provided with a link that you need to click in order to confirm your email address is valid.</value>
+  <data name="Before you can Log in, we need to confirm that the email address you provided is valid. We sent an email to the address you provided with a link that you need to click in order to confirm your email address is valid." xml:space="preserve">
+    <value>Before you can Log in, we need to confirm that the email address you provided is valid. We sent an email to the address you provided with a link that you need to click in order to confirm your email address is valid.</value>
   </data>
   <data name="Enter your email." xml:space="preserve">
     <value>Enter your email.</value>
