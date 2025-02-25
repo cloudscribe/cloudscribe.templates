@@ -246,6 +246,11 @@ namespace cloudscribeTemplate
         {
 
         }
+
+        private void chkReact_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

@@ -108,7 +108,19 @@
           "exclude": [
             ".template.config/**"
           ]
-        }
+        },
+		{
+          "condition": "(!React)",
+          "exclude": [
+            "Controllers/ReactDemoController.cs",
+            "Controllers/CsApiController.cs",
+			"tsconfig.json",
+			"webpack.config.js",
+			"Scripts/**",
+			"Views/ReactDemo/**",
+			"wwwroot/css/ReactDemo.css"
+          ]
+        },
       ]
     }
   ],
@@ -201,6 +213,13 @@
       "defaultValue": "false",
       "description": "Include Query Tool."
     },
+	"React": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include React."
+    },
+	
 	  "Logging": {
       "type": "parameter",
       "datatype": "bool",
@@ -283,7 +302,7 @@
       ]
       
     },
-    
+
     "IncludeEmailQueue": {
       "type": "computed",
       "value": "(Paywall || Newsletter)"

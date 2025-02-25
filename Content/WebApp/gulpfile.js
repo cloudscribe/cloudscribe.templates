@@ -2,11 +2,11 @@
 
 var gulp = require("gulp"),
     concat = require("gulp-concat"),
-    cssmin = require("gulp-cssmin"),
+    postcss = require('gulp-postcss'),
+    cssnano = require('cssnano'), 
     gp_rename = require('gulp-rename'),
     uglify = require("gulp-uglify"),
     sass = require('gulp-sass')(require('sass')),
-    sourcemaps = require('gulp-sourcemaps'),
     merge = require('merge-stream')
 ;
 
@@ -17,22 +17,21 @@ var config = {
 };
 
 gulp.task('buildCustom1ThemeCss', function () {
-    return gulp.src(config.srcSassDir + '/style.scss')
-    .pipe(sourcemaps.init())
+    return gulp.src(config.srcSassDir + '/style.scss', { sourcemaps: true })
     .pipe(sass({
         //outputStyle: 'compressed',
         includePaths: [
             config.srcSassDir
-           
         ],
     }).on('error', sass.logError)
         )
-    .pipe(sourcemaps.write())
         .pipe(gulp.dest(config.cssOutDir))
-    .pipe(gp_rename('style.min.css'))
-    .pipe(cssmin())
-        .pipe(gulp.dest(config.cssOutDir))
-    ;
+        .pipe(gp_rename('style.min.css'))
+        // .pipe(cssmin())   -- deprecated - replaced below
+        .pipe(postcss([cssnano({
+            preset: ['default', { discardComments: { removeAll: true } }]
+        })]))
+        .pipe(gulp.dest(config.cssOutDir));
 });
 
 // if you run the default task it will watch for changes in files and then run the
