@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": false,
+        "allowJs": true,
+        "noEmitOnError": false,
+        "removeComments": false,
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "jsx": "react-jsx",
+        "target": "es5",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "lib": [
+            "es2016",
+            "dom",
+            "es5"
+        ],
+        "outDir": "Resources"
+    },
+  "compileOnSave": false,
+  "include": ["Scripts"],
+  "exclude": [
+    "node_modules",
+    "Resources",
+    "bin",
+    "obj",
+    "./*.config.js"
+  ]
+}

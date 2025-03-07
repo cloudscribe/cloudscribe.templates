@@ -95,7 +95,7 @@
                     <!--#if (KvpCustomRegistration)-->
                     <li class="list-group-item">
                         <strong>Customizing the Registration</strong>
-                        Since you included the Custom Registration with key/value storage feature, we have included a 'ProfilePropertySetContainer' 
+                        Since you included the Custom Registration with key/value storage feature, we have included a 'ProfilePropertySetContainer'
                         section in the file appsettings.json
                         which has some sample custom registration fields to get you started. You will want to change those to match the needs of your project.
                         See the <a href="https://www.cloudscribe.com/docs/configuration-based-custom-registration-and-user-properties?utm_source=projecttemplate&amp;utm_medium=referral&amp;utm_campaign=newproject-UTM-CAMPAIGN">Custom Registration Documentation</a>
@@ -109,6 +109,18 @@
                         <a href="http://docs.identityserver.io/en/release/">documentation</a>, but you can also find a working example with 2 tenants
                         and 2 clients (one per tenant), in our <a href="https://github.com/joeaudette/cloudscribe.StarterKits/tree/master/cloudscribe-idserver-nodb">Starter Kits Repository</a>.
                         By comparing your setup with that working sample, you should be able to figure out how to configure things for your needs.
+                    </li>
+                    <!--#endif-->
+                    <!--#if (React)-->
+                    <li class="list-group-item">
+                        <strong>React</strong>
+                        You included the React setup option. To make use of React in your cloudscribe application, first run the 'npm install' command to
+                        install the complete set of packages listed in your package.json file.  After that, the command 'build-tsx-react' defined within your
+                        package.json file will build the React demo components (written in TypeScript) supplied within the /Scripts/React folder.  
+                        If you are using Visual Studio as your development environment, both of these commands may be run from the Visual Studio 
+                        Task Runner Explorer window. After completing these steps, run your cloudscribe application locally, and
+                        the two simple React demo components should be available at the URLs:  
+                        /ReactDemo/Demo1 and /ReactDemo/Demo2 within your running site.
                     </li>
                     <!--#endif-->
                     <li class="list-group-item">

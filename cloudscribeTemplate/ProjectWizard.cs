@@ -47,6 +47,7 @@ namespace cloudscribeTemplate
         private bool _useKvpProfile = false;
         private bool _useIdentityServer = false;
         private bool _useQueryTool = false;
+        private bool _useReact = false;
         private string _nonRootPagesSegment = "p";
         private string _nonRootPagesTitle = "Articles";
 
@@ -89,6 +90,7 @@ namespace cloudscribeTemplate
                 replacementsDictionary.Add("passthrough:KvpCustomRegistration", _useKvpProfile.ToString().ToLowerInvariant());
                 replacementsDictionary.Add("passthrough:IdentityServer", _useIdentityServer.ToString().ToLowerInvariant());
                 replacementsDictionary.Add("passthrough:QueryTool", _useQueryTool.ToString().ToLowerInvariant());
+                replacementsDictionary.Add("passthrough:React", _useReact.ToString().ToLowerInvariant());
                 if (_simpleContentOption == "b")
                 {
                     replacementsDictionary.Add("passthrough:NonRootPagesSegment", _nonRootPagesSegment.ToLowerInvariant());
@@ -140,6 +142,7 @@ namespace cloudscribeTemplate
                 _useKvpProfile        = ((CheckBox)_dialog.Controls["chkKvpProfile"]).Checked;
                 _useIdentityServer    = ((CheckBox)_dialog.Controls["chkIdentityServer"]).Checked;
                 _useQueryTool         = ((CheckBox)_dialog.Controls["chkQueryTool"]).Checked;
+                _useReact             = ((CheckBox)_dialog.Controls["chkReact"]).Checked;
 
 
                 var groupBox = _dialog.Controls["gbSimpleContentConfig"];

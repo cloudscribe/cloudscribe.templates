@@ -63,6 +63,7 @@
             this.chkDynamicPolicy = new System.Windows.Forms.CheckBox();
             this.lnkDynamicAuth = new System.Windows.Forms.LinkLabel();
             this.chkQueryTool = new System.Windows.Forms.CheckBox();
+            this.chkReact = new System.Windows.Forms.CheckBox();
             this.gbSimpleContentConfig.SuspendLayout();
             this.gbCommercial.SuspendLayout();
             this.SuspendLayout();
@@ -240,7 +241,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(224, 491);
+            this.btnOk.Location = new System.Drawing.Point(224, 497);
             this.btnOk.Margin = new System.Windows.Forms.Padding(2);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(110, 27);
@@ -448,12 +449,25 @@
             this.chkQueryTool.UseVisualStyleBackColor = true;
             this.chkQueryTool.CheckedChanged += new System.EventHandler(this.chkQueryTool_CheckedChanged);
             // 
+            // chkReact
+            // 
+            this.chkReact.AutoSize = true;
+            this.chkReact.Location = new System.Drawing.Point(46, 470);
+            this.chkReact.Margin = new System.Windows.Forms.Padding(2);
+            this.chkReact.Name = "chkReact";
+            this.chkReact.Size = new System.Drawing.Size(93, 17);
+            this.chkReact.TabIndex = 13;
+            this.chkReact.Text = "Include React";
+            this.chkReact.UseVisualStyleBackColor = true;
+            this.chkReact.CheckedChanged += new System.EventHandler(this.chkReact_CheckedChanged);
+            // 
             // ProjectOptionsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(947, 564);
+            this.Controls.Add(this.chkReact);
             this.Controls.Add(this.chkQueryTool);
             this.Controls.Add(this.lnkDynamicAuth);
             this.Controls.Add(this.gbCommercial);
@@ -516,5 +530,6 @@
         private System.Windows.Forms.CheckBox chkForum;
         private System.Windows.Forms.LinkLabel lnkDynamicAuth;
         private System.Windows.Forms.CheckBox chkQueryTool;
+        private System.Windows.Forms.CheckBox chkReact;
     }
 }
