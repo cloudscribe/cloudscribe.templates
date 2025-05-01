@@ -6,8 +6,9 @@ name: template-build
 on:
   push:
     branches: [ "master" ]
-    paths:
-      - 'src/**'
+    # paths:
+    #   - 'cloudscribeTemplate/**'
+    #   - 'Content/**'
   workflow_dispatch:
 
 jobs:
@@ -29,7 +30,7 @@ jobs:
     - name: Build NuGet package and test in at least 6 different configurations
       run: ./testtemplates.sh || (echo "At least one test failed!" && exit 1)
     - name: Publish NUGET
-      run: dotnet nuget push ./nupkgs/*.nupkg --source ${{ secrets.NUGET_SOURCE_URL }} -u ${{secrets.NUGET_USERNAME }} -p ${{ secrets.NUGET_PASSWORD }} || (echo "Failed to publish NUGET!" && exit 1)
+      run: dotnet nuget push ./nupkgs/*.nupkg --source ${{ secrets.NUGET_SOURCE_URL }} || (echo "Failed to publish NUGET!" && exit 1)
     - name: Remote Repository Dispatch
       uses: peter-evans/repository-dispatch@v3
       with:

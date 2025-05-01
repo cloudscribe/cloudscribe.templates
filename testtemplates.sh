@@ -15,9 +15,9 @@ nuget pack cloudscribe.templates.nuspec -OutputDirectory "nupkgs"
 [ $? -ne 0 ] && echo "nuget pack failed" && exit 1
 
 #Uninstall any existing local version of the template
-dotnet new --uninstall cloudscribe.templates
+dotnet new uninstall cloudscribe.templates
 #Install the new version of the template we've just compiled
-dotnet new --install ./nupkgs/*.nupkg
+dotnet new install ./nupkgs/*.nupkg
 
 # now we need to create a new project from the template and try and build it
 # we'll use various options to test the different template options
@@ -35,6 +35,7 @@ S=0
 for DB in $DBOPTIONS; do
 
     echo "Building project with $DB database in $SCRIPT_DIR/$TESTPROJECTDIR ..."
+    echo "---------------------------------------------------------------------------------------------"
 
     # cloudcribe module inclusions
     MODULEOPTIONS="-C -K -I -Q -L -F -P -Ne -Co -Fo -D"
@@ -64,8 +65,11 @@ for DB in $DBOPTIONS; do
         S=$((S+1))
     fi
 
+    echo "---------------------------------------------------------------------------------------------"
+
 done
 rm -Rf $SCRIPT_DIR/$TESTPROJECTDIR 2>/dev/null
 
+echo "------------------------------------------------------"
 echo "Successfully built $S/6 projects with various options!"
-
+echo "------------------------------------------------------"
