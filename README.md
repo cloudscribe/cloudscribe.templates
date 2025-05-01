@@ -1,5 +1,7 @@
 # cloudscribe.templates
 
+[![cloudscribe.templates](https://github.com/cloudscribe/cloudscribe.templates/actions/workflows/template-build.yml/badge.svg?branch=master&event=push)](https://github.com/cloudscribe/cloudscribe.templates/actions/workflows/template-build.yml)
+
 This repository contains a dotnet new template and a Visual Studio 2022 project template for creating new projects with various configurations of cloudscribe libraries.
 
 To learn more see https://www.cloudscribe.com/docs/introduction

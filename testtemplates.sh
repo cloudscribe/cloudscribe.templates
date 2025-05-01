@@ -32,6 +32,8 @@ DBOPTIONS="NoDb MSSQL MySql SQLite pgsql AllStorage"
 
 S=0
 
+echo "---------------------------------------------------------------------------------------------"
+
 for DB in $DBOPTIONS; do
 
     echo "Building project with $DB database in $SCRIPT_DIR/$TESTPROJECTDIR ..."
