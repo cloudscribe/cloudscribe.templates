@@ -6,8 +6,9 @@ name: template-build
 on:
   push:
     branches: [ "master" ]
-    paths:
-      - 'src/**'
+    # paths:
+    #   - 'cloudscribeTemplate/**'
+    #   - 'Content/**'
   workflow_dispatch:
 
 jobs:
