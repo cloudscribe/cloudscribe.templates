@@ -17,13 +17,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - uses: nuget/setup-nuget@v2
+      with:
+        nuget-version: 'latest'
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
     - name: Setup NuGet
       run: dotnet nuget add source ${{ secrets.NUGET_SOURCE_URL }} -u ${{secrets.NUGET_USERNAME }} -p ${{ secrets.NUGET_PASSWORD }} --store-password-in-clear-text
-    - name: Build NUGET and test in at least 6 different configurations
+    - name: Install nuget CLI on Linux
+      run: |
+    - name: Build NuGet package and test in at least 6 different configurations
       run: ./testtemplates.sh || (echo "At least one test failed!" && exit 1)
     - name: Publish NUGET
       run: dotnet nuget push ./nupkgs/*.nupkg --source ${{ secrets.NUGET_SOURCE_URL }} -u ${{secrets.NUGET_USERNAME }} -p ${{ secrets.NUGET_PASSWORD }} || (echo "Failed to publish NUGET!" && exit 1)
