@@ -1,0 +1,35 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: template-build
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - 'src/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Setup NuGet
+      run: dotnet nuget add source ${{ secrets.NUGET_SOURCE_URL }} -u ${{secrets.NUGET_USERNAME }} -p ${{ secrets.NUGET_PASSWORD }} --store-password-in-clear-text
+    - name: Build NUGET and test in at least 6 different configurations
+      run: ./testtemplates.sh || (echo "At least one test failed!" && exit 1)
+    - name: Publish NUGET
+      run: dotnet nuget push ./nupkgs/*.nupkg --source ${{ secrets.NUGET_SOURCE_URL }} -u ${{secrets.NUGET_USERNAME }} -p ${{ secrets.NUGET_PASSWORD }} || (echo "Failed to publish NUGET!" && exit 1)
+    - name: Remote Repository Dispatch
+      uses: peter-evans/repository-dispatch@v3
+      with:
+        token: ${{ secrets.GHB_PAT }}
+        repository: GreatHouseBarn/cloudscribe-testing
+        event-type: template-build
