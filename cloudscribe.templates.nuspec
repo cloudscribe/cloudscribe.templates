@@ -18,9 +18,11 @@
     <!-- dependencies>
       <dependency id="Microsoft.TemplateEngine.Orchestrator.RunnableProjects" version="1.0.0-beta1-*" />
     </dependencies -->
+    <readme>NUGET_README.md</readme>
   </metadata>
   <files>
     <file src="Content\**" exclude="content\cloudscribeTemplate\**\*;Archive\**;**\bin\**\*;**\obj\**\*;**\*.user;**\*.lock.json;nuget.exe;cloudscribe.templates.nuspec;packtemplate.cmd;template.sln;marketplace-desc.md;*.nuspec;.git/**;.vs/**;nupkgs/**;.gitignore" />
 	  <file src="Content\icon.png" target="images\" />
+    <file src="cloudscribeTemplate\README.md" target="NUGET_README.md" />
   </files>
 </package>
