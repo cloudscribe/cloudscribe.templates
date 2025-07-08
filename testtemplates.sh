@@ -61,6 +61,7 @@ for DB in $DBOPTIONS; do
         [ $? -ne 0 ] && echo "dotnet new failed" && break
         dotnet restore --force --no-cache --force-evaluate
         [ $? -ne 0 ] && echo "dotnet restore failed" && break
+        dotnet list package
         dotnet build
         [ $? -ne 0 ] && echo "dotnet build failed" && break
         cd $SCRIPT_DIR
