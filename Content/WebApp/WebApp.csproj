@@ -43,312 +43,312 @@
 
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.0" />
 
-    <PackageReference Include="cloudscribe.Core.Web" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.Core.CompiledViews.Bootstrap5" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.Web.StaticFiles" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Core.Web" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.Core.CompiledViews.Bootstrap5" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.Web.StaticFiles" Version="8.2.*" />
     
     
 <!--#if (NoDb || AllStorage)-->
-    <PackageReference Include="cloudscribe.Core.Storage.NoDb" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Core.Storage.NoDb" Version="8.2.*" />
 <!--#endif-->
 <!--#if (SQLite || AllStorage)-->
-    <PackageReference Include="cloudscribe.Core.Storage.EFCore.SQLite" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Core.Storage.EFCore.SQLite" Version="8.2.*" />
 <!--#endif-->
 <!--#if (MSSQL || AllStorage)-->
-    <PackageReference Include="cloudscribe.Core.Storage.EFCore.MSSQL" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Core.Storage.EFCore.MSSQL" Version="8.2.*" />
 <!--#endif-->
 <!--#if (MySql || AllStorage)-->
-    <PackageReference Include="cloudscribe.Core.Storage.EFCore.MySql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Core.Storage.EFCore.MySql" Version="8.2.*" />
 <!--#endif-->
 <!--#if (pgsql || AllStorage)-->
-    <PackageReference Include="cloudscribe.Core.Storage.EFCore.PostgreSql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Core.Storage.EFCore.PostgreSql" Version="8.2.*" />
 <!--#endif-->
     
 <!--#if (SimpleContentConfig != "z")-->
-    <PackageReference Include="cloudscribe.Core.SimpleContent" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.SimpleContent.Web" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.Core.SimpleContent.CompiledViews.Bootstrap5" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.SimpleContent.CompiledViews.Bootstrap5" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.SimpleContent.MetaWeblog" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.SimpleContent.Syndication" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.SimpleContent.ContentTemplates.Bootstrap5" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Core.SimpleContent" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Web" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.Core.SimpleContent.CompiledViews.Bootstrap5" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.CompiledViews.Bootstrap5" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.MetaWeblog" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Syndication" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.ContentTemplates.Bootstrap5" Version="8.2.*" />
     
     
   <!--#if (NoDb || AllStorage)-->
-    <PackageReference Include="cloudscribe.SimpleContent.Storage.NoDb" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Storage.NoDb" Version="8.2.*" />
   <!--#endif-->
   <!--#if (SQLite || AllStorage)-->
-    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.SQLite" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.SQLite" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MSSQL || AllStorage)-->
-    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MSSQL" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MSSQL" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MySql || AllStorage)-->
-    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MySQL" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.MySQL" Version="8.2.*" />
   <!--#endif-->
   <!--#if (pgsql || AllStorage)-->
-    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.PostgreSql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.SimpleContent.Storage.EFCore.PostgreSql" Version="8.2.*" />
   <!--#endif-->
 <!--#endif-->
 
 <!--#if (Logging)-->
-    <PackageReference Include="cloudscribe.Logging.Web" Version="8.1.*" />    
+    <PackageReference Include="cloudscribe.Logging.Web" Version="8.2.*" />    
   <!--#if (NoDb || AllStorage)-->
-    <PackageReference Include="cloudscribe.Logging.NoDb" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Logging.NoDb" Version="8.2.*" />
   <!--#endif-->
   <!--#if (SQLite || AllStorage)-->
-    <PackageReference Include="cloudscribe.Logging.EFCore.SQLite" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Logging.EFCore.SQLite" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MSSQL || AllStorage)-->
-    <PackageReference Include="cloudscribe.Logging.EFCore.MSSQL" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Logging.EFCore.MSSQL" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MySql || AllStorage)-->
-    <PackageReference Include="cloudscribe.Logging.EFCore.MySql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Logging.EFCore.MySql" Version="8.2.*" />
   <!--#endif-->
   <!--#if (pgsql || AllStorage)-->
-    <PackageReference Include="cloudscribe.Logging.EFCore.PostgreSql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Logging.EFCore.PostgreSql" Version="8.2.*" />
   <!--#endif-->
 <!--#endif-->
 
 <!--#if (IdentityServer)-->
-    <PackageReference Include="cloudscribe.Core.IdentityServerIntegration" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.IdentityServerIntegration.CompiledViews.Bootstrap5" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Core.IdentityServerIntegration" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.IdentityServerIntegration.CompiledViews.Bootstrap5" Version="8.2.*" />
   <!--#if (NoDb || AllStorage)-->
-    <PackageReference Include="cloudscribe.Core.IdentityServer.NoDb" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Core.IdentityServer.NoDb" Version="8.2.*" />
   <!--#endif-->
   <!--#if (SQLite || AllStorage)-->
-    <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.SQLite" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.SQLite" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MSSQL || AllStorage)-->
-    <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.MSSQL" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.MSSQL" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MySql || AllStorage)-->
-    <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.MySql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.MySql" Version="8.2.*" />
   <!--#endif-->
   <!--#if (pgsql || AllStorage)-->
-    <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.PostgreSql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Core.IdentityServer.EFCore.PostgreSql" Version="8.2.*" />
   <!--#endif-->
 <!--#endif-->
 
 <!--#if (ContactForm)-->
-    <PackageReference Include="cloudscribe.SimpleContactForm.CoreIntegration" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.SimpleContactForm.CoreIntegration" Version="8.2.*" />
 <!--#endif-->
 
 <!--#if (KvpCustomRegistration || Newsletter)-->
   <!--#if (NoDb || AllStorage)-->
-    <PackageReference Include="cloudscribe.Kvp.Storage.NoDb" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Kvp.Storage.NoDb" Version="8.2.*" />
   <!--#endif-->
   <!--#if (SQLite || AllStorage)-->
-    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.SQLite" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.SQLite" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MSSQL || AllStorage)-->
-    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MSSQL" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MSSQL" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MySql || AllStorage)-->
-    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MySql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.MySql" Version="8.2.*" />
   <!--#endif-->
   <!--#if (pgsql || AllStorage)-->
-    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.PostgreSql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Kvp.Storage.EFCore.PostgreSql" Version="8.2.*" />
   <!--#endif-->
-    <PackageReference Include="cloudscribe.UserProperties.Kvp" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.UserProperties" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.Kvp.Views.BS5" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.UserProperties.Kvp" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.UserProperties" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.Kvp.Views.BS5" Version="8.2.*" />
 <!--#endif-->
 
-    <PackageReference Include="cloudscribe.Web.Localization" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Web.Localization" Version="8.2.*" />
     
 <!--#if (FormBuilder)-->
-    <PackageReference Include="cloudscribe.Forms.Web" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.Forms.Bootstrap5" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.Forms.CoreIntegration" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Forms.Web" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.Forms.Bootstrap5" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.Forms.CoreIntegration" Version="8.2.*" />
   <!--#if (SimpleContentConfig != "z")-->
-     <PackageReference Include="cloudscribe.Forms.ContentTemplate.Bootstrap5" Version="8.1.*" />
+     <PackageReference Include="cloudscribe.Forms.ContentTemplate.Bootstrap5" Version="8.2.*" />
   <!--#endif-->
   <!--#if (NoDb || AllStorage)-->
-    <PackageReference Include="cloudscribe.Forms.Data.NoDb" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Forms.Data.NoDb" Version="8.2.*" />
   <!--#endif-->
   <!--#if (SQLite || AllStorage)-->
-    <PackageReference Include="cloudscribe.Forms.Data.EFCore.SQLite" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Forms.Data.EFCore.SQLite" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MSSQL || AllStorage)-->
-    <PackageReference Include="cloudscribe.Forms.Data.EFCore.MSSQL" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Forms.Data.EFCore.MSSQL" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MySql || AllStorage)-->
-    <PackageReference Include="cloudscribe.Forms.Data.EFCore.MySql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Forms.Data.EFCore.MySql" Version="8.2.*" />
   <!--#endif-->
   <!--#if (pgsql || AllStorage)-->
-    <PackageReference Include="cloudscribe.Forms.Data.EFCore.PostgreSql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Forms.Data.EFCore.PostgreSql" Version="8.2.*" />
   <!--#endif-->
 <!--#endif-->
 
 <!--#if (DynamicPolicy)-->
-    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Mvc" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Views.Bootstrap5" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.DynamicPolicy.CoreIntegration" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Mvc" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Web.Views.Bootstrap5" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.CoreIntegration" Version="8.2.*" />
   <!--#if (NoDb || AllStorage)-->
-    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.NoDb" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.NoDb" Version="8.2.*" />
   <!--#endif-->
   <!--#if (SQLite || AllStorage)-->
-    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.SQLite" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.SQLite" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MSSQL || AllStorage)-->
-    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.MSSQL" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.MSSQL" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MySql || AllStorage)-->
-    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.MySql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.MySql" Version="8.2.*" />
   <!--#endif-->
   <!--#if (pgsql || AllStorage)-->
-    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.PostgreSql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.DynamicPolicy.Storage.EFCore.PostgreSql" Version="8.2.*" />
   <!--#endif-->
 <!--#endif-->
 
 <!--#if (QueryTool && !NoDb)-->
-    <PackageReference Include="cloudscribe.QueryTool.Web" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.QueryTool.Web" Version="8.2.*" />
   <!--#if (SQLite || AllStorage)-->
-    <PackageReference Include="cloudscribe.QueryTool.EFCore.SQLite" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.QueryTool.EFCore.SQLite" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MSSQL || AllStorage)-->
-    <PackageReference Include="cloudscribe.QueryTool.EFCore.MSSQL" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.QueryTool.EFCore.MSSQL" Version="8.2.*" />
   <!--#endif-->                          
   <!--#if (MySql || AllStorage)-->                     
-    <PackageReference Include="cloudscribe.QueryTool.EFCore.MySql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.QueryTool.EFCore.MySql" Version="8.2.*" />
   <!--#endif-->                          
   <!--#if (pgsql || AllStorage)-->                     
-    <PackageReference Include="cloudscribe.QueryTool.EFCore.PostgreSql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.QueryTool.EFCore.PostgreSql" Version="8.2.*" />
   <!--#endif-->
 <!--#endif-->    
 
 <!--#if (IncludeEmailQueue)-->
-    <PackageReference Include="cloudscribe.EmailQueue.CoreIntegration" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.EmailQueue.CoreIntegration" Version="8.2.*" />
   <!--#if (NoDb || AllStorage)-->
-    <PackageReference Include="cloudscribe.EmailQueue.Data.NoDb" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.Email.Templating.Data.NoDb" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.EmailQueue.Data.NoDb" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.Email.Templating.Data.NoDb" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MSSQL || AllStorage)-->
-   <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.MSSQL" Version="8.1.*" />
-   <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.MSSQL" Version="8.1.*" />
+   <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.MSSQL" Version="8.2.*" />
+   <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.MSSQL" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MySql || AllStorage)-->
-    <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.MySql" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.MySql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.MySql" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.MySql" Version="8.2.*" />
   <!--#endif-->
   <!--#if (pgsql || AllStorage)-->
-    <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.PostgreSql" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.PostgreSql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.PostgreSql" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.PostgreSql" Version="8.2.*" />
   <!--#endif-->
   <!--#if (SQLite || AllStorage)-->
-   <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.SQLite" Version="8.1.*" />
-   <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.SQLite" Version="8.1.*" />
+   <PackageReference Include="cloudscribe.EmailQueue.Data.EFCore.SQLite" Version="8.2.*" />
+   <PackageReference Include="cloudscribe.Email.Templating.Data.EFCore.SQLite" Version="8.2.*" />
   <!--#endif-->
 <!--#endif-->
 
 <!--#if (Paywall)-->
-    <PackageReference Include="cloudscribe.Membership.Web.Mvc" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.Membership.Views.Bootstrap5" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.Membership.StripeIntegration" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.Membership.StripeIntegration.Bootstrap5" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Membership.Web.Mvc" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.Membership.Views.Bootstrap5" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.Membership.StripeIntegration" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.Membership.StripeIntegration.Bootstrap5" Version="8.2.*" />
      <!--#if (NoDb || AllStorage)-->
-    <PackageReference Include="cloudscribe.Membership.Data.NoDb" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Membership.Data.NoDb" Version="8.2.*" />
     <!--#endif-->
   <!--#if (MSSQL || AllStorage)-->
-   <PackageReference Include="cloudscribe.Membership.Data.EFCore.MSSQL" Version="8.1.*" />
+   <PackageReference Include="cloudscribe.Membership.Data.EFCore.MSSQL" Version="8.2.*" />
     <!--#endif-->
     <!--#if (MySql || AllStorage)-->
-    <PackageReference Include="cloudscribe.Membership.Data.EFCore.MySql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Membership.Data.EFCore.MySql" Version="8.2.*" />
     <!--#endif-->
     <!--#if (pgsql || AllStorage)-->
-     <PackageReference Include="cloudscribe.Membership.Data.EFCore.PostgreSql" Version="8.1.*" />
+     <PackageReference Include="cloudscribe.Membership.Data.EFCore.PostgreSql" Version="8.2.*" />
     <!--#endif-->
     <!--#if (SQLite || AllStorage)-->
-     <PackageReference Include="cloudscribe.Membership.Data.EFCore.SQLite" Version="8.1.*" />
+     <PackageReference Include="cloudscribe.Membership.Data.EFCore.SQLite" Version="8.2.*" />
     <!--#endif-->
 <!--#endif-->
 
 <!--#if (IncludeStripeIntegration)-->
-    <PackageReference Include="cloudscribe.Core.StripeIntegration" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.StripeIntegration.Mvc" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.StripeIntegration.Mvc.Bootstrap5" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.Core.StripeIntegration" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.StripeIntegration.Mvc" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.StripeIntegration.Mvc.Bootstrap5" Version="8.2.*" />
   <!--#if (NoDb || AllStorage)-->
-    <PackageReference Include="cloudscribe.StripeIntegration.Data.NoDb" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.StripeIntegration.Data.NoDb" Version="8.2.*" />
   <!--#endif-->
   <!--#if (SQLite || AllStorage)-->
-    <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.SQLite" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.SQLite" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MSSQL || AllStorage)-->
-    <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.MSSQL" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.MSSQL" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MySql || AllStorage)-->
-    <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.MySql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.MySql" Version="8.2.*" />
   <!--#endif-->
   <!--#if (pgsql || AllStorage)-->
-    <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.PostgreSql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.StripeIntegration.Data.EFCore.PostgreSql" Version="8.2.*" />
   <!--#endif-->
 <!--#endif-->
 
 <!--#if (Newsletter)-->
-    <PackageReference Include="cloudscribe.EmailList.Web.Mvc" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.EmailList.Views.Bootstrap5" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.EmailList.CoreIntegration" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.EmailList.KvpUserProperties.Integration" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.EmailList.Web.Mvc" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.EmailList.Views.Bootstrap5" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.EmailList.CoreIntegration" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.EmailList.KvpUserProperties.Integration" Version="8.2.*" />
   <!--#if (NoDb || AllStorage)-->
-    <PackageReference Include="cloudscribe.EmailList.Data.NoDb" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.EmailList.Data.NoDb" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MSSQL || AllStorage)-->
-   <PackageReference Include="cloudscribe.EmailList.Data.EFCore.MSSQL" Version="8.1.*" />
+   <PackageReference Include="cloudscribe.EmailList.Data.EFCore.MSSQL" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MySql || AllStorage)-->
-    <PackageReference Include="cloudscribe.EmailList.Data.EFCore.MySql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.EmailList.Data.EFCore.MySql" Version="8.2.*" />
   <!--#endif-->
   <!--#if (pgsql || AllStorage)-->
-     <PackageReference Include="cloudscribe.EmailList.Data.EFCore.PostgreSql" Version="8.1.*" />
+     <PackageReference Include="cloudscribe.EmailList.Data.EFCore.PostgreSql" Version="8.2.*" />
   <!--#endif-->
   <!--#if (SQLite || AllStorage)-->
-     <PackageReference Include="cloudscribe.EmailList.Data.EFCore.SQLite" Version="8.1.*" />
+     <PackageReference Include="cloudscribe.EmailList.Data.EFCore.SQLite" Version="8.2.*" />
   <!--#endif-->
 <!--#endif-->
 
 <!--#if (CommentSystem)-->
-    <PackageReference Include="cloudscribe.TalkAbout.Web" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.TalkAbout.Comments.Integration.CloudscribeCore" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.TalkAbout.Web.Bootstrap5" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Web" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Comments.Integration.CloudscribeCore" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Web.Bootstrap5" Version="8.2.*" />
   <!--#if (NoDb || AllStorage)-->
-    <PackageReference Include="cloudscribe.TalkAbout.Storage.NoDb" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Storage.NoDb" Version="8.2.*" />
   <!--#endif-->
   <!--#if (SQLite || AllStorage)-->
-    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.SQLite" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.SQLite" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MSSQL || AllStorage)-->
-   <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.MSSQL" Version="8.1.*" />
+   <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.MSSQL" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MySql || AllStorage)-->
-    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.MySql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.MySql" Version="8.2.*" />
   <!--#endif-->
   <!--#if (pgsql || AllStorage)-->
-    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.PostgreSql" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Storage.EFCore.PostgreSql" Version="8.2.*" />
   <!--#endif-->
 <!--#endif-->
 
 <!--#if (CommentSystem || Forum)-->
-     <PackageReference Include="cloudscribe.TalkAbout.Integration.CloudscribeCore" Version="8.1.*" />
+     <PackageReference Include="cloudscribe.TalkAbout.Integration.CloudscribeCore" Version="8.2.*" />
 <!--#endif-->
 
 <!--#if (Forum)-->
-    <PackageReference Include="cloudscribe.TalkAbout.Forum.Web" Version="8.1.*" />
-    <PackageReference Include="cloudscribe.TalkAbout.Forum.Web.Bootstrap5" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Forum.Web" Version="8.2.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Forum.Web.Bootstrap5" Version="8.2.*" />
   <!--#if (NoDb || AllStorage)-->
-     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.NoDb" Version="8.1.*" />
+     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.NoDb" Version="8.2.*" />
   <!--#endif-->
   <!--#if (SQLite || AllStorage)-->
-     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.SQLite" Version="8.1.*" />
+     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.SQLite" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MSSQL || AllStorage)-->
-    <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.MSSQL" Version="8.1.*" />
+    <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.MSSQL" Version="8.2.*" />
   <!--#endif-->
   <!--#if (MySql || AllStorage)-->
-     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.MySql" Version="8.1.*" />
+     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.MySql" Version="8.2.*" />
   <!--#endif-->
   <!--#if (pgsql || AllStorage)-->
-     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.PostgreSql" Version="8.1.*" />
+     <PackageReference Include="cloudscribe.TalkAbout.Forum.Storage.EFCore.PostgreSql" Version="8.2.*" />
   <!--#endif-->
 <!--#endif-->    
     
