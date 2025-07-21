@@ -1268,21 +1268,21 @@
         #endif-->
 
             <NavNode key="PermittedIpAddresses"
-                controller="PermittedIpAddresses"
-                action="Index"
-                text="Permitted IP Addresses"
-                iconCssClass="fas fa-check"
-                componentVisibility="breadcrumbs,childtree,parenttree"
-                authorizationPolicy="AdminPolicy">
+              controller="SiteAdmin"
+              action="PermittedIpAddresses"
+              text="Permitted IP Addresses"
+              iconCssClass="fas fa-check"
+              componentVisibility="breadcrumbs,childtree,parenttree"
+              authorizationPolicy="AdminPolicy">
               <Children />
             </NavNode>
             <NavNode key="BlockedIpAddresses"
-                         controller="BlockedIpAddresses"
-                         action="Index"
-                         text="Blocked IP Addresses"
-                         iconCssClass="fas fa-ban"
-                         componentVisibility="breadcrumbs,childtree,parenttree"
-                         authorizationPolicy="AdminPolicy">
+                controller="SiteAdmin"
+                action="BlockedIpAddresses"
+                text="Blocked IP Addresses"
+                iconCssClass="fas fa-ban"
+                componentVisibility="breadcrumbs,childtree,parenttree"
+                authorizationPolicy="AdminPolicy">
               <Children />
             </NavNode>
 
