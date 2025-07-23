@@ -1,5 +1,22 @@
 ## Release Notes
 
+### version 8.2.0 - July 2025
+
+#### **@cloudscribe/cloudscribe**
+- **[#1099](https://github.com/cloudscribe/cloudscribe/issues/1099)**: Summernote Editor Integration - added support for the Summernote editor as a replacement for CKEditor, while retaining the option to use CKEditor if desired.
+- **[#1063](https://github.com/cloudscribe/cloudscribe/issues/1063)**: Fixed several issues in the "browse server" modal when invoked from the Summernote toolbar:
+  
+  - Restored the missing 'Select' button for image selection.
+  - Reinstated the 'Crop' tab in the UI.
+  - Corrected the modal title.
+  - Addressed regressions caused by previous file manager and Summernote integration changes.
+- **[#1111](https://github.com/cloudscribe/cloudscribe/issues/1111)**: Fixed newsletter sign-up widget compatibility with invisible reCAPTCHA:
+  
+  - Resolved an issue where the newsletter sign-up widget would not submit when invisible reCAPTCHA was enabled.
+  - Improved JavaScript handling in `EmailListSignUpPartial` to support async validation and proper script loading.
+  - Ensured compatibility for both authenticated and unauthenticated users.
+
+
 
 ### version 8.1 - 2 May 2025
 
