@@ -44,9 +44,10 @@
         "react-redux": "^9.2.0",
         "webpack-livereload-plugin": "^3.0.2"
         //#endif
-    },
+    }
 
     //#if (React)
+    ,
     "scripts": {
         "build-tsx-react": "(set NODE_OPTIONS=--openssl-legacy-provider) && webpack",
         "watch-tsx-react": "(set NODE_OPTIONS=--openssl-legacy-provider) && webpack --watch",
