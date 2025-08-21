@@ -89,7 +89,7 @@ namespace WebApp
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = cloudscribe.Core.Identity.SiteCookieConsent.NeedsConsent;
-                options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
+                options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Lax;
                 options.ConsentCookie.Name = "cookieconsent_status";
                 options.Secure = CookieSecurePolicy.Always;
             });

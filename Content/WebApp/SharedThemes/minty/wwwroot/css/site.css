@@ -241,3 +241,13 @@ td img, video, iframe {
 header .navbar {
     top: 100px;
 }
+
+/* The below resets Summernote to default colours regardless of the theme selected. If you don't want this, simply remove them */
+.note-editor.note-frame.card {
+    background-color: #fff;
+}
+
+.note-btn.btn.btn-outline-secondary.btn-sm {
+    color: #6c757d;
+}
+/* end Summernote default colours */
