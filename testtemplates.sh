@@ -16,8 +16,11 @@ nuget pack cloudscribe.templates.nuspec -OutputDirectory "nupkgs"
 
 #Uninstall any existing local version of the template
 dotnet new uninstall cloudscribe.templates
+[ $? -ne 0 ] && echo "dotnet new uninstall failed" && exit 1
+
 #Install the new version of the template we've just compiled
 dotnet new install ./nupkgs/*.nupkg
+[ $? -ne 0 ] && echo "dotnet new install failed" && exit 1
 
 # now we need to create a new project from the template and try and build it
 # we'll use various options to test the different template options
@@ -31,6 +34,7 @@ dotnet new install ./nupkgs/*.nupkg
 DBOPTIONS="NoDb MSSQL MySql SQLite pgsql AllStorage"
 
 S=0
+FAILED=""
 
 echo "---------------------------------------------------------------------------------------------"
 
@@ -58,12 +62,12 @@ for DB in $DBOPTIONS; do
     if [ -d "$SCRIPT_DIR/$TESTPROJECTDIR" ]; then
         cd $SCRIPT_DIR/$TESTPROJECTDIR
         dotnet new cloudscribe -Da $DB $MODULEOPTIONS
-        [ $? -ne 0 ] && echo "dotnet new failed" && break
+        [ $? -ne 0 ] && echo "dotnet new failed" && FAILED="$FAILED $DB" && break
         dotnet restore --force --no-cache --force-evaluate
-        [ $? -ne 0 ] && echo "dotnet restore failed" && break
+        [ $? -ne 0 ] && echo "dotnet restore failed" && FAILED="$FAILED $DB" && break
         dotnet list package
         dotnet build
-        [ $? -ne 0 ] && echo "dotnet build failed" && break
+        [ $? -ne 0 ] && echo "dotnet build failed" && FAILED="$FAILED $DB" && break
         cd $SCRIPT_DIR
         S=$((S+1))
     fi
@@ -72,6 +76,14 @@ for DB in $DBOPTIONS; do
 
 done
 rm -Rf $SCRIPT_DIR/$TESTPROJECTDIR 2>/dev/null
+
+if [ $S -ne 6 ]; then
+    echo "------------------------------------------------------"
+    echo "Failed to build all 6 projects, only built $S"
+    echo "Failed DB options: $FAILED"
+    echo "------------------------------------------------------"
+    exit 1
+fi
 
 echo "------------------------------------------------------"
 echo "Successfully built $S/6 projects with various options!"
