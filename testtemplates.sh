@@ -16,7 +16,6 @@ nuget pack cloudscribe.templates.nuspec -OutputDirectory "nupkgs"
 
 #Uninstall any existing local version of the template
 dotnet new uninstall cloudscribe.templates
-[ $? -ne 0 ] && echo "dotnet new uninstall failed" && exit 1
 
 #Install the new version of the template we've just compiled
 dotnet new install ./nupkgs/*.nupkg
