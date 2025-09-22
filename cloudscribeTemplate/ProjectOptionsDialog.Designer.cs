@@ -278,12 +278,12 @@
             this.gbCommercial.Size = new System.Drawing.Size(370, 640);
             this.gbCommercial.TabIndex = 9;
             this.gbCommercial.TabStop = false;
-            this.gbCommercial.Text = "Commercial Add On Products";
+            this.gbCommercial.Text = "Add On Products";
             // 
             // lnkForum
             // 
             this.lnkForum.AutoSize = true;
-            this.lnkForum.Location = new System.Drawing.Point(283, 200);
+            this.lnkForum.Location = new System.Drawing.Point(283, 158);
             this.lnkForum.Name = "lnkForum";
             this.lnkForum.Size = new System.Drawing.Size(69, 13);
             this.lnkForum.TabIndex = 16;
@@ -293,7 +293,7 @@
             // 
             // chkForum
             // 
-            this.chkForum.Location = new System.Drawing.Point(6, 169);
+            this.chkForum.Location = new System.Drawing.Point(6, 133);
             this.chkForum.Name = "chkForum";
             this.chkForum.Size = new System.Drawing.Size(346, 36);
             this.chkForum.TabIndex = 15;
@@ -304,7 +304,7 @@
             // lnkCommentSystem
             // 
             this.lnkCommentSystem.AutoSize = true;
-            this.lnkCommentSystem.Location = new System.Drawing.Point(286, 153);
+            this.lnkCommentSystem.Location = new System.Drawing.Point(286, 102);
             this.lnkCommentSystem.Name = "lnkCommentSystem";
             this.lnkCommentSystem.Size = new System.Drawing.Size(69, 13);
             this.lnkCommentSystem.TabIndex = 14;
@@ -314,7 +314,7 @@
             // 
             // chkCommentSystem
             // 
-            this.chkCommentSystem.Location = new System.Drawing.Point(6, 117);
+            this.chkCommentSystem.Location = new System.Drawing.Point(6, 74);
             this.chkCommentSystem.Name = "chkCommentSystem";
             this.chkCommentSystem.Size = new System.Drawing.Size(346, 33);
             this.chkCommentSystem.TabIndex = 13;
@@ -326,7 +326,7 @@
             // lnkChat
             // 
             this.lnkChat.AutoSize = true;
-            this.lnkChat.Location = new System.Drawing.Point(3, 410);
+            this.lnkChat.Location = new System.Drawing.Point(3, 377);
             this.lnkChat.Name = "lnkChat";
             this.lnkChat.Size = new System.Drawing.Size(185, 13);
             this.lnkChat.TabIndex = 12;
@@ -337,7 +337,7 @@
             // lnkStripeIntegration
             // 
             this.lnkStripeIntegration.AutoSize = true;
-            this.lnkStripeIntegration.Location = new System.Drawing.Point(21, 329);
+            this.lnkStripeIntegration.Location = new System.Drawing.Point(21, 301);
             this.lnkStripeIntegration.Name = "lnkStripeIntegration";
             this.lnkStripeIntegration.Size = new System.Drawing.Size(217, 13);
             this.lnkStripeIntegration.TabIndex = 8;
@@ -348,7 +348,7 @@
             // lnkPaywall
             // 
             this.lnkPaywall.AutoSize = true;
-            this.lnkPaywall.Location = new System.Drawing.Point(283, 309);
+            this.lnkPaywall.Location = new System.Drawing.Point(283, 281);
             this.lnkPaywall.Name = "lnkPaywall";
             this.lnkPaywall.Size = new System.Drawing.Size(69, 13);
             this.lnkPaywall.TabIndex = 7;
@@ -359,7 +359,7 @@
             // chkPaywall
             // 
             this.chkPaywall.AutoSize = true;
-            this.chkPaywall.Location = new System.Drawing.Point(6, 309);
+            this.chkPaywall.Location = new System.Drawing.Point(6, 281);
             this.chkPaywall.Name = "chkPaywall";
             this.chkPaywall.Size = new System.Drawing.Size(160, 17);
             this.chkPaywall.TabIndex = 6;
@@ -369,7 +369,7 @@
             // lnkNewsletter
             // 
             this.lnkNewsletter.AutoSize = true;
-            this.lnkNewsletter.Location = new System.Drawing.Point(283, 276);
+            this.lnkNewsletter.Location = new System.Drawing.Point(283, 241);
             this.lnkNewsletter.Name = "lnkNewsletter";
             this.lnkNewsletter.Size = new System.Drawing.Size(69, 13);
             this.lnkNewsletter.TabIndex = 5;
@@ -380,7 +380,7 @@
             // chkNewsletter
             // 
             this.chkNewsletter.AutoSize = true;
-            this.chkNewsletter.Location = new System.Drawing.Point(6, 276);
+            this.chkNewsletter.Location = new System.Drawing.Point(6, 241);
             this.chkNewsletter.Name = "chkNewsletter";
             this.chkNewsletter.Size = new System.Drawing.Size(117, 17);
             this.chkNewsletter.TabIndex = 3;
@@ -390,7 +390,7 @@
             // lnkFormProduct
             // 
             this.lnkFormProduct.AutoSize = true;
-            this.lnkFormProduct.Location = new System.Drawing.Point(283, 243);
+            this.lnkFormProduct.Location = new System.Drawing.Point(283, 205);
             this.lnkFormProduct.Name = "lnkFormProduct";
             this.lnkFormProduct.Size = new System.Drawing.Size(69, 13);
             this.lnkFormProduct.TabIndex = 2;
@@ -402,13 +402,14 @@
             // 
             this.lblComercialAddOns.Location = new System.Drawing.Point(6, 28);
             this.lblComercialAddOns.Name = "lblComercialAddOns";
-            this.lblComercialAddOns.Size = new System.Drawing.Size(349, 72);
+            this.lblComercialAddOns.Size = new System.Drawing.Size(349, 35);
             this.lblComercialAddOns.TabIndex = 1;
-            this.lblComercialAddOns.Text = resources.GetString("lblComercialAddOns.Text");
+            this.lblComercialAddOns.Text = "These additional products are now free to add in to your cloudscribe solution!  T" +
+    "here is no longer any need to obtain a license key for them.";
             // 
             // chkFormBuilder
             // 
-            this.chkFormBuilder.Location = new System.Drawing.Point(6, 225);
+            this.chkFormBuilder.Location = new System.Drawing.Point(6, 187);
             this.chkFormBuilder.Name = "chkFormBuilder";
             this.chkFormBuilder.Size = new System.Drawing.Size(346, 31);
             this.chkFormBuilder.TabIndex = 0;
