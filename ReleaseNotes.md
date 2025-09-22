@@ -1,5 +1,37 @@
 ## Release Notes
 
+### version 8.4.0 - November 2025
+
+#### **Breaking Changes**
+- **[#748](https://github.com/cloudscribe/cloudscribe/issues/748)**: Enhanced Cookie Consent System - implemented a more sophisticated cookie consent system allowing users to dismiss cookie banners without fully accepting cookies. **Breaking change** for sites with local view overrides - two key files were modified in the Bootstrap5 template. See the [documentation](https://www.cloudscribe.com/managing-cookie-consent).
+
+#### **Security Improvements**
+- **[#1054](https://github.com/cloudscribe/cloudscribe/issues/1054)**: EntityFramework Dependencies - updated Microsoft.EntityFrameworkCore dependencies to address security vulnerabilities in transitive dependencies.
+- **[#1113](https://github.com/cloudscribe/cloudscribe/issues/1113)**: jQuery Validate Update - updated jQuery.validate library to address security vulnerability discovered during penetration testing.
+- **[#1125](https://github.com/cloudscribe/cloudscribe/issues/1125)**: Cookie Security - improved cookie security configuration by addressing SameSite cookie settings for better protection.
+
+#### **Bug Fixes**
+- **[#1150](https://github.com/cloudscribe/cloudscribe/issues/1150)**: Summernote Editor - fixed issue where HTML code entered in raw HTML view was not retained when saving unless user switched back to WYSIWYG mode first.
+- **[#1177](https://github.com/cloudscribe/cloudscribe/issues/1177)**: API Authentication - fixed EnforceSiteRulesMiddleware bug that incorrectly started HTTP responses for Terms & Conditions violations on API routes, causing authentication errors.
+- **[#1169](https://github.com/cloudscribe/cloudscribe/issues/1169)**: IP Address Blocking - re-wrote IP address blocking/permitting logic to ensure "Permitted" rules consistently take precedence over "Blocked" rules when dealing with IP address ranges.
+- **[#500](https://github.com/cloudscribe/cloudscribe.SimpleContent/issues/500)**: Page Manager UI - fixed scrolling issue in SimpleContent Page Manager where selecting a page would auto-scroll to top with misplaced context menu.
+
+#### **UI/UX Improvements**
+- **[#1157](https://github.com/cloudscribe/cloudscribe/issues/1157)**: Summernote Theme Consistency - added CSS override to ensure Summernote editor maintains consistent black-on-white appearance across different themes.
+- **[#639](https://github.com/cloudscribe/cloudscribe.SimpleContent/issues/639)**: SimpleContent Layout - moved page metadata below child page menu for improved layout and user experience.
+- **[#501](https://github.com/cloudscribe/cloudscribe.SimpleContent/issues/501)**: Access Control - improved unauthorized access handling in SimpleContent with proper redirects to login/access denied pages instead of generic 404 errors.
+- **[#1134](https://github.com/cloudscribe/cloudscribe/issues/1134)**: Registration Settings - modified user interface to clarify the purpose of a confusing checkbox on "/siteadmin/registerpageinfo" page which has no backing database field.
+
+#### **Developer Tools & Features**
+- **[#482](https://github.com/cloudscribe/cloudscribe.SimpleContent/issues/482)**: CSP-Compliant Scripts - added mechanism in Developer Tools to allow adding JavaScript directly to pages with Content Security Policy compliance through tag helpers.
+- **[#1182](https://github.com/cloudscribe/cloudscribe/issues/1182)**: Localization Improvements - rationalized ResX string references throughout core views, standardizing localization with consistent snake_case resource keys.
+- **[#1194](https://github.com/cloudscribe/cloudscribe/issues/1194)** & **[#45](https://github.com/cloudscribe/cloudscribe.UserProperties.Kvp/issues/45)**: User Data Cleanup - added event handler for post-user deletion to clean up remaining Key-Value Pair (KVP) data from deleted users.
+- **[#55](https://github.com/cloudscribe/cloudscribe.UserProperties.Kvp/issues/55)**: User Export Compatibility - added conditional UserExportPartial to KVP views to ensure compatibility with different versions of cloudscribe.Core.CompiledViews.Bootstrap5 by using view engine checks.
+
+#### **Code Cleanup**
+- **[#1138](https://github.com/cloudscribe/cloudscribe/issues/1138)** & **[#1160](https://github.com/cloudscribe/cloudscribe/issues/1160)**: Legacy Removal - removed outdated Bootstrap3 and deprecated .pgsql libraries across cloudscribe solutions to improve maintainability.
+- **[#1163](https://github.com/cloudscribe/cloudscribe/issues/1163)**: Test Infrastructure - fixed and reorganized unit test infrastructure with new working tests.
+
 ### version 8.3.0 - July 2025
 
 #### **@cloudscribe/cloudscribe**
