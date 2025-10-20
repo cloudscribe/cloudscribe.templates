@@ -17,5 +17,8 @@
 </environment>
 @if (!User.Identity.IsAuthenticated)
 {
-    <script src='https://www.google.com/recaptcha/api.js?onload=captchaOnloadCallback&render=explicit' async defer></script>
+    @* Load reCAPTCHA API without onload callback - we'll initialize it manually after thread data loads *@
+    <script src='https://www.google.com/recaptcha/api.js?render=explicit'></script>
 }
+
+<partial name="SummernoteScripts" />
