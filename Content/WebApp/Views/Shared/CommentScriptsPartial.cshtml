@@ -5,7 +5,7 @@
 @*<script src="~/js/talkabout-helpers.js" asp-append-version="true"></script>
     <script src="~/js/pagedown-bundle.min.js" asp-append-version="true"></script>*@
 <script src="~/talk/js/talkabout-helpers.js" asp-append-version="true"></script>
-<script src="~/talk/js/pagedown-bundle.min.js" asp-append-version="true"></script>
+@* <script src="~/talk/js/pagedown-bundle.min.js" asp-append-version="true"></script> *@
 
 <environment names="Development">
     <script src="~/talk/js/talkabout.bundle.js" asp-append-version="true"></script>
@@ -17,5 +17,8 @@
 </environment>
 @if (!User.Identity.IsAuthenticated)
 {
-    <script src='https://www.google.com/recaptcha/api.js?onload=captchaOnloadCallback&render=explicit' async defer></script>
+    @* Load reCAPTCHA API without onload callback - we'll initialize it manually after thread data loads *@
+    <script src='https://www.google.com/recaptcha/api.js?render=explicit'></script>
 }
+
+<partial name="SummernoteScripts" />

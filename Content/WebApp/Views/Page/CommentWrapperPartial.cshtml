@@ -1,8 +1,26 @@
-﻿@model cloudscribe.SimpleContent.Web.ViewModels.PageViewModel
+﻿﻿@using cloudscribe.TalkAbout.Web.Components
+@using Microsoft.AspNetCore.Authorization
+
+@model cloudscribe.SimpleContent.Web.ViewModels.PageViewModel
 @inject IStringLocalizer<SimpleContent> sr
+
+@inject TalkAboutComments_SummernoteOptionsResolver talkAboutSummernoteOptions
+@inject IAuthorizationService _authorizationService
+
+@{
+    var summernoteOptions = await talkAboutSummernoteOptions.GetSummernoteOptions();
+    var canUpload = (await _authorizationService.AuthorizeAsync(User, "TalkAboutImageUpload")).Succeeded;
+}
+
+
 @if (Model.CurrentPage != null && Model.CurrentPage.ShowComments && Model.CurrentPage.PubDate.HasValue)
 {
     <div id="divComments"
+         data-summernote-config-url="@summernoteOptions.CustomConfigPath"
+         data-summernote-toolbar-config-url="@summernoteOptions.CustomToolbarConfigPath"
+         data-summernote-config-language="@summernoteOptions.LanguageCode"
+         data-summernote-config-dropfileuploadurl="@summernoteOptions.DropFileUrl"
+         data-summernote-config-imageUploadAllowed="@canUpload"
          data-talkabout-project-id="@Model.CurrentPage.ProjectId"
          data-talkabout-thread-id="@Model.CurrentPage.Id"
          data-talkabout-thread-title="@Model.CurrentPage.Title"
@@ -14,10 +32,8 @@
             <h3>@sr["Comments"]</h3>
             <div data-bind="template: { name:'commentList' }"></div>
             <div data-bind="template: { name:'newCommentForm' }"></div>
-            <div id="divRecaptcha" class="g-recaptcha"
-                 data-size="invisible">
-            </div>
-
+            <!-- reCAPTCHA will be rendered here by JavaScript based on mode -->
+            <div id="divRecaptcha"></div>
         </div>
 
         <noscript>@sr["Please enable javascript to view or post comments."]</noscript>

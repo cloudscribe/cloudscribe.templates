@@ -1,6 +1,48 @@
 ## Release Notes
 
-### version 8.4.0 - November 2025
+### version 8.5.0 - September 2025
+
+#### **Major Licensing Change**
+
+##### **Commercial Components Now Free**
+- **Announcement**: All cloudscribe commercial components are now available for free use
+- **Components Included**:
+  - TalkAbout Commenting System
+  - TalkAbout Forums
+  - Membership Paywall
+  - Newsletter Management
+  - Forms and Surveys
+  - Stripe Payment Integration
+- **Impact**: License key requirements have been completely removed for all commercial components
+- **Source Code**: Components remain proprietary (subject to potential future open-sourcing)
+- **Benefit**: Full cloudscribe ecosystem now accessible without licensing barriers
+
+#### **New Features**
+
+- **[#1102](https://github.com/cloudscribe/cloudscribe/issues/1102)**: Admin Application Restart - added capability for administrators to restart the application directly from the cloudscribe admin interface. Eliminates need for direct server access when application restart is required. Controlled via appsettings.json configuration boolean for security.
+
+- **[#1208](https://github.com/cloudscribe/cloudscribe/issues/1208)**: Enhanced Summernote Editor - Element Path Display - new element path breadcrumb display showing current cursor position in DOM hierarchy (similar to CKEditor). Real-time updates with clickable breadcrumbs for easy navigation. Custom Summernote plugin with comprehensive HTML5 tag support.
+- **[#1209](https://github.com/cloudscribe/cloudscribe/issues/1209)**: Enhanced Summernote Editor - Improved Link Behavior - hyperlinks no longer open in new windows by default. Controlled via `linkTargetBlank: false` in summernote-config.json.
+
+- **[cloudscribe.Syndication #7](https://github.com/cloudscribe/cloudscribe.Syndication/issues/7)**: RSS Feed Styling Support - added ability to style RSS feeds with custom CSS stylesheets. Support for XML stylesheet meta tags in RSS feeds. Automatic XSL and CSS file deployment with user override protection. RSS feeds can now match site branding and provide better user experience. New documentation available at https://www.cloudscribe.com/cloudscribesyndication.
+
+#### **Enhancements**
+
+- **[#1204](https://github.com/cloudscribe/cloudscribe/issues/1204)**: Enhanced Auto-Logout System - resolved session timeout issues for users actively using JavaScript API endpoints. Features include server-side middleware for intelligent session activity tracking, client-side JavaScript for cross-tab session management, and configurable timeout thresholds. Prevents unexpected logouts during active user workflows while maintaining security.
+
+- **[#698](https://github.com/cloudscribe/cloudscribe/issues/698)**: System Information Improvements - updated System Information page to include previously missing packages. Added compiled views, static files, integration packages, and Bootstrap components. Removed duplicate "cloudscribe.Email.Templating.Web" entry. Improved visibility for troubleshooting and support scenarios.
+
+#### **Bug Fixes**
+
+- **[#1205](https://github.com/cloudscribe/cloudscribe/issues/1205)**: IdentityServer4 Support Resolution - resolved token creation issues caused by dependency version conflicts. Root cause was System.IdentityModel.Tokens.Jwt version 8.2.* breaking changes. Updated dependency chain management and explicit package references. Restored proper JWT signature validation and metadata endpoint functionality.
+
+- **[cloudscribe.Messaging #13](https://github.com/GreatHouseBarn/cloudscribe.Messaging/issues/13)**: Email Queue Background Task Exception Handling - resolved cancellation exception thrown during app pool recycling. Fixed "A task was canceled" error in EmailQueueBackgroundTask.ExecuteAsync. Improved cancellation token handling in background services. Eliminates log noise during normal application lifecycle events.
+
+---
+
+
+
+### version 8.4.0 - August 2025
 
 #### **Breaking Changes**
 - **[#748](https://github.com/cloudscribe/cloudscribe/issues/748)**: Enhanced Cookie Consent System - implemented a more sophisticated cookie consent system allowing users to dismiss cookie banners without fully accepting cookies. **Breaking change** for sites with local view overrides - two key files were modified in the Bootstrap5 template. See the [documentation](https://www.cloudscribe.com/managing-cookie-consent).
