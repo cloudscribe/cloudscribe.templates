@@ -1,5 +1,51 @@
 ## Release Notes
 
+### version 8.6.0 - November 2025
+
+#### **Breaking Changes**
+
+- **[cloudscribe.TalkAbout #85](https://github.com/GreatHouseBarn/cloudscribe.TalkAbout/issues/85) & [#90](https://github.com/GreatHouseBarn/cloudscribe.TalkAbout/issues/90)**: Comments System Summernote Editor - replaced Markdown editor with Summernote HTML editor in commenting system. **Breaking change** requires manual updates to local partial view overrides (CommentWrapperPartial.cshtml, CommentScriptsPartial.cshtml, CommentStylePartial.cshtml) and appsettings.json configuration. Legacy Markdown comments are preserved and automatically converted to HTML on first edit (one-way migration). CommentThread table now central to comment organization. Bootstrap4 views deprecated. Fixed PostgreSQL/MySQL/SQLite migration issues. Expect approximately half-day manual work for sites with custom comment view overrides. See upgrade documentation for detailed partial view changes required.
+
+#### **Security Improvements**
+
+- **[cloudscribe.TalkAbout #98](https://github.com/GreatHouseBarn/cloudscribe.TalkAbout/issues/98)**: Server-Side Posting Protection - added server-side enforcement of configuration parameters to prevent unauthorized comment and forum posting. Ensures anonymous users cannot bypass client-side restrictions to post when anonymous posting is disabled. Includes unit tests for validation logic. Reviewed EF Core usage to ensure protection against SQL injection in posted comment data.
+
+#### **New Features**
+
+- **[cloudscribe.Commerce #82](https://github.com/GreatHouseBarn/cloudscribe.Commerce/issues/82)**: Forms & Surveys reCAPTCHA Support - added reCAPTCHA validation to Forms & Surveys system. Each form can be configured to require reCAPTCHA for unauthenticated users, respecting site-wide cloudscribe Core reCAPTCHA settings for both visible and invisible modes. Addresses spam prevention in public-facing forms.
+- **[cloudscribe.TalkAbout #95](https://github.com/GreatHouseBarn/cloudscribe.TalkAbout/issues/95)**: Email Comment Authors - added ability for moderators to email users directly from the comment administration page. New "Email user" button in `/talkadmin/administercomments` allows moderators to compose and send plain-text emails to comment authors. Includes contextual link back to the original comment page (when approved). Respects per-project moderator authorization policies. Fully localized with new ResX strings.
+- **[#921](https://github.com/cloudscribe/cloudscribe/issues/921)**: Role Copying with Authorization Policies - added ability to copy roles in role management. When copying a role, any dynamic authorization policies referencing the original role are automatically updated to also reference the new role. User specifies new role name during copy operation. New role starts empty (no users). Excludes system "Administrators" role from copying. Works seamlessly with or without dynamic authorization policies installed.
+
+#### **Enhancements**
+
+- **[cloudscribe.TalkAbout #75](https://github.com/GreatHouseBarn/cloudscribe.TalkAbout/issues/75)**: Visible reCAPTCHA Support - added support for visible/checkbox reCAPTCHA in the TalkAbout commenting system. Previously only invisible reCAPTCHA was supported with hardcoded implementation. Now respects cloudscribe Core reCAPTCHA settings and supports both visible and invisible modes, matching the behavior of the core login system.
+- **[cloudscribe.TalkAbout #79](https://github.com/GreatHouseBarn/cloudscribe.TalkAbout/issues/79)**: Forum Visible reCAPTCHA Support - added support for visible/checkbox reCAPTCHA in the TalkAbout forums system. Forums no longer hard-code invisible reCAPTCHA and now respect cloudscribe Core reCAPTCHA settings for both visible and invisible modes.
+- **[#1243](https://github.com/cloudscribe/cloudscribe/issues/1243)**: IP Address Restrictions Authorization - added dedicated `IPAddressRestrictionPolicy` to protect IP address restriction management endpoints. Updated navigation configuration to use `AdminMenuPolicy` instead of `AdminPolicy` for IP restriction admin menu items. Tested compatibility with template systems without dynamic authorization policies installed.
+- **[#1241](https://github.com/cloudscribe/cloudscribe/issues/1241)**: IP Address Restrictions Configuration - added ability to enable or disable IP address restriction feature via configuration. New `SiteConfigOptions.EnableIpAddressRestrictions` setting in appsettings.json allows administrators to disable the feature when not needed. Defaults to enabled (true) for backward compatibility.
+
+#### **Bug Fixes**
+
+- **[cloudscribe.TalkAbout #74](https://github.com/GreatHouseBarn/cloudscribe.TalkAbout/issues/74)**: reCAPTCHA Validation - fixed missing server-side reCAPTCHA verification when anonymous users submit comments. Ensures proper validation to prevent spam attempts. Also resolved race condition issues in reCAPTCHA initialization.
+- **[cloudscribe.TalkAbout #80](https://github.com/GreatHouseBarn/cloudscribe.TalkAbout/issues/80)**: Forum reCAPTCHA Validation - fixed missing server-side reCAPTCHA verification for anonymous forum posts. Analogous fix to comment system to ensure proper spam prevention.
+- **[cloudscribe.TalkAbout #67](https://github.com/GreatHouseBarn/cloudscribe.TalkAbout/issues/67)**: Duplicate CommentSystemSettings Records - fixed issue where duplicate rows were incorrectly created in csta_CommentSystemSettings table. Resolved confusion between Id, ProjectId, and TenantId fields where lookups now consistently use TenantId. Prevents creation of hundreds/thousands of duplicate configuration rows while preserving existing comment data.
+- **[cloudscribe.Messaging #81](https://github.com/GreatHouseBarn/cloudscribe.Messaging/issues/81)**: Newsletter Sign-up Widget reCAPTCHA - fixed hard-coded invisible reCAPTCHA in newsletter sign-up widget. Widget now respects cloudscribe Core settings for both visible and invisible reCAPTCHA modes.
+- **[cloudscribe.dynamic-authorization-policy #30](https://github.com/cloudscribe/dynamic-authorization-policy/issues/30)**: Role Removal from Policies - fixed UI bug where roles could not be reliably removed from authorization policies. Resolved indexing issue that caused sporadic failures when de-selecting roles and saving policy changes.
+- **[#1245](https://github.com/cloudscribe/cloudscribe/issues/1245)**: IP Address Restrictions Multi-Tenancy - fixed critical bug where first tenant's IP restrictions would incorrectly apply to all tenants due to cache key missing tenant ID component. Also resolved thread locking issue caused by synchronous data access in constructor. Service changed from Transient to Scoped registration. IP restrictions now work independently per tenant.
+- **[#1197](https://github.com/cloudscribe/cloudscribe/issues/1197)**: IP Restriction UI Address Display - fixed incorrect IP address display in IP restriction admin UI. Previously used historical login data from cs_user_location table which could be outdated or wrong when users switch devices, VPNs, or have dynamic IP changes. Now retrieves current IP address directly from HTTPContext for accurate real-time display.
+
+#### **UI/UX Improvements**
+
+- **[#1058](https://github.com/cloudscribe/cloudscribe/issues/1058)**: User Display Name Editing - added ability for users to edit their display name on the `/manage/userinfo` page. Previously users could only edit first and last name, but display name (used throughout the system including TalkAbout comments) was only editable by administrators. Includes uniqueness enforcement per tenant, character validation with international character support, and HTML sanitization.
+
+#### **Developer Tools & Features**
+
+- **[cloudscribe.dynamic-authorization-policy #46](https://github.com/cloudscribe/dynamic-authorization-policy/issues/46)**: Policy Definition Documentation - clarified the relationship between Roles and Claims in policy definitions. Documentation now explicitly states that Roles use OR logic (user needs ANY role), Claims use AND logic (user needs ALL claims), and when both are specified, users must satisfy both requirements (be in ANY role AND have ALL claims).
+- **[#1231](https://github.com/cloudscribe/cloudscribe/issues/1231)**: IdentityServer Integration Tests - added comprehensive integration tests for IdentityServer4 authentication and authorization. Tests cover client credentials grant type flow, JWT token validation, and role-based authorization. Updated to use modern Microsoft.AspNetCore.Authentication.JwtBearer (v8.x) library instead of deprecated IdentityServer4.AccessTokenValidation (v3). Includes published test harness page for live validation testing.
+
+---
+
+
+
 ### version 8.5.0 - September 2025
 
 #### **Major Licensing Change**
