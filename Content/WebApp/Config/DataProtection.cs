@@ -23,9 +23,10 @@ namespace Microsoft.Extensions.DependencyInjection
             // if you move an app to different hosting and the keys change then you would have
             // to update those settings again from the Administration UI
 
-            // for IIS hosting you should use a powershell script to create a keyring in the registry
-            // per application pool and use a different application pool per app
-            // https://docs.microsoft.com/en-us/aspnet/core/publishing/iis#data-protection
+            // For modern IIS hosting, the default location of keys is now within the file system of the Application Pool user:
+            // "C:\Users\[your-app-pool-name]\AppData\Local\ASP.NET\DataProtection-Keys\*.xml
+            // You should use a different application pool per app.
+            // See also:
             // https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?tabs=aspnetcore2x
             if (environment.IsProduction())
             {
