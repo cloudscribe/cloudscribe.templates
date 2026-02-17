@@ -2240,4 +2240,16 @@
   <data name="Please wait while the application restarts..." xml:space="preserve">
     <value>Arhoswch tra bod y rhaglen yn ailgychwyn...</value>
   </data>
+  <data name="Update failed - please see the validation errors below." xml:space="preserve">
+    <value>Methwyd diweddaru - gweler y gwallau dilysu isod.</value>
+  </data>
+  <data name="Display Name is already in use by another user." xml:space="preserve">
+    <value>Mae'r Enw Arddangos eisoes yn cael ei ddefnyddio gan ddefnyddiwr arall.</value>
+  </data>
+  <data name="Display Name cannot contain HTML, script tags, or executable content." xml:space="preserve">
+    <value>Ni all Enw Arddangos gynnwys HTML, tagiau sgript, na chynnwys gweithredadwy.</value>
+  </data>
+  <data name="Display Name must be 100 characters or fewer." xml:space="preserve">
+    <value>Rhaid i Enw Arddangos fod yn 100 nod neu lai.</value>
+  </data>
 </root>
