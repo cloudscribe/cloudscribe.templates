@@ -1946,4 +1946,16 @@
   <data name="Please wait while the application restarts..." xml:space="preserve">
     <value>Please wait while the application restarts...</value>
   </data>
+  <data name="Update failed - please see the validation errors below." xml:space="preserve">
+    <value>Update failed - please see the validation errors below.</value>
+  </data>
+  <data name="Display Name is already in use by another user." xml:space="preserve">
+    <value>Display Name is already in use by another user.</value>
+  </data>
+  <data name="Display Name cannot contain HTML, script tags, or executable content." xml:space="preserve">
+    <value>Display Name cannot contain HTML, script tags, or executable content.</value>
+  </data>
+  <data name="Display Name must be 100 characters or fewer." xml:space="preserve">
+    <value>Display Name must be 100 characters or fewer.</value>
+  </data>
 </root>
