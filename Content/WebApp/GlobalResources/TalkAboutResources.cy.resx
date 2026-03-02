@@ -83,9 +83,6 @@
   </data>
   
   <!-- View/Modal Strings -->
-  <data name="Email User" xml:space="preserve">
-    <value>E-bostio Defnyddiwr</value>
-  </data>
   <data name="Email user" xml:space="preserve">
     <value>E-bostio defnyddiwr</value>
   </data>
