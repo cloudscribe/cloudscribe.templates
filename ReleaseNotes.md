@@ -1,5 +1,38 @@
 ## Release Notes
 
+### version 8.7.0 - February 2026
+
+#### **Security Improvements**
+
+- **[#1269](https://github.com/cloudscribe/cloudscribe/issues/1269)**: Display Name XSS Vulnerability - fixed script injection vulnerability in the DisplayName field on `/useradmin/useredit` page. Users could inject malicious scripts through their Display Name on `/manage/userinfo` which would execute when administrators viewed or saved the user on the admin user edit page. Added proper HTML encoding and sanitization to prevent XSS attacks through user-editable fields.
+- **[#1255](https://github.com/cloudscribe/cloudscribe/issues/1255)**: Return URL Recursion Prevention - fixed issue where web crawlers (particularly Facebook's meta-externalagent) could create deeply nested returnurl parameters causing extremely long URLs with multiple levels of URL encoding. Added detection and prevention logic to stop returnurl recursion, particularly on Login and Register pages. Prevents log pollution and potential performance issues from recursive URL parameters.
+
+#### **New Features**
+
+- **[#1026](https://github.com/cloudscribe/cloudscribe/issues/1026)**: Require 2FA for Specified Roles - added ability to enforce two-factor authentication for specific roles rather than all-or-nothing. Previously 2FA was either enforced for all users (except administrators) or not enforced at all. New role-based selector allows administrators to require 2FA for specific user roles. Setting only applies when site-wide 2FA enforcement is disabled, preserving authority of the existing global checkbox.
+- **[cloudscribe.dynamic-authorization-policy #2546](https://github.com/GreatHouseBarn/CAMS-Pro/issues/2546)**: Policy Search by Role - added ability to search authorization policies by role name on the policy management page. Previously only policy name search was available using wildcard '%LIKE%' syntax. Administrators can now search for roles (e.g., 'volunteer') to identify all policies where that role is referenced. Useful for understanding role dependencies and preventing accidental role deletion when roles are in use by policies.
+
+#### **Enhancements**
+
+- **[#1200](https://github.com/cloudscribe/cloudscribe/issues/1200)**: Login Page Performance - improved performance of `/account/login` page by adding option to suppress site menu rendering. Reduces page load time and database queries for unauthenticated users by skipping unnecessary navigation tree processing on the login page.
+- **[#1136](https://github.com/cloudscribe/cloudscribe/issues/1136)**: OIDC Display Name on Manage Logins - improved user experience on `/manage/managelogins` page by displaying configured friendly Display Name for OpenID Connect (OIDC) providers instead of the generic "OpenIdConnect" label. Shows the custom Display Name configured in social authentication settings for better clarity when users manage their external login connections.
+- **[#704](https://github.com/cloudscribe/cloudscribe/issues/704)**: Automatic User Approval Notification - improved user approval workflow by automatically sending email notification to users when their account is approved. Previously, administrators had to manually check a box for each approval, which was easy to miss and caused confusion when users didn't receive the promised notification. Approval emails now send automatically when SMTP is configured and "Require approval before login" is enabled, ensuring consistent user experience.
+
+#### **Bug Fixes**
+
+- **[cloudscribe.Commerce #87](https://github.com/GreatHouseBarn/cloudscribe.Commerce/issues/87)**: CsvHelper Compatibility - fixed missing method exception on `/formsadmin/downloadcsvresults` caused by CsvHelper upgrade. CsvHelper 27+ introduced breaking changes requiring CultureInfo parameter in constructor. Updated Forms & Surveys CSV export functionality to be compatible with CsvHelper 33.1.0 which is required by cloudscribe.Core.Web 8.7.0.
+- **[#1260](https://github.com/cloudscribe/cloudscribe/issues/1260)**: Cookie Consent Footer Link - fixed issue where footer link to reset cookie consent preferences was displayed even when site is configured to not require cookie consent. Link now only appears when cookie consent feature is enabled. Added SiteContext check to partial view to respect the RequireCookieConsent configuration setting.
+- **[#1268](https://github.com/cloudscribe/cloudscribe/issues/1268)**: Admin Display Name Uniqueness - added uniqueness validation when administrators edit user display names on `/useradmin/useredit`. Previously only users editing their own display names on `/manage/userinfo` had uniqueness enforcement. Ensures consistency across both user self-service and administrator-managed display name changes, preventing duplicate display names per tenant.
+- **[#1249](https://github.com/cloudscribe/cloudscribe/issues/1249)**: Site Settings Cache Invalidation - fixed cache invalidation issue for ISiteSettings when administrators change the recipient email string for new user notifications. Changes to site settings now properly invalidate the cache, ensuring updated configuration values take effect immediately without requiring application restart.
+
+#### **UI/UX Improvements**
+
+- **[#692](https://github.com/exeGesIS-SDM/Trailwise/issues/692)**: Role Management User Access - added ability to click through to view member details directly from role management pages. Previously, when viewing users within a role, the only available action was "remove from role." Now includes clickable links to access full user details for improved navigation and user management workflow.
+
+---
+
+
+
 ### version 8.6.0 - November 2025
 
 #### **Breaking Changes**
