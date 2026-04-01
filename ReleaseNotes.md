@@ -2,6 +2,7 @@
 
 ### version 8.7.0 - March 2026
 
+
 #### **Security Improvements**
 
 - **[#1269](https://github.com/cloudscribe/cloudscribe/issues/1269)**: Display Name XSS Vulnerability - fixed script injection vulnerability in the DisplayName field on `/useradmin/useredit` page. Users could inject malicious scripts through their Display Name on `/manage/userinfo` which would execute when administrators viewed or saved the user on the admin user edit page. Added proper HTML encoding and sanitization to prevent XSS attacks through user-editable fields.
