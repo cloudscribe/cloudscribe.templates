@@ -1,5 +1,27 @@
 ## Release Notes
 
+### version 10.0.0 - April 2026
+
+#### **Target Framework**
+
+- Updated target framework from .NET 8.0 to .NET 10.0. All cloudscribe package references updated to version 10.0.*.
+
+#### **Security Improvements**
+
+- Updated a number of npm package references to address known security vulnerabilities.
+
+#### **Known Transitive NuGet Vulnerabilities**
+
+The following vulnerabilities appear in Visual Studio's NuGet vulnerability report for projects generated from this template. They are legacy NuGet packages pulled in transitively; on .NET 10 the runtime's built-in implementations override them and they are not exploitable:
+
+- **`System.Net.Http` 4.3.0** (High, CVE-2018-8292) — Legacy NuGet package. On .NET 10, the runtime built-in implementation overrides this package; not exploitable.
+- **`System.Text.Encodings.Web` 4.5.0** (Critical, CVE-2021-26701) — Legacy NuGet package. On .NET 10, the runtime built-in implementation overrides this package; not exploitable.
+- **`System.Text.RegularExpressions` 4.3.0** (High, CVE-2019-0820) — Legacy NuGet package. On .NET 10, the runtime built-in implementation overrides this package; not exploitable.
+
+---
+
+
+
 ### version 8.7.0 - March 2026
 
 
