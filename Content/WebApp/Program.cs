@@ -9,43 +9,54 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace WebApp
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task<int> Main(string[] args)
         {
-            var hostBuilder = CreateHostBuilder(args);
-            var host = hostBuilder.Build();
-            IConfiguration config;
-            
-            using (var scope = host.Services.CreateScope())
+            try
             {
-                var scopedServices = scope.ServiceProvider;
-                config = scopedServices.GetRequiredService<IConfiguration>();
-                try
+                var hostBuilder = CreateHostBuilder(args);
+                var host = hostBuilder.Build();
+                IConfiguration config;
+                
+                using (var scope = host.Services.CreateScope())
                 {
+                    var scopedServices = scope.ServiceProvider;
+                    config = scopedServices.GetRequiredService<IConfiguration>();
+                    try
+                    {
 #if (AllStorage)
-                    EnsureDataStorageIsReady(config, scopedServices);
+                        await EnsureDataStorageIsReady(config, scopedServices);
 #else
-                    EnsureDataStorageIsReady(scopedServices);
+                        await EnsureDataStorageIsReady(scopedServices);
 #endif
+                    }
+                    catch (Exception ex)
+                    {
+                        var logger = scopedServices.GetRequiredService<ILogger<Program>>();
+                        logger.LogError(ex, "An error occurred while migrating the database.");
+                    }
                 }
-                catch (Exception ex)
-                {
-                    var logger = scopedServices.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred while migrating the database.");
-                }
-            }
 
 #if (Logging)
-            var env = host.Services.GetRequiredService<IWebHostEnvironment>();
-            var loggerFactory = host.Services.GetRequiredService<ILoggerFactory>();
-            ConfigureLogging(env, loggerFactory, host.Services, config);
+                var env = host.Services.GetRequiredService<IWebHostEnvironment>();
+                var loggerFactory = host.Services.GetRequiredService<ILoggerFactory>();
+                ConfigureLogging(env, loggerFactory, host.Services, config);
 #endif
 
-            host.Run();
+                await host.RunAsync();
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Host terminated unexpectedly.");
+                Console.WriteLine(ex.ToString());
+                return -1;
+            }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -56,139 +67,139 @@ namespace WebApp
                 });
 
 #if (!AllStorage)
-        private static void EnsureDataStorageIsReady(IServiceProvider scopedServices)
+        private static async Task EnsureDataStorageIsReady(IServiceProvider scopedServices)
         {
 #if (Logging)
 #if (!NoDb)
             var deletePostsOlderThanDays = 90;
-            LoggingEFStartup.InitializeDatabaseAsync(scopedServices, deletePostsOlderThanDays).Wait();
+            await LoggingEFStartup.InitializeDatabaseAsync(scopedServices, deletePostsOlderThanDays);
 #endif
 #endif
 #if (NoDb)
-            CoreNoDbStartup.InitializeDataAsync(scopedServices).Wait();
+            await CoreNoDbStartup.InitializeDataAsync(scopedServices);
 #else
-            CoreEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
+            await CoreEFStartup.InitializeDatabaseAsync(scopedServices);
 #endif
 #if (SimpleContentConfig != "z")
 #if (!NoDb)
-            SimpleContentEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
+            await SimpleContentEFStartup.InitializeDatabaseAsync(scopedServices);
 #endif
 #endif
 #if (KvpCustomRegistration || Newsletter)
 #if (!NoDb)
-            KvpEFCoreStartup.InitializeDatabaseAsync(scopedServices).Wait();
+            await KvpEFCoreStartup.InitializeDatabaseAsync(scopedServices);
 #endif
 #endif
 #if (IdentityServer)
 #if (NoDb)
-            CloudscribeIdentityServerIntegrationNoDbStorage.InitializeDatabaseAsync(scopedServices).Wait();
+            await CloudscribeIdentityServerIntegrationNoDbStorage.InitializeDatabaseAsync(scopedServices);
 #else
-            CloudscribeIdentityServerIntegrationEFCoreStorage.InitializeDatabaseAsync(scopedServices).Wait();
+            await CloudscribeIdentityServerIntegrationEFCoreStorage.InitializeDatabaseAsync(scopedServices);
 #endif
 #endif
 #if (FormBuilder)
 #if (!NoDb)
-            FormsDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            await FormsDatabase.InitializeDatabaseAsync(scopedServices);
 #endif
 #endif
 #if (Paywall)
 #if (!NoDb)
-            MembershipDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            await MembershipDatabase.InitializeDatabaseAsync(scopedServices);
 #endif
 #endif
 #if (IncludeEmailQueue)
 #if (!NoDb)
-            EmailQueueDatabase.InitializeDatabaseAsync(scopedServices).Wait();
-            EmailTemplateDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            await EmailQueueDatabase.InitializeDatabaseAsync(scopedServices);
+            await EmailTemplateDatabase.InitializeDatabaseAsync(scopedServices);
 #endif
 #endif
 #if (Newsletter)
 #if (!NoDb)
-            EmailListDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            await EmailListDatabase.InitializeDatabaseAsync(scopedServices);
 #endif
 #endif
 #if (IncludeStripeIntegration)
 #if (!NoDb)
-            StripeDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            await StripeDatabase.InitializeDatabaseAsync(scopedServices);
 #endif
 #endif
 #if (DynamicPolicy)
 #if (!NoDb)
-            DynamicPolicyEFCore.InitializeDatabaseAsync(scopedServices).Wait();
+            await DynamicPolicyEFCore.InitializeDatabaseAsync(scopedServices);
 #endif
 #endif
 #if (CommentSystem)
 #if (!NoDb)
-            CommentsDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            await CommentsDatabase.InitializeDatabaseAsync(scopedServices);
 #endif
 #endif
 #if (Forum)
 #if (!NoDb)
-            ForumDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+            await ForumDatabase.InitializeDatabaseAsync(scopedServices);
 #endif
 #endif
 #if (QueryTool)
 #if (!NoDb)
-            QueryToolStartup.InitializeDatabaseAsync(scopedServices).Wait();
+            await QueryToolStartup.InitializeDatabaseAsync(scopedServices);
 #endif
 #endif
         }
 #endif
 #if (AllStorage)
-        private static void EnsureDataStorageIsReady(IConfiguration config, IServiceProvider scopedServices)
+        private static async Task EnsureDataStorageIsReady(IConfiguration config, IServiceProvider scopedServices)
         {
             var storage = config["DevOptions:DbPlatform"].ToLowerInvariant();
 
             switch (storage)
             {
                 case "efcore":
-                    CoreEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
+                    await CoreEFStartup.InitializeDatabaseAsync(scopedServices);
 #if (Logging)
                     var deletePostsOlderThanDays = 90;
-                    LoggingEFStartup.InitializeDatabaseAsync(scopedServices, deletePostsOlderThanDays).Wait();
+                    await LoggingEFStartup.InitializeDatabaseAsync(scopedServices, deletePostsOlderThanDays);
 #endif
 #if (SimpleContentConfig != "z")
-                    SimpleContentEFStartup.InitializeDatabaseAsync(scopedServices).Wait();
+                    await SimpleContentEFStartup.InitializeDatabaseAsync(scopedServices);
 #endif
 #if (KvpCustomRegistration || Newsletter)
-                    KvpEFCoreStartup.InitializeDatabaseAsync(scopedServices).Wait();
+                    await KvpEFCoreStartup.InitializeDatabaseAsync(scopedServices);
 #endif
 #if (IdentityServer)
-                    CloudscribeIdentityServerIntegrationEFCoreStorage.InitializeDatabaseAsync(scopedServices).Wait();
+                    await CloudscribeIdentityServerIntegrationEFCoreStorage.InitializeDatabaseAsync(scopedServices);
 #endif
 #if (FormBuilder)
-                    FormsDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+                    await FormsDatabase.InitializeDatabaseAsync(scopedServices);
 #endif
 #if (Paywall)
-                    MembershipDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+                    await MembershipDatabase.InitializeDatabaseAsync(scopedServices);
 #endif
 #if (IncludeEmailQueue)
-                    EmailQueueDatabase.InitializeDatabaseAsync(scopedServices).Wait();
-                    EmailTemplateDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+                    await EmailQueueDatabase.InitializeDatabaseAsync(scopedServices);
+                    await EmailTemplateDatabase.InitializeDatabaseAsync(scopedServices);
 #endif
 #if (Newsletter)
-                    EmailListDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+                    await EmailListDatabase.InitializeDatabaseAsync(scopedServices);
 #endif
 #if (IncludeStripeIntegration)
-                    StripeDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+                    await StripeDatabase.InitializeDatabaseAsync(scopedServices);
 #endif
 #if (DynamicPolicy)
-                    DynamicPolicyEFCore.InitializeDatabaseAsync(scopedServices).Wait();
+                    await DynamicPolicyEFCore.InitializeDatabaseAsync(scopedServices);
 #endif
 #if (CommentSystem)
-                    CommentsDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+                    await CommentsDatabase.InitializeDatabaseAsync(scopedServices);
 #endif
 #if (Forum)
-                    ForumDatabase.InitializeDatabaseAsync(scopedServices).Wait();
+                    await ForumDatabase.InitializeDatabaseAsync(scopedServices);
 #endif
 #if (QueryTool)
-                    QueryToolStartup.InitializeDatabaseAsync(scopedServices).Wait();
+                    await QueryToolStartup.InitializeDatabaseAsync(scopedServices);
 #endif
                     break;
                 
                 case "nodb":
                 default:
-                    CoreNoDbStartup.InitializeDataAsync(scopedServices).Wait();
+                    await CoreNoDbStartup.InitializeDataAsync(scopedServices);
                     break;
             }
         }
