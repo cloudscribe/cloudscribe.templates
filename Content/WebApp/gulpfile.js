@@ -1,11 +1,9 @@
 ﻿"use strict";
 
 var gulp = require("gulp"),
-    concat = require("gulp-concat"),
     postcss = require('gulp-postcss'),
     cssnano = require('cssnano'), 
     gp_rename = require('gulp-rename'),
-    uglify = require("gulp-uglify"),
     sass = require('gulp-sass')(require('sass')),
     merge = require('merge-stream')
 ;
